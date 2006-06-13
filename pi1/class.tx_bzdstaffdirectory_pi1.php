@@ -141,11 +141,22 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			// ERROR: There are no team members found for this/these team(s).
 			// This can happen and won't be treated as an error at the moment (may be a team consists only of team leaders).
 		} else {
-			// Call the "output person record" function once per team member.
-			foreach ($teamMembersUIDArray as $memberUID) {
-				// Don't display this person in the team members section if it is a teamleader!
-				if (!in_array($memberUID, $teamLeadersUIDArray)) {
+			if (!is_array($teamLeadersUIDArray)) {
+				// There are no team leaders (empty array), but there are team members:
+
+				// Call the "output person record" function once per team member.
+				foreach ($teamMembersUIDArray as $memberUID) {
 					$content .= $this->showPersonInTeamList($memberUID, false);
+				}
+			} else {
+				// There are team leaders!
+
+				// Call the "output person record" function once per team member.
+				foreach ($teamMembersUIDArray as $memberUID) {
+					// Don't display this person in the team members section if it is a teamleader!
+					if (!in_array($memberUID, $teamLeadersUIDArray)) {
+						$content .= $this->showPersonInTeamList($memberUID, false);
+					}
 				}
 			}
 		}
