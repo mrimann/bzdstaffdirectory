@@ -501,6 +501,27 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$arrMarker['###FIRST_NAME###'] = $actual_person['first_name'];
 			$arrMarker['###LAST_NAME###'] = $actual_person['last_name'];
 			$arrMarker['###FUNCTION###'] = $actual_person['function'];
+			$arrMarker['###PHONE###'] = $actual_person['phone'];
+
+			// Output of the e-mail address depending on the settings from flexform (spam protection mode)
+			switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist'))
+			{
+				case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($actual_person['email']);
+									break;
+				case "asimage"		:	$emailArray = $this->email_asimage($actual_person['email'], false);
+									break;
+				case "asimagejsencrypted":	$emailArray = $this->email_asimage($actual_person['email'], true);
+									break;
+				case "plain"		:	
+				default				:	$emailArray['display'] = $actual_person['email'];
+										$emailArray['begin'] = '<a href="mailto:'.$actual_person['email'].'">';
+										$emailArray['end'] = '</a>';
+									break;
+			}
+			$arrMarker['###EMAIL###'] = $emailArray['display'];
+			$arrWrappedSubpart['###LINK_EMAIL###'] = array($emailArray['begin'],$emailArray['end']);
+
+
 			$arrWrappedSubpart['###LINK_DETAIL###'] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $actual_person["uid"], 'backId' => $GLOBALS["TSFE"]->id), 0, 1, $this->detailpage) .'">','</A>');
 	
 			$result .= $this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
