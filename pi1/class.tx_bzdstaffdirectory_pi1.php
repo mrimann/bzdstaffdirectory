@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005 Mario Rimann (mario.rimann@bbzdietikon.ch)
+*  (c) 2005-2006 Mario Rimann (typo3-coding@rimann.li)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -24,7 +24,7 @@
 /**
  * Plugin 'BZD Staff Directory' for the 'bzd_staff_directory' extension.
  *
- * @author	Mario Rimann <mario.rimann@bbzdietikon.ch>
+ * @author	Mario Rimann <typo3-coding@rimann.li>
  */
 
 
