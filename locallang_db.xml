@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<description></description>
+		<type>database</type>
+		<csh_table></csh_table>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_bzdstaffdirectory_persons">Persons</label>
+			<label index="tx_bzdstaffdirectory_persons.last_name">Last name</label>
+			<label index="tx_bzdstaffdirectory_persons.first_name">First name</label>
+			<label index="tx_bzdstaffdirectory_persons.image">Image</label>
+			<label index="tx_bzdstaffdirectory_persons.usergroups">Group membership</label>
+			<label index="tx_bzdstaffdirectory_persons.function">Function / Job Description</label>
+			<label index="tx_bzdstaffdirectory_persons.email">Email Address</label>
+			<label index="tx_bzdstaffdirectory_persons.tasks">User Tasks</label>
+			<label index="tx_bzdstaffdirectory_persons.location">Location</label>
+			<label index="tx_bzdstaffdirectory_persons.phone">Phone Number</label>
+			<label index="tx_bzdstaffdirectory_persons.room">Room Number</label>
+			<label index="tx_bzdstaffdirectory_persons.officehours">Office hours</label>
+			<label index="tx_bzdstaffdirectory_persons.opinion">Your Opinion</label>
+			<label index="tx_bzdstaffdirectory_persons.files">File(s)</label>
+			<label index="tx_bzdstaffdirectory_groups">Workgroups</label>
+			<label index="tx_bzdstaffdirectory_groups.group_name">Group Name</label>
+			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
+			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
+			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
+			<label index="tt_content.pi_flexform.listtype">List to show</label>
+			<label index="tt_content.pi_flexform.settings">Settings</label>
+			<label index="tt_content.pi_flexform.template">Template</label>
+			<label index="tt_content.pi_flexform.template_file">Template-File</label>
+			<label index="tt_content.pi_flexform.detailview">Detailview</label>
+			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
+			<label index="tt_content.pi_flexform.showimages">Show images?</label>
+			<label index="tt_content.pi_flexform.detailpage">Detailpage (where to show the detailed info of the persons?)</label>
+			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
+			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
+			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
+			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
+			<label index="pi_flexform_listtype">What to show?</label>
+			<label index="pi_flexform_listtype_detail">DETAIL - Detailed information</label>
+			<label index="pi_flexform_listtype_box">BOX - Contact person</label>
+			<label index="pi_flexform_listtype_teamlist">TEAMLIST - List of a team</label>
+			<label index="pi_flexform_group">Which group should be shown?</label>
+			<label index="pi_flexform_spamprotectionmode">How to protect e-mail addresses from being stolen by spammers?</label>
+			<label index="pi_flexform_spamprotectionmode_asimage">Render it as an image (not linked)</label>
+			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Render it as an image (with encrypted link)</label>
+			<label index="pi_flexform_spamprotectionmode_jsencrypted">Encrypt it with JavaScript function</label>
+			<label index="pi_flexform_spamprotectionmode_plain">No protection, plain text.</label>
+			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person">Contact Person</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tx_bzdstaffdirectory_persons">Personen</label>
+			<label index="tx_bzdstaffdirectory_persons.last_name">Nachname</label>
+			<label index="tx_bzdstaffdirectory_persons.first_name">Vorname</label>
+			<label index="tx_bzdstaffdirectory_persons.image">Bild</label>
+			<label index="tx_bzdstaffdirectory_persons.usergroups">Gruppenzugehörigkeit</label>
+			<label index="tx_bzdstaffdirectory_persons.function">Funktion</label>
+			<label index="tx_bzdstaffdirectory_persons.email">Emailadresse</label>
+			<label index="tx_bzdstaffdirectory_persons.tasks">Aufgaben</label>
+			<label index="tx_bzdstaffdirectory_persons.location">Standort</label>
+			<label index="tx_bzdstaffdirectory_persons.phone">Telefon</label>
+			<label index="tx_bzdstaffdirectory_persons.room">Büro/Raum</label>
+			<label index="tx_bzdstaffdirectory_persons.officehours">Bürozeiten</label>
+			<label index="tx_bzdstaffdirectory_persons.opinion">Meinung</label>
+			<label index="tx_bzdstaffdirectory_persons.files">Datei(en)</label>
+			<label index="tx_bzdstaffdirectory_groups">Abteilungen</label>
+			<label index="tx_bzdstaffdirectory_groups.group_name">Abteilungsname</label>
+			<label index="tx_bzdstaffdirectory_groups.group_leaders">Gruppenleiter</label>
+			<label index="tt_content.list_type_pi1">BZD Mitarbeiterverzeichnis</label>
+			<label index="tt_content.pi_flexform.teamlist">Team Liste</label>
+			<label index="tt_content.pi_flexform.listtype">anzuzeigende Liste</label>
+			<label index="tt_content.pi_flexform.settings">Einstellungen</label>
+			<label index="tt_content.pi_flexform.template">Template</label>
+			<label index="tt_content.pi_flexform.template_file">Template-Datei</label>
+			<label index="tt_content.pi_flexform.detailview">Detailansicht</label>
+			<label index="tt_content.pi_flexform.click_enlarge">Klick-Vergrösserung?</label>
+			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
+			<label index="tt_content.pi_flexform.detailpage">Welche Detail-Seite?</label>
+			<label index="tt_content.pi_flexform.sortOrder">Sortierreihenfolge</label>
+			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
+			<label index="tt_content.pi_flexform.usergroup">anzuzeigende Benutzergruppe</label>
+			<label index="tt_content.pi_flexform.startingpoint">Ausgangspunkt</label>
+			<label index="pi_flexform_listtype">Anzuzeigende Liste</label>
+			<label index="pi_flexform_listtype_detail">DETAIL - Ausführliche Informationen über eine Person</label>
+			<label index="pi_flexform_listtype_box">BOX - Kontaktperson</label>
+			<label index="pi_flexform_listtype_teamlist">TEAMLIST - Liste eines Teams</label>
+			<label index="pi_flexform_group">Welche Teams sollen angezeigt werden?</label>
+			<label index="pi_flexform_spamprotectionmode">Welcher Schutz gegen Emailadressen Diebstahl durch Spammer soll eingesetzt werden?</label>
+			<label index="pi_flexform_spamprotectionmode_asimage">Ausgabe als Bild (ohne Link)</label>
+			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Ausgabe als Bild (mit verschlüsseltem Link)</label>
+			<label index="pi_flexform_spamprotectionmode_jsencrypted">Verschlüsselt mit JavaScript Funktion</label>
+			<label index="pi_flexform_spamprotectionmode_plain">Kein Schutz, reiner Text</label>
+			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person">Kontaktperson</label>
+			<label index="tx_bzdstaffdirectory_groups.group_key">Abteilungskuerzel</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+		<languageKey index="de" type="array">
+			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
+			<label index="tx_bzdstaffdirectory_persons.last_name" type="integer">148108783</label>
+			<label index="tx_bzdstaffdirectory_persons.first_name" type="integer">34451647</label>
+			<label index="tx_bzdstaffdirectory_persons.image" type="integer">199571973</label>
+			<label index="tx_bzdstaffdirectory_persons.usergroups" type="integer">215444863</label>
+			<label index="tx_bzdstaffdirectory_persons.function" type="integer">258893619</label>
+			<label index="tx_bzdstaffdirectory_persons.email" type="integer">105097312</label>
+			<label index="tx_bzdstaffdirectory_persons.tasks" type="integer">10793430</label>
+			<label index="tx_bzdstaffdirectory_persons.location" type="integer">216383317</label>
+			<label index="tx_bzdstaffdirectory_persons.phone" type="integer">31775687</label>
+			<label index="tx_bzdstaffdirectory_persons.room" type="integer">42010308</label>
+			<label index="tx_bzdstaffdirectory_persons.officehours" type="integer">234507461</label>
+			<label index="tx_bzdstaffdirectory_persons.opinion" type="integer">61751874</label>
+			<label index="tx_bzdstaffdirectory_groups" type="integer">184386413</label>
+			<label index="tx_bzdstaffdirectory_groups.group_name" type="integer">42562754</label>
+			<label index="tx_bzdstaffdirectory_groups.group_key" type="integer">178465996</label>
+			<label index="tt_content.list_type_pi1" type="integer">259821528</label>
+			<label index="tt_content.pi_flexform.teamlist" type="integer">240683273</label>
+			<label index="tt_content.pi_flexform.listtype" type="integer">165347264</label>
+			<label index="tt_content.pi_flexform.settings" type="integer">256864370</label>
+			<label index="tt_content.pi_flexform.template" type="integer">41469073</label>
+			<label index="tt_content.pi_flexform.template_file" type="integer">74334925</label>
+			<label index="tt_content.pi_flexform.detailview" type="integer">239080204</label>
+			<label index="tt_content.pi_flexform.click_enlarge" type="integer">144691874</label>
+			<label index="tt_content.pi_flexform.showimages" type="integer">227949151</label>
+			<label index="tt_content.pi_flexform.detailpage" type="integer">96023598</label>
+			<label index="tt_content.pi_flexform.emailasimage" type="integer">45513920</label>
+			<label index="tt_content.pi_flexform.startingpoint" type="integer">182822534</label>
+			<label index="tt_content.pi_flexform.usergroup" type="integer">11566001</label>
+			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person" type="integer">126920905</label>
+			<label index="pi_flexform_listtype" type="integer">190190060</label>
+			<label index="pi_flexform_listtype_detail" type="integer">261977944</label>
+			<label index="pi_flexform_listtype_box" type="integer">200981273</label>
+			<label index="pi_flexform_listtype_teamlist" type="integer">40117519</label>
+			<label index="pi_flexform_group" type="integer">7534641</label>
+			<label index="pi_flexform_spamprotectionmode" type="integer">56819048</label>
+			<label index="pi_flexform_spamprotectionmode_asimage" type="integer">132215452</label>
+			<label index="pi_flexform_spamprotectionmode_jsencrypted" type="integer">257680523</label>
+			<label index="pi_flexform_spamprotectionmode_plain" type="integer">187064803</label>
+			<label index="tx_bzdstaffdirectory_persons.files" type="integer">162241788</label>
+			<label index="tx_bzdstaffdirectory_groups.group_leaders" type="integer">184040577</label>
+			<label index="tt_content.pi_flexform.sortOrder" type="integer">178681555</label>
+			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted" type="integer">22381686</label>
+		</languageKey>
+	</orig_hash>
+	<orig_text type="array">
+		<languageKey index="de" type="array">
+			<label index="tx_bzdstaffdirectory_persons">Persons</label>
+			<label index="tx_bzdstaffdirectory_persons.last_name">Last name</label>
+			<label index="tx_bzdstaffdirectory_persons.first_name">First name</label>
+			<label index="tx_bzdstaffdirectory_persons.image">Image</label>
+			<label index="tx_bzdstaffdirectory_persons.usergroups">Group membership</label>
+			<label index="tx_bzdstaffdirectory_persons.function">Function / Job Description</label>
+			<label index="tx_bzdstaffdirectory_persons.email">Email Address</label>
+			<label index="tx_bzdstaffdirectory_persons.tasks">User Tasks</label>
+			<label index="tx_bzdstaffdirectory_persons.location">Location</label>
+			<label index="tx_bzdstaffdirectory_persons.phone">Phone Number</label>
+			<label index="tx_bzdstaffdirectory_persons.room">Room Number</label>
+			<label index="tx_bzdstaffdirectory_persons.officehours">Office hours</label>
+			<label index="tx_bzdstaffdirectory_persons.opinion">Your Opinion</label>
+			<label index="tx_bzdstaffdirectory_groups">Workgroups</label>
+			<label index="tx_bzdstaffdirectory_groups.group_name">Group Name</label>
+			<label index="tx_bzdstaffdirectory_groups.group_key">Group Key</label>
+			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
+			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
+			<label index="tt_content.pi_flexform.listtype">List to show</label>
+			<label index="tt_content.pi_flexform.settings">Settings</label>
+			<label index="tt_content.pi_flexform.template">Template</label>
+			<label index="tt_content.pi_flexform.template_file">Template-File</label>
+			<label index="tt_content.pi_flexform.detailview">Detailview</label>
+			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
+			<label index="tt_content.pi_flexform.showimages">Show images?</label>
+			<label index="tt_content.pi_flexform.detailpage">Detailpage (where to show the detailed info of the persons?)</label>
+			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
+			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
+			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
+			<label index="pi_flexform_listtype">What to show?</label>
+			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person">Contact Person</label>
+			<label index="pi_flexform_listtype_detail">DETAIL - Detailed information</label>
+			<label index="pi_flexform_listtype_box">BOX - Contact person</label>
+			<label index="pi_flexform_listtype_teamlist">TEAMLIST - List of a team</label>
+			<label index="pi_flexform_group">Which group should be shown?</label>
+			<label index="pi_flexform_spamprotectionmode">How to protect e-mail addresses from being stolen by spammers?</label>
+			<label index="pi_flexform_spamprotectionmode_asimage">Render it as an image (not linked)</label>
+			<label index="pi_flexform_spamprotectionmode_jsencrypted">Encrypt it with JavaScript function</label>
+			<label index="pi_flexform_spamprotectionmode_plain">No protection, plain text.</label>
+			<label index="tx_bzdstaffdirectory_persons.files">File(s)</label>
+			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
+			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
+			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Render it as an image (with encrypted link)</label>
+		</languageKey>
+	</orig_text>
+</T3locallang>

@@ -1,0 +1,5 @@
+#cat=basic//; type=string; label=Template file: Enter the path and filename where your template-file is saved
+templateFile = EXT:bzd_staff_directory/media/bzdstaff_template.htm
+
+#cat=basic//; type=string; label=Detail Page: Enter the ID of your site where the detailed Infos will be displayed
+DetailPage = 42

@@ -1,0 +1,66 @@
+.tx-bzdstaffdirectory-pi1 table {
+
+}
+
+.tx-bzdstaffdirectory-pi1 table tr {
+
+}
+
+.tx_bzdstaffdirectory_teamlist TR TD {
+	vertical-align: top;
+	border-bottom: 1px dotted #ccc;
+	padding: 5px;
+}
+
+.tx_bzdstaffdirectory_teamlist TR TD.left {
+	width: 150px;
+}
+
+.tx_bzdstaffdirectory_teamlist TR TD.right {
+	width: 100px;
+	text-align: right;
+}
+
+
+.tx_bzdstaffdirectory_teamlist TR.leader TD {
+	background-color: #ddd;
+}
+
+
+
+
+table.tx_bzdstaffdirectory_detail {
+
+}
+table.tx_bzdstaffdirectory_detail tr {
+
+}
+table.tx_bzdstaffdirectory_detail tr td{
+	vertical-align: top;
+	padding: 5px;
+}
+table.tx_bzdstaffdirectory_detail tr td ul{
+	list-style: square;
+	padding-left: 1em;
+}
+table.tx_bzdstaffdirectory_detail td.header{
+	border-bottom: 1px solid #ddd;
+}
+table.tx_bzdstaffdirectory_detail p.name{
+	font-size: 1.5em;
+	font-weight: bold;
+	color: black;
+	margin-bottom: 0px;
+}
+table.tx_bzdstaffdirectory_detail p.function{
+	font-weight: bold;
+	color: black;
+	margin-top: 0px;
+}
+table.tx_bzdstaffdirectory_detail td.left{
+	width: 305px;
+}
+table.tx_bzdstaffdirectory_detail td.right{
+	width: 200px;
+	padding-left: 10px;
+}

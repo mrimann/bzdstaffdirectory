@@ -1,0 +1,27 @@
+plugin.tx_bzdstaffdirectory_pi1 {
+	# location of the template file
+	templateFile = EXT:bzd_staff_directory/media/bzdstaff_template.htm
+
+	# location of the CSS file (leave empty to include no CSS file)
+	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
+	
+	TEAMLIST  {
+		image {
+			file.maxW = 105
+			file.maxH = 100
+			file.params =
+		}
+	}
+	DETAIL  {
+		image {
+			file.maxW = 180
+			file.params =
+		}
+	}
+	BOX  {
+		image {
+			file.maxW = 120
+			file.params =
+		}
+	}
+}
