@@ -208,9 +208,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 				$template = $this->getTemplateCode();
-				$arrMarker["###FIRST_NAME###"] = $row_person["first_name"];
-				$arrMarker["###LAST_NAME###"] = $row_person["last_name"];
-				$arrMarker["###FUNCTION###"] = $row_person["function"];
+				$arrMarker['###FIRST_NAME###'] = htmlspecialchars($row_person['first_name']);
+				$arrMarker['###LAST_NAME###'] = htmlspecialchars($row_person['last_name']);
+				$arrMarker['###FUNCTION###'] = htmlspecialchars($row_person['function']);
 
 
 				$lconf = $this->conf[$this->code."."];
@@ -246,12 +246,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function show_detail()	{
 	
 		$content = '';
-		$showUid = $this->piVars['showUid'];
+		$backPID = intval($this->piVars['backId']);
+		$showUid = intval($this->piVars['showUid']);
 
 
 		// exit this function if there's no UID transmitted, or if the transmitted
 		// uid is not an integer of positive value within the URL (otherwise the SQL-Query will fail)
-		if (empty($showUid) OR !is_numeric($showUid) OR $showUid < 0)	{
+		if (empty($showUid) OR $showUid < 0)	{
 			$content .= 'Error: No UID to display (maybe you called this page directly instead of another way, ...)<br>';
 			$content .= 'Or the transmitted Uid is not an integer of positive value.';
 			return $content;
@@ -294,15 +295,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 			$template = $this->getTemplateCode();
-			$arrMarker["###FIRST_NAME###"] = $row_person["first_name"];
-			$arrMarker["###LAST_NAME###"] = $row_person["last_name"];
-			$arrMarker["###FUNCTION###"] = $row_person["function"];
-			$arrMarker["###LOCATION###"] = $row_person["location"];
-			$arrMarker["###PHONE###"] = $row_person["phone"];
-			$arrMarker["###TASKS###"] = $row_person["tasks"];
-			$arrMarker["###OPINION###"] = $row_person["opinion"];
-			$arrMarker["###ROOM###"] = $row_person["room"];
-			$arrMarker["###OFFICEHOURS###"] = $row_person["officehours"];
+			$arrMarker["###FIRST_NAME###"] = htmlspecialchars($row_person["first_name"]);
+			$arrMarker["###LAST_NAME###"] = htmlspecialchars($row_person["last_name"]);
+			$arrMarker["###FUNCTION###"] = htmlspecialchars($row_person["function"]);
+			$arrMarker["###LOCATION###"] = htmlspecialchars($row_person["location"]);
+			$arrMarker["###PHONE###"] = htmlspecialchars($row_person["phone"]);
+			$arrMarker["###TASKS###"] = htmlspecialchars($row_person["tasks"]);
+			$arrMarker["###OPINION###"] = htmlspecialchars($row_person["opinion"]);
+			$arrMarker["###ROOM###"] = htmlspecialchars($row_person["room"]);
+			$arrMarker["###OFFICEHOURS###"] = htmlspecialchars($row_person["officehours"]);
 
 
 
@@ -343,7 +344,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			if ($memberOf) {
 				foreach ($memberOf as $actualGroupUID) {
 					$actualGroup = $this->getTeamDetails($actualGroupUID);
-					$memberOfList .= '<li>'. $actualGroup['group_name'] .'</li>';
+					$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
 				}
 			}
 			$arrMarker["###GROUPS###"] = '<ul>'.$memberOfList.'</ul>';
@@ -367,7 +368,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 			// defining the Back-Link (to travel from the detail-page back to the referring page)
-			$arrWrappedSubpart["###LINK_BACK###"] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array(), 0, 1, $this->piVars["backId"]) .'">','</A>');
+			$arrWrappedSubpart["###LINK_BACK###"] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array(), 0, 1, $backPID) .'">','</A>');
 
 
 
@@ -498,10 +499,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$template = $this->getTemplateCode();
 	
 			$arrMarker['###CLASS###'] = ($isLeader) ? 'tx_bzdstaffdirectory_teamlist_person, leader': 'tx_bzdstaffdirectory_teamlist_person';
-			$arrMarker['###FIRST_NAME###'] = $actual_person['first_name'];
-			$arrMarker['###LAST_NAME###'] = $actual_person['last_name'];
-			$arrMarker['###FUNCTION###'] = $actual_person['function'];
-			$arrMarker['###PHONE###'] = $actual_person['phone'];
+			$arrMarker['###FIRST_NAME###'] = htmlspecialchars($actual_person['first_name']);
+			$arrMarker['###LAST_NAME###'] = htmlspecialchars($actual_person['last_name']);
+			$arrMarker['###FUNCTION###'] = htmlspecialchars($actual_person['function']);
+			$arrMarker['###PHONE###'] = htmlspecialchars($actual_person['phone']);
 
 			// Output of the e-mail address depending on the settings from flexform (spam protection mode)
 			switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist'))
