@@ -1,0 +1,17 @@
+ToDo
+
+- Secure the extension by checking the following things
+	- Evaluate all query parameters and include the respective error messages
+	- Secure all output against XSS Attacks (no input to secure, there's only input from the BE users which are trusted users. Anyway: secure the output!)
+- Move all the global configuration (from Extension Manager for example) to static TS-Setup.
+- Change code to reflect this (settings are now coming from another place)
+- Rework the generation of the output – part II: Use default TYPO3 functions where possible (e.g. for list view). Change the template where necessary.
+- Allow a user to select the font for rendering the images of the email address in singleview (it's hardcoded at the moment - working with my template).
+- Add a search form to search for a person (search in fields first-name, last-name, function and user-tasks)
+- Idea: Add configuration, if detailed information on the team leader should be displayed in the teamlist
+- Idea: Add a counter to show how many team members are in a team. Add configuration to activate/deactivate this feature.
+- Idea: Add a fourth module listing all the teams available and let the user “surf” from team to team. This list page links to the team list page of each team.
+	- Idea: Make it configuratble to show the team leader in this overview or not.
+- Finish the documentation
+	- Change the manual (now it's needed to include the static setup for the extension to work!)
+	-Write a complete step-by-step tutorial

@@ -1,5 +1,29 @@
-(add new changes on top of this file)
+version 0.0.7 - actually working on
+- Added a title field to the person records (#45)
+- Moved this Changelog and the todo section from manual to *.txt files (#46)
 
-05-09-11 Mario Rimann  <mario.rimann@bbzdietikon.ch>
+version 0.0.6 - released on 2006-06-13
+- Fixed a possible security hole (SQL-Injection) reported by the TYPO3 security team.
+- Fixed the handling of output, now using htmlspecialchars().
+- Changed the selection of “group to show” in the team list view (show the existing groups and give possibility to select from them instead of entering a code-word).
+- Converted the locallang*.php files to the new xml format.
+- Added configuration to select, how email addresses should be secured against spammers.
+- Added the possibility to upload up to five files per person (e.g. for a CV).
+- Changed the behaviour to select, which module to show (now a select instead of a text input field).
+- Reworked generation process for team lists (new structure, almost completely rewritten).
+- Reworked the “person is member of” in the detailed view (completely rewritten).
+- Changed the template to be much smaller.
+- Added new fields to the list view (email, phone)
+- Added functionality to define one or multiple team leaders per team and show them on the team list
 
-	* Initial release
+version 0.0.5 – release date unknown
+- This version was released in late 2005. But I can't remember the exact date.
+
+version 0.0.4 - released on 2005-09-17
+- First public release of the extension in the TER
+- Wrote this documentation
+- Finished the CSS Styles to give a good visual view in InternetExplorer, Opera and Firefox.
+- Can't remember all things that have changed. From now on I have this document to write it down, so this won't happen again. :-)
+
+versions 0.0.0 to 0.0.3 - August 2005
+- developed the initial state of this extension.
