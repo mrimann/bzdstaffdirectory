@@ -12,6 +12,7 @@
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>
 			<label index="tx_bzdstaffdirectory_persons.last_name">Last name</label>
 			<label index="tx_bzdstaffdirectory_persons.first_name">First name</label>
+			<label index="tx_bzdstaffdirectory_persons.title">Title</label>
 			<label index="tx_bzdstaffdirectory_persons.image">Image</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Group membership</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Function / Job Description</label>
@@ -56,6 +57,7 @@
 			<label index="tx_bzdstaffdirectory_persons">Personen</label>
 			<label index="tx_bzdstaffdirectory_persons.last_name">Nachname</label>
 			<label index="tx_bzdstaffdirectory_persons.first_name">Vorname</label>
+			<label index="tx_bzdstaffdirectory_persons.title">Titel</label>
 			<label index="tx_bzdstaffdirectory_persons.image">Bild</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Gruppenzugehörigkeit</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Funktion</label>
@@ -143,6 +145,7 @@
 			<label index="tx_bzdstaffdirectory_groups.group_leaders" type="integer">184040577</label>
 			<label index="tt_content.pi_flexform.sortOrder" type="integer">178681555</label>
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted" type="integer">22381686</label>
+			<label index="tx_bzdstaffdirectory_persons.title" type="integer">192455458</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -190,6 +193,7 @@
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Render it as an image (with encrypted link)</label>
+			<label index="tx_bzdstaffdirectory_persons.title">Title</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

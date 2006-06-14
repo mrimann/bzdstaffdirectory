@@ -208,6 +208,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 				$template = $this->getTemplateCode();
+				$arrMarker['###TITLE###'] = $this->getTitleString($row_person['title']);
 				$arrMarker['###FIRST_NAME###'] = htmlspecialchars($row_person['first_name']);
 				$arrMarker['###LAST_NAME###'] = htmlspecialchars($row_person['last_name']);
 				$arrMarker['###FUNCTION###'] = htmlspecialchars($row_person['function']);
@@ -304,7 +305,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$arrMarker["###OPINION###"] = htmlspecialchars($row_person["opinion"]);
 			$arrMarker["###ROOM###"] = htmlspecialchars($row_person["room"]);
 			$arrMarker["###OFFICEHOURS###"] = htmlspecialchars($row_person["officehours"]);
-
+			$arrMarker["###TITLE###"] = $this->getTitleString($row_person["title"]);
+			
 
 
 			// Output of the e-mail address depending on the settings from flexform (spam protection mode)
@@ -499,6 +501,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$template = $this->getTemplateCode();
 	
 			$arrMarker['###CLASS###'] = ($isLeader) ? 'tx_bzdstaffdirectory_teamlist_person, leader': 'tx_bzdstaffdirectory_teamlist_person';
+			$arrMarker['###TITLE###'] = $this->getTitleString($actual_person['title']);
 			$arrMarker['###FIRST_NAME###'] = htmlspecialchars($actual_person['first_name']);
 			$arrMarker['###LAST_NAME###'] = htmlspecialchars($actual_person['last_name']);
 			$arrMarker['###FUNCTION###'] = htmlspecialchars($actual_person['function']);
@@ -766,6 +769,27 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 */
 	function getConfValueBoolean($fieldName, $sheet = 'sDEF') {
 		return (boolean) $this->getConfValue($fieldName, $sheet);
+	}
+
+	/**
+	 * Gets the title string to fill into a marker.
+	 * Depending on the TypoScript configuration, the string is followed by a space. Default is to do so.
+	 *
+	 * @param	string		the value of database field "title"
+	 *
+	 * @return	string		the marker content, htmlspecialchars'ed
+	 *
+	 * @access	protected
+	 */
+	function getTitleString($input) {
+		$output = '';
+		if ($this->lconf['suffix_title'] == 1 && !empty($input)) {
+			$output = htmlspecialchars($input) . '&nbsp;';
+		} else {
+			$output = htmlspecialchars($input);
+		}
+
+		return $output;
 	}
 
 }

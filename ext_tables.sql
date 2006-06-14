@@ -40,6 +40,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons (
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
 	last_name tinytext NOT NULL,
 	first_name tinytext NOT NULL,
+	title tinytext NOT NULL,
 	image blob NOT NULL,
 	usergroups int(11) DEFAULT '0' NOT NULL,
 	function tinytext NOT NULL,

@@ -11,17 +11,23 @@ plugin.tx_bzdstaffdirectory_pi1 {
 			file.maxH = 100
 			file.params =
 		}
+		# whether the title marker should be followed by a space
+		suffix_title = 1
 	}
 	DETAIL  {
 		image {
 			file.maxW = 180
 			file.params =
 		}
+		# whether the title marker should be followed by a space
+		suffix_title = 1
 	}
 	BOX  {
 		image {
 			file.maxW = 120
 			file.params =
 		}
+		# whether the title marker should be followed by a space
+		suffix_title = 1
 	}
 }

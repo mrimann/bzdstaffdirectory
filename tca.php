@@ -34,6 +34,14 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 				"eval" => "required",
 			)
 		),
+		"title" => Array (		
+			"exclude" => 0,		
+			"label" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.title",		
+			"config" => Array (
+				"type" => "input",	
+				"size" => "30",
+			)
+		),
 		"image" => Array (		
 			"exclude" => 0,		
 			"label" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.image",		
@@ -161,7 +169,7 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 		),
 	),
 	"types" => Array (
-		"0" => Array("showitem" => "hidden;;1;;1-1-1, last_name, first_name, email, phone, function, image, usergroups, location, room, officehours, tasks, opinion, files")
+		"0" => Array("showitem" => "hidden;;1;;1-1-1, last_name, first_name, title, email, phone, function, image, usergroups, location, room, officehours, tasks, opinion, files")
 	),
 	"palettes" => Array (
 		"1" => Array("showitem" => "")
