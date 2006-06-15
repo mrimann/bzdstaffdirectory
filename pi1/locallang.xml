@@ -1,12 +1,68 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <T3locallang>
-    <meta type="array">
-        <description></description>
-        <type>module</type>
-        <csh_table></csh_table>
-        <labelContext type="array">
-        </labelContext>
-    </meta>
-    <data type="array">
-    </data>
+	<meta type="array">
+		<description></description>
+		<type>module</type>
+		<csh_table></csh_table>
+		<labelContext type="array">
+		</labelContext>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="label_email">E-mail:</label>
+			<label index="label_phone">Phone:</label>
+			<label index="label_room">Room:</label>
+			<label index="label_officehours">Office hours:</label>
+			<label index="label_location">Location:</label>
+			<label index="label_tasks">Tasks:</label>
+			<label index="label_files">Files:</label>
+			<label index="label_groups">Groups:</label>
+			<label index="label_opinion">Opinion:</label>
+			<label index="label_link_back">back</label>
+			<label index="header_contactperson">Your contact person:</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="label_email">E-Mail:</label>
+			<label index="label_phone">Telefon:</label>
+			<label index="label_room">Raum:</label>
+			<label index="label_officehours">Bürozeiten:</label>
+			<label index="label_location">Standort:</label>
+			<label index="label_tasks">Aufgaben:</label>
+			<label index="label_files">Dateien:</label>
+			<label index="label_groups">Gruppen:</label>
+			<label index="label_opinion">Meinung:</label>
+			<label index="label_link_back">zurück</label>
+			<label index="header_contactperson">Ihre Ansprechperson:</label>
+		</languageKey>
+	</data>
+	<orig_hash type="array">
+		<languageKey index="de" type="array">
+			<label index="label_email" type="integer">233919839</label>
+			<label index="label_phone" type="integer">108244482</label>
+			<label index="label_room" type="integer">121727316</label>
+			<label index="label_officehours" type="integer">210385408</label>
+			<label index="label_location" type="integer">199837335</label>
+			<label index="label_tasks" type="integer">76277544</label>
+			<label index="label_files" type="integer">147226768</label>
+			<label index="label_groups" type="integer">142097351</label>
+			<label index="label_opinion" type="integer">85135537</label>
+			<label index="label_link_back" type="integer">74038176</label>
+			<label index="header_contactperson" type="integer">119817834</label>
+		</languageKey>
+	</orig_hash>
+	<orig_text type="array">
+		<languageKey index="de" type="array">
+			<label index="label_email">E-mail:</label>
+			<label index="label_phone">Phone:</label>
+			<label index="label_room">Room:</label>
+			<label index="label_officehours">Office hours:</label>
+			<label index="label_location">Location:</label>
+			<label index="label_tasks">Tasks:</label>
+			<label index="label_files">Files:</label>
+			<label index="label_groups">Groups:</label>
+			<label index="label_opinion">Opinion:</label>
+			<label index="label_link_back">back</label>
+			<label index="header_contactperson">Your contact person:</label>
+		</languageKey>
+	</orig_text>
 </T3locallang>

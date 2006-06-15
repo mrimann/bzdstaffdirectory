@@ -208,6 +208,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 				$template = $this->getTemplateCode();
+				$arrMarker['###HEADER_CONTACTPERSON###'] = $this->pi_getLL('header_contactperson');
 				$arrMarker['###TITLE###'] = $this->getTitleString($row_person['title']);
 				$arrMarker['###FIRST_NAME###'] = htmlspecialchars($row_person['first_name']);
 				$arrMarker['###LAST_NAME###'] = htmlspecialchars($row_person['last_name']);
@@ -296,6 +297,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 			$template = $this->getTemplateCode();
+
 			$arrMarker["###FIRST_NAME###"] = htmlspecialchars($row_person["first_name"]);
 			$arrMarker["###LAST_NAME###"] = htmlspecialchars($row_person["last_name"]);
 			$arrMarker["###FUNCTION###"] = htmlspecialchars($row_person["function"]);
@@ -307,7 +309,17 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$arrMarker["###OFFICEHOURS###"] = htmlspecialchars($row_person["officehours"]);
 			$arrMarker["###TITLE###"] = $this->getTitleString($row_person["title"]);
 			
-
+			// set the field labels
+			$arrMarker['###LABEL_EMAIL###'] = $this->pi_getLL('label_email');
+			$arrMarker['###LABEL_PHONE###'] = $this->pi_getLL('label_phone');
+			$arrMarker['###LABEL_ROOM###'] = $this->pi_getLL('label_room');
+			$arrMarker['###LABEL_OFFICEHOURS###'] = $this->pi_getLL('label_officehours');
+			$arrMarker['###LABEL_LOCATION###'] = $this->pi_getLL('label_location');
+			$arrMarker['###LABEL_TASKS###'] = $this->pi_getLL('label_tasks');
+			$arrMarker['###LABEL_FILES###'] = $this->pi_getLL('label_files');
+			$arrMarker['###LABEL_GROUPS###'] = $this->pi_getLL('label_groups');
+			$arrMarker['###LABEL_OPINION###'] = $this->pi_getLL('label_opinion');
+			$arrMarker['###LABEL_LINK_BACK###'] = $this->pi_getLL('label_link_back');
 
 			// Output of the e-mail address depending on the settings from flexform (spam protection mode)
 			switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview'))

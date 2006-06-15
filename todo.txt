@@ -1,8 +1,5 @@
 ToDo
 
-- Secure the extension by checking the following things
-	- Evaluate all query parameters and include the respective error messages
-	- Secure all output against XSS Attacks (no input to secure, there's only input from the BE users which are trusted users. Anyway: secure the output!)
 - Move all the global configuration (from Extension Manager for example) to static TS-Setup.
 - Change code to reflect this (settings are now coming from another place)
 - Rework the generation of the output – part II: Use default TYPO3 functions where possible (e.g. for list view). Change the template where necessary.

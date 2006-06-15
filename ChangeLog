@@ -1,4 +1,5 @@
-version 0.0.7 - actually working on
+version 0.0.7 - currently working on
+- Changed the labels in detail view to be localized (#49)
 - Added a title field to the person records (#45)
 - Moved this Changelog and the todo section from manual to *.txt files (#46)
 
