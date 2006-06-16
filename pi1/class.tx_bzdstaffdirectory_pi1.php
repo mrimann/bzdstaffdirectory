@@ -225,7 +225,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 				$arrMarker["###IMAGE###"] = $this->cObj->IMAGE($lconf["image."]);
 				
-				$arrWrappedSubpart["###LINK_DETAIL###"]= array('<A href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person_id["tx_bzdstaffdirectory_bzd_contact_person"], 'backId' => $GLOBALS["TSFE"]->id), 0, 1, $detailpage) .'">','</A>');
+				$arrWrappedSubpart['###LINK_DETAIL###']= array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person_id["tx_bzdstaffdirectory_bzd_contact_person"], 'backId' => $GLOBALS["TSFE"]->id), true, true, $detailpage) .'">','</a>');
 
 				$content.=$this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
 			}
@@ -538,7 +538,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$arrWrappedSubpart['###LINK_EMAIL###'] = array($emailArray['begin'],$emailArray['end']);
 
 
-			$arrWrappedSubpart['###LINK_DETAIL###'] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $actual_person["uid"], 'backId' => $GLOBALS["TSFE"]->id), 0, 1, $this->detailpage) .'">','</A>');
+			$arrWrappedSubpart['###LINK_DETAIL###'] = array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $actual_person["uid"], 'backId' => $GLOBALS["TSFE"]->id), true, true, $this->detailpage) .'">','</a>');
 	
 			$result .= $this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
 		}
