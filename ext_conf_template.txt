@@ -3,3 +3,15 @@ templateFile = EXT:bzd_staff_directory/media/bzdstaff_template.htm
 
 #cat=basic//; type=string; label=Detail Page: Enter the ID of your site where the detailed Infos will be displayed
 DetailPage = 42
+
+#cat=basic/enable/130; type=boolean; label= Localization mode for text fields: By default, all text fields (title, function, opinion ...) from a new localized record will be prepended with "[translate to ...]". If this is not wanted you can disable it here. If "l10n_mode_prefixLangTitle" is disabled the text "(copy [#])" will be added to the titles of this records unless "prependAtCopy" is disabled (see "prependAtCopy").
+l10n_mode_prefixLangTitle = 1
+
+#cat=basic/enable/140; type=boolean; label= Localization mode for images: The image field of a localized record is excluded by default (images are alwas taken from the record in the default language). If you need localized images (f.e. if the images show texts) you can enable the "image" field in translated news by setting "l10n_mode_imageExclude" to 0.
+l10n_mode_imageExclude = 1
+
+#cat=basic/enable/150; type=boolean; label= Hide new localizations: Here you choose if new localizations of records should be hidden or not. By default new localizations are visible. If this is not wanted set "hideNewLocalizations" to 1.
+hideNewLocalizations = 0
+
+#cat=basic/enable/180; type=boolean; label= Prepend at Copy: Here you can disable adding of the text "(copy [#])" to titles of copied records.
+prependAtCopy = 1

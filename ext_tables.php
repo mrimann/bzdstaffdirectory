@@ -12,6 +12,12 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 		"cruser_id" => "cruser_id",
 		"default_sortby" => "ORDER BY crdate",	
 		"delete" => "deleted",
+		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.php:LGL.prependAtCopy',
+		'copyAfterDuplFields' => 'sys_language_uid',
+		'useColumnsForDefaultValues' => 'sys_language_uid',
+   		'transOrigPointerField' => 'l18n_parent',
+		'transOrigDiffSourceField' => 'l18n_diffsource',
+		'languageField' => 'sys_language_uid',
 		"enablecolumns" => Array (		
 			"disabled" => "hidden",
 		),

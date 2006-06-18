@@ -35,13 +35,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	var $scriptRelPath = 'pi1/class.tx_bzdstaffdirectory_pi1.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'bzd_staff_directory';	// The extension key.
 	var $pi_checkCHash = TRUE;
+	var $langArr;
+	var $sys_language_mode;
 	
 	/**
 	 * [Put your description here]
 	 */
 	function main($content,$conf)	{
-
-	
 		$this->conf=$conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
@@ -62,6 +62,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$GLOBALS['TSFE']->additionalHeaderData[] = '<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template_special', true).'";</style>';
 		}
 
+		// load available syslanguages
+		$this->initLanguages();
+		// sys_language_mode defines what to do if the requested translation is not found
+		$this->sys_language_mode = $this->conf['sys_language_mode']?$this->conf['sys_language_mode'] : $GLOBALS['TSFE']->sys_language_mode;
 
 		// Get Listing-Type from Flexform-Settings
 		$this->code = (string)strtoupper(trim($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'listtype','s_welcome')));
@@ -96,20 +100,12 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// Define the team UID(s) that are selected in the flexform. This is a comma separated list if more than one UID.
 		$team_uid = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'usergroup','s_teamlist');
 
-		// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
+		// define the detail page (either from the global extension setting, or from the FlexForm).
 		// FIXME: Change this configuration to either flexform or TS-Setup. No Settings in the Extension-Manager!
 		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist') != '')	{
 			$this->detailpage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist');
 		} else {
 			$this->detailpage = $this->arrConf["InfoSite"];
-		}
-
-		// Before getting the records, get the startingpoint. Either from the actual page, or from a given startingpoint
-		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'startingpoint','s_teamlist') != '')	{
-			$startingpoint = intval($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'startingpoint','s_teamlist'));
-		}
-		else	{
-			$startingpoint = intval($GLOBALS["TSFE"]->id);
 		}
 
 		// Select all teamleaders for the selected team(s).
@@ -130,7 +126,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
 			}
 		} else {
-			// There's no group leader for this team(s).
+			// There's no group leader for the selected team(s).
 		}
 
 		// Select all members from the groups/persons MM table.
@@ -168,14 +164,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 	function show_box()	{
-	
 		$content = '';
-//		$content .= "BOX output<br>";
 
-//		$content .= $GLOBALS["TSFE"]->id;
-
-
-		// Get the UID of the person respective for this page
+		// get the UID of the person respective for this page
 		$res_person_id = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'tx_bzdstaffdirectory_bzd_contact_person',	// SELECT
 			'pages',	// FROM
@@ -185,19 +176,58 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			'1'	//LIMIT
 		);
 
-		while($row_person_id = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person_id))	{
+		// get the details of the contact person from the database
+		$row_person_id = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person_id);
+		$person_uid = $row_person_id["tx_bzdstaffdirectory_bzd_contact_person"];
+		$person = $this->getPersonDetails($person_uid);
 
+		// check if fetching the person's details was successful
+		if ($person) {
+			// check whether a translation is requested or not
+			if ($GLOBALS['TSFE']->sys_language_content) {
+				// a translation is requested
+				$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+				$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_bzdstaffdirectory_persons', $person,$GLOBALS['TSFE']->sys_language_content, $OLmode);
+	
+				//check if a valid translation is available
+				if ($this->sys_language_mode != 'strict' OR !empty($translated_record['l18n_parent'])) {
+					// found a valid translation, show the person with the translated information
+					$content .= $this->showSinglePersonBox($translated_record);
+				} else {
+// FIXME: Localize the error message.
+					$content .= 'ERROR: the Contactperson could not be shown (not translated yet).';
+				}
+			} else {
+				// no translation requested
+				$content .= $this->showSinglePersonBox($person);
+			}
+		} else {
+			// $person is NULL
+			$content .= 'An error occured: The details could not be fetched from the database.';
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Generates the HTML Code to show a contact person box on the page
+	 *
+	 * @param	array		associative array containing all the information of a person record
+	 *
+	 * @return	string		the html code
+	 */
+	function showSinglePersonBox($row_person) {
 			// Get the details of the person
-			$res_person = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'*',	// SELECT
-				'tx_bzdstaffdirectory_persons',	// FROM
-				'uid = '.$row_person_id["tx_bzdstaffdirectory_bzd_contact_person"] . t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_persons'),	//WHERE
-				'',	// GROUP BY
-				'',	// ORDER BY
-				'1'	//LIMIT
-			);
+//			$res_person = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+//				'*',	// SELECT
+//				'tx_bzdstaffdirectory_persons',	// FROM
+//				'uid = '.$row_person_id["tx_bzdstaffdirectory_bzd_contact_person"] . t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_persons'),	//WHERE
+//				'',	// GROUP BY
+//				'',	// ORDER BY
+//				'1'	//LIMIT
+//			);
 
-			while($row_person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person))	{
+//			while($row_person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person))	{
 
 				// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
 				if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist') != '') {
@@ -225,16 +255,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 				$arrMarker["###IMAGE###"] = $this->cObj->IMAGE($lconf["image."]);
 				
-				$arrWrappedSubpart['###LINK_DETAIL###']= array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person_id["tx_bzdstaffdirectory_bzd_contact_person"], 'backId' => $GLOBALS["TSFE"]->id), true, true, $detailpage) .'">','</a>');
+				$arrWrappedSubpart['###LINK_DETAIL###']= array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person['uid'], 'backId' => $GLOBALS["TSFE"]->id), true, true, $detailpage) .'">','</a>');
 
 				$content.=$this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
-			}
 
-
-		}
-
-
-	return $content;
+		return $content;
 	}
 
 
@@ -246,152 +271,162 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 	function show_detail()	{
-	
 		$content = '';
-		$backPID = intval($this->piVars['backId']);
-		$showUid = intval($this->piVars['showUid']);
+		$this->backPID = intval($this->piVars['backId']);
+		$this->showUid = intval($this->piVars['showUid']);
 
 
 		// exit this function if there's no UID transmitted, or if the transmitted
-		// uid is not an integer of positive value within the URL (otherwise the SQL-Query will fail)
-		if (empty($showUid) OR $showUid < 0)	{
+		// uid is not an integer of positive value within the URL (otherwise the SQL-query will fail)
+		if (empty($this->showUid) OR $this->showUid < 0)	{
 			$content .= 'Error: No UID to display (maybe you called this page directly instead of another way, ...)<br>';
 			$content .= 'Or the transmitted Uid is not an integer of positive value.';
 			return $content;
 		}
 
-
-		// Get the Details of the person
+		// get the details of the person
 		$res_person = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_persons',	// FROM
-			'uid = '.$showUid.' AND deleted = 0 AND hidden = 0',	//WHERE
+			'uid = ' .$this->showUid. ' AND deleted = 0 AND hidden = 0',	//WHERE
 			'',	// GROUP BY
 			'',	// ORDER BY
 			'1'	//LIMIT
 		);
 		
-		// Check if there's a person to display - if not: show error message and exit.
-		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_person) < 1 )	{
-			$content .= 'There is no person with this UID to display.';
-			return $content;
-		}
-		while($row_person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person))	{
+		// Check if there's a person to display. Otherwise show an error message.
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_person) > 0 )	{
+			$row_person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person);
 
-
-			// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
-			$lconf = $this->conf[$this->code."."];
-
-
-			if (empty($row_person['image']))
-				{
-// FIXME: Define the path in a global place
-					$lconf['image.']["file"] = "typo3conf/ext/bzd_staff_directory/media/noimg.jpg";
+			// get the translated record if the requested language is not the default language
+			if ($GLOBALS['TSFE']->sys_language_content) {
+				$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+				$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_bzdstaffdirectory_persons', $row_person,$GLOBALS['TSFE']->sys_language_content, $OLmode);
+				if ($this->sys_language_mode != 'strict' OR !empty($translated_record['l18n_parent'])) {
+					// found a valid translation, show the person with the translated information.
+					$content .= $this->showSinglePerson($translated_record);
+				} else {
+					// There's an empty translation found (can only happen if sys_language_mode = strict).
+// FIXME: Localize the error message.
+					$content .= 'It seems that this record is not yet translated to your language.';
 				}
-				else
-				{
-// FIXME: Define the paths in a global place
-					$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' . $row_person['image'];
-				}
-
-
-
-			$template = $this->getTemplateCode();
-
-			$arrMarker["###FIRST_NAME###"] = htmlspecialchars($row_person["first_name"]);
-			$arrMarker["###LAST_NAME###"] = htmlspecialchars($row_person["last_name"]);
-			$arrMarker["###FUNCTION###"] = htmlspecialchars($row_person["function"]);
-			$arrMarker["###LOCATION###"] = htmlspecialchars($row_person["location"]);
-			$arrMarker["###PHONE###"] = htmlspecialchars($row_person["phone"]);
-			$arrMarker["###TASKS###"] = htmlspecialchars($row_person["tasks"]);
-			$arrMarker["###OPINION###"] = htmlspecialchars($row_person["opinion"]);
-			$arrMarker["###ROOM###"] = htmlspecialchars($row_person["room"]);
-			$arrMarker["###OFFICEHOURS###"] = htmlspecialchars($row_person["officehours"]);
-			$arrMarker["###TITLE###"] = $this->getTitleString($row_person["title"]);
-			
-			// set the field labels
-			$arrMarker['###LABEL_EMAIL###'] = $this->pi_getLL('label_email');
-			$arrMarker['###LABEL_PHONE###'] = $this->pi_getLL('label_phone');
-			$arrMarker['###LABEL_ROOM###'] = $this->pi_getLL('label_room');
-			$arrMarker['###LABEL_OFFICEHOURS###'] = $this->pi_getLL('label_officehours');
-			$arrMarker['###LABEL_LOCATION###'] = $this->pi_getLL('label_location');
-			$arrMarker['###LABEL_TASKS###'] = $this->pi_getLL('label_tasks');
-			$arrMarker['###LABEL_FILES###'] = $this->pi_getLL('label_files');
-			$arrMarker['###LABEL_GROUPS###'] = $this->pi_getLL('label_groups');
-			$arrMarker['###LABEL_OPINION###'] = $this->pi_getLL('label_opinion');
-			$arrMarker['###LABEL_LINK_BACK###'] = $this->pi_getLL('label_link_back');
-
-			// Output of the e-mail address depending on the settings from flexform (spam protection mode)
-			switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview'))
-			{
-				case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($row_person["email"]);
-									break;
-				case "asimage"		:	$emailArray = $this->email_asimage($row_person["email"], false);
-									break;
-				case "asimagejsencrypted":	$emailArray = $this->email_asimage($row_person["email"], true);
-									break;
-				case "plain"		:	
-				default				:	$emailArray['display'] = $row_person['email'];
-										$emailArray['begin'] = '<a href="mailto:'.$row_person["email"].'">';
-										$emailArray['end'] = '</a>';
-									break;
-			}
-			$arrMarker['###EMAIL###'] = $emailArray['display'];
-			$arrWrappedSubpart['###LINK_EMAIL###'] = array($emailArray['begin'],$emailArray['end']);
-
-
-
-			// Depending on the settings in the Flexform of the content object, the image will be wrapped with a link (to click enlarge the image).
-			$conf = array();
-			if ( $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'click_enlarge','s_detailview') == TRUE AND $row_person["image"] != '')	{
-				$conf["enable"] = 1;
-				$conf["JSwindow"] = 1;
-				$conf['wrap'] = '<a href="javascript: close();"> | </a>';
-				$arrMarker["###IMAGE###"] = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf["image."]),$lconf["image."]["file"],$conf);
-			} else	{
-				$arrMarker["###IMAGE###"] = $this->cObj->IMAGE($lconf["image."]);
-			}
-
-
-			$memberOf = $this->getMemberOfGroups($showUid);
-
-			if ($memberOf) {
-				foreach ($memberOf as $actualGroupUID) {
-					$actualGroup = $this->getTeamDetails($actualGroupUID);
-					$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
-				}
-			}
-			$arrMarker["###GROUPS###"] = '<ul>'.$memberOfList.'</ul>';
-
-
-			// Display all the files that are stored for this person
-			if (!empty($row_person['files'])) {
-				$files = explode(',', $row_person['files']);
-				$file_list = '<ul>';
-				foreach($files as $filename) {
-// FIXME: Define the path in a global place!
-					$file_list .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'">' . $filename . '</a></li>';
-				}
-				$file_list .= '</ul>';
-
-				$arrMarker['###FILES###'] = $file_list;
 			} else {
-				$arrMarker['###FILES###'] = '';
+				// no translation requested or available - show the record in default language
+				$content .= $this->showSinglePerson($row_person);
 			}
-
-
-
-			// defining the Back-Link (to travel from the detail-page back to the referring page)
-			$arrWrappedSubpart["###LINK_BACK###"] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array(), 0, 1, $backPID) .'">','</A>');
-
-
-
-			$content.=$this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
-
-
+		} else {
+// FIXME: Localize the error message.
+			$content .= 'There is no person with this UID to display.';
 		}
 
-	return $content;
+		return $content;
+	}
+
+	/**
+	 * Generates the HTML code to show a single person in single view.
+	 *
+	 * @param	array		associative array containing all details of the person
+	 *
+	 *	@return	string		the HTML code
+	 */
+	function showSinglePerson($row_person) {
+		$template = $this->getTemplateCode();
+
+		// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
+		$lconf = $this->conf[$this->code.'.'];
+
+		if (empty($row_person['image'])) {
+// FIXME: Define the path in a global place
+			$lconf['image.']['file'] = "typo3conf/ext/bzd_staff_directory/media/noimg.jpg";
+		} else {
+// FIXME: Define the paths in a global place
+			$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' . $row_person['image'];
+		}
+
+		$arrMarker["###FIRST_NAME###"] = htmlspecialchars($row_person["first_name"]);
+		$arrMarker["###LAST_NAME###"] = htmlspecialchars($row_person["last_name"]);
+		$arrMarker["###FUNCTION###"] = htmlspecialchars($row_person["function"]);
+		$arrMarker["###LOCATION###"] = htmlspecialchars($row_person["location"]);
+		$arrMarker["###PHONE###"] = htmlspecialchars($row_person["phone"]);
+		$arrMarker["###TASKS###"] = htmlspecialchars($row_person["tasks"]);
+		$arrMarker["###OPINION###"] = htmlspecialchars($row_person["opinion"]);
+		$arrMarker["###ROOM###"] = htmlspecialchars($row_person["room"]);
+		$arrMarker["###OFFICEHOURS###"] = htmlspecialchars($row_person["officehours"]);
+		$arrMarker["###TITLE###"] = $this->getTitleString($row_person["title"]);
+
+		// set the field labels
+		$arrMarker['###LABEL_EMAIL###'] = $this->pi_getLL('label_email');
+		$arrMarker['###LABEL_PHONE###'] = $this->pi_getLL('label_phone');
+		$arrMarker['###LABEL_ROOM###'] = $this->pi_getLL('label_room');
+		$arrMarker['###LABEL_OFFICEHOURS###'] = $this->pi_getLL('label_officehours');
+		$arrMarker['###LABEL_LOCATION###'] = $this->pi_getLL('label_location');
+		$arrMarker['###LABEL_TASKS###'] = $this->pi_getLL('label_tasks');
+		$arrMarker['###LABEL_FILES###'] = $this->pi_getLL('label_files');
+		$arrMarker['###LABEL_GROUPS###'] = $this->pi_getLL('label_groups');
+		$arrMarker['###LABEL_OPINION###'] = $this->pi_getLL('label_opinion');
+		$arrMarker['###LABEL_LINK_BACK###'] = $this->pi_getLL('label_link_back');
+
+		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
+		switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview'))
+		{
+			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($row_person["email"]);
+								break;
+			case "asimage"		:	$emailArray = $this->email_asimage($row_person["email"], false);
+								break;
+			case "asimagejsencrypted":	$emailArray = $this->email_asimage($row_person["email"], true);
+								break;
+			case "plain"		:	
+			default				:	$emailArray['display'] = $row_person['email'];
+									$emailArray['begin'] = '<a href="mailto:'.$row_person["email"].'">';
+									$emailArray['end'] = '</a>';
+								break;
+		}
+		$arrMarker['###EMAIL###'] = $emailArray['display'];
+		$arrWrappedSubpart['###LINK_EMAIL###'] = array($emailArray['begin'],$emailArray['end']);
+
+		// Depending on the settings in the Flexform of the content object, the image will be wrapped with a link (to click enlarge the image).
+		$conf = array();
+		if ( $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'click_enlarge','s_detailview') == TRUE AND $row_person["image"] != '')	{
+			$conf["enable"] = 1;
+			$conf["JSwindow"] = 1;
+			$conf['wrap'] = '<a href="javascript: close();"> | </a>';
+			$arrMarker["###IMAGE###"] = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf["image."]),$lconf["image."]["file"],$conf);
+		} else	{
+			$arrMarker["###IMAGE###"] = $this->cObj->IMAGE($lconf["image."]);
+		}
+
+
+		$memberOf = $this->getMemberOfGroups($this->showUid);
+
+		if ($memberOf) {
+			foreach ($memberOf as $actualGroupUID) {
+				$actualGroup = $this->getTeamDetails($actualGroupUID);
+				$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
+			}
+		}
+		$arrMarker["###GROUPS###"] = '<ul>'.$memberOfList.'</ul>';
+
+		// Display all the files that are stored for this person
+		if (!empty($row_person['files'])) {
+			$files = explode(',', $row_person['files']);
+			$file_list = '<ul>';
+			foreach($files as $filename) {
+// FIXME: Define the path in a global place!
+				$file_list .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'">' . $filename . '</a></li>';
+			}
+			$file_list .= '</ul>';
+
+			$arrMarker['###FILES###'] = $file_list;
+		} else {
+			$arrMarker['###FILES###'] = '';
+		}
+
+		// defining the Back-Link (to travel from the detail-page back to the referring page)
+		$arrWrappedSubpart["###LINK_BACK###"] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array(), 0, 1, $this->backPID) .'">','</A>');
+
+		$content.=$this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
+
+		return $content;
 	}
 
 	/**
@@ -413,12 +448,16 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 
 	/**
-	 * Queries the Database to select all details of ALL Members that are provided as an array.
+	 * Queries the Database to select all details of a single person.
+	 * If requested, it gets overlayed with a valid translation and given back as a translated record.
 	 * 
-	 * @param	array		containing all UIDs of the members to select
+	 * @param	integer		the uid of the person to fetch from the database
+	 * @param	bolean		whether it should get translated or not, default is not to translate
+	 *
+	 * @return	array		associative array containing all the information, may be NULL
 	 */
-	function getPersonsDetails($uid) {
-		$res_membersDetails = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+	function getPersonDetails($uid, $doTranslate = false) {
+		$res_personDetails = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_persons',	// FROM
 			'uid = ' . $uid .t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_persons'),	//WHERE
@@ -426,8 +465,24 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			'',	// ORDER BY
 			'1'	//LIMIT
 		);
-		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_membersDetails) > 0) {
-			$person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_membersDetails);
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_personDetails) > 0) {
+			$person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_personDetails);
+
+			// get the translated record if the content language is not the default language
+			if ($GLOBALS['TSFE']->sys_language_content && $doTranslate) {
+				$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+				$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_bzdstaffdirectory_persons', $person,$GLOBALS['TSFE']->sys_language_content, $OLmode);
+				if ($this->sys_language_mode != 'strict' OR !empty($translated_record['l18n_parent'])) {
+					// found a valid translation, return the person with the translated information.
+					$person = $translated_record;
+				} else {
+					// There's an empty translation found (can only happen if sys_language_mode = strict).
+					// Act as if NO person could be retrieved from the database.
+					$person = NULL;
+				}
+			} else {
+				// no translation requested or available - return the record in default language
+			}
 		} else {
 			$person = NULL;
 		}
@@ -467,7 +522,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$res_groupMembersSorted = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 				'uid',	// SELECT
 				'tx_bzdstaffdirectory_persons',	// FROM
-				'uid IN(' . $groupMembersUIDList . ')',	//WHERE
+				'uid IN(' . $groupMembersUIDList . ') AND l18n_parent = 0',	//WHERE
 				'',	// GROUP BY
 				$sortOrder,	// ORDER BY
 				''	//LIMIT
@@ -490,11 +545,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 */
 	function showPersonInTeamList($uid, $isLeader = false)	{
 		$result = '';
-/*		$result .= 'uid: ' . $uid . ' ';
-		$result .= ($isLeader) ? 'is TeamLeader' : '';
-		$result .= '<br>';
-*/
-		$actual_person = $this->getPersonsDetails($uid);
+
+		// get the details of the actual person
+		$actual_person = $this->getPersonDetails($uid, true);
 		if ($actual_person) {
 			// show images or not (depending on settings of the plugin)
 			if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'showimages','s_teamlist') == TRUE) {
@@ -519,7 +572,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$arrMarker['###FUNCTION###'] = htmlspecialchars($actual_person['function']);
 			$arrMarker['###PHONE###'] = htmlspecialchars($actual_person['phone']);
 
-			// Output of the e-mail address depending on the settings from flexform (spam protection mode)
+			// output of the e-mail address depending on the settings from flexform (spam protection mode)
 			switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist'))
 			{
 				case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($actual_person['email']);
@@ -638,7 +691,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		);
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_groupDetails) > 0) {
 			$group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupDetails);
-//			print_r($group);
 		} else {
 			$group = NULL;
 		}
@@ -804,6 +856,24 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		return $output;
 	}
 
+	/**
+	 * fills the internal array '$this->langArr' with the available syslanguages
+	 *
+	 * @return	void
+	 */
+	function initLanguages () {
+
+		$lres = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',
+			'sys_language',
+			'1=1' . $this->cObj->enableFields('sys_language'));
+
+
+		$this->langArr = array();
+		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($lres)) {
+			$this->langArr[$row['uid']] = $row;
+		}
+	}
 }
 
 

@@ -4,6 +4,12 @@ plugin.tx_bzdstaffdirectory_pi1 {
 
 	# location of the CSS file (leave empty to include no CSS file)
 	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
+
+	# whether unlocalized records should be shown or not
+	# By default, the default language version of a record will be shown if no translation is found.
+	# You can set this to "strict" to hide non translated records.
+	# --> read the section about the multilanguage features in the manual of this extension!!
+	sys_language_mode = 
 	
 	TEAMLIST  {
 		image {
