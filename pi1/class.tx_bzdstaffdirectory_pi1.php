@@ -83,7 +83,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 								break;
 			case "DETAIL"	:	$content .= $this->show_detail();
 								break;
-			default			:	$content .= "tx_bzdstaffdirectory / no List-Type defined";
+			default			:	$content .= $this->pi_getLL('error_noListType');
 								break;
 		}
 		return $this->pi_wrapInBaseClass($content);
@@ -202,8 +202,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					// found a valid translation, show the person with the translated information
 					$content .= $this->showSinglePersonBox($translated_record);
 				} else {
-// FIXME: Localize the error message.
-					$content .= 'ERROR: the Contactperson could not be shown (not translated yet).';
+					$content .= $this->pi_getLL('error_contactPersonNotTranslated');
 				}
 			} else {
 				// no translation requested
@@ -211,7 +210,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			}
 		} else {
 			// $person is NULL
-			$content .= 'An error occured: The details could not be fetched from the database.';
+			$content .= $this->pi_getLL('error_personDetailsNotFetched');
 		}
 
 		return $content;
@@ -274,22 +273,16 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
 		$this->setMarkerContent('link_detail', $linkToDetailPage);
 				
-//				$arrWrappedSubpart['###LINK_DETAIL###']= array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person['uid'], 'backId' => $GLOBALS["TSFE"]->id), true, true, $detailpage) .'">','</a>');
-
-//				$content .= $this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
 				// merge the marker content with the template
 				$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX');
 		return $content;
 	}
 
-
-
-
-
-
-
-
-
+	/**
+	 * Initializes the detailed view for a certain person.
+	 *
+	 * @return	string		HTML Code to display
+	 */
 	function show_detail()	{
 		$content = '';
 		$this->backPid = intval($this->piVars['backPid']);
@@ -299,8 +292,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// exit this function if there's no UID transmitted, or if the transmitted
 		// uid is not an integer of positive value within the URL (otherwise the SQL-query will fail)
 		if (empty($this->showUid) OR $this->showUid < 0)	{
-			$content .= 'Error: No UID to display (maybe you called this page directly instead of another way, ...)<br>';
-			$content .= 'Or the transmitted Uid is not an integer of positive value.';
+			$content .= $this->pi_getLL('error_noUID');
 			return $content;
 		}
 
@@ -327,16 +319,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					$content .= $this->showSinglePerson($translated_record);
 				} else {
 					// There's an empty translation found (can only happen if sys_language_mode = strict).
-// FIXME: Localize the error message.
-					$content .= 'It seems that this record is not yet translated to your language.';
+					$content .= $this->pi_getLL('error_recordNotTranslated');
 				}
 			} else {
 				// no translation requested or available - show the record in default language
 				$content .= $this->showSinglePerson($row_person);
 			}
 		} else {
-// FIXME: Localize the error message.
-			$content .= 'There is no person with this UID to display.';
+			// there's no person with this UID
+			$content .= $this->pi_getLL('error_noPersonOnUID');
 		}
 
 		return $content;
@@ -570,8 +561,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 								break;
 			case "plain"		:	
 			default				:	$emailArray['display'] = $address;
-			//						$emailArray['begin'] = '<a href="mailto:'.$address.'">';
-			//						$emailArray['end'] = '</a>';
 								break;
 		}
 		$email = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
@@ -1131,7 +1120,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		foreach ($subpartNames as $currentSubpartName) {
 			$this->templateCache[$currentSubpartName] = $this->cObj->getSubpart($templateRawCode, $currentSubpartName);
 		}
-//debug($this->templateCache);
 		return;
 	}
 

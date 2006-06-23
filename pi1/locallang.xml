@@ -24,6 +24,12 @@
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">back</label>
 			<label index="header_contactperson">Your contact person:</label>
+			<label index="error_noListType">No list type selected in the configuration of this plugin.</label>
+			<label index="error_contactPersonNotTranslated">The contact person could not be shown (not translated yet)</label>
+			<label index="error_personDetailsNotFetched">The details could not be fetched from the database.</label>
+			<label index="error_noUID">No UID to display (maybe you called this page directly instead of another way, ...). Or the transmitted Uid is not an integer of positive value.</label>
+			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
+			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="label_email">E-Mail:</label>
@@ -41,6 +47,12 @@
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">zurück</label>
 			<label index="header_contactperson">Ihre Ansprechperson:</label>
+			<label index="error_noListType">Kein Modul ausgewählt in der Konfiguration dieses Plugins.</label>
+			<label index="error_contactPersonNotTranslated">Die Kontaktperson kann nicht angezeigt werden (noch nicht übersetzt).</label>
+			<label index="error_personDetailsNotFetched">Die Details konnten nicht von der Datenbank gelesen werden.</label>
+			<label index="error_noUID">Keine UID zum anzeigen (vielleicht haben Sie diese Seite direkt aufgerufen). Vielleicht ist die übermittelte UID ist keine ganze Zahl positiven Wertes.</label>
+			<label index="error_noPersonOnUID">Es gibt keine Person mit dieser UID.</label>
+			<label index="error_recordNotTranslated">Dieser Datensatz ist noch nicht übersetzt und kann nicht angezeigt werden.</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
@@ -60,6 +72,12 @@
 			<label index="label_first_name" type="integer">107522264</label>
 			<label index="label_last_name" type="integer">199614645</label>
 			<label index="label_link_detail" type="integer">65812061</label>
+			<label index="error_noListType" type="integer">68973585</label>
+			<label index="error_contactPersonNotTranslated" type="integer">212206931</label>
+			<label index="error_personDetailsNotFetched" type="integer">250893427</label>
+			<label index="error_noUID" type="integer">168784606</label>
+			<label index="error_noPersonOnUID" type="integer">167104999</label>
+			<label index="error_recordNotTranslated" type="integer">239858004</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -79,6 +97,12 @@
 			<label index="label_first_name">First name:</label>
 			<label index="label_last_name">Last name:</label>
 			<label index="label_link_detail">Details</label>
+			<label index="error_noListType">No list type selected in the configuration of this plugin.</label>
+			<label index="error_contactPersonNotTranslated">The contact person could not be shown (not translated yet)</label>
+			<label index="error_personDetailsNotFetched">The details could not be fetched from the database.</label>
+			<label index="error_noUID">No UID to display (maybe you called this page directly instead of another way, ...). Or the transmitted Uid is not an integer of positive value.</label>
+			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
+			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
