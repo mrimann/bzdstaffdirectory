@@ -1,6 +1,6 @@
 plugin.tx_bzdstaffdirectory_pi1 {
 	# location of the template file
-	templateFile = EXT:bzd_staff_directory/media/bzdstaff_template.htm
+	templateFile = typo3conf/ext/bzd_staff_directory/media/bzdstaff_template.htm
 
 	# location of the CSS file (leave empty to include no CSS file)
 	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
@@ -17,23 +17,17 @@ plugin.tx_bzdstaffdirectory_pi1 {
 			file.maxH = 100
 			file.params =
 		}
-		# whether the title marker should be followed by a space
-		suffix_title = 1
 	}
 	DETAIL  {
 		image {
 			file.maxW = 180
 			file.params =
 		}
-		# whether the title marker should be followed by a space
-		suffix_title = 1
 	}
 	BOX  {
 		image {
 			file.maxW = 120
 			file.params =
 		}
-		# whether the title marker should be followed by a space
-		suffix_title = 1
 	}
 }

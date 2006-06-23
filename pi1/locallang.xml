@@ -12,12 +12,16 @@
 			<label index="label_email">E-mail:</label>
 			<label index="label_phone">Phone:</label>
 			<label index="label_room">Room:</label>
+			<label index="label_function">Function:</label>
+			<label index="label_first_name">First name:</label>
+			<label index="label_last_name">Last name:</label>
 			<label index="label_officehours">Office hours:</label>
 			<label index="label_location">Location:</label>
 			<label index="label_tasks">Tasks:</label>
 			<label index="label_files">Files:</label>
 			<label index="label_groups">Groups:</label>
 			<label index="label_opinion">Opinion:</label>
+			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">back</label>
 			<label index="header_contactperson">Your contact person:</label>
 		</languageKey>
@@ -25,12 +29,16 @@
 			<label index="label_email">E-Mail:</label>
 			<label index="label_phone">Telefon:</label>
 			<label index="label_room">Raum:</label>
+			<label index="label_function">Funktion:</label>
+			<label index="label_first_name">Vorname:</label>
+			<label index="label_last_name">Nachname:</label>
 			<label index="label_officehours">Bürozeiten:</label>
 			<label index="label_location">Standort:</label>
 			<label index="label_tasks">Aufgaben:</label>
 			<label index="label_files">Dateien:</label>
 			<label index="label_groups">Gruppen:</label>
 			<label index="label_opinion">Meinung:</label>
+			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">zurück</label>
 			<label index="header_contactperson">Ihre Ansprechperson:</label>
 		</languageKey>
@@ -48,6 +56,10 @@
 			<label index="label_opinion" type="integer">85135537</label>
 			<label index="label_link_back" type="integer">74038176</label>
 			<label index="header_contactperson" type="integer">119817834</label>
+			<label index="label_function" type="integer">111696024</label>
+			<label index="label_first_name" type="integer">107522264</label>
+			<label index="label_last_name" type="integer">199614645</label>
+			<label index="label_link_detail" type="integer">65812061</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -63,6 +75,10 @@
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_back">back</label>
 			<label index="header_contactperson">Your contact person:</label>
+			<label index="label_function">Function:</label>
+			<label index="label_first_name">First name:</label>
+			<label index="label_last_name">Last name:</label>
+			<label index="label_link_detail">Details</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

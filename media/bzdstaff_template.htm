@@ -4,28 +4,58 @@
 
 
 
+<h2>Display "TEAMLIST" (Header)</h2>
+<p>This template shows the header of the team list.</p>
+
+<!-- ###LIST_HEADER### -->
+<table class="tx_bzdstaffdirectory_teamlist">
+<!-- ###LIST_HEADER### -->
 
 
-<h2>Display "TEAMLIST"</h2>
-<p>This template is used for a list of all persons of your staff </p>
+
+<h2>Display "LISTITEM"</h2>
+<p>This template is used for a list of all persons of your staff.</p>
 
 
  
-<!--- ###TEMPLATE_TEAMLIST### begin --->
+<!-- ###LIST_ITEM### -->
 <tr class="###CLASS###">
 		<td class="left">
-			<p class="tx_bzdstaffdirectory_teamlist_person_name"><!-- ###LINK_DETAIL### -->###TITLE######LAST_NAME###&nbsp;###FIRST_NAME###<!-- ###LINK_DETAIL### --></p>
-			<p class="tx_bzdstaffdirectory_teamlist_person_function">###FUNCTION###</p>
+			<p class="tx_bzdstaffdirectory_teamlist_person_name">
+					<!--###LISTITEM_WRAPPER_TITLE### -->###LIST_TITLE###&nbsp;<!--###LISTITEM_WRAPPER_TITLE### -->###LAST_NAME###&nbsp;###FIRST_NAME###
+			</p>
+			<!-- ###LISTITEM_WRAPPER_FUNCTION### -->
+				<p class="tx_bzdstaffdirectory_teamlist_person_function">
+					###LABEL_FUNCTION###&nbsp;###FUNCTION###
+				</p>
+				<p>###LINK_DETAIL###</p>
+			<!-- ###LISTITEM_WRAPPER_FUNCTION### -->
 			<p>
-			<span class="tx_bzdstaffdirectory_teamlist_person_phone">###PHONE###</span><br />
-			<span class="tx_bzdstaffdirectory_teamlist_person_email"><!-- ###LINK_EMAIL### -->###EMAIL###<!-- ###LINK_EMAIL### --></span>
+			<!--###LISTITEM_WRAPPER_PHONE### -->
+				<span class="tx_bzdstaffdirectory_teamlist_person_phone">###LABEL_PHONE###&nbsp;###PHONE###</span><br />
+			<!--###LISTITEM_WRAPPER_PHONE### -->
+			<!-- ###LISTITEM_WRAPPER_EMAIL### -->
+				<span class="tx_bzdstaffdirectory_teamlist_person_email">
+					###LABEL_EMAIL###&nbsp;<!-- ###LINK_EMAIL### -->###EMAIL###<!-- ###LINK_EMAIL### -->
+				</span>
+			<!-- ###LISTITEM_WRAPPER_EMAIL### -->
 			</p>
 		</td>
+	<!-- ###LISTITEM_WRAPPER_IMAGE### -->
 		<td class="right">
-			<!-- ###LINK_DETAIL### -->###IMAGE###<!-- ###LINK_DETAIL### -->
+			###IMAGE###
 		</td>
+	<!-- ###LISTITEM_WRAPPER_IMAGE### -->
 </tr>
-<!--- ###TEMPLATE_TEAMLIST### end --->
+<!-- ###LIST_ITEM### -->
+
+
+<h2>Display "TEAMLIST" (Footer)</h2>
+<p>This template shows the footer of the team list.</p>
+
+<!-- ###LIST_FOOTER### -->
+</table>
+<!-- ###LIST_FOOTER### -->
 
 
 
@@ -33,53 +63,71 @@
 <p>This template is used for showing the details of one person. </p>
 
 
-<!--- ###TEMPLATE_DETAIL### begin --->
+<!-- ###TEMPLATE_DETAIL### -->
 <table class="tx_bzdstaffdirectory_detail">
 <tr>
 	<td class="header" colspan="2">
-		<p class="name">###TITLE######FIRST_NAME###&nbsp;###LAST_NAME###</p>
-		<p class="function">###FUNCTION###</p>
+		<p class="name"><!--###FIELD_WRAPPER_TITLE### -->###TITLE###&nbsp;<!--###FIELD_WRAPPER_TITLE### -->###FIRST_NAME###&nbsp;###LAST_NAME###</p>
+		<!--###FIELD_WRAPPER_FUNCTION### --><p class="function">###FUNCTION###</p><!--###FIELD_WRAPPER_FUNCTION### -->
 	</td>
 </tr>
 <tr>
 	<td class="left">
 		<table>
-			<tr>
-				<td>###LABEL_EMAIL###</td>
-				<td><!-- ###LINK_EMAIL### -->###EMAIL###<!-- ###LINK_EMAIL### --></td>
-			</tr>
-			<tr>
-				<td>###LABEL_PHONE###</td>
-				<td>###PHONE###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_ROOM###</td>
-				<td>###ROOM###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_OFFICEHOURS###</td>
-				<td>###OFFICEHOURS###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_LOCATION###</td>
-				<td>###LOCATION###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_TASKS###</td>
-				<td>###TASKS###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_FILES###</td>
-				<td>###FILES###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_GROUPS###</td>
-				<td>###GROUPS###</td>
-			</tr>
-			<tr>
-				<td>###LABEL_OPINION###</td>
-				<td>###OPINION###</td>
-			</tr>
+			<!--###FIELD_WRAPPER_EMAIL### -->
+				<tr>
+					<td>###LABEL_EMAIL###</td>
+					<td>###EMAIL###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_EMAIL### -->
+			<!--###FIELD_WRAPPER_PHONE### -->
+				<tr>
+					<td>###LABEL_PHONE###</td>
+					<td>###PHONE###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_PHONE### -->
+			<!--###FIELD_WRAPPER_ROOM### -->
+				<tr>
+					<td>###LABEL_ROOM###</td>
+					<td>###ROOM###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_ROOM### -->
+			<!--###FIELD_WRAPPER_OFFICEHOURS### -->
+				<tr>
+					<td>###LABEL_OFFICEHOURS###</td>
+					<td>###OFFICEHOURS###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_OFFICEHOURS### -->
+			<!--###FIELD_WRAPPER_LOCATION### -->
+				<tr>
+					<td>###LABEL_LOCATION###</td>
+					<td>###LOCATION###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_LOCATION### -->
+			<!--###FIELD_WRAPPER_TASKS### -->
+				<tr>
+					<td>###LABEL_TASKS###</td>
+					<td>###TASKS###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_TASKS### -->
+			<!--###FIELD_WRAPPER_FILES### -->
+				<tr>
+					<td>###LABEL_FILES###</td>
+					<td>###FILES###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_FILES### -->
+			<!--###FIELD_WRAPPER_GROUPS### -->
+				<tr>
+					<td>###LABEL_GROUPS###</td>
+					<td>###GROUPS###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_GROUPS### -->
+			<!--###FIELD_WRAPPER_OPINION### -->
+				<tr>
+					<td>###LABEL_OPINION###</td>
+					<td>###OPINION###</td>
+				</tr>
+			<!--###FIELD_WRAPPER_OPINION### -->
 		</table>
 	</td>
 
@@ -89,11 +137,13 @@
 
 </tr>
 </table>
-<p class="tx_bzdstaffdirectory_detail_backlink">
-	<!-- ###LINK_BACK### -->###LABEL_LINK_BACK###<!-- ###LINK_BACK### -->
-</p>
+<!--###FIELD_WRAPPER_LINK_BACK### -->
+	<p class="tx_bzdstaffdirectory_detail_backlink">
+		###LINK_BACK###
+	</p>
+<!--###FIELD_WRAPPER_LINK_BACK### -->
 
-<!--- ###TEMPLATE_DETAIL### end --->
+<!--###TEMPLATE_DETAIL### -->
 
 
 
@@ -104,14 +154,15 @@
 <p>This template is used for showing the details of one person (Contact-Person for a page). </p>
 
 
-<!--- ###TEMPLATE_BOX### begin --->
+<!-- ###TEMPLATE_BOX### -->
 <div class="tx_bzdstaffdirectory_box">
-	<div class="tx_bzdstaffdirectory_box_header">###HEADER_CONTACTPERSON###</div>
-	<div class="tx_bzdstaffdirectory_box_image">###LINK_DETAIL######IMAGE######LINK_DETAIL###</div>
-	<div class="tx_bzdstaffdirectory_box_name">###TITLE######FIRST_NAME###&nbsp;###LAST_NAME###</div>
-	<div class="tx_bzdstaffdirectory_box_function">###FUNCTION###</div>
+	<p>###HEADER_CONTACTPERSON###</p>
+	<p>###IMAGE###</p>
+	<p><!-- ###FIELD_WRAPPER_TITLE### -->###TITLE###&nbsp;<!-- ###FIELD_WRAPPER_TITLE### -->###FIRST_NAME###&nbsp;###LAST_NAME###
+	<br />###FUNCTION###</p>
+	<p>###LINK_DETAIL###</p>
 </div>
-<!--- ###TEMPLATE_BOX### end --->
+<!-- ###TEMPLATE_BOX### -->
 
 </body>
 </html>

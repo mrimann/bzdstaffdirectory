@@ -45,6 +45,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$this->conf=$conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
+		$this->getTemplateCode();
 
 		$this->arrConf = unserialize($GLOBALS["TYPO3_CONF_VARS"]["EXT"]["extConf"]['bzd_staff_directory']);
 
@@ -108,6 +109,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->detailpage = $this->arrConf["InfoSite"];
 		}
 
+		// create and display the list header
+		$content = $this->createListHeader();
+
 		// Select all teamleaders for the selected team(s).
 		$res_leaders_mm = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
@@ -156,7 +160,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				}
 			}
 		}
-	return '<table class="tx_bzdstaffdirectory_teamlist">' . $content . '</table>';
+
+		// add the table footer
+		$content .= $this->createListFooter();
+
+		return $content;
 	}
 
 
@@ -216,49 +224,61 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 *
 	 * @return	string		the html code
 	 */
-	function showSinglePersonBox($row_person) {
-			// Get the details of the person
-//			$res_person = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-//				'*',	// SELECT
-//				'tx_bzdstaffdirectory_persons',	// FROM
-//				'uid = '.$row_person_id["tx_bzdstaffdirectory_bzd_contact_person"] . t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_persons'),	//WHERE
-//				'',	// GROUP BY
-//				'',	// ORDER BY
-//				'1'	//LIMIT
-//			);
+	function showSinglePersonBox($person) {
+		// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
+		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist') != '') {
+			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist');
+		} else {
+			$this->detailPage = $this->arrConf["InfoSite"];
+		}
 
-//			while($row_person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person))	{
+		// define the header, will always be shown
+		$this->setMarkerContent('header_contactperson', $this->pi_getLL('header_contactperson'));
 
-				// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
-				if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist') != '') {
-					$detailpage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist');
-				} else {
-					$detailpage = $this->arrConf["InfoSite"];
-				}
+		if ($this->hasValue('title', $person)) {
+			$this->setMarkerContent('title', $this->getValue('title', $person, true));
+			$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
+		} else {
+			$this->readSubpartsToHide('title', 'field_wrapper');
+		}
 
+		if ($this->hasValue('first_name', $person)) {
+			$this->setMarkerContent('first_name', $this->getValue('first_name', $person, true));
+			$this->setMarkerContent('label_first_name', $this->pi_getLL('label_first_name'));
+		} else {
+			$this->readSubpartsToHide('first_name', 'field_wrapper');
+		}
 
-				$template = $this->getTemplateCode();
-				$arrMarker['###HEADER_CONTACTPERSON###'] = $this->pi_getLL('header_contactperson');
-				$arrMarker['###TITLE###'] = $this->getTitleString($row_person['title']);
-				$arrMarker['###FIRST_NAME###'] = htmlspecialchars($row_person['first_name']);
-				$arrMarker['###LAST_NAME###'] = htmlspecialchars($row_person['last_name']);
-				$arrMarker['###FUNCTION###'] = htmlspecialchars($row_person['function']);
+		if ($this->hasValue('last_name', $person)) {
+			$this->setMarkerContent('last_name', $this->getValue('last_name', $person, true));
+			$this->setMarkerContent('label_last_name', $this->pi_getLL('label_last_name'));
+		} else {
+			$this->readSubpartsToHide('last_name', 'field_wrapper');
+		}
 
+		if ($this->hasValue('function', $person)) {
+			$this->setMarkerContent('function', $this->getValue('function', $person, true));
+			$this->setMarkerContent('label_function', $this->pi_getLL('label_function'));
+		} else {
+			$this->readSubpartsToHide('function', 'field_wrapper');
+		}
 
-				$lconf = $this->conf[$this->code."."];
-				if ($row_person["image"] == "")	{
-					$lconf["image."]["file"] = "typo3conf/ext/bzd_staff_directory/media/noimg.jpg";
-				}
-				else	{
-					$lconf["image."]["file"] = "uploads/tx_bzdstaffdirectory/" . $row_person["image"];
-				}
+		// define the marker for the image (always shown)
+		$this->setMarkerContent('image', $this->getImage($person));
 
-				$arrMarker["###IMAGE###"] = $this->cObj->IMAGE($lconf["image."]);
+		// create the link to the detail page
+		$linkParams = array(
+			'tx_bzdstaffdirectory_pi1[showUid]' => $this->getValue('uid', $person),
+			'tx_bzdstaffdirectory_pi1[backPid]' => $GLOBALS['TSFE']->id
+		);
+		$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
+		$this->setMarkerContent('link_detail', $linkToDetailPage);
 				
-				$arrWrappedSubpart['###LINK_DETAIL###']= array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person['uid'], 'backId' => $GLOBALS["TSFE"]->id), true, true, $detailpage) .'">','</a>');
+//				$arrWrappedSubpart['###LINK_DETAIL###']= array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $row_person['uid'], 'backId' => $GLOBALS["TSFE"]->id), true, true, $detailpage) .'">','</a>');
 
-				$content.=$this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
-
+//				$content .= $this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
+				// merge the marker content with the template
+				$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX');
 		return $content;
 	}
 
@@ -272,7 +292,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 	function show_detail()	{
 		$content = '';
-		$this->backPID = intval($this->piVars['backId']);
+		$this->backPid = intval($this->piVars['backPid']);
 		$this->showUid = intval($this->piVars['showUid']);
 
 
@@ -327,106 +347,227 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 *
 	 * @param	array		associative array containing all details of the person
 	 *
-	 *	@return	string		the HTML code
+	 * @return	string		the HTML code
 	 */
-	function showSinglePerson($row_person) {
-		$template = $this->getTemplateCode();
-
-		// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
-		$lconf = $this->conf[$this->code.'.'];
-
-		if (empty($row_person['image'])) {
-// FIXME: Define the path in a global place
-			$lconf['image.']['file'] = "typo3conf/ext/bzd_staff_directory/media/noimg.jpg";
+	function showSinglePerson($person) {
+		// define all the markers
+		if ($this->hasValue('first_name', $person)) {
+			$this->setMarkerContent('first_name', $this->getValue('first_name', $person, true));
+			$this->setMarkerContent('label_first_name', $this->pi_getLL('label_first_name'));
 		} else {
-// FIXME: Define the paths in a global place
-			$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' . $row_person['image'];
+			$this->readSubpartsToHide('first_name', 'field_wrapper');
 		}
 
-		$arrMarker["###FIRST_NAME###"] = htmlspecialchars($row_person["first_name"]);
-		$arrMarker["###LAST_NAME###"] = htmlspecialchars($row_person["last_name"]);
-		$arrMarker["###FUNCTION###"] = htmlspecialchars($row_person["function"]);
-		$arrMarker["###LOCATION###"] = htmlspecialchars($row_person["location"]);
-		$arrMarker["###PHONE###"] = htmlspecialchars($row_person["phone"]);
-		$arrMarker["###TASKS###"] = htmlspecialchars($row_person["tasks"]);
-		$arrMarker["###OPINION###"] = htmlspecialchars($row_person["opinion"]);
-		$arrMarker["###ROOM###"] = htmlspecialchars($row_person["room"]);
-		$arrMarker["###OFFICEHOURS###"] = htmlspecialchars($row_person["officehours"]);
-		$arrMarker["###TITLE###"] = $this->getTitleString($row_person["title"]);
-
-		// set the field labels
-		$arrMarker['###LABEL_EMAIL###'] = $this->pi_getLL('label_email');
-		$arrMarker['###LABEL_PHONE###'] = $this->pi_getLL('label_phone');
-		$arrMarker['###LABEL_ROOM###'] = $this->pi_getLL('label_room');
-		$arrMarker['###LABEL_OFFICEHOURS###'] = $this->pi_getLL('label_officehours');
-		$arrMarker['###LABEL_LOCATION###'] = $this->pi_getLL('label_location');
-		$arrMarker['###LABEL_TASKS###'] = $this->pi_getLL('label_tasks');
-		$arrMarker['###LABEL_FILES###'] = $this->pi_getLL('label_files');
-		$arrMarker['###LABEL_GROUPS###'] = $this->pi_getLL('label_groups');
-		$arrMarker['###LABEL_OPINION###'] = $this->pi_getLL('label_opinion');
-		$arrMarker['###LABEL_LINK_BACK###'] = $this->pi_getLL('label_link_back');
-
-		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
-		switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview'))
-		{
-			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($row_person["email"]);
-								break;
-			case "asimage"		:	$emailArray = $this->email_asimage($row_person["email"], false);
-								break;
-			case "asimagejsencrypted":	$emailArray = $this->email_asimage($row_person["email"], true);
-								break;
-			case "plain"		:	
-			default				:	$emailArray['display'] = $row_person['email'];
-									$emailArray['begin'] = '<a href="mailto:'.$row_person["email"].'">';
-									$emailArray['end'] = '</a>';
-								break;
-		}
-		$arrMarker['###EMAIL###'] = $emailArray['display'];
-		$arrWrappedSubpart['###LINK_EMAIL###'] = array($emailArray['begin'],$emailArray['end']);
-
-		// Depending on the settings in the Flexform of the content object, the image will be wrapped with a link (to click enlarge the image).
-		$conf = array();
-		if ( $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'click_enlarge','s_detailview') == TRUE AND $row_person["image"] != '')	{
-			$conf["enable"] = 1;
-			$conf["JSwindow"] = 1;
-			$conf['wrap'] = '<a href="javascript: close();"> | </a>';
-			$arrMarker["###IMAGE###"] = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf["image."]),$lconf["image."]["file"],$conf);
-		} else	{
-			$arrMarker["###IMAGE###"] = $this->cObj->IMAGE($lconf["image."]);
+		if ($this->hasValue('last_name', $person)) {
+			$this->setMarkerContent('last_name', $this->getValue('last_name', $person, true));
+			$this->setMarkerContent('label_last_name', $this->pi_getLL('label_last_name'));
+		} else {
+			$this->readSubpartsToHide('last_name', 'field_wrapper');
 		}
 
+		if ($this->hasValue('function', $person)) {
+			$this->setMarkerContent('function', $this->getValue('function', $person, true));
+			$this->setMarkerContent('label_function', $this->pi_getLL('label_function'));
+		} else {
+			$this->readSubpartsToHide('function', 'field_wrapper');
+		}
 
+		if ($this->hasValue('location', $person)) {
+			$this->setMarkerContent('location', $this->getValue('location', $person, true));
+			$this->setMarkerContent('label_location', $this->pi_getLL('label_location'));
+		} else {
+			$this->readSubpartsToHide('location', 'field_wrapper');
+		}
+
+		if ($this->hasValue('phone', $person)) {
+			$this->setMarkerContent('phone', $this->getValue('phone', $person, true));
+			$this->setMarkerContent('label_phone', $this->pi_getLL('label_phone'));
+		} else {
+			$this->readSubpartsToHide('phone', 'field_wrapper');
+		}
+
+		if ($this->hasValue('tasks', $person)) {
+			$this->setMarkerContent('tasks', $this->getValue('tasks', $person, true));
+			$this->setMarkerContent('label_tasks', $this->pi_getLL('label_tasks'));
+		} else {
+			$this->readSubpartsToHide('tasks', 'field_wrapper');
+		}
+
+		if ($this->hasValue('opinion', $person)) {
+			$this->setMarkerContent('opinion', $this->getValue('opinion', $person, true));
+			$this->setMarkerContent('label_opinion', $this->pi_getLL('label_opinion'));
+		} else {
+			$this->readSubpartsToHide('opinion', 'field_wrapper');
+		}
+
+		if ($this->hasValue('room', $person)) {
+			$this->setMarkerContent('room', $this->getValue('room', $person, true));
+			$this->setMarkerContent('label_room', $this->pi_getLL('label_room'));
+		} else {
+			$this->readSubpartsToHide('room', 'field_wrapper');
+		}
+
+		if ($this->hasValue('officehours', $person)) {
+			$this->setMarkerContent('officehours', $this->getValue('officehours', $person, true));
+			$this->setMarkerContent('label_officehours', $this->pi_getLL('label_officehours'));
+		} else {
+			$this->readSubpartsToHide('officehours', 'field_wrapper');
+		}
+
+		if ($this->hasValue('title', $person)) {
+			$this->setMarkerContent('title', $this->getValue('title', $person, true));
+			$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
+		} else {
+			$this->readSubpartsToHide('title', 'field_wrapper');
+		}
+
+		if ($this->hasValue('email', $person)) {
+			$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview');
+			$this->setMarkerContent('email', $this->getEmail($person, $spamProtectionMode));
+			$this->setMarkerContent('label_email', $this->pi_getLL('label_email'));
+		} else {
+			$this->readSubpartsToHide('email', 'field_wrapper');
+		}
+
+		// Hide the groups line if the user is not member in any of the groups.
+		if ($this->getMemberOfGroups($this->showUid)) {
+			$this->setMarkerContent('groups', $this->getGroups());
+			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups'));
+		} else {
+			$this->readSubpartsToHide('groups', 'field_wrapper');
+		}
+
+		if ($this->hasValue('files', $person)) {
+			$this->setMarkerContent('files', $this->getFileList($person));
+			$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
+		} else {
+			$this->readSubpartsToHide('files', 'field_wrapper');
+		}
+
+		// The image is shown in every case, the subpart will never be hidden.
+		// If no image is stored for this user, a dummy picture will be shown.
+		$this->setMarkerContent('image', $this->getImage($person));
+		$this->setMarkerContent('label_image', $this->pi_getLL('label_image'));
+
+		// define the marker for the back link
+		// the link is only shown if $this->backPid is set!
+		if ($this->backPid) {
+			$this->setMarkerContent('link_back', $this->pi_linkTP($this->pi_getLL('label_link_back'), array(), true, $this->backPid));
+		} else {
+			$this->readSubpartsToHide('link_back', 'field_wrapper');
+		}
+
+		// merge the marker content with the template
+		$content .= $this->substituteMarkerArrayCached('TEMPLATE_DETAIL');
+
+		return $content;
+	}
+
+	/**
+	 * Returns the HTML Code to show the list of files that are stored for this person.
+	 *
+	 * @param	array		associative array containing all the information
+	 *
+	 * @return	string		HTML Code
+	 */
+	function getFileList($person) {
+		$files = explode(',', $person['files']);
+		$fileList = '<ul>';
+		foreach($files as $filename) {
+// FIXME: Define the path in a global place!
+			$fileList .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'">' . $filename . '</a></li>';
+		}
+		$fileList .= '</ul>';
+
+		return $fileList;
+	}
+
+	/**
+	 * Returns the HTML Code needed to show a list of group names on which a user is a member.
+	 *
+	 * @return	string		HTML Code (unordered list)
+	 */
+	function getGroups() {
+		$result = '';
 		$memberOf = $this->getMemberOfGroups($this->showUid);
-
 		if ($memberOf) {
 			foreach ($memberOf as $actualGroupUID) {
 				$actualGroup = $this->getTeamDetails($actualGroupUID);
 				$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
 			}
+			$result = '<ul>' . $memberOfList . '</ul>';
 		}
-		$arrMarker["###GROUPS###"] = '<ul>'.$memberOfList.'</ul>';
 
-		// Display all the files that are stored for this person
-		if (!empty($row_person['files'])) {
-			$files = explode(',', $row_person['files']);
-			$file_list = '<ul>';
-			foreach($files as $filename) {
-// FIXME: Define the path in a global place!
-				$file_list .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'">' . $filename . '</a></li>';
-			}
-			$file_list .= '</ul>';
+		return $result;
+	}
 
-			$arrMarker['###FILES###'] = $file_list;
+	/**
+	 * Returns the HTML Code to show the image of the person.
+	 *
+	 * @param	array		associative array containing all the information
+	 *
+	 * @return	string		the HTML Code
+	 */
+	function getImage($person) {
+		$result = '';
+		$fN = $this->getValue('image', $person);
+
+		// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
+		$lconf = $this->conf[$this->code.'.'];
+
+		if (empty($fN)) {
+// FIXME: Define the path in a global place
+			$lconf['image.']['file'] = 'typo3conf/ext/bzd_staff_directory/media/noimg.jpg';
 		} else {
-			$arrMarker['###FILES###'] = '';
+// FIXME: Define the paths in a global place
+			$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' . $fN;
 		}
 
-		// defining the Back-Link (to travel from the detail-page back to the referring page)
-		$arrWrappedSubpart["###LINK_BACK###"] = array('<A href="'. $this->pi_linkTP_keepPIvars_url(array(), 0, 1, $this->backPID) .'">','</A>');
+		// Depending on the settings in the Flexform of the content object, the image will be wrapped with a link (to click enlarge the image).
+		$imageconf = array();
+		if ( $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'click_enlarge','s_detailview') == TRUE AND $fN != '')	{
+			$imageconf['enable'] = 1;
+			$imageconf['JSwindow'] = 1;
+			$imageconf['wrap'] = '<a href="javascript: close();"> | </a>';
+			$result = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf['image.']),$lconf['image.']['file'],$imageconf);
+		} else	{
+			$result = $this->cObj->IMAGE($lconf['image.']);
+		}
 
-		$content.=$this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
+		return $result;
+	}
 
-		return $content;
+	/**
+	 * Generates the E-mail address for the detail view.
+	 *
+	 * @param	array		associative array containing all the information
+	 * @param	string		the mode selected in the configuration / flexform, may be empty
+	 *
+	 * @return	string		the HTML code for displaying the E-Mail address
+	 */
+	function getEmail($person, $spamProtectionMode = '') {
+		$emailArray = array();
+		$email = '';
+		$address = $this->getValue('email', $person);
+
+		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
+		switch($spamProtectionMode)
+		{
+			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($address);
+								break;
+			case "asimage"		:	$emailArray = $this->email_asimage($address);
+								break;
+			case "asimagejsencrypted":	$emailArray = $this->email_asimage($address, true);
+								break;
+			case "plain"		:	
+			default				:	$emailArray['display'] = $address;
+			//						$emailArray['begin'] = '<a href="mailto:'.$address.'">';
+			//						$emailArray['end'] = '</a>';
+								break;
+		}
+		$email = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
+
+		return $email;
 	}
 
 	/**
@@ -545,55 +686,83 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 */
 	function showPersonInTeamList($uid, $isLeader = false)	{
 		$result = '';
+		$person = array();
+		$showImage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'showimages','s_teamlist');
 
 		// get the details of the actual person
-		$actual_person = $this->getPersonDetails($uid, true);
-		if ($actual_person) {
-			// show images or not (depending on settings of the plugin)
-			if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'showimages','s_teamlist') == TRUE) {
-				if ($actual_person["image"] == "") {
-// FIXME: Define the path in a global place
-					$this->lconf["image."]["file"] = $this->mediaFolder.'noimg.jpg';
-				} else {
-					$this->lconf["image."]["file"] = $this->uploadFolder . $actual_person["image"];
-				}
-				$arrMarker['###IMAGE###'] = $this->cObj->IMAGE($this->lconf['image.']);
+		$person = $this->getPersonDetails($uid, true);
+		if ($person) {
+			if ($isLeader) {
+				$this->setMarkerContent('class', 'tx_bzdstaffdirectory_teamlist_person, leader');
 			} else {
-				$arrMarker['###IMAGE###'] = ''; 
+				$this->setMarkerContent('class', 'tx_bzdstaffdirectory_teamlist_person');
 			}
-	
-			// reading the template, filling the markers and then output the mixture
-			$template = $this->getTemplateCode();
-	
-			$arrMarker['###CLASS###'] = ($isLeader) ? 'tx_bzdstaffdirectory_teamlist_person, leader': 'tx_bzdstaffdirectory_teamlist_person';
-			$arrMarker['###TITLE###'] = $this->getTitleString($actual_person['title']);
-			$arrMarker['###FIRST_NAME###'] = htmlspecialchars($actual_person['first_name']);
-			$arrMarker['###LAST_NAME###'] = htmlspecialchars($actual_person['last_name']);
-			$arrMarker['###FUNCTION###'] = htmlspecialchars($actual_person['function']);
-			$arrMarker['###PHONE###'] = htmlspecialchars($actual_person['phone']);
 
-			// output of the e-mail address depending on the settings from flexform (spam protection mode)
-			switch($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist'))
-			{
-				case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($actual_person['email']);
-									break;
-				case "asimage"		:	$emailArray = $this->email_asimage($actual_person['email'], false);
-									break;
-				case "asimagejsencrypted":	$emailArray = $this->email_asimage($actual_person['email'], true);
-									break;
-				case "plain"		:	
-				default				:	$emailArray['display'] = $actual_person['email'];
-										$emailArray['begin'] = '<a href="mailto:'.$actual_person['email'].'">';
-										$emailArray['end'] = '</a>';
-									break;
+			if ($showImage) {
+				// The image is shown in every case, the subpart will never be hidden.
+				// If no image is stored for this user, a dummy picture will be shown.
+				$this->setMarkerContent('image', $this->getImage($person));
+			} else {
+				$this->readSubpartsToHide('image', 'listitem_wrapper');
 			}
-			$arrMarker['###EMAIL###'] = $emailArray['display'];
-			$arrWrappedSubpart['###LINK_EMAIL###'] = array($emailArray['begin'],$emailArray['end']);
 
+			// define all the markers for this person
+			if ($this->hasValue('title', $person)) {
+				$this->setMarkerContent('list_title', $this->getValue('title', $person, true));
+				$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
+			} else {
+				$this->readSubpartsToHide('title', 'listitem_wrapper');
+			}
 
-			$arrWrappedSubpart['###LINK_DETAIL###'] = array('<a href="'. $this->pi_linkTP_keepPIvars_url(array('showUid' => $actual_person["uid"], 'backId' => $GLOBALS["TSFE"]->id), true, true, $this->detailpage) .'">','</a>');
-	
-			$result .= $this->cObj->substituteMarkerArrayCached($template[$this->code],$arrMarker,array(),$arrWrappedSubpart);
+			if ($this->hasValue('first_name', $person)) {
+				$this->setMarkerContent('first_name', $this->getValue('first_name', $person, true));
+				$this->setMarkerContent('label_first_name', $this->pi_getLL('label_first_name'));
+			} else {
+				$this->readSubpartsToHide('first_name', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('last_name', $person)) {
+				$this->setMarkerContent('last_name', $this->getValue('last_name', $person, true));
+				$this->setMarkerContent('label_last_name', $this->pi_getLL('label_last_name'));
+			} else {
+				$this->readSubpartsToHide('last_name', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('function', $person)) {
+				$this->setMarkerContent('function', $this->getValue('function', $person, true));
+				$this->setMarkerContent('label_function', $this->pi_getLL('label_function'));
+			} else {
+				$this->readSubpartsToHide('function', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('phone', $person)) {
+				$this->setMarkerContent('phone', $this->getValue('phone', $person, true));
+				$this->setMarkerContent('label_phone', $this->pi_getLL('label_phone'));
+			} else {
+				$this->readSubpartsToHide('phone', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('email', $person)) {
+				$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist');
+				$this->setMarkerContent('email', $this->getEmail($person, $spamProtectionMode));
+				$this->setMarkerContent('label_email', $this->pi_getLL('label_email'));
+			} else {
+				$this->readSubpartsToHide('email', 'listitem_wrapper');
+			}
+
+			// create the link to the detail page
+			$linkParams = array(
+				'tx_bzdstaffdirectory_pi1[showUid]' => $this->getValue('uid', $person),
+				'tx_bzdstaffdirectory_pi1[backPid]' => $GLOBALS['TSFE']->id
+			);
+			$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailpage);
+			$this->setMarkerContent('link_detail', $linkToDetailPage);
+
+			// merge the marker content with the template
+			$result .= $this->substituteMarkerArrayCached('LIST_ITEM');
+
+			// reset the hidden subparts (may be they are needed in the next row)
+			$this->subpartsToHide = array();
 		}
 
 		return $result;
@@ -652,26 +821,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		return $result;
 	}
 
-
-	function getTemplateCode()	{
-
-		if ( $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'template_file','s_template') != '' )	{
-			$templateCode = $this->cObj->fileResource($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'template_file','s_template'));
-		}
-		else	{
-			$templateCode = $this->cObj->fileResource($this->arrConf["templateFile"]);
-		}
-
-
-		$template = array();
-
-		$template["TEAMLIST"] = $this->cObj->getSubpart($templateCode,"###TEMPLATE_TEAMLIST###");
-		$template["DETAIL"] = $this->cObj->getSubpart($templateCode,"###TEMPLATE_DETAIL###");
-		$template["BOX"] = $this->cObj->getSubpart($templateCode,"###TEMPLATE_BOX###");
-
-
-		return $template;
-	}
 
 	/**
 	 * Queries the database and gets all details on the selected groups/teams.
@@ -836,27 +985,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	}
 
 	/**
-	 * Gets the title string to fill into a marker.
-	 * Depending on the TypoScript configuration, the string is followed by a space. Default is to do so.
-	 *
-	 * @param	string		the value of database field "title"
-	 *
-	 * @return	string		the marker content, htmlspecialchars'ed
-	 *
-	 * @access	protected
-	 */
-	function getTitleString($input) {
-		$output = '';
-		if ($this->lconf['suffix_title'] == 1 && !empty($input)) {
-			$output = htmlspecialchars($input) . '&nbsp;';
-		} else {
-			$output = htmlspecialchars($input);
-		}
-
-		return $output;
-	}
-
-	/**
 	 * fills the internal array '$this->langArr' with the available syslanguages
 	 *
 	 * @return	void
@@ -873,7 +1001,239 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		while ($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($lres)) {
 			$this->langArr[$row['uid']] = $row;
 		}
+
+		return;
 	}
+
+	/**
+	 * Sets a marker's content.
+	 *
+	 * Example: If the prefix is "field" and the marker name is "one", the marker
+	 * "###FIELD_ONE###" will be written.
+	 *
+	 * If the prefix is empty and the marker name is "one", the marker
+	 * "###ONE###" will be written.
+	 *
+	 * @param	string		the marker's name without the ### signs, case-insensitive, will get uppercased, must not be empty
+	 * @param	string		the marker's content, may be empty
+	 * @param	string		prefix to the marker name (may be empty, case-insensitive, will get uppercased)
+	 *
+	 * @access	protected
+	 */
+	function setMarkerContent($markerName, $content, $prefix = '') {
+		$this->markers[$this->createMarkerName($markerName, $prefix)] = $content;
+
+		return;
+	}
+
+	/**
+	 * Takes a comma-separated list of subpart names and writes them to $this->subpartsToHide.
+	 * In the process, the names are changed from 'aname' to '###BLA_ANAME###' and used as keys.
+	 * The corresponding values in the array are empty strings.
+	 *
+	 * Example: If the prefix is "field" and the list is "one,two", the array keys
+	 * "###FIELD_ONE###" and "###FIELD_TWO###" will be written.
+	 *
+	 * If the prefix is empty and the list is "one,two", the array keys
+	 * "###ONE###" and "###TWO###" will be written.
+	 *
+	 * @param	string		comma-separated list of at least 1 subpart name to hide (case-insensitive, will get uppercased)
+	 * @param	string		prefix to the subpart names (may be empty, case-insensitive, will get uppercased)
+	 *
+	 * @access	protected
+	 */
+	function readSubpartsToHide($subparts, $prefix = '') {
+		$subpartNames = explode(',', $subparts);
+
+		foreach ($subpartNames as $currentSubpartName) {
+			$this->subpartsToHide[$this->createMarkerName($currentSubpartName, $prefix)] = '';
+		}
+
+		return;
+	}
+
+	/**
+	 * Creates an uppercase marker (or subpart) name from a given name and an optional prefix.
+	 *
+	 * Example: If the prefix is "field" and the marker name is "one", the result will be
+	 * "###FIELD_ONE###".
+	 *
+	 * If the prefix is empty and the marker name is "one", the result will be "###ONE###".
+	 *
+	 * @param	string		the name of the marker, case insensitive (will be uppercased), must not be empty
+	 * @param	string		the prefix, case insensitive (will be uppercased), may be empty
+	 *
+	 * @access	private
+	 */
+	function createMarkerName($markerName, $prefix = '') {
+		// if a prefix is provided, uppercase it and separate it with an underscore
+		if ($prefix) {
+			$prefix = strtoupper($prefix).'_';
+		}
+
+		return '###'.$prefix.strtoupper(trim($markerName)).'###';
+	}
+
+	/**
+	 * Multi substitution function with caching. Wrapper function for cObj->substituteMarkerArrayCached(),
+	 * using $this->markers and $this->subparts as defaults.
+	 *
+	 * During the process, the following happens:
+	 * 1. $this->subpartsTohide will be removed
+	 * 2. for the other subparts, the subpart marker comments will be removed
+	 * 3. markes are replaced with their corresponding contents.
+	 *
+	 * @param	string		key of the subpart from $this->templateCache, e.g. 'LIST_ITEM' (without the ###)
+	 *
+	 * @return	string		content stream with the markers replaced
+	 *
+	 * @access	protected
+	 */
+	function substituteMarkerArrayCached($key) {
+		// remove subparts (lines) that will be hidden
+		$noHiddenSubparts = $this->cObj->substituteMarkerArrayCached($this->templateCache[$key], array(), $this->subpartsToHide);
+
+		// remove subpart markers by replacing the subparts with just their content
+		$noSubpartMarkers = $this->cObj->substituteMarkerArrayCached($noHiddenSubparts, array(), $this->templateCache);
+
+		// replace markers with their content
+		return $this->cObj->substituteMarkerArrayCached($noSubpartMarkers, $this->markers);
+	}
+
+	/**
+	 * Retrieves all subparts from the plugin template and write them to $this->templateCache.
+	 *
+	 * The subpart names are automatically retrieved from the template file set in $this->conf['templateFile']
+	 * (or via flexforms) and are used as array keys. For this, the ### are removed, but the names stay uppercase.
+	 *
+	 * Example: The subpart ###MY_SUBPART### will be stored with the array key 'MY_SUBPART'.
+	 *
+	 * Please note that each subpart may only occur once in the template file.
+	 *
+	 * @access	protected
+	 */
+	function getTemplateCode() {
+		/** the whole template file as a string */
+		$templateRawCode = $this->cObj->fileResource($this->getConfValueString('templateFile', 's_template', true));
+		$this->markerNames = $this->findMarkers($templateRawCode);
+
+		$subpartNames = $this->findSubparts($templateRawCode);
+
+		foreach ($subpartNames as $currentSubpartName) {
+			$this->templateCache[$currentSubpartName] = $this->cObj->getSubpart($templateRawCode, $currentSubpartName);
+		}
+//debug($this->templateCache);
+		return;
+	}
+
+	/**
+	 * Finds all subparts within a template.
+	 * The subparts must be within HTML comments.
+	 *
+	 * @param	string		the whole template file as a string
+	 *
+	 * @return	array		a list of the subpart names (uppercase, without ###, e.g. 'MY_SUBPART')
+	 *
+	 * @access	protected
+	 */
+	function findSubparts($templateRawCode) {
+		$matches = array();
+		preg_match_all('/<!-- *(###)([^#]+)(###)/', $templateRawCode, $matches);
+
+		return array_unique($matches[2]);
+	}
+
+	/**
+	 * Finds all markers within a template.
+	 * Note: This also finds subpart names.
+	 *
+	 * The result is one long string that is easy to process using regular expressions.
+	 *
+	 * Example: If the markers ###FOO### and ###BAR### are found, the string "#FOO#BAR#" would be returned.
+	 *
+	 * @param	string		the whole template file as a string
+	 *
+	 * @return	string		a list of markes as one long string, separated, prefixed and postfixed by '#'
+	 *
+	 * @access	private
+	 */
+	function findMarkers($templateRawCode) {
+		$matches = array();
+		preg_match_all('/(###)([^#]+)(###)/', $templateRawCode, $matches);
+
+		$markerNames = array_unique($matches[2]);
+
+		return '#'.implode('#', $markerNames).'#';
+	}
+
+	/**
+	 * Checks whether a given person record has a certain field set.
+	 *
+	 * @param	string		field name to check
+	 * @param	array		associative array containing all the information
+	 *
+	 * @returm	boolean		the answer
+	 */
+	function hasValue($key, $person) {
+		$result = false;
+
+		if (!empty($person[$key])) {
+			$result = true;
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns the value of a field contained in an array.
+	 * The result can optionally be htmlspecialchars'ed.
+	 *
+	 * @param	string		field name
+	 * @param	array		associative array containing all the information
+	 * @param	boolean		whether the string should be htmlspecialchars'ed befor beeing returned
+	 *
+	 * @return	string		the field value
+	 */
+	function getValue($key, $person, $doHtmlSpecialChars = false) {
+		$result = '';
+		if ($doHtmlSpecialChars) {
+			$result = htmlspecialchars($person[$key]);
+		} else {
+			$result = $person[$key];
+		}
+		
+		return $result;
+	}
+
+	/**
+	 * Returns the list view header: Start of table, header row, start of table body.
+	 * Columns listed in $this->subpartsToHide are hidden (ie. not displayed).
+	 *
+	 * @return	string		HTML output, the table header
+	 *
+	 * @access	protected
+	 */
+	function createListHeader() {
+		$result = $this->substituteMarkerArrayCached('LIST_HEADER');
+
+		return $result;
+	}
+
+	/**
+	 * Returns the list view footer: end of table body, end of table.
+	 *
+	 * Columns listed in $this->subpartsToHide are hidden (ie. not displayed).
+	 *
+	 * @return	string		HTML output, the table header
+	 *
+	 * @access	protected
+	 */
+	function createListFooter() {
+		$result = $this->substituteMarkerArrayCached('LIST_FOOTER');
+
+		return $result;
+	}
+
 }
 
 

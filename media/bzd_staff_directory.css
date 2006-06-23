@@ -1,5 +1,9 @@
-.tx-bzdstaffdirectory-pi1 table {
+.tx_bzdstaffdirectory_teamlist_person_name {
+	font-weight: bold;
+}
 
+.tx-bzdstaffdirectory-pi1 table {
+	border-spacing: 0px;
 }
 
 .tx-bzdstaffdirectory-pi1 table tr {
@@ -13,12 +17,12 @@
 }
 
 .tx_bzdstaffdirectory_teamlist TR TD.left {
-	width: 150px;
+
 }
 
 .tx_bzdstaffdirectory_teamlist TR TD.right {
-	width: 100px;
 	text-align: right;
+	padding-left: 15px;
 }
 
 

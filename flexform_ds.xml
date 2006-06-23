@@ -41,7 +41,7 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
-					<template_file>
+					<templateFile>
 						<TCEforms>
 							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.template_file</label>
 							<config>
@@ -49,7 +49,7 @@
 								<size>30</size>
 							</config>
 						</TCEforms>
-					</template_file>
+					</templateFile>
 				</el>
 			</ROOT>
 		</s_template>
