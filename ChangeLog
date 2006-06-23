@@ -1,4 +1,5 @@
 version 0.0.7 - currently working on
+- Added note on spam protection to the manual (#48)
 - Hide empty fields in detailed view. Reworked the the whole templating engine. (#39)
 - Fixed indexing of the output (#41)
 - Changed the labels in detail view to be localized (#49)
