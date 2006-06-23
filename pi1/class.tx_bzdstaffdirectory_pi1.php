@@ -457,6 +457,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->readSubpartsToHide('link_back', 'field_wrapper');
 		}
 
+		// define the person's name as the page title for indexing
+		$personsTitle = ($this->hasValue('title', $person)) ? $this->getValue('title', $person) . ' ' : '';
+		$indexedPageTitle =
+			$personsTitle
+			. $this->getValue('first_name', $person)
+			. ' '
+			. $this->getValue('last_name', $person);
+		$GLOBALS['TSFE']->indexedDocTitle = $indexedPageTitle;
+
 		// merge the marker content with the template
 		$content .= $this->substituteMarkerArrayCached('TEMPLATE_DETAIL');
 
