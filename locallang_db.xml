@@ -36,7 +36,7 @@
 			<label index="tt_content.pi_flexform.detailview">Detailview</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
-			<label index="tt_content.pi_flexform.detailpage">Detailpage (where to show the detailed info of the persons?)</label>
+			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
 			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
@@ -81,7 +81,7 @@
 			<label index="tt_content.pi_flexform.detailview">Detailansicht</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Klick-Vergrösserung?</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
-			<label index="tt_content.pi_flexform.detailpage">Welche Detail-Seite?</label>
+			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sortierreihenfolge</label>
 			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
 			<label index="tt_content.pi_flexform.usergroup">anzuzeigende Benutzergruppe</label>
@@ -127,7 +127,7 @@
 			<label index="tt_content.pi_flexform.detailview" type="integer">239080204</label>
 			<label index="tt_content.pi_flexform.click_enlarge" type="integer">144691874</label>
 			<label index="tt_content.pi_flexform.showimages" type="integer">227949151</label>
-			<label index="tt_content.pi_flexform.detailpage" type="integer">96023598</label>
+			<label index="tt_content.pi_flexform.detailPage" type="integer">96023598</label>
 			<label index="tt_content.pi_flexform.emailasimage" type="integer">45513920</label>
 			<label index="tt_content.pi_flexform.startingpoint" type="integer">182822534</label>
 			<label index="tt_content.pi_flexform.usergroup" type="integer">11566001</label>
@@ -175,7 +175,7 @@
 			<label index="tt_content.pi_flexform.detailview">Detailview</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
-			<label index="tt_content.pi_flexform.detailpage">Detailpage (where to show the detailed info of the persons?)</label>
+			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
 			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>

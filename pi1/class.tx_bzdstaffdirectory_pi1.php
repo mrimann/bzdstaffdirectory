@@ -103,10 +103,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 		// define the detail page (either from the global extension setting, or from the FlexForm).
 		// FIXME: Change this configuration to either flexform or TS-Setup. No Settings in the Extension-Manager!
-		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist') != '')	{
-			$this->detailpage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist');
+		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_teamlist') != '')	{
+			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_teamlist');
 		} else {
-			$this->detailpage = $this->arrConf["InfoSite"];
+			$this->detailPage = $this->arrConf["InfoSite"];
 		}
 
 		// create and display the list header
@@ -753,7 +753,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				'tx_bzdstaffdirectory_pi1[showUid]' => $this->getValue('uid', $person),
 				'tx_bzdstaffdirectory_pi1[backPid]' => $GLOBALS['TSFE']->id
 			);
-			$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailpage);
+			$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
 			$this->setMarkerContent('link_detail', $linkToDetailPage);
 
 			// merge the marker content with the template

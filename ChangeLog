@@ -1,4 +1,5 @@
 version 0.0.7 - currently working on
+- Improved the flexform (#53)
 - Localized the error messages (#51)
 - Enhanced the indexing: The indexed page title in detail view is now the name of the person (#83)
 - Added note on spam protection to the manual (#48)
