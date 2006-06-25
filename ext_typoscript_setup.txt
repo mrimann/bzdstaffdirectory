@@ -10,6 +10,26 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# You can set this to "strict" to hide non translated records.
 	# --> read the section about the multilanguage features in the manual of this extension!!
 	sys_language_mode = 
+
+	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
+	# that can be used for different values.
+	_LOCAL_LANG {
+		default {
+			label_universal_field_1 = Universal field 1
+			label_universal_field_2 = Universal field 2
+			label_universal_field_3 = Universal field 3
+			label_universal_field_4 = Universal field 4
+			label_universal_field_5 = Universal field 5
+		}
+		de {
+			label_universal_field_1 = Universelles Feld 1
+			label_universal_field_2 = Universelles Feld 2
+			label_universal_field_3 = Universelles Feld 3
+			label_universal_field_4 = Universelles Feld 4
+			label_universal_field_5 = Universelles Feld 5
+		}
+	}
+
 	
 	TEAMLIST  {
 		image {

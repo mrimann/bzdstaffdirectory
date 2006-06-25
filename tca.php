@@ -237,7 +237,71 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 	)
 );
 
+// add the universal fields to the TCA Array if they are configured
+if ($confArr['useUniversalField_1'] && !empty($confArr['fieldNameUniversalField_1'])) {
+	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_1';
+	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_1'] = Array (
+		'l10n_mode' => $l10n_mode,
+		'exclude' => 0,
+		'label' => $confArr['fieldNameUniversalField_1'],		
+		'config' => Array (
+			'type' => 'input',	
+			'size' => '30',	
+		)
+	);
+}
 
+if ($confArr['useUniversalField_2'] && !empty($confArr['fieldNameUniversalField_2'])) {
+	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_2';
+	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_2'] = Array (
+		'l10n_mode' => $l10n_mode,
+		'exclude' => 0,
+		'label' => $confArr['fieldNameUniversalField_2'],		
+		'config' => Array (
+			'type' => 'input',	
+			'size' => '30',	
+		)
+	);
+}
+
+if ($confArr['useUniversalField_3'] && !empty($confArr['fieldNameUniversalField_3'])) {
+	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_3';
+	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_3'] = Array (
+		'l10n_mode' => $l10n_mode,
+		'exclude' => 0,
+		'label' => $confArr['fieldNameUniversalField_3'],		
+		'config' => Array (
+			'type' => 'input',	
+			'size' => '30',	
+		)
+	);
+}
+
+if ($confArr['useUniversalField_4'] && !empty($confArr['fieldNameUniversalField_4'])) {
+	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_4';
+	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_4'] = Array (
+		'l10n_mode' => $l10n_mode,
+		'exclude' => 0,
+		'label' => $confArr['fieldNameUniversalField_4'],		
+		'config' => Array (
+			'type' => 'input',	
+			'size' => '30',	
+		)
+	);
+}
+
+if ($confArr['useUniversalField_5'] && !empty($confArr['fieldNameUniversalField_5'])) {
+	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_5';
+	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_5'] = Array (
+		'l10n_mode' => $l10n_mode,
+		'exclude' => 0,
+		'label' => $confArr['fieldNameUniversalField_5'],		
+		'config' => Array (
+			'type' => 'input',	
+			'size' => '30',	
+		)
+	);
+}
 
 $TCA["tx_bzdstaffdirectory_groups"] = Array (
 	"ctrl" => $TCA["tx_bzdstaffdirectory_groups"]["ctrl"],

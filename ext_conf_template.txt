@@ -15,3 +15,33 @@ hideNewLocalizations = 0
 
 #cat=basic/enable/180; type=boolean; label= Prepend at Copy: Here you can disable adding of the text "(copy [#])" to titles of copied records.
 prependAtCopy = 1
+
+#cat=basic/enable/200; type=boolean; label=Use the universal field 1?
+useUniversalField_1 = 0
+
+#cat=basic/enable/201; type=string; label=Field name for universal field 1 (only in backend)
+fieldNameUniversalField_1 = Universal Field 1
+
+#cat=basic/enable/210; type=boolean; label=Use the universal field 2?
+useUniversalField_2 = 0
+
+#cat=basic/enable/211; type=string; label=Field name for universal field 2 (only in backend)
+fieldNameUniversalField_2 = Universal Field 2
+
+#cat=basic/enable/220; type=boolean; label=Use the universal field 3?
+useUniversalField_3 = 0
+
+#cat=basic/enable/221; type=string; label=Field name for universal field 3 (only in backend)
+fieldNameUniversalField_3 = Universal Field 3
+
+#cat=basic/enable/230; type=boolean; label=Use the universal field 4?
+useUniversalField_4 = 0
+
+#cat=basic/enable/231; type=string; label=Field name for universal field 4 (only in backend)
+fieldNameUniversalField_4 = Universal Field 4
+
+#cat=basic/enable/240; type=boolean; label=Use the universal field 5?
+useUniversalField_5 = 0
+
+#cat=basic/enable/241; type=string; label=Field name for universal field 5 (only in backend)
+fieldNameUniversalField_5 = Universal Field 5

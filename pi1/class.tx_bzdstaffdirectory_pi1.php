@@ -412,6 +412,41 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->readSubpartsToHide('title', 'field_wrapper');
 		}
 
+		if ($this->arrConf['useUniversalField_1'] && $this->hasValue('universal_field_1', $person)) {
+			$this->setMarkerContent('universal_field_1', $this->getValue('universal_field_1', $person, true));
+			$this->setMarkerContent('label_universal_field_1', $this->pi_getLL('label_universal_field_1'));
+		} else {
+			$this->readSubpartsToHide('universal_field_1', 'field_wrapper');
+		}
+
+		if ($this->arrConf['useUniversalField_2'] && $this->hasValue('universal_field_2', $person)) {
+			$this->setMarkerContent('universal_field_2', $this->getValue('universal_field_2', $person, true));
+			$this->setMarkerContent('label_universal_field_2', $this->pi_getLL('label_universal_field_2'));
+		} else {
+			$this->readSubpartsToHide('universal_field_2', 'field_wrapper');
+		}
+
+		if ($this->arrConf['useUniversalField_3'] && $this->hasValue('universal_field_3', $person)) {
+			$this->setMarkerContent('universal_field_3', $this->getValue('universal_field_3', $person, true));
+			$this->setMarkerContent('label_universal_field_3', $this->pi_getLL('label_universal_field_3'));
+		} else {
+			$this->readSubpartsToHide('universal_field_3', 'field_wrapper');
+		}
+
+		if ($this->arrConf['useUniversalField_4'] && $this->hasValue('universal_field_4', $person)) {
+			$this->setMarkerContent('universal_field_4', $this->getValue('universal_field_4', $person, true));
+			$this->setMarkerContent('label_universal_field_4', $this->pi_getLL('label_universal_field_4'));
+		} else {
+			$this->readSubpartsToHide('universal_field_4', 'field_wrapper');
+		}
+
+		if ($this->arrConf['useUniversalField_5'] && $this->hasValue('universal_field_5', $person)) {
+			$this->setMarkerContent('universal_field_5', $this->getValue('universal_field_5', $person, true));
+			$this->setMarkerContent('label_universal_field_5', $this->pi_getLL('label_universal_field_5'));
+		} else {
+			$this->readSubpartsToHide('universal_field_5', 'field_wrapper');
+		}
+
 		if ($this->hasValue('email', $person)) {
 			$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview');
 			$this->setMarkerContent('email', $this->getEmail($person, $spamProtectionMode));

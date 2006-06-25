@@ -55,6 +55,11 @@ CREATE TABLE tx_bzdstaffdirectory_persons (
 	phone tinytext NOT NULL,
 	officehours tinytext NOT NULL,
 	files blob NOT NULL,
+	universal_field_1 tinytext NOT NULL,
+	universal_field_2 tinytext NOT NULL,
+	universal_field_3 tinytext NOT NULL,
+	universal_field_4 tinytext NOT NULL,
+	universal_field_5 tinytext NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)
