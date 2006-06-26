@@ -29,6 +29,7 @@
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
 			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
 			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
+			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
 			<label index="tt_content.pi_flexform.listtype">List to show</label>
 			<label index="tt_content.pi_flexform.settings">Settings</label>
 			<label index="tt_content.pi_flexform.template">Template</label>
@@ -73,6 +74,7 @@
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Gruppenleiter</label>
 			<label index="tt_content.list_type_pi1">BZD Mitarbeiterverzeichnis</label>
 			<label index="tt_content.pi_flexform.teamlist">Team Liste</label>
+			<label index="tt_content.pi_flexform.contactbox">Kontaktperson (BOX)</label>
 			<label index="tt_content.pi_flexform.listtype">anzuzeigende Liste</label>
 			<label index="tt_content.pi_flexform.settings">Einstellungen</label>
 			<label index="tt_content.pi_flexform.template">Template</label>
@@ -143,6 +145,7 @@
 			<label index="tt_content.pi_flexform.sortOrder" type="integer">178681555</label>
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted" type="integer">22381686</label>
 			<label index="tx_bzdstaffdirectory_persons.title" type="integer">192455458</label>
+			<label index="tt_content.pi_flexform.contactbox" type="integer">170852990</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -190,6 +193,7 @@
 			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Render it as an image (with encrypted link)</label>
 			<label index="tx_bzdstaffdirectory_persons.title">Title</label>
+			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

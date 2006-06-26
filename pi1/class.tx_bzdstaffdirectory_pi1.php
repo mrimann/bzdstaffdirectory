@@ -228,8 +228,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 */
 	function showSinglePersonBox($person) {
 		// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
-		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist') != '') {
-			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailpage','s_teamlist');
+		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_contactbox') != '') {
+			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_contactbox');
 		} else {
 			$this->detailPage = $this->arrConf["InfoSite"];
 		}
