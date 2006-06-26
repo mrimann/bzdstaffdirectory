@@ -29,6 +29,7 @@
 			<label index="error_personDetailsNotFetched">The details could not be fetched from the database.</label>
 			<label index="error_noUID">No UID to display (maybe you called this page directly instead of another way, ...). Or the transmitted Uid is not an integer of positive value.</label>
 			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
+			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
 			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
@@ -52,6 +53,7 @@
 			<label index="error_personDetailsNotFetched">Die Details konnten nicht von der Datenbank gelesen werden.</label>
 			<label index="error_noUID">Keine UID zum anzeigen (vielleicht haben Sie diese Seite direkt aufgerufen). Vielleicht ist die übermittelte UID ist keine ganze Zahl positiven Wertes.</label>
 			<label index="error_noPersonOnUID">Es gibt keine Person mit dieser UID.</label>
+			<label index="error_noGroupUID">Es ist keine Gruppe ausgewählt. Es muss mindestens eine Gruppe in den Einstellungen des Plugins ausgewählt werden.</label>
 			<label index="error_recordNotTranslated">Dieser Datensatz ist noch nicht übersetzt und kann nicht angezeigt werden.</label>
 		</languageKey>
 	</data>
@@ -78,6 +80,7 @@
 			<label index="error_noUID" type="integer">168784606</label>
 			<label index="error_noPersonOnUID" type="integer">167104999</label>
 			<label index="error_recordNotTranslated" type="integer">239858004</label>
+			<label index="error_noGroupUID" type="integer">67827050</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -103,6 +106,7 @@
 			<label index="error_noUID">No UID to display (maybe you called this page directly instead of another way, ...). Or the transmitted Uid is not an integer of positive value.</label>
 			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
 			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
+			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

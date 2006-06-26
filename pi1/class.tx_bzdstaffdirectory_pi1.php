@@ -100,7 +100,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function show_teamlist()	{
 		// Define the team UID(s) that are selected in the flexform. This is a comma separated list if more than one UID.
 		$team_uid = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'usergroup','s_teamlist');
-
+		
 		// define the detail page (either from the global extension setting, or from the FlexForm).
 		// FIXME: Change this configuration to either flexform or TS-Setup. No Settings in the Extension-Manager!
 		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_teamlist') != '')	{
@@ -109,61 +109,64 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->detailPage = $this->arrConf["InfoSite"];
 		}
 
-		// create and display the list header
-		$content = $this->createListHeader();
+		if (!empty($team_uid) && !empty($this->detailPage)) {
+			// create and display the list header
+			$content = $this->createListHeader();
 
-		// Select all teamleaders for the selected team(s).
-		$res_leaders_mm = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'*',	// SELECT
-			'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
-			'uid_local IN('. $team_uid .')',	//WHERE
-			'',	// GROUP BY
-			'',	// ORDER BY
-			''	//LIMIT
-		);
+			// Select all teamleaders for the selected team(s).
+			$res_leaders_mm = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'*',	// SELECT
+				'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
+				'uid_local IN('. $team_uid .')',	//WHERE
+				'',	// GROUP BY
+				'',	// ORDER BY
+				''	//LIMIT
+			);
 
-		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
-			// There's at least one leader for the selected team(s).
-			$teamLeadersUIDArray = array();
-			while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
-				$content .= $this->showPersonInTeamList($row_teamleader['uid_foreign'], true);
-				$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
-			}
-		} else {
-			// There's no group leader for the selected team(s).
-		}
-
-		// Select all members from the groups/persons MM table.
-		$teamListSortOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'sortOrder','s_teamlist');;
-		$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);
-
-		if (count($teamMembersUIDArray) < 1) {
-			// ERROR: There are no team members found for this/these team(s).
-			// This can happen and won't be treated as an error at the moment (may be a team consists only of team leaders).
-		} else {
-			if (!is_array($teamLeadersUIDArray)) {
-				// There are no team leaders (empty array), but there are team members:
-
-				// Call the "output person record" function once per team member.
-				foreach ($teamMembersUIDArray as $memberUID) {
-					$content .= $this->showPersonInTeamList($memberUID, false);
+			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
+				// There's at least one leader for the selected team(s).
+				$teamLeadersUIDArray = array();
+				while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
+					$content .= $this->showPersonInTeamList($row_teamleader['uid_foreign'], true);
+					$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
 				}
 			} else {
-				// There are team leaders!
+				// There's no group leader for the selected team(s).
+			}
 
-				// Call the "output person record" function once per team member.
-				foreach ($teamMembersUIDArray as $memberUID) {
-					// Don't display this person in the team members section if it is a teamleader!
-					if (!in_array($memberUID, $teamLeadersUIDArray)) {
+			// Select all members from the groups/persons MM table.
+			$teamListSortOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'sortOrder','s_teamlist');;
+			$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);
+	
+			if (count($teamMembersUIDArray) < 1) {
+				// ERROR: There are no team members found for this/these team(s).
+				// This can happen and won't be treated as an error at the moment (may be a team consists only of team leaders).
+			} else {
+				if (!is_array($teamLeadersUIDArray)) {
+					// There are no team leaders (empty array), but there are team members:
+	
+					// Call the "output person record" function once per team member.
+					foreach ($teamMembersUIDArray as $memberUID) {
 						$content .= $this->showPersonInTeamList($memberUID, false);
+					}
+				} else {
+					// There are team leaders!
+	
+					// Call the "output person record" function once per team member.
+					foreach ($teamMembersUIDArray as $memberUID) {
+						// Don't display this person in the team members section if it is a teamleader!
+						if (!in_array($memberUID, $teamLeadersUIDArray)) {
+							$content .= $this->showPersonInTeamList($memberUID, false);
+						}
 					}
 				}
 			}
+	
+			// add the table footer
+			$content .= $this->createListFooter();
+		} else {
+			$content .= $this->pi_getLL('error_noGroupUID');
 		}
-
-		// add the table footer
-		$content .= $this->createListFooter();
-
 		return $content;
 	}
 
