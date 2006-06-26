@@ -1,4 +1,5 @@
 version 0.0.7 - currently working on
+- Improved the selection of persons for the BOX Module (#57)
 - Added a check in the teamlist view (#100)
 - Added a few universal fields (#35)
 - Improved the flexform (#53, #55, #54, #101)

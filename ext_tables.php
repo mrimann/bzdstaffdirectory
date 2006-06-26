@@ -6,7 +6,9 @@ t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_persons");
 $TCA["tx_bzdstaffdirectory_persons"] = Array (
 	"ctrl" => Array (
 		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons",		
-		"label" => "last_name",	
+		'label' => 'last_name',
+		'label_alt' => 'first_name',
+		'label_alt_force' => 1,
 		"tstamp" => "tstamp",
 		"crdate" => "crdate",
 		"cruser_id" => "cruser_id",
@@ -76,30 +78,15 @@ $tempColumns = Array (
 		"config" => Array (
 			"type" => "select",	
 			"foreign_table" => "tx_bzdstaffdirectory_persons",	
-			"foreign_table_where" => "ORDER BY tx_bzdstaffdirectory_persons.uid",	
+			"foreign_table_where" => "AND tx_bzdstaffdirectory_persons.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_persons.last_name",	
 			"size" => 1,	
 			"minitems" => 0,
 			"maxitems" => 1,	
-			"wizards" => Array(
-				"_PADDING" => 2,
-				"_VERTICAL" => 1,
-				"list" => Array(
-					"type" => "script",
-					"title" => "List",
-					"icon" => "list.gif",
-					"params" => Array(
-						"table"=>"tx_bzdstaffdirectory_persons",
-						"pid" => "###CURRENT_PID###",
-					),
-					"script" => "wizard_list.php",
-				),
-			),
 		)
 	),
 );
 
-
-t3lib_div::loadTCA("pages");
+t3lib_div::loadTCA('pages');
 t3lib_extMgm::addTCAcolumns("pages",$tempColumns,1);
 t3lib_extMgm::addToAllTCAtypes("pages","tx_bzdstaffdirectory_bzd_contact_person;;;;1-1-1");
 ?>
