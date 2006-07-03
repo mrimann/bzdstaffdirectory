@@ -100,7 +100,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function show_teamlist()	{
 		// Define the team UID(s) that are selected in the flexform. This is a comma separated list if more than one UID.
 		$team_uid = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'usergroup','s_teamlist');
-		
+
 		// define the detail page (either from the global extension setting, or from the FlexForm).
 		// FIXME: Change this configuration to either flexform or TS-Setup. No Settings in the Extension-Manager!
 		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_teamlist') != '')	{
@@ -109,35 +109,52 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->detailPage = $this->arrConf["InfoSite"];
 		}
 
-		if (!empty($team_uid) && !empty($this->detailPage)) {
+		// Define the sortOrder
+		$teamListSortOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'sortOrder','s_teamlist');;
+
+		// Check if a detail page has been defined.
+		if (!empty($this->detailPage)) {
 			// create and display the list header
 			$content = $this->createListHeader();
 
-			// Select all teamleaders for the selected team(s).
-			$res_leaders_mm = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-				'*',	// SELECT
-				'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
-				'uid_local IN('. $team_uid .')',	//WHERE
-				'',	// GROUP BY
-				'',	// ORDER BY
-				''	//LIMIT
-			);
+			if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'ignoreGroupSelection','s_teamlist')) {
+				// Define the PID for the startingpoint
+				$startingpoint = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'startingpoint','s_teamlist');
+	
+				$teamMembersUIDArray = $this->getTeamMembersFromStartingpoint($startingpoint, $teamListSortOrder);
 
-			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
-				// There's at least one leader for the selected team(s).
-				$teamLeadersUIDArray = array();
-				while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
-					$content .= $this->showPersonInTeamList($row_teamleader['uid_foreign'], true);
-					$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
-				}
 			} else {
-				// There's no group leader for the selected team(s).
+				if (!empty($team_uid)) {
+		
+					// Select all teamleaders for the selected team(s).
+					$res_leaders_mm = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+						'*',	// SELECT
+						'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
+						'uid_local IN('. $team_uid .')',	//WHERE
+						'',	// GROUP BY
+						'',	// ORDER BY
+						''	//LIMIT
+					);
+		
+					if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
+						// There's at least one leader for the selected team(s).
+						$teamLeadersUIDArray = array();
+						while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
+							$content .= $this->showPersonInTeamList($row_teamleader['uid_foreign'], true);
+							$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
+						}
+					} else {
+						// There's no group leader for the selected team(s).
+					}
+					// Select all members from the groups/persons MM table.
+					$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);
+	
+				} else {
+					$content .= $this->pi_getLL('error_noGroupUID');
+				}
+	
 			}
 
-			// Select all members from the groups/persons MM table.
-			$teamListSortOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'sortOrder','s_teamlist');;
-			$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);
-	
 			if (count($teamMembersUIDArray) < 1) {
 				// ERROR: There are no team members found for this/these team(s).
 				// This can happen and won't be treated as an error at the moment (may be a team consists only of team leaders).
@@ -161,12 +178,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					}
 				}
 			}
-	
 			// add the table footer
 			$content .= $this->createListFooter();
 		} else {
-			$content .= $this->pi_getLL('error_noGroupUID');
+			// no detail page defined
+			$content .= $this->pi_getLL('error_noDetailPage');
 		}
+
 		return $content;
 	}
 
@@ -667,6 +685,33 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		return $person;
 	}
 
+	/**
+	 * Gets all the persons from a given startingpoint.
+	 * Used for the teamlist with active "ignoreGroupSelection" flag
+	 *
+	 * @param	string		comma separated list of PIDs
+	 * @param	string		the sort order (a field name)
+	 *
+	 * @return	array		array of the persons uids
+	 */
+	function getTeamMembersFromStartingpoint($pidList, $sortOrder) {
+		$groupMembers = array();
+
+		$res_groupMembers = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'uid',	// SELECT
+			'tx_bzdstaffdirectory_persons',	// FROM
+			'pid IN(' . $pidList . ') AND l18n_parent = 0',	//WHERE
+			'',	// GROUP BY
+			$sortOrder,	// ORDER BY
+			''	//LIMIT
+		);
+		while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupMembers))	{
+			$groupMembers[] = $member['uid'];
+		}
+
+
+		return $groupMembers;
+	}
 
 	/**
 	 * Gets all associated team members for a given team. The persons can be sorted by a given sort order.

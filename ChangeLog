@@ -1,3 +1,6 @@
+version 0.1.1 - currently working on
+- Added configuration to ignore the group selection (#151)
+
 version 0.1.0 - released on 2006-06-29
 - Fixed the doubled appearance of the flexform (#58)
 - Improved the selection of persons for the BOX Module (#57)

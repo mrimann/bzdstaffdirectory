@@ -36,7 +36,9 @@
 			<label index="tt_content.pi_flexform.template_file">Template-File</label>
 			<label index="tt_content.pi_flexform.detailview">Detailview</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
+			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
+			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
@@ -81,7 +83,9 @@
 			<label index="tt_content.pi_flexform.template_file">Template-Datei</label>
 			<label index="tt_content.pi_flexform.detailview">Detailansicht</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Klick-Vergrösserung?</label>
+			<label index="tt_content.pi_flexform.ignoreGroupSelection">Gruppenauswahl ignorieren (zeigt alle Personen)</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
+			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sortierreihenfolge</label>
 			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
@@ -146,6 +150,8 @@
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted" type="integer">22381686</label>
 			<label index="tx_bzdstaffdirectory_persons.title" type="integer">192455458</label>
 			<label index="tt_content.pi_flexform.contactbox" type="integer">170852990</label>
+			<label index="tt_content.pi_flexform.ignoreGroupSelection" type="integer">15721504</label>
+			<label index="tt_content.pi_flexform.startingpoint" type="integer">182822534</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -194,6 +200,8 @@
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Render it as an image (with encrypted link)</label>
 			<label index="tx_bzdstaffdirectory_persons.title">Title</label>
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
+			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
+			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
