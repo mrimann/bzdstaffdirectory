@@ -45,12 +45,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$this->conf=$conf;
 		$this->pi_setPiVarDefaults();
 		$this->pi_loadLL();
+		// Init FlexForm configuration for plugin:
+		$this->pi_initPIflexForm();
 		$this->getTemplateCode();
 
 		$this->arrConf = unserialize($GLOBALS["TYPO3_CONF_VARS"]["EXT"]["extConf"]['bzd_staff_directory']);
 
-		// Init FlexForm configuration for plugin:
-		$this->pi_initPIflexForm();
+
 
 		// Define the path to the upload folder
 		$this->uploadFolder = 'uploads/tx_bzdstaffdirectory/';
@@ -1312,6 +1313,31 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$result = $this->substituteMarkerArrayCached('LIST_FOOTER');
 
 		return $result;
+	}
+
+	/**
+	 * Adds a path in front of the file name.
+	 * This is used for files that are selected in the Flexform of the front end plugin.
+	 *
+	 * If no path is provided, the default (uploads/[extension_name]/) is used as path.
+	 *
+	 * An example (default, with no path provided):
+	 * If the file is named 'template.tmpl', the output will be 'uploads/[extension_name]/template.tmpl'.
+	 * The '[extension_name]' will be replaced by the name of the calling extension.
+	 *
+	 * @param	string		the file name
+	 * @param	string		the path to the file (without filename), must contain a slash at the end, may contain a slash at the beginning (if not relative)
+	 *
+	 * @return	string		the complete path including file name
+	 * 
+	 * @access	protected
+	 */
+	function addPathToFileName($fileName, $path = '') {
+		if (empty($path)) {
+			$path = 'uploads/tx_bzdstaffdirectory/';
+		}
+
+		return $path.$fileName;
 	}
 
 }
