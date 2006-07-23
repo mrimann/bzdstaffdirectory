@@ -19,7 +19,8 @@
 			<label index="label_location">Location:</label>
 			<label index="label_tasks">Tasks:</label>
 			<label index="label_files">Files:</label>
-			<label index="label_groups">Groups:</label>
+			<label index="label_groups_singular">Team:</label>
+			<label index="label_groups_plural">Teams:</label>
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">back</label>
@@ -44,7 +45,8 @@
 			<label index="label_location">Standort:</label>
 			<label index="label_tasks">Aufgaben:</label>
 			<label index="label_files">Dateien:</label>
-			<label index="label_groups">Gruppen:</label>
+			<label index="label_groups_singular">Team:</label>
+			<label index="label_groups_plural">Teams:</label>
 			<label index="label_opinion">Meinung:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">zurück</label>
@@ -68,7 +70,7 @@
 			<label index="label_location" type="integer">199837335</label>
 			<label index="label_tasks" type="integer">76277544</label>
 			<label index="label_files" type="integer">147226768</label>
-			<label index="label_groups" type="integer">142097351</label>
+			<label index="label_groups_singular" type="integer">125065243</label>
 			<label index="label_opinion" type="integer">85135537</label>
 			<label index="label_link_back" type="integer">74038176</label>
 			<label index="header_contactperson" type="integer">119817834</label>
@@ -84,6 +86,7 @@
 			<label index="error_recordNotTranslated" type="integer">239858004</label>
 			<label index="error_noGroupUID" type="integer">67827050</label>
 			<label index="error_noDetailPage" type="integer">105340452</label>
+			<label index="label_groups_plural" type="integer">237903185</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -95,7 +98,7 @@
 			<label index="label_location">Location:</label>
 			<label index="label_tasks">Tasks:</label>
 			<label index="label_files">Files:</label>
-			<label index="label_groups">Groups:</label>
+			<label index="label_groups_singular">Team:</label>
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_back">back</label>
 			<label index="header_contactperson">Your contact person:</label>
@@ -111,6 +114,7 @@
 			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
 			<label index="error_noDetailPage">There is no detail page defined in the flexform</label>
+			<label index="label_groups_plural">Teams:</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

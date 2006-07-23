@@ -480,7 +480,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// Hide the groups line if the user is not member in any of the groups.
 		if ($this->getMemberOfGroups($this->showUid)) {
 			$this->setMarkerContent('groups', $this->getGroups());
-			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups'));
 		} else {
 			$this->readSubpartsToHide('groups', 'field_wrapper');
 		}
@@ -542,17 +541,23 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	/**
 	 * Returns the HTML Code needed to show a list of group names on which a user is a member.
 	 *
-	 * @return	string		HTML Code (unordered list)
+	 * @return	string		HTML Code (unordered list if more than one group)
 	 */
 	function getGroups() {
 		$result = '';
 		$memberOf = $this->getMemberOfGroups($this->showUid);
-		if ($memberOf) {
+		if (count($memberOf) > 1) {
 			foreach ($memberOf as $actualGroupUID) {
 				$actualGroup = $this->getTeamDetails($actualGroupUID);
 				$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
 			}
+			
 			$result = '<ul>' . $memberOfList . '</ul>';
+			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_plural'));
+		} else {
+			$actualGroup = $this->getTeamDetails($memberOf[0]);
+			$result = htmlspecialchars($actualGroup['group_name']);
+			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_singular'));
 		}
 
 		return $result;
