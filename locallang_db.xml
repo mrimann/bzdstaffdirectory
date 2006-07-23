@@ -87,7 +87,7 @@
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
-			<label index="tt_content.pi_flexform.sortOrder">Sortierreihenfolge</label>
+			<label index="tt_content.pi_flexform.sortOrder">Sortieren nach (Feldname)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
 			<label index="tt_content.pi_flexform.usergroup">anzuzeigende Benutzergruppe</label>
 			<label index="pi_flexform_listtype">Anzuzeigende Liste</label>
@@ -101,7 +101,6 @@
 			<label index="pi_flexform_spamprotectionmode_jsencrypted">Verschlüsselt mit JavaScript Funktion</label>
 			<label index="pi_flexform_spamprotectionmode_plain">Kein Schutz, reiner Text</label>
 			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person">Kontaktperson</label>
-			<label index="tx_bzdstaffdirectory_groups.group_key">Abteilungskuerzel</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
