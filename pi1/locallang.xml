@@ -13,6 +13,7 @@
 			<label index="label_phone">Phone:</label>
 			<label index="label_room">Room:</label>
 			<label index="label_function">Function:</label>
+			<label index="label_date_incompany">In company since:</label>
 			<label index="label_first_name">First name:</label>
 			<label index="label_last_name">Last name:</label>
 			<label index="label_officehours">Office hours:</label>
@@ -39,6 +40,7 @@
 			<label index="label_phone">Telefon:</label>
 			<label index="label_room">Raum:</label>
 			<label index="label_function">Funktion:</label>
+			<label index="label_date_incompany">In der Firma seit:</label>
 			<label index="label_first_name">Vorname:</label>
 			<label index="label_last_name">Nachname:</label>
 			<label index="label_officehours">Bürozeiten:</label>
@@ -87,6 +89,7 @@
 			<label index="error_noGroupUID" type="integer">67827050</label>
 			<label index="error_noDetailPage" type="integer">105340452</label>
 			<label index="label_groups_plural" type="integer">237903185</label>
+			<label index="label_date_incompany" type="integer">42148933</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -115,6 +118,7 @@
 			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
 			<label index="error_noDetailPage">There is no detail page defined in the flexform</label>
 			<label index="label_groups_plural">Teams:</label>
+			<label index="label_date_incompany">In company since:</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

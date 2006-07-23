@@ -484,6 +484,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->readSubpartsToHide('groups', 'field_wrapper');
 		}
 
+		if ($this->hasValue('date_incompany', $person)) {
+			$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany']));
+			$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
+		} else {
+			$this->readSubpartsToHide('date_incompany', 'field_wrapper');
+		}
+
 		if ($this->hasValue('files', $person)) {
 			$this->setMarkerContent('files', $this->getFileList($person));
 			$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
@@ -517,6 +524,20 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$content .= $this->substituteMarkerArrayCached('TEMPLATE_DETAIL');
 
 		return $content;
+	}
+
+	/**
+	 * Returns a date formatted as a string.
+	 * The date is formatted as given by the TS-Setup.
+	 *
+	 * @param	integer		the date as integer value
+	 *
+	 * @return	string		formatted date
+	 */
+	function getFormattedDate($dateInt) {
+		$result = '';
+		$result = strftime($this->getConfValueString('dateFormatYMD'), $dateInt);
+		return $result;
 	}
 
 	/**

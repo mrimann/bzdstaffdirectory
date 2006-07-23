@@ -11,6 +11,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# --> read the section about the multilanguage features in the manual of this extension!!
 	sys_language_mode = 
 
+	# Date format used to show dates in the frontend
+	dateFormatYMD = %d.%m.%Y
+
 	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
 	# that can be used for different values.
 	_LOCAL_LANG {

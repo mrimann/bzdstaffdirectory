@@ -16,6 +16,7 @@
 			<label index="tx_bzdstaffdirectory_persons.image">Image</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Group membership</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Function / Job Description</label>
+			<label index="tx_bzdstaffdirectory_persons.date_incompany">In company since</label>
 			<label index="tx_bzdstaffdirectory_persons.email">Email Address</label>
 			<label index="tx_bzdstaffdirectory_persons.tasks">User Tasks</label>
 			<label index="tx_bzdstaffdirectory_persons.location">Location</label>
@@ -63,6 +64,7 @@
 			<label index="tx_bzdstaffdirectory_persons.image">Bild</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Gruppenzugehörigkeit</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Funktion</label>
+			<label index="tx_bzdstaffdirectory_persons.date_incompany">In der Firma seit</label>
 			<label index="tx_bzdstaffdirectory_persons.email">Emailadresse</label>
 			<label index="tx_bzdstaffdirectory_persons.tasks">Aufgaben</label>
 			<label index="tx_bzdstaffdirectory_persons.location">Standort</label>
@@ -151,6 +153,7 @@
 			<label index="tt_content.pi_flexform.contactbox" type="integer">170852990</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection" type="integer">15721504</label>
 			<label index="tt_content.pi_flexform.startingpoint" type="integer">182822534</label>
+			<label index="tx_bzdstaffdirectory_persons.date_incompany" type="integer">113877520</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -201,6 +204,7 @@
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
+			<label index="tx_bzdstaffdirectory_persons.date_incompany">In company since</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
