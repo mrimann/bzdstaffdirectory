@@ -20,6 +20,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# switch to hide the team leaders in the team list
 	ignoreTeamLeaders = 0
 
+	# whether to show the age or the birthdate of a person
+	showAgeInsteadOfBirthdate = 0
+
 	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
 	# that can be used for different values.
 	_LOCAL_LANG {

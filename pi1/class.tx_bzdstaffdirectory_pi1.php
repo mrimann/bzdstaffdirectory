@@ -503,8 +503,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		}
 
 		if ($this->hasValue('date_birthdate', $person)) {
-			$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate']));
-			$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+			if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
+				// show the age of the person instead of the birthdate
+				$this->setMarkerContent('date_birthdate', $this->getAge($person['date_birthdate']));
+				$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_age'));
+			} else {
+				// show the birthdate
+				$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate']));
+				$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+			}
 		} else {
 			$this->readSubpartsToHide('date_birthdate', 'field_wrapper');
 		}
@@ -556,6 +563,26 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$result = '';
 		$result = strftime($this->getConfValueString('dateFormatYMD'), $dateInt);
 		return $result;
+	}
+
+	/**
+	 * Returns the age of the person as a string, followed by the word "years".
+	 *
+	 * @param	integer		the birthdate of the person as integer value
+	 *
+	 * @return	string		the person's age + " years"
+	 */
+	function getAge($birthdate) {
+		$year_diff  = date("Y") - strftime('%Y', $birthdate);
+		$month_diff = date("m") - strftime('%m', $birthdate);
+		$day_diff   = date("d") - strftime('%d', $birthdate);
+		if ($month_diff < 0) {
+			$year_diff--;
+		} elseif (($month_diff==0) && ($day_diff < 0)) {
+			$year_diff--;
+		}
+
+		return $year_diff . ' ' . $this->pi_getLL('years');
 	}
 
 	/**

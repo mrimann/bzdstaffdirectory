@@ -38,6 +38,7 @@
 			<label index="tt_content.pi_flexform.template_file">Template-File</label>
 			<label index="tt_content.pi_flexform.detailview">Detailview</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
+			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Show the age instead of the birthdate?</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
@@ -88,6 +89,7 @@
 			<label index="tt_content.pi_flexform.template_file">Template-Datei</label>
 			<label index="tt_content.pi_flexform.detailview">Detailansicht</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Klick-Vergrösserung?</label>
+			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Alter anstatt Geburtsdatum anzeigen?</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Gruppenauswahl ignorieren (zeigt alle Personen)</label>
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Team Leader ignorieren (ausblenden)?</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
@@ -160,6 +162,7 @@
 			<label index="tx_bzdstaffdirectory_persons.date_incompany" type="integer">113877520</label>
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders" type="integer">194229382</label>
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate" type="integer">214778330</label>
+			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate" type="integer">84435142</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -213,6 +216,7 @@
 			<label index="tx_bzdstaffdirectory_persons.date_incompany">In company since</label>
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate">Birthdate</label>
+			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Show the age instead of the birthdate?</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

@@ -1,4 +1,5 @@
 version 0.2.0 - currently working on
+- Added feature to show the persons age instead of the birthdate (#198)
 - Fixed a bug with repeated team leaders shown in teamlist (#190)
 - Added field "birthdate" (#142)
 - Added a "ignore group leaders" switch for the teamlist (#192)
