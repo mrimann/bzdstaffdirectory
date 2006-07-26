@@ -490,7 +490,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 		// Hide the groups line if the user is not member in any of the groups.
 		if ($this->getMemberOfGroups($this->showUid)) {
-			$this->setMarkerContent('groups', $this->getGroups());
+			$this->setMarkerContent('groups', $this->getGroups($this->showUid));
 		} else {
 			$this->readSubpartsToHide('groups', 'field_wrapper');
 		}
@@ -607,11 +607,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	/**
 	 * Returns the HTML Code needed to show a list of group names on which a user is a member.
 	 *
+	 * @param	integer		the UID of the person to look up
+	 *
 	 * @return	string		HTML Code (unordered list if more than one group)
 	 */
-	function getGroups() {
+	function getGroups($uid) {
 		$result = '';
-		$memberOf = $this->getMemberOfGroups($this->showUid);
+		$memberOf = $this->getMemberOfGroups($uid);
 		if (count($memberOf) > 1) {
 			foreach ($memberOf as $actualGroupUID) {
 				$actualGroup = $this->getTeamDetails($actualGroupUID);
@@ -852,47 +854,53 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			}
 
 			if ($showImage) {
-				// The image is shown in every case, the subpart will never be hidden.
 				// If no image is stored for this user, a dummy picture will be shown.
 				$this->setMarkerContent('image', $this->getImage($person));
 			} else {
 				$this->readSubpartsToHide('image', 'listitem_wrapper');
 			}
 
-			// define all the markers for this person
+
+			// define all the standard fields (these are all fields, that can
+			// be output to the frontend directly from the DB without changes)
+			$allStandardFields = array(
+				'first_name',
+				'last_name',
+				'function',
+				'phone',
+				'location',
+				'opinion',
+				'tasks',
+				'room',
+				'officehours'
+			);
+
+			// depending on the configuration of the universal fields: show or hide them
+			for ($i = 1; $i <= 5; $i++) {
+				if ($this->arrConf['useUniversalField_' . $i]) {
+					$allStandardFields[] = 'universal_field_' . $i;
+				} else {
+					$this->readSubpartsToHide('universal_field_' . $i, 'listitem_wrapper');
+				}
+			}
+
+			// fill the markers of all the simple fields
+			foreach($allStandardFields as $key) {
+				if ($this->hasValue($key, $person)) {
+					$this->setMarkerContent($key, $this->getValue($key, $person, true));
+					$this->setMarkerContent('label_'.$key, $this->pi_getLL('label_'.$key));
+				} else {
+					$this->readSubpartsToHide($key, 'listitem_wrapper');
+				}
+			}
+
+
+			// Now set all the other markers, that will contain processed data
 			if ($this->hasValue('title', $person)) {
 				$this->setMarkerContent('list_title', $this->getValue('title', $person, true));
 				$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
 			} else {
 				$this->readSubpartsToHide('title', 'listitem_wrapper');
-			}
-
-			if ($this->hasValue('first_name', $person)) {
-				$this->setMarkerContent('first_name', $this->getValue('first_name', $person, true));
-				$this->setMarkerContent('label_first_name', $this->pi_getLL('label_first_name'));
-			} else {
-				$this->readSubpartsToHide('first_name', 'listitem_wrapper');
-			}
-
-			if ($this->hasValue('last_name', $person)) {
-				$this->setMarkerContent('last_name', $this->getValue('last_name', $person, true));
-				$this->setMarkerContent('label_last_name', $this->pi_getLL('label_last_name'));
-			} else {
-				$this->readSubpartsToHide('last_name', 'listitem_wrapper');
-			}
-
-			if ($this->hasValue('function', $person)) {
-				$this->setMarkerContent('function', $this->getValue('function', $person, true));
-				$this->setMarkerContent('label_function', $this->pi_getLL('label_function'));
-			} else {
-				$this->readSubpartsToHide('function', 'listitem_wrapper');
-			}
-
-			if ($this->hasValue('phone', $person)) {
-				$this->setMarkerContent('phone', $this->getValue('phone', $person, true));
-				$this->setMarkerContent('label_phone', $this->pi_getLL('label_phone'));
-			} else {
-				$this->readSubpartsToHide('phone', 'listitem_wrapper');
 			}
 
 			if ($this->hasValue('email', $person)) {
@@ -901,6 +909,40 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$this->setMarkerContent('label_email', $this->pi_getLL('label_email'));
 			} else {
 				$this->readSubpartsToHide('email', 'listitem_wrapper');
+			}
+
+			if ($this->getMemberOfGroups($uid)) {
+				$this->setMarkerContent('groups', $this->getGroups($uid));
+			} else {
+				$this->readSubpartsToHide('groups', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('date_incompany', $person)) {
+				$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany']));
+				$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
+			} else {
+				$this->readSubpartsToHide('date_incompany', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('date_birthdate', $person)) {
+				if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
+					// show the age of the person instead of the birthdate
+					$this->setMarkerContent('date_birthdate', $this->getAge($person['date_birthdate']));
+					$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_age'));
+				} else {
+					// show the birthdate
+					$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate']));
+					$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+				}
+			} else {
+				$this->readSubpartsToHide('date_birthdate', 'listitem_wrapper');
+			}
+
+			if ($this->hasValue('files', $person)) {
+				$this->setMarkerContent('files', $this->getFileList($person));
+				$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
+			} else {
+				$this->readSubpartsToHide('files', 'listitem_wrapper');
 			}
 
 			// create the link to the detail page
