@@ -12,7 +12,7 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	sys_language_mode = 
 
 	# Date format used to show dates in the frontend
-	dateFormatYMD = %d.%m.%Y
+	dateFormatYMD = %e. %B %Y
 
 	# the default sort order for the teamlist
 	sortOrder = last_name, first_name

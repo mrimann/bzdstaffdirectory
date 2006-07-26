@@ -118,6 +118,18 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 				'default' => '0'
 			)
 		),
+		'date_birthdate' => Array (
+			'l10n_mode' => $l10n_mode_merge,
+			'exclude' => 0,
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.date_birthdate',
+			'config' => Array (
+				'type' => 'input',
+				'size' => '12',
+				'max' => '20',
+				'eval' => 'date',
+				'default' => '0'
+			)
+		),
 		"function" => Array (
 			'l10n_mode' => $l10n_mode,
 			"exclude" => 0,		
@@ -242,7 +254,7 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 		),
 	),
 	"types" => Array (
-		"0" => Array("showitem" => "hidden;;1;;1-1-1, last_name, first_name, title, email, phone, function, date_incompany, image, usergroups, location, room, officehours, tasks, opinion, files")
+		"0" => Array("showitem" => "hidden;;1;;1-1-1, last_name, first_name, title, email, phone, function, date_birthdate, date_incompany, image, usergroups, location, room, officehours, tasks, opinion, files")
 	),
 	"palettes" => Array (
 		"1" => Array("showitem" => "")

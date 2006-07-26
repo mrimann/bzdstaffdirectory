@@ -46,6 +46,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons (
 	title tinytext NOT NULL,
 	image blob NOT NULL,
 	usergroups int(11) DEFAULT '0' NOT NULL,
+	date_birthdate int(11) DEFAULT '0' NOT NULL,
 	date_incompany int(11) DEFAULT '0' NOT NULL,
 	function tinytext NOT NULL,
 	email tinytext NOT NULL,

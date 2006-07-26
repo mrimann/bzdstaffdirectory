@@ -495,6 +495,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->readSubpartsToHide('date_incompany', 'field_wrapper');
 		}
 
+		if ($this->hasValue('date_birthdate', $person)) {
+			$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate']));
+			$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+		} else {
+			$this->readSubpartsToHide('date_birthdate', 'field_wrapper');
+		}
+
 		if ($this->hasValue('files', $person)) {
 			$this->setMarkerContent('files', $this->getFileList($person));
 			$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
