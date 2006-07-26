@@ -38,6 +38,7 @@
 			<label index="tt_content.pi_flexform.detailview">Detailview</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
+			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
@@ -86,6 +87,7 @@
 			<label index="tt_content.pi_flexform.detailview">Detailansicht</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Klick-Vergrösserung?</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Gruppenauswahl ignorieren (zeigt alle Personen)</label>
+			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Team Leader ignorieren (ausblenden)?</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
@@ -154,6 +156,7 @@
 			<label index="tt_content.pi_flexform.ignoreGroupSelection" type="integer">15721504</label>
 			<label index="tt_content.pi_flexform.startingpoint" type="integer">182822534</label>
 			<label index="tx_bzdstaffdirectory_persons.date_incompany" type="integer">113877520</label>
+			<label index="tt_content.pi_flexform.ignoreTeamLeaders" type="integer">194229382</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -205,6 +208,7 @@
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tx_bzdstaffdirectory_persons.date_incompany">In company since</label>
+			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

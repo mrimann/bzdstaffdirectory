@@ -136,8 +136,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 						'',	// ORDER BY
 						''	//LIMIT
 					);
-		
-					if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
+
+					// don't show the team leaders, if ignoreTeamLeaders switch is set
+					$ignoreTeamLeaders = $this->getConfValue('ignoreTeamLeaders', 's_teamlist');
+
+					if (!$ignoreTeamLeaders && $GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
 						// There's at least one leader for the selected team(s).
 						$teamLeadersUIDArray = array();
 						while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
@@ -146,6 +149,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 						}
 					} else {
 						// There's no group leader for the selected team(s).
+						// Or the team leaders are hidden by the "ignoreTeamLeaders"-switch.
 					}
 					// Select all members from the groups/persons MM table.
 					$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);

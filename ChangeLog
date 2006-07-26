@@ -1,4 +1,5 @@
 version 0.2.0 - currently working on
+- Added a "ignore group leaders" switch for the teamlist (#192)
 - Fixed sort order of the teamlist (#191)
 - Fixed wrong sort order in group list (#194)
 - Improved German translation (#152)

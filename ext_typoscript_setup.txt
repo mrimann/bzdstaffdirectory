@@ -17,6 +17,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# the default sort order for the teamlist
 	sortOrder = last_name, first_name
 
+	# switch to hide the team leaders in the team list
+	ignoreTeamLeaders = 0
+
 	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
 	# that can be used for different values.
 	_LOCAL_LANG {

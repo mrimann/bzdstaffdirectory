@@ -94,6 +94,15 @@
 								</config>
 						</TCEforms>
 					</ignoreGroupSelection>
+					<ignoreTeamLeaders>
+						<TCEforms>
+								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.ignoreTeamLeaders</label>
+								<config>
+										<type>check</type>
+										<default>0</default>
+								</config>
+						</TCEforms>
+					</ignoreTeamLeaders>
 					<startingpoint>
 						<TCEforms>
 						<exclude>1</exclude>
