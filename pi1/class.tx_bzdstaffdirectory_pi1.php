@@ -970,7 +970,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			'tx_bzdstaffdirectory_persons_usergroups_mm',	// FROM
 			'uid_local IN(' . $uid .')',	//WHERE
 			'',	// GROUP BY
-			'',	// ORDER BY
+			'sorting',	// ORDER BY
 			''	//LIMIT
 		);
 

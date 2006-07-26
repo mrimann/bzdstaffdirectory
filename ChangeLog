@@ -1,4 +1,5 @@
 version 0.2.0 - currently working on
+- Fixed wrong sort order in group list (#194)
 - Improved German translation (#152)
 - Improved the "person is member of groups" function (#185)
 - Added a field "in company since" (#148)
