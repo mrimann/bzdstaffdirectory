@@ -14,6 +14,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# Date format used to show dates in the frontend
 	dateFormatYMD = %d.%m.%Y
 
+	# the default sort order for the teamlist
+	sortOrder = last_name, first_name
+
 	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
 	# that can be used for different values.
 	_LOCAL_LANG {

@@ -111,7 +111,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		}
 
 		// Define the sortOrder
-		$teamListSortOrder = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'sortOrder','s_teamlist');;
+		$teamListSortOrder = $this->getConfValueString('sortOrder', 's_teamlist');
 
 		// Check if a detail page has been defined.
 		if (!empty($this->detailPage)) {
