@@ -144,8 +144,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 						// There's at least one leader for the selected team(s).
 						$teamLeadersUIDArray = array();
 						while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
-							$content .= $this->showPersonInTeamList($row_teamleader['uid_foreign'], true);
 							$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
+						}
+
+						// clean out doubled entries to avoid showing a team leader multiple times
+						$teamLeadersUIDArray = array_unique($teamLeadersUIDArray);
+
+						// output the team leaders
+						foreach($teamLeadersUIDArray as $currentLeaderUID) {
+							$content .= $this->showPersonInTeamList($currentLeaderUID, true);
 						}
 					} else {
 						// There's no group leader for the selected team(s).
