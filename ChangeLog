@@ -1,4 +1,5 @@
 version 0.2.0 - currently working on
+- Fixed the output of BOX module with multiple persons (#208)
 - Feature: Selection of the contact person for the BOX module (#137)
   --> Attention! Old contact person associations need to be set again!
 - Fixed: Missing generation of markers in the list view (#40)

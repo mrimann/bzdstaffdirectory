@@ -27,7 +27,8 @@
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">back</label>
-			<label index="header_contactperson">Your contact person:</label>
+			<label index="header_contactperson_singular">Your contact person:</label>
+			<label index="header_contactperson_plural">Your contact persons:</label>
 			<label index="years">years</label>
 			<label index="error_noListType">No list type selected in the configuration of this plugin.</label>
 			<label index="error_contactPersonNotTranslated">The contact person could not be shown (not translated yet)</label>
@@ -57,7 +58,8 @@
 			<label index="label_opinion">Meinung:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">zurück</label>
-			<label index="header_contactperson">Ihre Ansprechperson:</label>
+			<label index="header_contactperson_singular">Ihre Ansprechperson:</label>
+			<label index="header_contactperson_plural">Ihre Ansprechpersonen:</label>
 			<label index="years">Jahre</label>
 			<label index="error_noListType">Kein Modul ausgewählt in der Konfiguration dieses Plugins.</label>
 			<label index="error_contactPersonNotTranslated">Die Kontaktperson kann nicht angezeigt werden (noch nicht übersetzt).</label>
@@ -81,7 +83,6 @@
 			<label index="label_groups_singular" type="integer">125065243</label>
 			<label index="label_opinion" type="integer">85135537</label>
 			<label index="label_link_back" type="integer">74038176</label>
-			<label index="header_contactperson" type="integer">119817834</label>
 			<label index="label_function" type="integer">111696024</label>
 			<label index="label_first_name" type="integer">107522264</label>
 			<label index="label_last_name" type="integer">199614645</label>
@@ -99,6 +100,8 @@
 			<label index="label_date_birthdate" type="integer">75780351</label>
 			<label index="label_date_age" type="integer">38941977</label>
 			<label index="years" type="integer">123399064</label>
+			<label index="header_contactperson_singular" type="integer">119817834</label>
+			<label index="header_contactperson_plural" type="integer">243230036</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -113,7 +116,6 @@
 			<label index="label_groups_singular">Team:</label>
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_back">back</label>
-			<label index="header_contactperson">Your contact person:</label>
 			<label index="label_function">Function:</label>
 			<label index="label_first_name">First name:</label>
 			<label index="label_last_name">Last name:</label>
@@ -131,6 +133,8 @@
 			<label index="label_date_birthdate">Birthdate:</label>
 			<label index="label_date_age">Age:</label>
 			<label index="years">years</label>
+			<label index="header_contactperson_singular">Your contact person:</label>
+			<label index="header_contactperson_plural">Your contact persons:</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

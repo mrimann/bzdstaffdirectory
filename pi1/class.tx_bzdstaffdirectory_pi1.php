@@ -266,7 +266,17 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// select the contact person for this page
 		$personUIDs = $this->getContactPersonForPage($GLOBALS['TSFE']->id);
 
-		if (is_array($personUIDs)) {
+		if (is_array($personUIDs) && count($personUIDs) != 0) {
+
+			// define the header, will always be shown
+			if (count($personUIDs) > 1) {
+				$this->setMarkerContent('header_contactperson', $this->pi_getLL('header_contactperson_plural'));
+			} else {
+				$this->setMarkerContent('header_contactperson', $this->pi_getLL('header_contactperson_singular'));
+			}
+
+			$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX_HEADER');
+
 			foreach ($personUIDs as $currentUID) {
 				// get the details of the contact person from the database
 				$person = $this->getPersonDetails($currentUID);
@@ -282,13 +292,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 						//check if a valid translation is available
 						if ($this->sys_language_mode != 'strict' OR !empty($translated_record['l18n_parent'])) {
 							// found a valid translation, show the person with the translated information
-							$content .= $this->showSinglePersonBox($translated_record);
+							$content .= $this->showPersonBox($translated_record);
 						} else {
 							$content .= $this->pi_getLL('error_contactPersonNotTranslated');
 						}
 					} else {
 						// no translation requested
-						$content .= $this->showSinglePersonBox($person);
+						$content .= $this->showPersonBox($person);
 					}
 				} else {
 					// $person is NULL
@@ -298,6 +308,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				// unset the person array for next loop
 				unset($person);
 			}
+			$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX_FOOTER');
 		} else {
 			// no person is found for this page - that's ok, no error message
 		}
@@ -312,16 +323,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 *
 	 * @return	string		the html code
 	 */
-	function showSinglePersonBox($person) {
+	function showPersonBox($person) {
 		// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
 		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_contactbox') != '') {
 			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_contactbox');
 		} else {
 			$this->detailPage = $this->arrConf["InfoSite"];
 		}
-
-		// define the header, will always be shown
-		$this->setMarkerContent('header_contactperson', $this->pi_getLL('header_contactperson'));
 
 		if ($this->hasValue('title', $person)) {
 			$this->setMarkerContent('title', $this->getValue('title', $person, true));
@@ -361,9 +369,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		);
 		$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
 		$this->setMarkerContent('link_detail', $linkToDetailPage);
-				
-				// merge the marker content with the template
-				$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX');
+
+		// merge the marker content with the template
+		$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX_PERSON');
+
 		return $content;
 	}
 
