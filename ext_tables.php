@@ -72,16 +72,32 @@ t3lib_extMgm::addStaticFile($_EXTKEY,"pi1/static/","BZD Staff Directory");
 if (TYPO3_MODE=="BE")	$TBE_MODULES_EXT["xMOD_db_new_content_el"]["addElClasses"]["tx_bzdstaffdirectory_pi1_wizicon"] = t3lib_extMgm::extPath($_EXTKEY).'pi1/class.tx_bzdstaffdirectory_pi1_wizicon.php';
 
 $tempColumns = Array (
-	"tx_bzdstaffdirectory_bzd_contact_person" => Array (		
-		"exclude" => 0,		
-		"label" => "LLL:EXT:bzd_staff_directory/locallang_db.php:pages.tx_bzdstaffdirectory_bzd_contact_person",		
-		"config" => Array (
-			"type" => "select",	
-			"foreign_table" => "tx_bzdstaffdirectory_persons",	
-			"foreign_table_where" => "AND tx_bzdstaffdirectory_persons.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_persons.last_name",	
-			"size" => 1,	
-			"minitems" => 0,
-			"maxitems" => 1,	
+	'tx_bzdstaffdirectory_bzd_contact_person' => Array (
+		'l10n_mode' => $l10n_mode_merge,
+		'exclude' => 0,		
+		'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_bzd_contact_person',		
+		'config' => Array (
+			'type' => 'select',	
+			'foreign_table' => 'tx_bzdstaffdirectory_persons',	
+			'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_persons.last_name ASC',	
+			'size' => 4,	
+			'minitems' => 0,
+			'maxitems' => 5,	
+			'MM' => 'tx_bzdstaffdirectory_pages_persons_mm',	
+			'wizards' => Array(
+				'_PADDING' => 2,
+				'_VERTICAL' => 1,
+				'list' => Array(
+					'type' => 'script',
+					'title' => 'List',
+					'icon' => 'list.gif',
+					'params' => Array(
+						'table'=>'tx_bzdstaffdirectory_persons',
+						'pid' => '###CURRENT_PID###',
+					),
+					'script' => 'wizard_list.php',
+				),
+			),
 		)
 	),
 );

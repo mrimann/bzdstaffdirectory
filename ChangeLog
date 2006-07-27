@@ -1,4 +1,6 @@
 version 0.2.0 - currently working on
+- Feature: Selection of the contact person for the BOX module (#137)
+  --> Attention! Old contact person associations need to be set again!
 - Fixed: Missing generation of markers in the list view (#40)
 - Removed the old template file from the CVS Repository (#199)
 - Added feature to show the persons age instead of the birthdate (#198)

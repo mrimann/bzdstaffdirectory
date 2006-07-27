@@ -201,49 +201,105 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	}
 
 
+	/**
+	 * Returns the uids of the contact person for this page.
+	 * If this page has a contact person set, this person will be returned.
+	 * If this page hat no contact person set, the parent pages will be checked one by one.
+	 *
+	 * @param	integer		the uid of the page
+	 *
+	 * @return	array		the uid(s) of the contact person(s)
+	 */
+	function getContactPersonforPage($pageUid) {
+		$result = array();
+		$isOK = false;
+		while (!$isOK && $pageUid != 0) {
+			// get the UID of the person respective for this page
+			$res_person = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'uid_foreign',	// SELECT
+				'tx_bzdstaffdirectory_pages_persons_mm',	// FROM
+				'uid_local = '.$pageUid,	//WHERE
+				'',	// GROUP BY
+				'sorting',	// ORDER BY
+				''	//LIMIT
+			);
 
+			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_person) > 0) {
+				// found at least one contact person
+				// add it to the array, end the loop (don't check the parent page(s)!)
+				while ($res_person_line = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person)) {
+					$result[] = $res_person_line['uid_foreign'];
+				}
+				$isOK = true;
+			} else {
+				// get the UID of the next parent page
+				$res_page = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+					'pid',	// SELECT
+					'pages',	// FROM
+					'uid = '.$pageUid,	//WHERE
+					'',	// GROUP BY
+					'',	// ORDER BY
+					'1'	//LIMIT
+				);
+				$res_page_line = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_page);
+				if ($res_page_line['pid'] != 0) {
+					$pageUid = $res_page_line['pid'];
+				} else {
+					// the next top page ha uid 0 (zero) which is the root page
+					// the root cannot have a contact person associated
+					$isOK = true;
+				}
+			}
+		}
 
+		return $result;
+	}
 
+	/**
+	 * Shows the BOX module, also known as "contact person box", on the page.
+	 *
+	 * @return	string		the HTML code needed to render the contact box
+	 */
 	function show_box()	{
 		$content = '';
 
-		// get the UID of the person respective for this page
-		$res_person_id = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-			'tx_bzdstaffdirectory_bzd_contact_person',	// SELECT
-			'pages',	// FROM
-			'uid = '.$GLOBALS["TSFE"]->id,	//WHERE
-			'',	// GROUP BY
-			'',	// ORDER BY
-			'1'	//LIMIT
-		);
+		// select the contact person for this page
+		$personUIDs = $this->getContactPersonForPage($GLOBALS['TSFE']->id);
 
-		// get the details of the contact person from the database
-		$row_person_id = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person_id);
-		$person_uid = $row_person_id["tx_bzdstaffdirectory_bzd_contact_person"];
-		$person = $this->getPersonDetails($person_uid);
+		if (is_array($personUIDs)) {
+			foreach ($personUIDs as $currentUID) {
+				// get the details of the contact person from the database
+				$person = $this->getPersonDetails($currentUID);
 
-		// check if fetching the person's details was successful
-		if ($person) {
-			// check whether a translation is requested or not
-			if ($GLOBALS['TSFE']->sys_language_content) {
-				// a translation is requested
-				$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
-				$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_bzdstaffdirectory_persons', $person,$GLOBALS['TSFE']->sys_language_content, $OLmode);
-	
-				//check if a valid translation is available
-				if ($this->sys_language_mode != 'strict' OR !empty($translated_record['l18n_parent'])) {
-					// found a valid translation, show the person with the translated information
-					$content .= $this->showSinglePersonBox($translated_record);
+				// check if fetching the person's details was successful
+				if ($person) {
+					// check whether a translation is requested or not
+					if ($GLOBALS['TSFE']->sys_language_content) {
+						// a translation is requested
+						$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+						$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay('tx_bzdstaffdirectory_persons', $person,$GLOBALS['TSFE']->sys_language_content, $OLmode);
+
+						//check if a valid translation is available
+						if ($this->sys_language_mode != 'strict' OR !empty($translated_record['l18n_parent'])) {
+							// found a valid translation, show the person with the translated information
+							$content .= $this->showSinglePersonBox($translated_record);
+						} else {
+							$content .= $this->pi_getLL('error_contactPersonNotTranslated');
+						}
+					} else {
+						// no translation requested
+						$content .= $this->showSinglePersonBox($person);
+					}
 				} else {
-					$content .= $this->pi_getLL('error_contactPersonNotTranslated');
+					// $person is NULL
+					$content .= $this->pi_getLL('error_personDetailsNotFetched');
 				}
-			} else {
-				// no translation requested
-				$content .= $this->showSinglePersonBox($person);
+
+				// unset the person array for next loop
+				unset($person);
 			}
 		} else {
-			// $person is NULL
-			$content .= $this->pi_getLL('error_personDetailsNotFetched');
+			// no person is found for this page - that's ok, no error message
 		}
 
 		return $content;

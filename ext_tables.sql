@@ -26,6 +26,19 @@ CREATE TABLE tx_bzdstaffdirectory_groups_teamleaders_mm (
 );
 
 
+#
+# Table structure for table 'tx_bzdstaffdirectory_pages_persons_mm'
+# 
+#
+CREATE TABLE tx_bzdstaffdirectory_pages_persons_mm (
+  uid_local int(11) DEFAULT '0' NOT NULL,
+  uid_foreign int(11) DEFAULT '0' NOT NULL,
+  tablenames varchar(30) DEFAULT '' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
+  KEY uid_local (uid_local),
+  KEY uid_foreign (uid_foreign)
+);
+
 
 #
 # Table structure for table 'tx_bzdstaffdirectory_persons'
