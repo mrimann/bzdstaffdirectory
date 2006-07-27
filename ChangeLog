@@ -1,4 +1,5 @@
 version 0.2.0 - currently working on
+- Fixed sorting of team leaders in teamlist (#200)
 - Fixed wrong default sort criteria in the backend (#184)
 - Fixed the output of BOX module with multiple persons (#208)
 - Feature: Selection of the contact person for the BOX module (#137)

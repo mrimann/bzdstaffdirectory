@@ -126,42 +126,17 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 			} else {
 				if (!empty($team_uid)) {
-		
-					// Select all teamleaders for the selected team(s).
-					$res_leaders_mm = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-						'*',	// SELECT
-						'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
-						'uid_local IN('. $team_uid .')',	//WHERE
-						'',	// GROUP BY
-						'',	// ORDER BY
-						''	//LIMIT
-					);
+					// Select the team leaders
+					$teamLeadersUIDArray = $this->getTeamLeadersFromMM($team_uid);
 
-					// don't show the team leaders, if ignoreTeamLeaders switch is set
-					$ignoreTeamLeaders = $this->getConfValue('ignoreTeamLeaders', 's_teamlist');
-
-					if (!$ignoreTeamLeaders && $GLOBALS['TYPO3_DB']->sql_num_rows($res_leaders_mm) > 0) {
-						// There's at least one leader for the selected team(s).
-						$teamLeadersUIDArray = array();
-						while($row_teamleader = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_leaders_mm)) {
-							$teamLeadersUIDArray[] = $row_teamleader['uid_foreign'];
-						}
-
-						// clean out doubled entries to avoid showing a team leader multiple times
-						$teamLeadersUIDArray = array_unique($teamLeadersUIDArray);
-
-						// output the team leaders
-						foreach($teamLeadersUIDArray as $currentLeaderUID) {
-							$content .= $this->showPersonInTeamList($currentLeaderUID, true);
-						}
-					} else {
-						// There's no group leader for the selected team(s).
-						// Or the team leaders are hidden by the "ignoreTeamLeaders"-switch.
+					// output the team leaders
+					foreach($teamLeadersUIDArray as $currentLeaderUID) {
+						$content .= $this->showPersonInTeamList($currentLeaderUID, true);
 					}
-					// Select all members from the groups/persons MM table.
+
+					// select the team members
 					$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);
-	
-				} else {
+					} else {
 					$content .= $this->pi_getLL('error_noGroupUID');
 				}
 	
@@ -853,7 +828,60 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	}
 
 	/**
-	 * Gets all associated team members for a given team. The persons can be sorted by a given sort order.
+	 * Get all associated team leaders for a given team.
+	 * The persons can be sorted by a given sort order.
+	 *
+	 * @param	string		comma separated list of team UIDs to look for
+	 *
+	 * @return	array		array of the leader uids
+	 */
+	 function getTeamLeadersFromMM($teamUIDs) {
+	 	$groupLeaders = array();
+	 	$groupLeadersSorted = array();
+	 	$sortOrder = $this->getConfValue('sortOrderForLeaders', 's_teamlist');
+
+		// don't show the team leaders, if ignoreTeamLeaders switch is set
+		$ignoreTeamLeaders = $this->getConfValue('ignoreTeamLeaders', 's_teamlist');
+
+		if (!$ignoreTeamLeaders) {
+			// show the team leaders in the teamlist
+			$res_groupLeaders = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+				'*',	// SELECT
+				'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
+				'uid_local IN(' . $teamUIDs .')',	//WHERE
+				'',	// GROUP BY
+				'',	// ORDER BY
+				''	//LIMIT
+			);
+	
+			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_groupLeaders) > 0)	{
+				while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupLeaders))	{
+					$groupLeaders[] = $member['uid_foreign'];
+				}
+	
+				// Second call to the DB: get the right order!
+				$groupLeadersUIDList = $this->convertArrayToCommaseparatedString($groupLeaders);
+				$res_groupLeadersSorted = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+					'uid',	// SELECT
+					'tx_bzdstaffdirectory_persons',	// FROM
+					'uid IN(' . $groupLeadersUIDList . ') AND l18n_parent = 0',	//WHERE
+					'',	// GROUP BY
+					$sortOrder,	// ORDER BY
+					''	//LIMIT
+				);
+				while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupLeadersSorted))	{
+					$groupLeadersSorted[] = $member['uid'];
+				}
+			}
+		} else {
+			// don't show the team leaders, just return an empty array
+		}
+		return $groupLeadersSorted;
+	 }
+
+	/**
+	 * Gets all associated team members for a given team.
+	 * The persons can be sorted by a given sort order.
 	 * 
 	 * @param	string		comma separated list of team UIDs to look for
 	 * @param	string		field name used to order the records

@@ -17,6 +17,11 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# the default sort order for the teamlist
 	sortOrder = last_name, first_name
 
+	# the default sort order for the team leaders in the teamlist
+	# by default, they are ordered by their last name
+	# you can enter any field name of the person record to sort after
+	sortOrderForLeaders = last_name
+
 	# switch to hide the team leaders in the team list
 	ignoreTeamLeaders = 0
 

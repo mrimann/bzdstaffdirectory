@@ -45,6 +45,7 @@
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
+			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sort order for the team leaders (a field name)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
 			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
 			<label index="pi_flexform_listtype">What to show?</label>
@@ -96,6 +97,7 @@
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sortieren nach (Feldname)</label>
+			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sortierung der Teamleiter nach (Feldname)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
 			<label index="tt_content.pi_flexform.usergroup">anzuzeigende Benutzergruppe</label>
 			<label index="pi_flexform_listtype">Anzuzeigende Liste</label>
@@ -163,6 +165,7 @@
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders" type="integer">194229382</label>
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate" type="integer">214778330</label>
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate" type="integer">84435142</label>
+			<label index="tt_content.pi_flexform.sortOrderForLeaders" type="integer">167098876</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -217,6 +220,7 @@
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate">Birthdate</label>
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Show the age instead of the birthdate?</label>
+			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sort order for the team leaders (a field name)</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
