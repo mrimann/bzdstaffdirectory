@@ -1,4 +1,5 @@
 version 0.2.5 - currently working on (intermediate release)
+- Fixed a problem with multiple inclusion of the CSS file (#214)
 - Fixed a misplaced marker in the template (#216)
 - Added field gender to person records (#201)
 
