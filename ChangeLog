@@ -1,3 +1,6 @@
+version 0.2.5 - currently working on (intermediate release)
+- Added field gender to person records (#201)
+
 version 0.2.0 - released on 2006-07-28
 - Fixed sorting of team leaders in teamlist (#200)
 - Fixed wrong default sort criteria in the backend (#184)

@@ -5,6 +5,17 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# location of the CSS file (leave empty to include no CSS file)
 	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
 
+	# whether to show dummy pictures at all
+	showDummyPictures = 1
+
+	# whether to show a dummy picture if no gender is defined
+	showUnisexDummyImage = 1
+
+	# default dummy pictures
+	dummyPictureDefault = EXT:bzd_staff_directory/media/noimg.jpg
+	dummyPictureMale = EXT:bzd_staff_directory/media/dummyPictureMale.gif
+	dummyPictureFemale = EXT:bzd_staff_directory/media/dummyPictureFemale.gif
+
 	# whether unlocalized records should be shown or not
 	# By default, the default language version of a record will be shown if no translation is found.
 	# You can set this to "strict" to hide non translated records.

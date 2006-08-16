@@ -106,6 +106,19 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 				),
 			)
 		),
+		'gender' => Array (
+			'l10n_mode' => $l10n_mode_merge,
+			'exclude' => 0,		
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.gender',		
+			'config' => Array (
+				'type' => 'select',
+				'items' => Array (
+					Array ('LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.gender.notSet', 0),
+					Array ('LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.gender.male', 1),
+					Array ('LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.gender.female', 2)
+				),
+			)
+		),
 		'date_incompany' => Array (
 			'l10n_mode' => $l10n_mode_merge,
 			'exclude' => 0,
@@ -254,7 +267,7 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 		),
 	),
 	"types" => Array (
-		"0" => Array("showitem" => "hidden;;1;;1-1-1, last_name, first_name, title, email, phone, function, date_birthdate, date_incompany, image, usergroups, location, room, officehours, tasks, opinion, files")
+		"0" => Array("showitem" => "hidden;;1;;1-1-1, last_name, first_name, title, email, phone, function, gender, date_birthdate, date_incompany, image, usergroups, location, room, officehours, tasks, opinion, files")
 	),
 	"palettes" => Array (
 		"1" => Array("showitem" => "")

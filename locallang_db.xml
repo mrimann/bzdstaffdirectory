@@ -16,6 +16,10 @@
 			<label index="tx_bzdstaffdirectory_persons.image">Image</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Group membership</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Function / Job Description</label>
+			<label index="tx_bzdstaffdirectory_persons.gender">Gender</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.notSet">not defined</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.male">male</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.female">female</label>
 			<label index="tx_bzdstaffdirectory_persons.date_incompany">In company since</label>
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate">Birthdate</label>
 			<label index="tx_bzdstaffdirectory_persons.email">Email Address</label>
@@ -68,6 +72,10 @@
 			<label index="tx_bzdstaffdirectory_persons.image">Bild</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Gruppenzugehörigkeit</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Funktion</label>
+			<label index="tx_bzdstaffdirectory_persons.gender">Geschlecht</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.notSet">bitte auswählen</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.male">männlich</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.female">weiblich</label>
 			<label index="tx_bzdstaffdirectory_persons.date_incompany">In der Firma seit</label>
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate">Geburtsdatum</label>
 			<label index="tx_bzdstaffdirectory_persons.email">Emailadresse</label>
@@ -166,6 +174,10 @@
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate" type="integer">214778330</label>
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate" type="integer">84435142</label>
 			<label index="tt_content.pi_flexform.sortOrderForLeaders" type="integer">167098876</label>
+			<label index="tx_bzdstaffdirectory_persons.gender" type="integer">1698865</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.notSet" type="integer">63282369</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.male" type="integer">8189176</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.female" type="integer">41138606</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -221,6 +233,10 @@
 			<label index="tx_bzdstaffdirectory_persons.date_birthdate">Birthdate</label>
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Show the age instead of the birthdate?</label>
 			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sort order for the team leaders (a field name)</label>
+			<label index="tx_bzdstaffdirectory_persons.gender">Gender</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.notSet">not defined</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.male">male</label>
+			<label index="tx_bzdstaffdirectory_persons.gender.female">female</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

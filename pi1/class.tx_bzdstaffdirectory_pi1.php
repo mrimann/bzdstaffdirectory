@@ -685,11 +685,23 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
 		$lconf = $this->conf[$this->code.'.'];
 
-		if (empty($fN)) {
-// FIXME: Define the path in a global place
-			$lconf['image.']['file'] = 'typo3conf/ext/bzd_staff_directory/media/noimg.jpg';
+		if (empty($fN) && $this->getConfValueBoolean('showDummyPictures', 's_template')) {
+			switch($this->getValue('gender', $person))
+			{
+				case 2	:	$lconf['image.']['file'] = $this->getConfValue('dummyPictureFemale', $sheet = 's_template', true);
+									break;
+				case 1	:	$lconf['image.']['file'] = $this->getConfValue('dummyPictureMale', $sheet = 's_template', true);
+									break;
+				case 0	:	// The fallthrough is intended.
+				default	:	// no gender specified or "not defined" is selected
+									break;
+			}
+
+			// just set the unisex dummy image, if this is not forbidden in the setup
+			if ($lconf['image.']['file'] == '' && $this->getConfValueBoolean('showUnisexDummyImage', 's_template')) {
+				$lconf['image.']['file'] = $this->getConfValue('dummyPictureDefault', $sheet = 's_template', true);			
+			}
 		} else {
-// FIXME: Define the paths in a global place
 			$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' . $fN;
 		}
 
