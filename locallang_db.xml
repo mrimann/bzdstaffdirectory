@@ -40,6 +40,7 @@
 			<label index="tt_content.pi_flexform.settings">Settings</label>
 			<label index="tt_content.pi_flexform.template">Template</label>
 			<label index="tt_content.pi_flexform.template_file">Template-File</label>
+			<label index="tt_content.pi_flexform.css_file">CSS-File</label>
 			<label index="tt_content.pi_flexform.detailview">Detailview</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Click enlarge images?</label>
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Show the age instead of the birthdate?</label>
@@ -96,6 +97,7 @@
 			<label index="tt_content.pi_flexform.settings">Einstellungen</label>
 			<label index="tt_content.pi_flexform.template">Template</label>
 			<label index="tt_content.pi_flexform.template_file">Template-Datei</label>
+			<label index="tt_content.pi_flexform.css_file">CSS-Datei</label>
 			<label index="tt_content.pi_flexform.detailview">Detailansicht</label>
 			<label index="tt_content.pi_flexform.click_enlarge">Klick-Vergrösserung?</label>
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Alter anstatt Geburtsdatum anzeigen?</label>
@@ -178,6 +180,7 @@
 			<label index="tx_bzdstaffdirectory_persons.gender.notSet" type="integer">63282369</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.male" type="integer">8189176</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.female" type="integer">41138606</label>
+			<label index="tt_content.pi_flexform.css_file" type="integer">87422487</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -237,6 +240,7 @@
 			<label index="tx_bzdstaffdirectory_persons.gender.notSet">not defined</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.male">male</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.female">female</label>
+			<label index="tt_content.pi_flexform.css_file">CSS-File</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

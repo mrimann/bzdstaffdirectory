@@ -62,8 +62,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// include CSS in header of page
 		if ($this->hasConfValueString('cssFile', 's_template_special')) {
 			// First check if our CSS file has already been included:
-			if (!in_array ('<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template_special', true).'";</style>', $GLOBALS['TSFE']->additionalHeaderData)) {
-				$GLOBALS['TSFE']->additionalHeaderData[] = '<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template_special', true).'";</style>';
+			if (!in_array ('<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template', true).'";</style>', $GLOBALS['TSFE']->additionalHeaderData)) {
+				$GLOBALS['TSFE']->additionalHeaderData[] = '<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template', true).'";</style>';
 			}
 		}
 
