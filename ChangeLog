@@ -1,4 +1,5 @@
 version 0.2.5 - currently working on (intermediate release)
+- Added person selector to group records (#213)
 - Added CSS class to detail link in the template (#217)
 - Removed the outdated configuration files in the EM (#224)
 - Fixed missing CSS file selector in flexform (#215)

@@ -390,9 +390,38 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 				),
 			)
 		),
+		'team_members' => Array (
+			'l10n_mode' => $l10n_mode_merge,
+			'exclude' => 0,
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_members',
+			'config' => Array (
+				'type' => 'select',
+				'foreign_table' => 'tx_bzdstaffdirectory_persons',
+				'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_persons.last_name',
+				'size' => 4,
+				'minitems' => 0,
+				'maxitems' => 20,
+				'MM' => 'tx_bzdstaffdirectory_persons_usergroups_mm | foreign',
+				'wizards' => Array(
+					'_PADDING' => 2,
+					'_VERTICAL' => 1,
+					'list' => Array(
+						'type' => 'script',
+						'title' => 'List',
+						'icon' => 'list.gif',
+						'params' => Array(
+							'table' => 'tx_bzdstaffdirectory_persons',
+							'pid' => '###CURRENT_PID###',
+						),
+						'script' => 'wizard_list.php',
+					),
+				),
+			)
+		),
+
 	),
 	"types" => Array (
-		"0" => Array("showitem" => "hidden;;1;;1-1-1, group_name, group_leaders")
+		"0" => Array("showitem" => "hidden;;1;;1-1-1, group_name, group_leaders, team_members")
 	),
 	"palettes" => Array (
 		"1" => Array("showitem" => "")

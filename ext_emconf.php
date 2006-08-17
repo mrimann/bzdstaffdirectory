@@ -15,7 +15,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'description' => 'An extension to show your staff or club-members in different output styles (single persons, lists).',
 	'category' => 'plugin',
 	'shy' => 0,
-	'dependencies' => 'cms',
+	'dependencies' => 'cms, bidirectional',
 	'conflicts' => '',
 	'priority' => '',
 	'loadOrder' => '',
@@ -37,6 +37,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'constraints' => array(
 		'depends' => array(
 			'cms' => '',
+			'bidirectional' => '1.1.0',
 			'php' => '3.0.0-',
 			'typo3' => '3.5.0-',
 		),

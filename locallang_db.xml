@@ -33,6 +33,7 @@
 			<label index="tx_bzdstaffdirectory_groups">Workgroups</label>
 			<label index="tx_bzdstaffdirectory_groups.group_name">Group Name</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
+			<label index="tx_bzdstaffdirectory_groups.group_members">Group Members</label>
 			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
 			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
@@ -90,6 +91,7 @@
 			<label index="tx_bzdstaffdirectory_groups">Abteilungen</label>
 			<label index="tx_bzdstaffdirectory_groups.group_name">Abteilungsname</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Gruppenleiter</label>
+			<label index="tx_bzdstaffdirectory_groups.group_members">Team-Mitglieder</label>
 			<label index="tt_content.list_type_pi1">BZD Mitarbeiterverzeichnis</label>
 			<label index="tt_content.pi_flexform.teamlist">Team Liste</label>
 			<label index="tt_content.pi_flexform.contactbox">Kontaktperson (BOX)</label>
@@ -181,6 +183,7 @@
 			<label index="tx_bzdstaffdirectory_persons.gender.male" type="integer">8189176</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.female" type="integer">41138606</label>
 			<label index="tt_content.pi_flexform.css_file" type="integer">87422487</label>
+			<label index="tx_bzdstaffdirectory_groups.group_members" type="integer">54163822</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -241,6 +244,7 @@
 			<label index="tx_bzdstaffdirectory_persons.gender.male">male</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.female">female</label>
 			<label index="tt_content.pi_flexform.css_file">CSS-File</label>
+			<label index="tx_bzdstaffdirectory_groups.group_members">Group Members</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
