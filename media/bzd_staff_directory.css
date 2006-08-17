@@ -8,7 +8,7 @@
 	inspired by http://www.wellstyled.com/css-inline-buttons.html
 	-------------------------------------
 */
-.tx_bzdstaffdirectory_teamlist_detailLink a, .tx_bzdstaffdirectory_box_detailLink a {
+.tx_bzdstaffdirectory_teamlist_detailLink a, .tx_bzdstaffdirectory_box_detailLink a, .tx_bzdstaffdirectory_detail_backlink a {
 	_width:12em;
 	font: bold 65%/1 Verdana, sans-serif;
 	border: 1px solid black;
@@ -22,7 +22,7 @@
 	background: white;
 }
 
-.tx_bzdstaffdirectory_teamlist_detailLink a:hover, .tx_bzdstaffdirectory_box_detailLink a:hover {
+.tx_bzdstaffdirectory_teamlist_detailLink a:hover, .tx_bzdstaffdirectory_box_detailLink a:hover, .tx_bzdstaffdirectory_detail_backlink a:hover {
 	background: #666;
 	color: white;
 }
