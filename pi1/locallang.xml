@@ -36,7 +36,7 @@
 			<label index="error_noUID">No UID to display (maybe you called this page directly instead of another way, ...). Or the transmitted Uid is not an integer of positive value.</label>
 			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
 			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
-			<label index="error_noDetailPage">There is no detail page defined in the flexform</label>
+			<label index="error_noDetailPage">There is no detail page defined. Please select an existing page either in the flexform or in the TS setup.</label>
 			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 		</languageKey>
 		<languageKey index="de" type="array">
@@ -67,7 +67,7 @@
 			<label index="error_noUID">Keine UID zum anzeigen (vielleicht haben Sie diese Seite direkt aufgerufen). Vielleicht ist die übermittelte UID ist keine ganze Zahl positiven Wertes.</label>
 			<label index="error_noPersonOnUID">Es gibt keine Person mit dieser UID.</label>
 			<label index="error_noGroupUID">Es ist keine Gruppe ausgewählt. Es muss mindestens eine Gruppe in den Einstellungen des Plugins ausgewählt werden.</label>
-			<label index="error_noDetailPage">Es ist keine Detailseite definiert.</label>
+			<label index="error_noDetailPage">Es ist keine Detailseite definiert. Bitte eine existierende Seite im Flexform oder im TS Setup definieren.</label>
 			<label index="error_recordNotTranslated">Dieser Datensatz ist noch nicht übersetzt und kann nicht angezeigt werden.</label>
 		</languageKey>
 	</data>
@@ -94,7 +94,7 @@
 			<label index="error_noPersonOnUID" type="integer">167104999</label>
 			<label index="error_recordNotTranslated" type="integer">239858004</label>
 			<label index="error_noGroupUID" type="integer">67827050</label>
-			<label index="error_noDetailPage" type="integer">105340452</label>
+			<label index="error_noDetailPage" type="integer">181971743</label>
 			<label index="label_groups_plural" type="integer">237903185</label>
 			<label index="label_date_incompany" type="integer">42148933</label>
 			<label index="label_date_birthdate" type="integer">75780351</label>
@@ -127,7 +127,7 @@
 			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
 			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
-			<label index="error_noDetailPage">There is no detail page defined in the flexform</label>
+			<label index="error_noDetailPage">There is no detail page defined. Please select an existing page either in the flexform or in the TS setup.</label>
 			<label index="label_groups_plural">Teams:</label>
 			<label index="label_date_incompany">In company since:</label>
 			<label index="label_date_birthdate">Birthdate:</label>

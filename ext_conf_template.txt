@@ -1,9 +1,3 @@
-#cat=basic//; type=string; label=Template file: Enter the path and filename where your template-file is saved
-templateFile = EXT:bzd_staff_directory/media/bzdstaff_template.htm
-
-#cat=basic//; type=string; label=Detail Page: Enter the ID of your site where the detailed Infos will be displayed
-DetailPage = 42
-
 #cat=basic/enable/130; type=boolean; label= Localization mode for text fields: By default, all text fields (title, function, opinion ...) from a new localized record will be prepended with "[translate to ...]". If this is not wanted you can disable it here. If "l10n_mode_prefixLangTitle" is disabled the text "(copy [#])" will be added to the titles of this records unless "prependAtCopy" is disabled (see "prependAtCopy").
 l10n_mode_prefixLangTitle = 1
 

@@ -105,13 +105,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// Define the team UID(s) that are selected in the flexform. This is a comma separated list if more than one UID.
 		$team_uid = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'usergroup','s_teamlist');
 
-		// define the detail page (either from the global extension setting, or from the FlexForm).
-		// FIXME: Change this configuration to either flexform or TS-Setup. No Settings in the Extension-Manager!
-		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_teamlist') != '')	{
-			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_teamlist');
-		} else {
-			$this->detailPage = $this->arrConf["InfoSite"];
-		}
+
+		// define the detail page (either from the TS setup, or from the FlexForm).
+		$this->detailPage = $this->getConfValueInteger('detailPage', 's_teamlist');
 
 		// Define the sortOrder
 		$teamListSortOrder = $this->getConfValueString('sortOrder', 's_teamlist');
@@ -302,12 +298,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 * @return	string		the html code
 	 */
 	function showPersonBox($person) {
-		// Define the detail-Page (either from the global Extension-Setting, or from the FlexForm-Setting (only for this content-object)).
-		if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_contactbox') != '') {
-			$this->detailPage = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'detailPage','s_contactbox');
-		} else {
-			$this->detailPage = $this->arrConf["InfoSite"];
-		}
+		// Define the detail-Page (either from the TS setup, or from the FlexForm-Setting).
+		$this->detailPage = $this->getConfValueInteger('detailPage', 's_contactbox');
 
 		if ($this->hasValue('title', $person)) {
 			$this->setMarkerContent('title', $this->getValue('title', $person, true));

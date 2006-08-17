@@ -5,6 +5,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# location of the CSS file (leave empty to include no CSS file)
 	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
 
+	# detail page
+	detailPage = 
+
 	# whether to show dummy pictures at all
 	showDummyPictures = 1
 
