@@ -2,6 +2,32 @@
 	font-weight: bold;
 }
 
+/*
+	-------------------------------------
+	CSS Buttons
+	inspired by http://www.wellstyled.com/css-inline-buttons.html
+	-------------------------------------
+*/
+.tx_bzdstaffdirectory_teamlist_detailLink a, .tx_bzdstaffdirectory_box_detailLink a {
+	_width:12em;
+	font: bold 65%/1 Verdana, sans-serif;
+	border: 1px solid black;
+	white-space: nowrap;
+	text-decoration: none;
+	vertical-align:middle;
+	color: black;
+	_width:1em; _cursor:hand;
+	font-style: normal;
+	margin:0; padding: 0.1em 0.5em;
+	background: white;
+}
+
+.tx_bzdstaffdirectory_teamlist_detailLink a:hover, .tx_bzdstaffdirectory_box_detailLink a:hover {
+	background: #666;
+	color: white;
+}
+
+
 .tx-bzdstaffdirectory-pi1 table {
 	border-spacing: 0px;
 }
