@@ -1056,6 +1056,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			// merge the marker content with the template
 			$result .= $this->substituteMarkerArrayCached('LIST_ITEM');
 
+			// reset the markers (may be they are empty for the next person)
+			$this->markers = array();
+
 			// reset the hidden subparts (may be they are needed in the next row)
 			$this->subpartsToHide = array();
 		}
