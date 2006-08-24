@@ -16,8 +16,8 @@ plugin.tx_bzdstaffdirectory_pi1 {
 
 	# default dummy pictures
 	dummyPictureDefault = EXT:bzd_staff_directory/media/noimg.jpg
-	dummyPictureMale = EXT:bzd_staff_directory/media/dummyPictureMale.gif
-	dummyPictureFemale = EXT:bzd_staff_directory/media/dummyPictureFemale.gif
+	dummyPictureMale = EXT:bzd_staff_directory/media/dummyPictureMale.jpg
+	dummyPictureFemale = EXT:bzd_staff_directory/media/dummyPictureFemale.jpg
 
 	# whether unlocalized records should be shown or not
 	# By default, the default language version of a record will be shown if no translation is found.

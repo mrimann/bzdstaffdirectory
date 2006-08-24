@@ -1,4 +1,5 @@
 version 0.2.5 - currently working on (intermediate release)
+- Added new dummy images (#231)
 - Added CSS styles to beautify the back button (#230)
 - Fixed wrong output when using the universal fields (#234)
 - Added person selector to group records (#213)
