@@ -1,3 +1,6 @@
+version 0.3.0 - currently working on
+- Fixed localization bug in Backend (#252)
+
 version 0.2.5 - released on 2006-08-24
 - Added new dummy images (#231)
 - Added CSS styles to beautify the back button (#230)
