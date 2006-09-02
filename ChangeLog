@@ -1,4 +1,5 @@
 version 0.3.0 - currently working on
+- Added sample realurl configuration (#258)
 - Fixed localization bug in Backend (#252)
 
 version 0.2.5 - released on 2006-08-24
