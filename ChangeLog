@@ -1,4 +1,5 @@
 version 0.3.0 - currently working on
+- Added new screenshots to the manual (#253)
 - Added sample realurl configuration (#258)
 - Fixed localization bug in Backend (#252)
 
