@@ -42,6 +42,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# whether to show the age or the birthdate of a person
 	showAgeInsteadOfBirthdate = 0
 
+	# comma separated list of file extensions that should be opened in a new window.
+	fileExtensionsToOpenInNewWindow = pdf
+
 	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
 	# that can be used for different values.
 	_LOCAL_LANG {

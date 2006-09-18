@@ -629,10 +629,23 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 */
 	function getFileList($person) {
 		$files = explode(',', $person['files']);
+
+		// build the array of file extensions that should get opened in a new window
+		$extensionArray = explode(',', $this->getConfValueString('fileExtensionsToOpenInNewWindow'));
+
 		$fileList = '<ul>';
 		foreach($files as $filename) {
 // FIXME: Define the path in a global place!
-			$fileList .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'">' . $filename . '</a></li>';
+			// get the extension of the current file
+			$fileExtension = end(explode('.', $filename));
+
+			if (in_array($fileExtension, $extensionArray)) {
+				// this type of files need to be opened in a new window (target="_blank")
+				$fileList .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'" target="_blank">' . $filename . '</a></li>';
+			} else {
+				// all other files will be opened in the same window
+				$fileList .= '<li><a href="uploads/tx_bzdstaffdirectory/'. $filename .'" target="_top">' . $filename . '</a></li>';
+			}
 		}
 		$fileList .= '</ul>';
 
