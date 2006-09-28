@@ -531,7 +531,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		}
 
 		if ($this->hasValue('date_incompany', $person)) {
-			$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany']));
+			$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
 			$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
 		} else {
 			$this->readSubpartsToHide('date_incompany', 'field_wrapper');
@@ -544,7 +544,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_age'));
 			} else {
 				// show the birthdate
-				$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate']));
+				$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
 				$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
 			}
 		} else {
@@ -588,15 +588,19 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 	/**
 	 * Returns a date formatted as a string.
-	 * The date is formatted as given by the TS-Setup.
+	 * The date is formatted as given by the TS-Setup. Depending on the function
+	 * that calls this function, the second parameter represents the name of the
+	 * TS config to take. If the second parameter is an empty string, the
+	 * default value is taken.
 	 *
 	 * @param	integer		the date as integer value
+	 * @param	string		the config name, which date config to take
 	 *
 	 * @return	string		formatted date
 	 */
-	function getFormattedDate($dateInt) {
+	function getFormattedDate($dateInt, $format = 'dateFormatYMD') {
 		$result = '';
-		$result = strftime($this->getConfValueString('dateFormatYMD'), $dateInt);
+		$result = strftime($this->getConfValueString($format), $dateInt);
 		return $result;
 	}
 
@@ -1031,7 +1035,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			}
 
 			if ($this->hasValue('date_incompany', $person)) {
-				$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany']));
+				$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
 				$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
 			} else {
 				$this->readSubpartsToHide('date_incompany', 'listitem_wrapper');
@@ -1044,7 +1048,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_age'));
 				} else {
 					// show the birthdate
-					$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate']));
+					$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
 					$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
 				}
 			} else {
