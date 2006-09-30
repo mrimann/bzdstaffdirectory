@@ -720,10 +720,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		// Depending on the settings in the Flexform of the content object, the image will be wrapped with a link (to click enlarge the image).
 		$imageconf = array();
 		if ( $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'click_enlarge','s_detailview') == TRUE AND $fN != '')	{
+			// Render the pop-up image with the size limitations from TS Setup.
+			$popUpImageArray = $this->cObj->getImgResource($lconf['image.']['file'], $lconf['image.']['popup.']);
+
 			$imageconf['enable'] = 1;
 			$imageconf['JSwindow'] = 1;
 			$imageconf['wrap'] = '<a href="javascript: close();"> | </a>';
-			$result = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf['image.']),$lconf['image.']['file'],$imageconf);
+
+			$result = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf['image.']),$popUpImageArray[3],$imageconf);
+
 		} else	{
 			$result = $this->cObj->IMAGE($lconf['image.']);
 		}
