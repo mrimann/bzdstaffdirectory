@@ -84,6 +84,31 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<liststyle>
+						<TCEforms>
+							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle</label>
+							<config>
+								<type>select</type>
+								<items type="array">
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_mixed</numIndex>
+										<numIndex index="1">mixed</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_names</numIndex>
+										<numIndex index="1">names</numIndex>
+									</numIndex>
+									<numIndex index="2" type="array">
+										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_images</numIndex>
+										<numIndex index="1">images</numIndex>
+									</numIndex>
+								</items>
+								<default>mixed</default>
+								<maxitems>1</maxitems>
+								<size>1</size>
+							</config>
+						</TCEforms>
+					</liststyle>
 					<usergroup>
 						<TCEforms>
 							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_group</label>

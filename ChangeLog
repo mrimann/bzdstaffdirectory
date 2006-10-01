@@ -1,4 +1,5 @@
 version 0.3.0 - currently working on
+- Added Selectorbox for list style (#233)
 - Code cleanup and refactoring (#86)
 - Fixed a small CSS issue (#249)
 - Feature: Size limitations to pop-up images (#245)

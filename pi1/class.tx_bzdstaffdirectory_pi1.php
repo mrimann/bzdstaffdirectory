@@ -102,74 +102,122 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 * @return	string		the complete HTML Output for this module
 	 */
 	function show_teamlist()	{
-		// Define the team UID(s) that are selected in the flexform. This is a comma separated list if more than one UID.
-		$team_uid = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'usergroup','s_teamlist');
+		$content = '';
 
+		// Define the team UID(s) that are selected in the flexform. This is a comma separated list if more than one UID.
+		$this->teamUidList = $this->getConfValueString('usergroup','s_teamlist');
 
 		// define the detail page (either from the TS setup, or from the FlexForm).
 		$this->detailPage = $this->getConfValueInteger('detailPage', 's_teamlist');
 
 		// Define the sortOrder
-		$teamListSortOrder = $this->getConfValueString('sortOrder', 's_teamlist');
+		$this->teamListSortOrder = $this->getConfValueString('sortOrder', 's_teamlist');
 
 		// Check if a detail page has been defined.
 		if (!empty($this->detailPage)) {
-			// create and display the list header
-			$content = $this->createListHeader();
-
-			if ($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'ignoreGroupSelection','s_teamlist')) {
+			if ($this->getConfValueBoolean('ignoreGroupSelection','s_teamlist')) {
 				// Define the PID for the startingpoint
-				$startingpoint = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'startingpoint','s_teamlist');
+				$startingpoint = $this->getConfValueInteger('startingpoint','s_teamlist');
 	
-				$teamMembersUIDArray = $this->getTeamMembersFromStartingpoint($startingpoint, $teamListSortOrder);
-
+				$teamMembersUIDArray = $this->getTeamMembersFromStartingpoint($startingpoint, $this->teamListSortOrder);
 			} else {
-				if (!empty($team_uid)) {
+				if ($this->teamUidList != '') {
 					// Select the team leaders
-					$teamLeadersUIDArray = $this->getTeamLeadersFromMM($team_uid);
-
-					// output the team leaders
-					foreach($teamLeadersUIDArray as $currentLeaderUID) {
-						$content .= $this->showPersonInTeamList($currentLeaderUID, true);
-					}
+					$this->teamLeadersUIDArray = $this->getTeamLeadersFromMM($this->teamUidList);
 
 					// select the team members
-					$teamMembersUIDArray = $this->getTeamMembersFromMM($team_uid, $teamListSortOrder);
-					} else {
-					$content .= $this->pi_getLL('error_noGroupUID');
-				}
-	
-			}
-
-			if (count($teamMembersUIDArray) < 1) {
-				// ERROR: There are no team members found for this/these team(s).
-				// This can happen and won't be treated as an error at the moment (may be a team consists only of team leaders).
-			} else {
-				if (!is_array($teamLeadersUIDArray)) {
-					// There are no team leaders (empty array), but there are team members:
-	
-					// Call the "output person record" function once per team member.
-					foreach ($teamMembersUIDArray as $memberUID) {
-						$content .= $this->showPersonInTeamList($memberUID, false);
-					}
+					$this->teamMembersUIDArray = $this->getTeamMembersFromMM($this->teamUidList, $this->teamListSortOrder);
 				} else {
-					// There are team leaders!
-	
-					// Call the "output person record" function once per team member.
-					foreach ($teamMembersUIDArray as $memberUID) {
-						// Don't display this person in the team members section if it is a teamleader!
-						if (!in_array($memberUID, $teamLeadersUIDArray)) {
-							$content .= $this->showPersonInTeamList($memberUID, false);
-						}
-					}
+					$errorMessage .= $this->pi_getLL('error_noGroupUID');
 				}
 			}
-			// add the table footer
-			$content .= $this->createListFooter();
 		} else {
 			// no detail page defined
-			$content .= $this->pi_getLL('error_noDetailPage');
+			$errorMessage .= $this->pi_getLL('error_noDetailPage');
 		}
+
+		// only call the real output functions if no error occured until now,
+		// show the error message otherwise.
+		if ($errorMessage == '') {
+			// switch to the selected list style
+			switch($this->getConfValueString('liststyle', 's_teamlist')) {
+				case 'images'	:	$content .= $this->showTeamlistImages();
+									break;
+				case 'names'	:	$content .= $this->showTeamlistNames();
+									break;
+				case 'mixed'	:	// Fallthrough is intended!
+				default			:	$content .= $this->showTeamlistMixed();
+									break;
+			}
+		} else {
+			$content .= $errorMessage;
+		}
+
+		return $content;
+	}
+
+	/**
+	 * Generates the HTML output for the TEAMLIST NAMES (just a list of names)
+	 *
+	 * @return	string	The HTML output
+	 */
+	function showTeamlistNames() {
+		$content = '';
+		$content .= 'ERROR: Feature not implemented.';
+		return $content;
+	}
+
+	/**
+	 * Generates the HTML output for the TEAMLIST IMAGES (just a list of images)
+	 *
+	 * @return	string	The HTML output
+	 */
+	function showTeamlistImages() {
+		$content = '';
+		$content .= 'ERROR: Feature not implemented.';
+		return $content;
+	}
+
+	/**
+	 * Generates the HTML Output for the TEAMLIST MIXED (=names and images (the default))
+	 *
+	 * @return	string		the HTML output
+	 */
+	function showTeamlistMixed() {
+		// create and display the list header
+		$content = $this->createListHeader();
+
+		// output the team leaders
+		foreach($this->teamLeadersUIDArray as $currentLeaderUID) {
+			$content .= $this->showPersonInTeamList($currentLeaderUID, true);
+		}
+
+		if (count($this->teamMembersUIDArray) < 1) {
+			// ERROR: There are no team members found for this/these team(s).
+			// This can happen and won't be treated as an error at the moment (may be a team consists only of team leaders).
+		} else {
+			if (!is_array($this->teamLeadersUIDArray)) {
+				// There are no team leaders (empty array), but there are team members:
+
+				// Call the "output person record" function once per team member.
+				foreach ($this->teamMembersUIDArray as $memberUID) {
+					$content .= $this->showPersonInTeamList($memberUID, false);
+				}
+			} else {
+				// There are team leaders!
+
+				// Call the "output person record" function once per team member.
+				foreach ($this->teamMembersUIDArray as $memberUID) {
+					// Don't display this person in the team members section if it is a teamleader!
+					if (!in_array($memberUID, $this->teamLeadersUIDArray)) {
+						$content .= $this->showPersonInTeamList($memberUID, false);
+					}
+				}
+			}
+		}
+
+		// add the table footer
+		$content .= $this->createListFooter();
 
 		return $content;
 	}

@@ -58,6 +58,10 @@
 			<label index="pi_flexform_listtype_detail">DETAIL - Detailed information</label>
 			<label index="pi_flexform_listtype_box">BOX - Contact person</label>
 			<label index="pi_flexform_listtype_teamlist">TEAMLIST - List of a team</label>
+			<label index="pi_flexform_liststyle">What to show?</label>
+			<label index="pi_flexform_liststyle_mixed">Text and images (default)</label>
+			<label index="pi_flexform_liststyle_names">just names</label>
+			<label index="pi_flexform_liststyle_images">just images</label>
 			<label index="pi_flexform_group">Which group should be shown?</label>
 			<label index="pi_flexform_spamprotectionmode">How to protect e-mail addresses from being stolen by spammers?</label>
 			<label index="pi_flexform_spamprotectionmode_asimage">Render it as an image (not linked)</label>
@@ -116,6 +120,10 @@
 			<label index="pi_flexform_listtype_detail">DETAIL - Ausführliche Informationen über eine Person</label>
 			<label index="pi_flexform_listtype_box">BOX - Kontaktperson</label>
 			<label index="pi_flexform_listtype_teamlist">TEAMLIST - Liste eines Teams</label>
+			<label index="pi_flexform_liststyle">Welche Ansicht?</label>
+			<label index="pi_flexform_liststyle_mixed">Text und Bilder (Standard)</label>
+			<label index="pi_flexform_liststyle_names">Namensliste</label>
+			<label index="pi_flexform_liststyle_images">Bilderliste</label>
 			<label index="pi_flexform_group">Welche Teams sollen angezeigt werden?</label>
 			<label index="pi_flexform_spamprotectionmode">Welcher Schutz gegen Emailadressen Diebstahl durch Spammer soll eingesetzt werden?</label>
 			<label index="pi_flexform_spamprotectionmode_asimage">Ausgabe als Bild (ohne Link)</label>
@@ -184,6 +192,10 @@
 			<label index="tx_bzdstaffdirectory_persons.gender.female" type="integer">41138606</label>
 			<label index="tt_content.pi_flexform.css_file" type="integer">87422487</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members" type="integer">54163822</label>
+			<label index="pi_flexform_liststyle" type="integer">190190060</label>
+			<label index="pi_flexform_liststyle_mixed" type="integer">255280120</label>
+			<label index="pi_flexform_liststyle_names" type="integer">159249413</label>
+			<label index="pi_flexform_liststyle_images" type="integer">153915471</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -245,6 +257,10 @@
 			<label index="tx_bzdstaffdirectory_persons.gender.female">female</label>
 			<label index="tt_content.pi_flexform.css_file">CSS-File</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members">Group Members</label>
+			<label index="pi_flexform_liststyle">What to show?</label>
+			<label index="pi_flexform_liststyle_mixed">Text and images (default)</label>
+			<label index="pi_flexform_liststyle_names">just names</label>
+			<label index="pi_flexform_liststyle_images">just images</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
