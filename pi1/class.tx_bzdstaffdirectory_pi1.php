@@ -409,110 +409,46 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 * @return	string		the HTML code
 	 */
 	function showSinglePerson($person) {
-		// define all the markers
-		if ($this->hasValue('first_name', $person)) {
-			$this->setMarkerContent('first_name', $this->getValue('first_name', $person, true));
-			$this->setMarkerContent('label_first_name', $this->pi_getLL('label_first_name'));
-		} else {
-			$this->readSubpartsToHide('first_name', 'field_wrapper');
+
+		// define all the standard fields (these are all fields, that can
+		// be output to the frontend directly from the DB without changes)
+		$allStandardFields = array(
+			'first_name',
+			'last_name',
+			'function',
+			'phone',
+			'location',
+			'opinion',
+			'tasks',
+			'room',
+			'officehours'
+		);
+
+		// depending on the configuration of the universal fields: show or hide them
+		for ($i = 1; $i <= 5; $i++) {
+			if ($this->arrConf['useUniversalField_' . $i]) {
+				$allStandardFields[] = 'universal_field_' . $i;
+			} else {
+				$this->readSubpartsToHide('universal_field_' . $i, 'field_wrapper');
+			}
 		}
 
-		if ($this->hasValue('last_name', $person)) {
-			$this->setMarkerContent('last_name', $this->getValue('last_name', $person, true));
-			$this->setMarkerContent('label_last_name', $this->pi_getLL('label_last_name'));
-		} else {
-			$this->readSubpartsToHide('last_name', 'field_wrapper');
+		// fill the markers of all the simple fields
+		foreach($allStandardFields as $key) {
+			if ($this->hasValue($key, $person)) {
+				$this->setMarkerContent($key, $this->getValue($key, $person, true));
+				$this->setMarkerContent('label_'.$key, $this->pi_getLL('label_'.$key));
+			} else {
+				$this->readSubpartsToHide($key, 'field_wrapper');
+			}
 		}
 
-		if ($this->hasValue('function', $person)) {
-			$this->setMarkerContent('function', $this->getValue('function', $person, true));
-			$this->setMarkerContent('label_function', $this->pi_getLL('label_function'));
-		} else {
-			$this->readSubpartsToHide('function', 'field_wrapper');
-		}
-
-		if ($this->hasValue('location', $person)) {
-			$this->setMarkerContent('location', $this->getValue('location', $person, true));
-			$this->setMarkerContent('label_location', $this->pi_getLL('label_location'));
-		} else {
-			$this->readSubpartsToHide('location', 'field_wrapper');
-		}
-
-		if ($this->hasValue('phone', $person)) {
-			$this->setMarkerContent('phone', $this->getValue('phone', $person, true));
-			$this->setMarkerContent('label_phone', $this->pi_getLL('label_phone'));
-		} else {
-			$this->readSubpartsToHide('phone', 'field_wrapper');
-		}
-
-		if ($this->hasValue('tasks', $person)) {
-			$this->setMarkerContent('tasks', $this->getValue('tasks', $person, true));
-			$this->setMarkerContent('label_tasks', $this->pi_getLL('label_tasks'));
-		} else {
-			$this->readSubpartsToHide('tasks', 'field_wrapper');
-		}
-
-		if ($this->hasValue('opinion', $person)) {
-			$this->setMarkerContent('opinion', $this->getValue('opinion', $person, true));
-			$this->setMarkerContent('label_opinion', $this->pi_getLL('label_opinion'));
-		} else {
-			$this->readSubpartsToHide('opinion', 'field_wrapper');
-		}
-
-		if ($this->hasValue('room', $person)) {
-			$this->setMarkerContent('room', $this->getValue('room', $person, true));
-			$this->setMarkerContent('label_room', $this->pi_getLL('label_room'));
-		} else {
-			$this->readSubpartsToHide('room', 'field_wrapper');
-		}
-
-		if ($this->hasValue('officehours', $person)) {
-			$this->setMarkerContent('officehours', $this->getValue('officehours', $person, true));
-			$this->setMarkerContent('label_officehours', $this->pi_getLL('label_officehours'));
-		} else {
-			$this->readSubpartsToHide('officehours', 'field_wrapper');
-		}
-
+		// define the other markers
 		if ($this->hasValue('title', $person)) {
 			$this->setMarkerContent('title', $this->getValue('title', $person, true));
 			$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
 		} else {
 			$this->readSubpartsToHide('title', 'field_wrapper');
-		}
-
-		if ($this->arrConf['useUniversalField_1'] && $this->hasValue('universal_field_1', $person)) {
-			$this->setMarkerContent('universal_field_1', $this->getValue('universal_field_1', $person, true));
-			$this->setMarkerContent('label_universal_field_1', $this->pi_getLL('label_universal_field_1'));
-		} else {
-			$this->readSubpartsToHide('universal_field_1', 'field_wrapper');
-		}
-
-		if ($this->arrConf['useUniversalField_2'] && $this->hasValue('universal_field_2', $person)) {
-			$this->setMarkerContent('universal_field_2', $this->getValue('universal_field_2', $person, true));
-			$this->setMarkerContent('label_universal_field_2', $this->pi_getLL('label_universal_field_2'));
-		} else {
-			$this->readSubpartsToHide('universal_field_2', 'field_wrapper');
-		}
-
-		if ($this->arrConf['useUniversalField_3'] && $this->hasValue('universal_field_3', $person)) {
-			$this->setMarkerContent('universal_field_3', $this->getValue('universal_field_3', $person, true));
-			$this->setMarkerContent('label_universal_field_3', $this->pi_getLL('label_universal_field_3'));
-		} else {
-			$this->readSubpartsToHide('universal_field_3', 'field_wrapper');
-		}
-
-		if ($this->arrConf['useUniversalField_4'] && $this->hasValue('universal_field_4', $person)) {
-			$this->setMarkerContent('universal_field_4', $this->getValue('universal_field_4', $person, true));
-			$this->setMarkerContent('label_universal_field_4', $this->pi_getLL('label_universal_field_4'));
-		} else {
-			$this->readSubpartsToHide('universal_field_4', 'field_wrapper');
-		}
-
-		if ($this->arrConf['useUniversalField_5'] && $this->hasValue('universal_field_5', $person)) {
-			$this->setMarkerContent('universal_field_5', $this->getValue('universal_field_5', $person, true));
-			$this->setMarkerContent('label_universal_field_5', $this->pi_getLL('label_universal_field_5'));
-		} else {
-			$this->readSubpartsToHide('universal_field_5', 'field_wrapper');
 		}
 
 		if ($this->hasValue('email', $person)) {
