@@ -1054,8 +1054,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			// create the link to the detail page
 			$linkParams = array(
 				'tx_bzdstaffdirectory_pi1[showUid]' => $this->getValue('uid', $person),
-				'tx_bzdstaffdirectory_pi1[backPid]' => $GLOBALS['TSFE']->id
 			);
+			// only add the backLink UID if not disabled via setup (to beautify realURL URLs)
+			if (!$this->getConfValueBoolean('disableBackLink', 's_teamlist')) {
+				$linkParams['tx_bzdstaffdirectory_pi1[backPid]'] = $GLOBALS['TSFE']->id;
+			}
 			$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
 			$this->setMarkerContent('link_detail', $linkToDetailPage);
 

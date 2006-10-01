@@ -47,6 +47,7 @@
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Show the age instead of the birthdate?</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Ignore Group selection (show every person)</label>
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
+			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
@@ -109,6 +110,7 @@
 			<label index="tt_content.pi_flexform.showAgeInsteadOfBirthdate">Alter anstatt Geburtsdatum anzeigen?</label>
 			<label index="tt_content.pi_flexform.ignoreGroupSelection">Gruppenauswahl ignorieren (zeigt alle Personen)</label>
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Team Leader ignorieren (ausblenden)?</label>
+			<label index="tt_content.pi_flexform.disableBackLink">Link &quot;zurück&quot; entfernen?</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
@@ -196,6 +198,7 @@
 			<label index="pi_flexform_liststyle_mixed" type="integer">255280120</label>
 			<label index="pi_flexform_liststyle_names" type="integer">159249413</label>
 			<label index="pi_flexform_liststyle_images" type="integer">153915471</label>
+			<label index="tt_content.pi_flexform.disableBackLink" type="integer">223014987</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -261,6 +264,7 @@
 			<label index="pi_flexform_liststyle_mixed">Text and images (default)</label>
 			<label index="pi_flexform_liststyle_names">just names</label>
 			<label index="pi_flexform_liststyle_images">just images</label>
+			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>
