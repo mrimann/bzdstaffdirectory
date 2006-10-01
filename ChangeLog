@@ -1,4 +1,5 @@
 version 0.3.0 - currently working on
+- Fixed a small CSS issue (#249)
 - Feature: Size limitations to pop-up images (#245)
 - Feature: Different date formats for different fields in FE (#294)
 - Feature: Different link targets depending on file type (#265)

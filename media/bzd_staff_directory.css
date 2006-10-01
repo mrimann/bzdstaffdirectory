@@ -10,7 +10,7 @@
 */
 .tx_bzdstaffdirectory_teamlist_detailLink a, .tx_bzdstaffdirectory_box_detailLink a, .tx_bzdstaffdirectory_detail_backlink a {
 	_width:12em;
-	font: bold 65%/1 Verdana, sans-serif;
+	font: bold 0.8em Verdana, sans-serif;
 	border: 1px solid black;
 	white-space: nowrap;
 	text-decoration: none;
