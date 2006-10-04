@@ -44,6 +44,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# whether to disable the "back" link
 	disableBackLink = 0
 
+	# whether names should be linked to the single view
+	linkNamesToSingleView = 1
+
 	# whether to show the age or the birthdate of a person
 	showAgeInsteadOfBirthdate = 0
 

@@ -1,4 +1,5 @@
 version 0.3.0 - currently working on
+- Feature: Make names in list view be linked to single view (#251)
 - Feature: Added configuration to ignore the backLink PID (for realURL) (#259)
 - Added Selectorbox for list style (#233)
 - Code cleanup and refactoring (#86)

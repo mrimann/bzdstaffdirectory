@@ -49,6 +49,7 @@
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Ignore the team leaders (hide in list)?</label>
 			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
+			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
@@ -112,6 +113,7 @@
 			<label index="tt_content.pi_flexform.ignoreTeamLeaders">Team Leader ignorieren (ausblenden)?</label>
 			<label index="tt_content.pi_flexform.disableBackLink">Link &quot;zurück&quot; entfernen?</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
+			<label index="tt_content.pi_flexform.linkNamesToSingleView">Namen zur Einzelansicht verlinken?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sortieren nach (Feldname)</label>
@@ -199,6 +201,7 @@
 			<label index="pi_flexform_liststyle_names" type="integer">159249413</label>
 			<label index="pi_flexform_liststyle_images" type="integer">153915471</label>
 			<label index="tt_content.pi_flexform.disableBackLink" type="integer">223014987</label>
+			<label index="tt_content.pi_flexform.linkNamesToSingleView" type="integer">157988961</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -265,6 +268,7 @@
 			<label index="pi_flexform_liststyle_names">just names</label>
 			<label index="pi_flexform_liststyle_images">just images</label>
 			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
+			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

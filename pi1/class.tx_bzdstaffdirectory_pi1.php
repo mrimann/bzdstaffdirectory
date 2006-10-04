@@ -1062,6 +1062,18 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
 			$this->setMarkerContent('link_detail', $linkToDetailPage);
 
+			// Make the title and name be linked to the single view.
+			if ($this->getConfValueBoolean('linkNamesToSingleView', 's_teamlist')) {
+				$linkedMarkers = array(
+					'first_name',
+					'last_name',
+					'list_title',
+				);
+				foreach ($linkedMarkers as $currentMarker) {
+					$this->setMarkerContent($currentMarker, $this->pi_linkToPage($this->markers[$this->createMarkerName($currentMarker)],$this->detailPage,'',$linkParams));
+				}
+			}
+
 			// merge the marker content with the template
 			$result .= $this->substituteMarkerArrayCached('LIST_ITEM');
 
