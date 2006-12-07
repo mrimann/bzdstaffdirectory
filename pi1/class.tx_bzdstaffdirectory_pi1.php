@@ -119,7 +119,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				// Define the PID for the startingpoint
 				$startingpoint = $this->getConfValueInteger('startingpoint','s_teamlist');
 	
-				$teamMembersUIDArray = $this->getTeamMembersFromStartingpoint($startingpoint, $this->teamListSortOrder);
+				$this->teamMembersUIDArray = $this->getTeamMembersFromStartingpoint($startingpoint, $this->teamListSortOrder);
+
+				// Initialize the team leaders array as an empty array as no team leaders
+				// will be shown when all persons are shown and the team selection is ignored!
+				$this->teamLeadersUIDArray = array();
 			} else {
 				if ($this->teamUidList != '') {
 					// Select the team leaders

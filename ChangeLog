@@ -1,4 +1,5 @@
 version 0.4.0 - currently working on
+- Fix: Problem in ListView (#424)
 
 version 0.3.0 - released on 2006-11-23
 - Enhanced the manual (#328)
