@@ -656,14 +656,14 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$memberOf = $this->getMemberOfGroups($uid);
 		if (count($memberOf) > 1) {
 			foreach ($memberOf as $actualGroupUID) {
-				$actualGroup = $this->getTeamDetails($actualGroupUID);
+				$actualGroup = $this->getTeamDetails($actualGroupUID, true);
 				$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
 			}
 			
 			$result = '<ul>' . $memberOfList . '</ul>';
 			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_plural'));
 		} else {
-			$actualGroup = $this->getTeamDetails($memberOf[0]);
+			$actualGroup = $this->getTeamDetails($memberOf[0], true);
 			$result = htmlspecialchars($actualGroup['group_name']);
 			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_singular'));
 		}
@@ -1149,10 +1149,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 * Queries the database and gets all details on the selected groups/teams.
 	 * 
 	 * @param	integer		the UID of the team to select
+	 * @param	boolean		whether to translate the records, default is no
 	 * 
-	 * @return	array		all the fields of the selected team
+	 * @return	array		all the fields of the selected team, may be null
 	 */
-	function getTeamDetails($uid) {
+	function getTeamDetails($uid, $doTranslate = false) {
 		$res_groupDetails = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_groups',	// FROM
@@ -1163,6 +1164,29 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		);
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_groupDetails) > 0) {
 			$group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupDetails);
+
+			// get the translated record if the content language is not the default language
+			if ($GLOBALS['TSFE']->sys_language_content && $doTranslate) {
+				$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+				$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+					'tx_bzdstaffdirectory_groups',
+					$group,
+					$GLOBALS['TSFE']->sys_language_content,
+					$OLmode
+				);
+				if ($this->sys_language_mode != 'strict'
+					OR !empty($translated_record['l18n_parent'])
+					) {
+					// found a valid translation, return the groups with the translated information.
+					$group = $translated_record;
+				} else {
+					// There's an empty translation found (can only happen if sys_language_mode = strict).
+					// Act as if NO group could be retrieved from the database.
+					$group = NULL;
+				}
+			} else {
+				// no translation requested or available - return the record in default language
+			}
 		} else {
 			$group = NULL;
 		}

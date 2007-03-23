@@ -79,7 +79,7 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
 			)
 		),
 		"usergroups" => Array (
-			'l10n_mode' => $l10n_mode_merge,
+			'l10n_mode' => 'exclude',
 			"exclude" => 0,		
 			"label" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.usergroups",		
 			"config" => Array (
@@ -347,7 +347,8 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 	),
 	"feInterface" => $TCA["tx_bzdstaffdirectory_groups"]["feInterface"],
 	"columns" => Array (
-		"hidden" => Array (		
+		"hidden" => Array (
+			'l10n_mode' => $hideNewLocalizations,
 			"exclude" => 1,
 			"label" => "LLL:EXT:lang/locallang_general.php:LGL.hidden",
 			"config" => Array (
@@ -355,7 +356,8 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 				"default" => "0"
 			)
 		),
-		"group_name" => Array (		
+		"group_name" => Array (
+			'l10n_mode' => $l10n_mode,
 			"exclude" => 0,		
 			"label" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_name",		
 			"config" => Array (
@@ -363,7 +365,8 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 				"size" => "30",
 			)
 		),
-		"group_leaders" => Array (		
+		"group_leaders" => Array (
+			'l10n_mode' => 'exclude',
 			"exclude" => 0,		
 			"label" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_leaders",		
 			"config" => Array (
@@ -391,7 +394,7 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 			)
 		),
 		'team_members' => Array (
-			'l10n_mode' => $l10n_mode_merge,
+			'l10n_mode' => 'exclude',
 			'exclude' => 0,
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_members',
 			'config' => Array (
@@ -414,11 +417,40 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 							'pid' => '###CURRENT_PID###',
 						),
 						'script' => 'wizard_list.php',
-					),
-				),
+					)
+				)
 			)
 		),
-
+		'sys_language_uid' => Array (
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+			'config' => Array (
+				'type' => 'select',
+				'foreign_table' => 'sys_language',
+				'foreign_table_where' => 'ORDER BY sys_language.title',
+				'items' => Array(
+					Array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1),
+					Array('LLL:EXT:lang/locallang_general.php:LGL.default_value',0)
+				)
+			)
+		),
+		'l18n_parent' => Array (
+			'displayCond' => 'FIELD:sys_language_uid:>:0',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+			'config' => Array (
+				'type' => 'select',
+				'items' => Array (
+					Array('', 0),
+				),
+				'foreign_table' => 'tx_bzdstaffdirectory_groups',
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_groups.uid=###CURRENT_PID### AND tx_bzdstaffdirectory_groups.sys_language_uid IN (-1,0)',
+			)
+		),
+		'l18n_diffsource' => Array(
+			'config'=>array(
+				'type'=>'passthrough')
+		)
 	),
 	"types" => Array (
 		"0" => Array("showitem" => "hidden;;1;;1-1-1, group_name, group_leaders, team_members")
