@@ -8,6 +8,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# detail page
 	detailPage = 
 
+	# default list style
+	liststyle = mixed
+
 	# whether to show dummy pictures at all
 	showDummyPictures = 1
 
