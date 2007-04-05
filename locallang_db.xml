@@ -30,6 +30,11 @@
 			<label index="tx_bzdstaffdirectory_persons.officehours">Office hours</label>
 			<label index="tx_bzdstaffdirectory_persons.opinion">Your Opinion</label>
 			<label index="tx_bzdstaffdirectory_persons.files">File(s)</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_1">Universal field 1</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_2">Universal field 2</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_3">Universal field 3</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_4">Universal field 4</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_5">Universal field 5</label>
 			<label index="tx_bzdstaffdirectory_groups">Workgroups</label>
 			<label index="tx_bzdstaffdirectory_groups.group_name">Group Name</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
@@ -52,7 +57,10 @@
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
-			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
+			<label index="tt_content.pi_flexform.sortOrder">Sort by</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection">Sorting direction</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_asc">ascending</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_desc">descending</label>
 			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sort order for the team leaders (a field name)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
 			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
@@ -94,6 +102,11 @@
 			<label index="tx_bzdstaffdirectory_persons.officehours">Bürozeiten</label>
 			<label index="tx_bzdstaffdirectory_persons.opinion">Meinung</label>
 			<label index="tx_bzdstaffdirectory_persons.files">Datei(en)</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_1">Universelles Feld 1</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_2">Universelles Feld 2</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_3">Universelles Feld 3</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_4">Universelles Feld 4</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_5">Universelles Feld 5</label>
 			<label index="tx_bzdstaffdirectory_groups">Abteilungen</label>
 			<label index="tx_bzdstaffdirectory_groups.group_name">Abteilungsname</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Gruppenleiter</label>
@@ -117,6 +130,9 @@
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sortieren nach (Feldname)</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection">Sortierrichtung</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_asc">aufsteigend</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_desc">absteigend</label>
 			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sortierung der Teamleiter nach (Feldname)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
 			<label index="tt_content.pi_flexform.usergroup">anzuzeigende Benutzergruppe</label>
@@ -179,7 +195,7 @@
 			<label index="pi_flexform_spamprotectionmode_plain" type="integer">187064803</label>
 			<label index="tx_bzdstaffdirectory_persons.files" type="integer">162241788</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders" type="integer">184040577</label>
-			<label index="tt_content.pi_flexform.sortOrder" type="integer">178681555</label>
+			<label index="tt_content.pi_flexform.sortOrder" type="integer">54362178</label>
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted" type="integer">22381686</label>
 			<label index="tx_bzdstaffdirectory_persons.title" type="integer">192455458</label>
 			<label index="tt_content.pi_flexform.contactbox" type="integer">170852990</label>
@@ -202,6 +218,14 @@
 			<label index="pi_flexform_liststyle_images" type="integer">153915471</label>
 			<label index="tt_content.pi_flexform.disableBackLink" type="integer">223014987</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView" type="integer">157988961</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_1" type="integer">126323731</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_2" type="integer">20585081</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_3" type="integer">40690377</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_4" type="integer">163801084</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_5" type="integer">42635809</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection" type="integer">23848317</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_asc" type="integer">164211554</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_desc" type="integer">186247552</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -246,7 +270,7 @@
 			<label index="pi_flexform_spamprotectionmode_plain">No protection, plain text.</label>
 			<label index="tx_bzdstaffdirectory_persons.files">File(s)</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
-			<label index="tt_content.pi_flexform.sortOrder">Sort order (a field name)</label>
+			<label index="tt_content.pi_flexform.sortOrder">Sort by</label>
 			<label index="pi_flexform_spamprotectionmode_asimagejsencrypted">Render it as an image (with encrypted link)</label>
 			<label index="tx_bzdstaffdirectory_persons.title">Title</label>
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
@@ -269,6 +293,14 @@
 			<label index="pi_flexform_liststyle_images">just images</label>
 			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_1">Universal field 1</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_2">Universal field 2</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_3">Universal field 3</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_4">Universal field 4</label>
+			<label index="tx_bzdstaffdirectory_persons.universal_field_5">Universal field 5</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection">Sorting direction</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_asc">ascending</label>
+			<label index="tt_content.pi_flexform.sortOrderDirection_desc">descending</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

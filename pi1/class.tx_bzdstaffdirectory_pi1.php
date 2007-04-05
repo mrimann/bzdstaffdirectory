@@ -111,7 +111,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$this->detailPage = $this->getConfValueInteger('detailPage', 's_teamlist');
 
 		// Define the sortOrder
-		$this->teamListSortOrder = $this->getConfValueString('sortOrder', 's_teamlist');
+		$sortOrder = $this->getConfValueString('sortOrder', 's_teamlist');
+		if ($sortOrder) {
+			$sortDirection = ' ' . $this->getConfValueString('sortOrderDirection', 's_teamlist');
+		}
+		$this->teamListSortOrder = $sortOrder . $sortDirection;
 
 		// Check if a detail page has been defined.
 		if (!empty($this->detailPage)) {
@@ -856,6 +860,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 	$groupLeaders = array();
 	 	$groupLeadersSorted = array();
 	 	$sortOrder = $this->getConfValue('sortOrderForLeaders', 's_teamlist');
+	 	if ($sortOrder) {
+	 		$sortOrder .= ' ' . $this->getConfValue('sortOrderForLeadersDirection', 's_teamlist');
+	 	}
 
 		// don't show the team leaders, if ignoreTeamLeaders switch is set
 		$ignoreTeamLeaders = $this->getConfValue('ignoreTeamLeaders', 's_teamlist');
