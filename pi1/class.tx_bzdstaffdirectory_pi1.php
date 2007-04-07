@@ -153,6 +153,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 									break;
 				case 'names'	:	$content .= $this->showTeamlistNames();
 									break;
+				case 'grouped'	:	$content .= $this->showTeamListGrouped();
+									break;
 				case 'mixed'	:	// Fallthrough is intended!
 				default			:	$content .= $this->showTeamlistMixed();
 									break;
@@ -162,6 +164,101 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		}
 
 		return $content;
+	}
+
+	/**
+	 * Returns the HTML code needed to show the jump menu on the front end.
+	 *
+	 * @param	array		array of UIDs of the teams to include in the jump menu
+	 *
+	 * @return	string		the HTML code for the jump menu
+	 */
+	function getJumpMenu($teamUIDArray) {
+		$result = '';
+
+		$teamUIDs = $this->convertArrayToCommaseparatedString($teamUIDArray);
+		$teamNames = $this->getTeamsArray($teamUIDs, true);
+
+		if (count($teamNames)) {
+			$options = '';
+			foreach ($teamNames as $currentTeam) {
+				$url = $this->cObj->getTypoLink_URL(
+					$GLOBALS['TSFE']->id
+				);
+				$url .= '#bzdgroup_'.$currentTeam['uid'];
+				$this->setMarkerContent('jumpmenu_id', $url);
+				$this->setMarkerContent(
+					'jumpmenu_name',
+					htmlspecialchars($currentTeam['group_name'])
+				);
+				// merge the marker content with the template
+				$options .= $this->substituteMarkerArrayCached('JUMPMENU_ITEM');
+			}
+		}
+
+		// merge the jumpmenu template with some content
+		$this->setMarkerContent('jumpmenu_options', $options);
+		$this->setMarkerContent('jumpmenu_please_choose', $this->pi_getLL('label_pleaseChoose'));
+		$result = $this->substituteMarkerArrayCached('TEMPLATE_JUMPMENU');
+
+		return $result;
+	}
+
+	/**
+	 * Returns an array containing an associative array for each group.
+	 *
+	 * @param	string		comma separated list of team UIDs to include in the array
+	 * @param	boolean		whether to retrieve localized records, dafault is false
+	 *
+	 * @return	array		containing an array for each group, may be empty
+	 */
+	function getTeamsArray($teamUIDs, $doTranslate = false) {
+		$whereClause = 'l18n_parent = 0'
+			.t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_groups')
+			.' AND uid IN('.$teamUIDs.')';
+		$res_groups = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_groups',	// FROM
+			$whereClause,	//WHERE
+			'',	// GROUP BY
+			'',	// ORDER BY
+			''	//LIMIT
+		);
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_groups) > 0) {
+			while ($currentGroup = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groups)) {
+				// get the translated record if the content language is not the default language
+				if ($GLOBALS['TSFE']->sys_language_content && $doTranslate) {
+					$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+					$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+						'tx_bzdstaffdirectory_groups',
+						$currentGroup,
+						$GLOBALS['TSFE']->sys_language_content,
+						$OLmode
+					);
+					if ($this->sys_language_mode != 'strict'
+						OR !empty($translated_record['l18n_parent'])
+						) {
+						// found a valid translation, return the person with the translated information.
+						$currentGroup = $translated_record;
+					} else {
+						// There's an empty translation found (can only happen if sys_language_mode = strict).
+						// Act as if NO group could be retrieved from the database.
+						$currentGroup = NULL;
+					}
+				} else {
+					// no translation requested or available - return the record in default language
+				}
+
+				// Add the group to the groups array if it is valid
+				if ($currentGroup != NULL) {
+					$teamNames[] = $currentGroup;
+				}
+			}
+		} else {
+			$teamNames = NULL;
+		}
+
+		return $teamNames;
 	}
 
 	/**
@@ -183,6 +280,65 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function showTeamlistImages() {
 		$content = '';
 		$content .= 'ERROR: Feature not implemented.';
+		return $content;
+	}
+
+	/**
+	 * Generates the HTML output for the TEAMLIST GROUPED (list of team-members
+	 * from multiple teams, grouped by team)
+	 *
+	 * @return	string		the HTML output
+	 */
+	function showTeamListGrouped() {
+		$content = '';
+
+		// get the teams (ordered as in the content element)
+		$selectedGroups = $this->getConfValueString('usergroup', 's_teamlist');
+		$teams = $this->getTeamsArray($selectedGroups, true);
+		$teamUIDs = explode(',', $selectedGroups);
+		$content .= $this->getJumpMenu($teamUIDs);
+
+		// create a list for each team and prepend it with an anchor
+		foreach ($teams as $currentTeam) {
+			$groupLeaderUIDs = $this->getTeamLeadersFromMM($currentTeam['uid']);
+			$groupMemberUIDs = $this->getTeamMembersFromMM($currentTeam['uid']);
+
+			// set the header for each team
+			$currentTeamHTML = '';
+			$this->setMarkerContent(
+				'anchor',
+				'bzdgroup_'.$currentTeam['uid']
+			);
+			$this->setMarkerContent(
+				'team_name',
+				$currentTeam['group_name']
+			);
+			$currentTeamHeader = $this->substituteMarkerArrayCached('TEAM_HEADER');
+
+			// Now output the team leaders and members
+			foreach($groupLeaderUIDs as $currentLeaderUID) {
+				$currentTeamHTML .= $this->showPersonInTeamList(
+					$currentLeaderUID,
+					true
+				);
+			}
+			foreach($groupMemberUIDs as $currentMemberUID) {
+				// Don't display this person in the team members section if it is a teamleader!
+				if (!in_array($currentMemberUID, $groupLeaderUIDs)) {
+					$currentTeamHTML .= $this->showPersonInTeamList(
+						$currentMemberUID,
+						false
+					);
+				}
+			}
+
+			// Combine anything and return it
+			$content .= $currentTeamHeader
+						.$this->createListHeader()
+						.$currentTeamHTML
+						.$this->createListFooter();
+		}
+
 		return $content;
 	}
 

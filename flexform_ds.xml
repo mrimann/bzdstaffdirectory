@@ -106,6 +106,10 @@
 										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_images</numIndex>
 										<numIndex index="1">images</numIndex>
 									</numIndex>
+									<numIndex index="4" type="array">
+										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_grouped</numIndex>
+										<numIndex index="1">grouped</numIndex>
+									</numIndex>
 								</items>
 								<default></default>
 								<maxitems>1</maxitems>

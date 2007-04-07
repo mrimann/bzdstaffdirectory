@@ -3,6 +3,14 @@
 
 
 
+<h2>Display "TEAMLIST" (The header for each team in the "grouped" view)</h2>
+<p>This template shows the name of each team in the "grouped" view of all teams.</p>
+
+<!-- ###TEAM_HEADER### -->
+<h2><a name="###ANCHOR###" id="###ANCHOR###">###TEAM_NAME###</a></h2>
+<!-- ###TEAM_HEADER### -->
+
+
 
 <h2>Display "TEAMLIST" (Header)</h2>
 <p>This template shows the header of the team list.</p>
@@ -220,4 +228,65 @@
 </html>
 
 
+<h2>Template for the JumpMenu</h2>
+<!-- ###TEMPLATE_JUMPMENU### -->
+	<script type="text/JavaScript">
+		<!--
+			function P7_JumpMenu(selObj,restore){ //v1.3 by Project Seven
+				var theFullString = selObj.options[selObj.selectedIndex].value;
+				if (restore) {
+					selObj.selectedIndex=0;
+				}
+				var theLength = theFullString.length;
+				var endPos = theFullString.lastIndexOf("~");
+				var theUrl, theTarget, theParent;
+				if (endPos > 0) {
+					theUrl = theFullString.substring(0,endPos);
+				} else {
+					theUrl = theFullString;
+				}
+				endPos++
+				if (endPos < theLength) {
+					theTarget = theFullString.substring(endPos,theLength);
+				}
+				else {
+					theTarget = "window:Main";
+				}
+				if (theTarget == "window:New") {
+					window.open(theUrl);
+				}
+				else if (theTarget == "window:Main") {
+					eval("parent.location='"+theUrl+"'");
+				}
+				else {
+					eval("parent.frames[\'"+theTarget+"\'].location='"+theUrl+"'");
+				}
+			}
+		//-->
+	</script>
 
+
+<script type="text/javascript">
+function Go (select) {
+	var wert = select.options[select.options.selectedIndex].value;
+	parent.location.href = wert;
+	select.form.reset();
+}
+</script>
+
+
+	<div class="tx_bzdstaffdirectory_jumpmenu">
+		<form name="form1" id="form1">
+			<select name="group_jump" onchange="Go(this)">
+				<option value="#">###JUMPMENU_PLEASE_CHOOSE###</option>
+				###JUMPMENU_OPTIONS###
+			</select>
+		</form>
+	</div>
+<!-- ###TEMPLATE_JUMPMENU### -->
+
+
+
+<!-- ###JUMPMENU_ITEM### -->
+				<option value="###JUMPMENU_ID###">###JUMPMENU_NAME###</option>
+<!-- ###JUMPMENU_ITEM### -->

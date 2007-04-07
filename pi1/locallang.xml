@@ -27,6 +27,7 @@
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">back</label>
+			<label index="label_pleaseChoose">please choose</label>
 			<label index="header_contactperson_singular">Your contact person:</label>
 			<label index="header_contactperson_plural">Your contact persons:</label>
 			<label index="years">years</label>
@@ -58,6 +59,7 @@
 			<label index="label_opinion">Meinung:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">zurück</label>
+			<label index="label_pleaseChoose">bitte wählen</label>
 			<label index="header_contactperson_singular">Ihre Ansprechperson:</label>
 			<label index="header_contactperson_plural">Ihre Ansprechpersonen:</label>
 			<label index="years">Jahre</label>
@@ -102,6 +104,7 @@
 			<label index="years" type="integer">123399064</label>
 			<label index="header_contactperson_singular" type="integer">119817834</label>
 			<label index="header_contactperson_plural" type="integer">243230036</label>
+			<label index="label_pleaseChoose" type="integer">82132055</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -135,6 +138,7 @@
 			<label index="years">years</label>
 			<label index="header_contactperson_singular">Your contact person:</label>
 			<label index="header_contactperson_plural">Your contact persons:</label>
+			<label index="label_pleaseChoose">please choose</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

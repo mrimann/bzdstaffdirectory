@@ -72,6 +72,7 @@
 			<label index="pi_flexform_liststyle_mixed">Text and images (default)</label>
 			<label index="pi_flexform_liststyle_names">just names</label>
 			<label index="pi_flexform_liststyle_images">just images</label>
+			<label index="pi_flexform_liststyle_grouped">grouped by team</label>
 			<label index="pi_flexform_group">Which group should be shown?</label>
 			<label index="pi_flexform_spamprotectionmode">How to protect e-mail addresses from being stolen by spammers?</label>
 			<label index="pi_flexform_spamprotectionmode_asimage">Render it as an image (not linked)</label>
@@ -144,6 +145,7 @@
 			<label index="pi_flexform_liststyle_mixed">Text und Bilder (Standard)</label>
 			<label index="pi_flexform_liststyle_names">Namensliste</label>
 			<label index="pi_flexform_liststyle_images">Bilderliste</label>
+			<label index="pi_flexform_liststyle_grouped">Gruppiert nach Team</label>
 			<label index="pi_flexform_group">Welche Teams sollen angezeigt werden?</label>
 			<label index="pi_flexform_spamprotectionmode">Welcher Schutz gegen Emailadressen Diebstahl durch Spammer soll eingesetzt werden?</label>
 			<label index="pi_flexform_spamprotectionmode_asimage">Ausgabe als Bild (ohne Link)</label>
@@ -218,6 +220,7 @@
 			<label index="pi_flexform_liststyle_images" type="integer">153915471</label>
 			<label index="tt_content.pi_flexform.disableBackLink" type="integer">223014987</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView" type="integer">157988961</label>
+			<label index="pi_flexform_liststyle_grouped" type="integer">12926579</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_1" type="integer">126323731</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_2" type="integer">20585081</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_3" type="integer">40690377</label>
@@ -293,6 +296,7 @@
 			<label index="pi_flexform_liststyle_images">just images</label>
 			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
+			<label index="pi_flexform_liststyle_grouped">grouped by team</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_1">Universal field 1</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_2">Universal field 2</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_3">Universal field 3</label>
