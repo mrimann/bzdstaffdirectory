@@ -1,4 +1,4 @@
-version 0.4.0 - currently working on
+version 0.4.0 - released on 2007-07-08
 - Feature: Added a jump menu to the list view (#704)
 - Change: The "order by" field is now a drop-down field (#715)
 - Feature: Make list style configurable through TS (#301)
