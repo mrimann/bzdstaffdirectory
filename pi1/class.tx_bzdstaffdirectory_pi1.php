@@ -169,19 +169,16 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	/**
 	 * Returns the HTML code needed to show the jump menu on the front end.
 	 *
-	 * @param	array		array of UIDs of the teams to include in the jump menu
+	 * @param	array		array of complete team records
 	 *
 	 * @return	string		the HTML code for the jump menu
 	 */
-	function getJumpMenu($teamUIDArray) {
+	function getJumpMenu($teams) {
 		$result = '';
 
-		$teamUIDs = $this->convertArrayToCommaseparatedString($teamUIDArray);
-		$teamNames = $this->getTeamsArray($teamUIDs, true);
-
-		if (count($teamNames)) {
+		if (count($teams)) {
 			$options = '';
-			foreach ($teamNames as $currentTeam) {
+			foreach ($teams as $currentTeam) {
 				$url = $this->cObj->getTypoLink_URL(
 					$GLOBALS['TSFE']->id
 				);
@@ -207,22 +204,22 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	/**
 	 * Returns an array containing an associative array for each group.
 	 *
-	 * @param	string		comma separated list of team UIDs to include in the array
+	 * @param	integer		a single team UID to retrieve from database
 	 * @param	boolean		whether to retrieve localized records, dafault is false
 	 *
-	 * @return	array		containing an array for each group, may be empty
+	 * @return	array		associative array containing all informations for the requested team, may be null
 	 */
-	function getTeamsArray($teamUIDs, $doTranslate = false) {
+	function getTeamArray($teamUID, $doTranslate = false) {
 		$whereClause = 'l18n_parent = 0'
 			.t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_groups')
-			.' AND uid IN('.$teamUIDs.')';
+			.' AND uid ='.$teamUID;
 		$res_groups = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_groups',	// FROM
 			$whereClause,	//WHERE
 			'',	// GROUP BY
 			'',	// ORDER BY
-			''	//LIMIT
+			'1'	//LIMIT
 		);
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_groups) > 0) {
 			while ($currentGroup = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groups)) {
@@ -251,14 +248,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 				// Add the group to the groups array if it is valid
 				if ($currentGroup != NULL) {
-					$teamNames[] = $currentGroup;
+					$teamArray = $currentGroup;
 				}
 			}
 		} else {
-			$teamNames = NULL;
+			// no team found
+			$teamArray = NULL;
 		}
 
-		return $teamNames;
+		return $teamArray;
 	}
 
 	/**
@@ -292,11 +290,14 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function showTeamListGrouped() {
 		$content = '';
 
-		// get the teams (ordered as in the content element)
+		// get the teams (ordered as in the content element) and add them to an
+		// array.
 		$selectedGroups = $this->getConfValueString('usergroup', 's_teamlist');
-		$teams = $this->getTeamsArray($selectedGroups, true);
-		$teamUIDs = explode(',', $selectedGroups);
-		$content .= $this->getJumpMenu($teamUIDs);
+		foreach (explode(',', $selectedGroups) as $currentGroup) {
+			$teams[] = $this->getTeamArray($currentGroup, true);
+		}
+
+		$content .= $this->getJumpMenu($teams);
 
 		// create a list for each team and prepend it with an anchor
 		foreach ($teams as $currentTeam) {
