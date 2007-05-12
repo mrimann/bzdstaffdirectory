@@ -72,6 +72,38 @@
 			<label index="error_noDetailPage">Es ist keine Detailseite definiert. Bitte eine existierende Seite im Flexform oder im TS Setup definieren.</label>
 			<label index="error_recordNotTranslated">Dieser Datensatz ist noch nicht übersetzt und kann nicht angezeigt werden.</label>
 		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="label_email">Email:</label>
+			<label index="label_phone">Téléphone:</label>
+			<label index="label_room">Secteur:</label>
+			<label index="label_function">Fonction:</label>
+			<label index="label_date_incompany">Travaille pour la Société depuis:</label>
+			<label index="label_date_birthdate">Date de naissance:</label>
+			<label index="label_date_age">Âge:</label>
+			<label index="label_first_name">Prénom:</label>
+			<label index="label_last_name">Nom:</label>
+			<label index="label_officehours">Horaires bureau:</label>
+			<label index="label_location">Ville:</label>
+			<label index="label_tasks">Tâches:</label>
+			<label index="label_files">Fichiers:</label>
+			<label index="label_groups_singular">Équipe:</label>
+			<label index="label_groups_plural">Équipes:</label>
+			<label index="label_opinion">Opinion:</label>
+			<label index="label_link_detail">Détails</label>
+			<label index="label_link_back">Retour</label>
+			<label index="label_pleaseChoose">Sélectionner svp.</label>
+			<label index="header_contactperson_singular">Votre interlocuteur:</label>
+			<label index="header_contactperson_plural">Vos interlocuteurs:</label>
+			<label index="years">Années</label>
+			<label index="error_noListType">Aucun module choisi dans la configuration de ce Plugin.</label>
+			<label index="error_contactPersonNotTranslated">L'interlocuteur ne peut être affiché.</label>
+			<label index="error_personDetailsNotFetched">Les détails n'ont pu être lus par la banque de donnée.</label>
+			<label index="error_noUID">Identité élément non-affichable (Peut-être avez vous sélectionné directement cette page). L'identité élément ne correspond peut-être pas à un chiffre entier de valeur positive.</label>
+			<label index="error_noPersonOnUID">Une personne avec cette identité élément n'existe pas.</label>
+			<label index="error_noGroupUID">Aucun groupe choisi. Au moins un groupe doit être choisi dans les réglages du Plugin.</label>
+			<label index="error_noDetailPage">Aucune page détails définie. Sélectionner svp une page existante sous forme flexible ou Setup type script.</label>
+			<label index="error_recordNotTranslated">Cette information n'est pas encore traduite et ne peut être affichée.</label>
+		</languageKey>
 	</data>
 	<orig_hash type="array">
 		<languageKey index="de" type="array">
@@ -106,6 +138,38 @@
 			<label index="header_contactperson_plural" type="integer">243230036</label>
 			<label index="label_pleaseChoose" type="integer">82132055</label>
 		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="label_email" type="integer">233919839</label>
+			<label index="label_phone" type="integer">108244482</label>
+			<label index="label_function" type="integer">111696024</label>
+			<label index="label_date_incompany" type="integer">42148933</label>
+			<label index="label_date_birthdate" type="integer">75780351</label>
+			<label index="label_date_age" type="integer">38941977</label>
+			<label index="label_first_name" type="integer">107522264</label>
+			<label index="label_last_name" type="integer">199614645</label>
+			<label index="label_officehours" type="integer">210385408</label>
+			<label index="label_location" type="integer">199837335</label>
+			<label index="label_tasks" type="integer">76277544</label>
+			<label index="label_files" type="integer">147226768</label>
+			<label index="label_groups_singular" type="integer">125065243</label>
+			<label index="label_groups_plural" type="integer">237903185</label>
+			<label index="label_opinion" type="integer">85135537</label>
+			<label index="label_link_detail" type="integer">65812061</label>
+			<label index="label_link_back" type="integer">74038176</label>
+			<label index="header_contactperson_singular" type="integer">119817834</label>
+			<label index="header_contactperson_plural" type="integer">243230036</label>
+			<label index="years" type="integer">123399064</label>
+			<label index="error_noListType" type="integer">68973585</label>
+			<label index="error_contactPersonNotTranslated" type="integer">212206931</label>
+			<label index="error_personDetailsNotFetched" type="integer">250893427</label>
+			<label index="error_noUID" type="integer">168784606</label>
+			<label index="error_noPersonOnUID" type="integer">167104999</label>
+			<label index="error_noGroupUID" type="integer">67827050</label>
+			<label index="error_noDetailPage" type="integer">181971743</label>
+			<label index="error_recordNotTranslated" type="integer">239858004</label>
+			<label index="label_room" type="integer">121727316</label>
+			<label index="label_pleaseChoose" type="integer">82132055</label>
+		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
 		<languageKey index="de" type="array">
@@ -138,6 +202,38 @@
 			<label index="years">years</label>
 			<label index="header_contactperson_singular">Your contact person:</label>
 			<label index="header_contactperson_plural">Your contact persons:</label>
+			<label index="label_pleaseChoose">please choose</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
+			<label index="label_email">E-mail:</label>
+			<label index="label_phone">Phone:</label>
+			<label index="label_function">Function:</label>
+			<label index="label_date_incompany">In company since:</label>
+			<label index="label_date_birthdate">Birthdate:</label>
+			<label index="label_date_age">Age:</label>
+			<label index="label_first_name">First name:</label>
+			<label index="label_last_name">Last name:</label>
+			<label index="label_officehours">Office hours:</label>
+			<label index="label_location">Location:</label>
+			<label index="label_tasks">Tasks:</label>
+			<label index="label_files">Files:</label>
+			<label index="label_groups_singular">Team:</label>
+			<label index="label_groups_plural">Teams:</label>
+			<label index="label_opinion">Opinion:</label>
+			<label index="label_link_detail">Details</label>
+			<label index="label_link_back">back</label>
+			<label index="header_contactperson_singular">Your contact person:</label>
+			<label index="header_contactperson_plural">Your contact persons:</label>
+			<label index="years">years</label>
+			<label index="error_noListType">No list type selected in the configuration of this plugin.</label>
+			<label index="error_contactPersonNotTranslated">The contact person could not be shown (not translated yet)</label>
+			<label index="error_personDetailsNotFetched">The details could not be fetched from the database.</label>
+			<label index="error_noUID">No UID to display (maybe you called this page directly instead of another way, ...). Or the transmitted Uid is not an integer of positive value.</label>
+			<label index="error_noPersonOnUID">There is no person with this UID to display.</label>
+			<label index="error_noGroupUID">There is no group selected in the plugin. You need to select at least one group.</label>
+			<label index="error_noDetailPage">There is no detail page defined. Please select an existing page either in the flexform or in the TS setup.</label>
+			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
+			<label index="label_room">Room:</label>
 			<label index="label_pleaseChoose">please choose</label>
 		</languageKey>
 	</orig_text>
