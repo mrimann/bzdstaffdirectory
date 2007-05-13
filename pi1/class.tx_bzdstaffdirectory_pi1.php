@@ -864,7 +864,12 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	}
 
 	/**
-	 * Returns the HTML Code needed to show a list of group names on which a user is a member.
+	 * Returns the HTML Code needed to show a list of group names on which a
+	 * user is a member.
+	 *
+	 * If the team record is linked to a page that contains additional
+	 * information about this team, the entry in the returned list will be
+	 * linked to this page.
 	 *
 	 * @param	integer		the UID of the person to look up
 	 *
@@ -874,16 +879,40 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$result = '';
 		$memberOf = $this->getMemberOfGroups($uid);
 		if (count($memberOf) > 1) {
+			// we have more than one group and need to build a list
 			foreach ($memberOf as $actualGroupUID) {
 				$actualGroup = $this->getTeamDetails($actualGroupUID, true);
-				$memberOfList .= '<li>'. htmlspecialchars($actualGroup['group_name']) .'</li>';
+				
+				// check if the team name should be linked to the team page
+				if ($actualGroup['infopage']) {
+					$teamName = $this->pi_linkTP(
+						htmlspecialchars($actualGroup['group_name']),
+						array(),
+						true,
+						$actualGroup['infopage']
+					);
+				} else {
+					$teamName = htmlspecialchars($actualGroup['group_name']);
+				}
+				$memberOfList .= '<li>' . $teamName . '</li>';
 			}
-			
 			$result = '<ul>' . $memberOfList . '</ul>';
 			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_plural'));
 		} else {
+			// just one single group found, no list is needed
 			$actualGroup = $this->getTeamDetails($memberOf[0], true);
-			$result = htmlspecialchars($actualGroup['group_name']);
+
+			// check if the team name should be linked to the team page
+			if ($actualGroup['infopage']) {
+				$result = $this->pi_linkTP(
+					htmlspecialchars($actualGroup['group_name']),
+					array(),
+					true,
+					$actualGroup['infopage']
+				);
+			} else {
+				$result = htmlspecialchars($actualGroup['group_name']);
+			}
 			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_singular'));
 		}
 

@@ -39,6 +39,7 @@
 			<label index="tx_bzdstaffdirectory_groups.group_name">Group Name</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members">Group Members</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage">Page with information about this team</label>
 			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
 			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>
@@ -118,6 +119,7 @@
 			<label index="tx_bzdstaffdirectory_groups.group_name">Abteilungsname</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Gruppenleiter</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members">Team-Mitglieder</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage">Seite mit weiterführenden Informationen über dieses Team</label>
 			<label index="tt_content.list_type_pi1">BZD Mitarbeiterverzeichnis</label>
 			<label index="tt_content.pi_flexform.teamlist">Team Liste</label>
 			<label index="tt_content.pi_flexform.contactbox">Kontaktperson (BOX)</label>
@@ -320,6 +322,7 @@
 			<label index="pi_flexform_source_frompage" type="integer">54186356</label>
 			<label index="pi_flexform_source_fromplugin" type="integer">264415450</label>
 			<label index="pi_flexform_source_fromteamleaders" type="integer">237852766</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage" type="integer">65051560</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
@@ -475,6 +478,7 @@
 			<label index="pi_flexform_source_frompage">from page (default)</label>
 			<label index="pi_flexform_source_fromplugin">from this plugin</label>
 			<label index="pi_flexform_source_fromteamleaders">from teams</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage">Page with information about this team</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>

@@ -101,6 +101,7 @@ CREATE TABLE tx_bzdstaffdirectory_groups (
 	group_name tinytext NOT NULL,
 	group_leaders int(11) DEFAULT '0' NOT NULL,
 	team_members int(11) DEFAULT '0' NOT NULL,
+	infopage int(11) DEFAULT '0' NOT NULL,
 	
 	PRIMARY KEY (uid),
 	KEY parent (pid)

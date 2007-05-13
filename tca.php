@@ -433,6 +433,20 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 				)
 			)
 		),
+		'infopage' => array(
+			'l10n_mode' => 'exclude',
+			'exclude' => 0,
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.infopage',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'pages',
+				'size' => 1,
+				'minitems' => 0,
+				'maxitems' => 1,
+				'show_thumbs' => 1
+			)
+		),
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
@@ -468,7 +482,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 		)
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, group_name, group_leaders, team_members')
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, group_name, group_leaders, team_members, infopage')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
