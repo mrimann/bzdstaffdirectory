@@ -1,7 +1,8 @@
 version 0.5.0 - currently working on
+- Feature: Allow to select the source of person selection in the BOX Module (#229)
 - Change: Added info regarding kj_imagelightbox2 to the manual
 - Change: Changed the maxItems for teamMembers to 9999 (#499)
-- Feature: Added French translation (thanks Florian!) (#734)
+- Feature: Added French translation, patch by Florian Elischer (#734)
 - Fix: Dependecies in the EM fixed (#739)
 - Fix: Sorting in the "grouped" list view (#732)
 

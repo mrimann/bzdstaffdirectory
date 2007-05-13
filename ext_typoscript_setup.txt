@@ -8,6 +8,18 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# detail page
 	detailPage = 
 
+	# configuration for the box view
+	box {
+		# where to select the person(s) to show (page|plugin|teamleaders)
+		source = page
+
+		# comma-separated list of uids from person records
+		source_plugin =
+
+		# comma-separated list of uids from team records
+		source_teamleaders =
+	}
+
 	# default list style
 	liststyle = mixed
 

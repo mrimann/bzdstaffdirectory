@@ -131,7 +131,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			} else {
 				if ($this->teamUidList != '') {
 					// Select the team leaders
-					$this->teamLeadersUIDArray = $this->getTeamLeadersFromMM($this->teamUidList);
+					$this->teamLeadersUIDArray = $this->getTeamLeadersFromMM(
+						$this->teamUidList,
+						$this->getConfValue('ignoreTeamLeaders', 's_teamlist')
+					);
 
 					// select the team members
 					$this->teamMembersUIDArray = $this->getTeamMembersFromMM($this->teamUidList, $this->teamListSortOrder);
@@ -301,7 +304,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 
 		// create a list for each team and prepend it with an anchor
 		foreach ($teams as $currentTeam) {
-			$groupLeaderUIDs = $this->getTeamLeadersFromMM($currentTeam['uid']);
+			$groupLeaderUIDs = $this->getTeamLeadersFromMM(
+				$currentTeam['uid'],
+				$this->getConfValue('ignoreTeamLeaders', 's_teamlist')
+			);
 			$groupMemberUIDs = $this->getTeamMembersFromMM($currentTeam['uid']);
 
 			// set the header for each team
@@ -387,6 +393,45 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		return $content;
 	}
 
+	/**
+	 * Returns the uids of the contact person(s) that are selected in the
+	 * flexform config of the current plugin.
+	 *
+	 * @return	array		the uid(s) of the contact person(s)
+	 */
+	function getContactPersonFromPlugin() {
+		$selectedPersons = explode(
+			',',
+			$this->getConfValueString(
+				'source_plugin',
+				's_contactbox'
+				)
+			);
+
+		return $selectedPersons;
+	}
+
+	/**
+	 * Returns the leaders from the selected teams and returns their uid as
+	 * an array.
+	 *
+	 * @return	array		the uid(s) of the contact person(s)
+	 */
+	function getContactPersonFromTeams() {
+		// read the selected teams
+		$selectedTeams = $this->getConfValueString(
+			'source_teamleaders',
+			's_contactbox'
+		);
+
+		// fetch the team leaders for each team
+		$contactPersons = $this->getTeamLeadersFromMM(
+			$selectedTeams,
+			false
+		);
+
+		return $contactPersons;
+	}
 
 	/**
 	 * Returns the uids of the contact person for this page.
@@ -450,8 +495,21 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function show_box()	{
 		$content = '';
 
-		// select the contact person for this page
-		$personUIDs = $this->getContactPersonForPage($GLOBALS['TSFE']->id);
+		// select the contact person to show in the module
+		$selectSource = $this->getConfValueString(
+			'source',
+			's_contactbox'
+		);
+		switch ($selectSource) {
+			case 'plugin': $personUIDs = $this->getContactPersonFromPlugin();
+				break;
+			case 'teamleaders': $personUIDs = $this->getContactPersonFromTeams();
+				break;
+			case 'page':
+				// The fall-through is intended!
+			default:
+				$personUIDs = $this->getContactPersonForPage($GLOBALS['TSFE']->id);
+		}
 
 		if (is_array($personUIDs) && count($personUIDs) != 0) {
 
@@ -1010,20 +1068,25 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 * The persons can be sorted by a given sort order.
 	 *
 	 * @param	string		comma separated list of team UIDs to look for
+	 * @param	boolean		whether the team leaders should be ignored
 	 *
 	 * @return	array		array of the leader uids
 	 */
-	 function getTeamLeadersFromMM($teamUIDs) {
+	 function getTeamLeadersFromMM($teamUIDs, $ignoreTeamLeaders = false) {
 	 	$groupLeaders = array();
 	 	$groupLeadersSorted = array();
-	 	$sortOrder = $this->getConfValue('sortOrderForLeaders', 's_teamlist');
+	 	$sortOrder = $this->getConfValue(
+			'sortOrderForLeaders',
+			's_teamlist'
+		);
 	 	if ($sortOrder) {
-	 		$sortOrder .= ' ' . $this->getConfValue('sortOrderForLeadersDirection', 's_teamlist');
+	 		$sortOrder .= ' ' . $this->getConfValue(
+				'sortOrderForLeadersDirection',
+				's_teamlist'
+			);
 	 	}
 
 		// don't show the team leaders, if ignoreTeamLeaders switch is set
-		$ignoreTeamLeaders = $this->getConfValue('ignoreTeamLeaders', 's_teamlist');
-
 		if (!$ignoreTeamLeaders) {
 			// show the team leaders in the teamlist
 			$res_groupLeaders = $GLOBALS['TYPO3_DB']->exec_SELECTquery(

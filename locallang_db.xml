@@ -56,6 +56,8 @@
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
+			<label index="tt_content.pi_flexform.source_fromplugin">Which persons should be shown:</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders">Show the leaders of which team?</label>
 			<label index="tt_content.pi_flexform.detailPage">Detailpage (where to show the detailed info of the persons?)</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sort by</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection">Sorting direction</label>
@@ -64,6 +66,10 @@
 			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sort order for the team leaders (a field name)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Show email-address as an image?</label>
 			<label index="tt_content.pi_flexform.usergroup">User Group (Team) to show</label>
+			<label index="pi_flexform_source">Where to select the person(s) to show?</label>
+			<label index="pi_flexform_source_frompage">from page (default)</label>
+			<label index="pi_flexform_source_fromplugin">from this plugin</label>
+			<label index="pi_flexform_source_fromteamleaders">from teams</label>
 			<label index="pi_flexform_listtype">What to show?</label>
 			<label index="pi_flexform_listtype_detail">DETAIL - Detailed information</label>
 			<label index="pi_flexform_listtype_box">BOX - Contact person</label>
@@ -129,6 +135,8 @@
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Namen zur Einzelansicht verlinken?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
+			<label index="tt_content.pi_flexform.source_fromplugin">Welche Person(en) sollen angezeigt werden?</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders">Die Leiter welcher Team(s) sollen angezeigt werden?</label>
 			<label index="tt_content.pi_flexform.detailPage">Welche Detail-Seite?</label>
 			<label index="tt_content.pi_flexform.sortOrder">Sortieren nach (Feldname)</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection">Sortierrichtung</label>
@@ -137,6 +145,10 @@
 			<label index="tt_content.pi_flexform.sortOrderForLeaders">Sortierung der Teamleiter nach (Feldname)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Email als Bild darstellen?</label>
 			<label index="tt_content.pi_flexform.usergroup">anzuzeigende Benutzergruppe</label>
+			<label index="pi_flexform_source">Von welcher Quelle sollen die Personen ausgewählt weren?</label>
+			<label index="pi_flexform_source_frompage">von dieser Seite (Standard)</label>
+			<label index="pi_flexform_source_fromplugin">von diesem Plugin</label>
+			<label index="pi_flexform_source_fromteamleaders">von den Teams</label>
 			<label index="pi_flexform_listtype">Anzuzeigende Liste</label>
 			<label index="pi_flexform_listtype_detail">DETAIL - Ausführliche Informationen über eine Person</label>
 			<label index="pi_flexform_listtype_box">BOX - Kontaktperson</label>
@@ -302,6 +314,12 @@
 			<label index="tt_content.pi_flexform.sortOrderDirection" type="integer">23848317</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection_asc" type="integer">164211554</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection_desc" type="integer">186247552</label>
+			<label index="tt_content.pi_flexform.source_fromplugin" type="integer">258187017</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders" type="integer">183251614</label>
+			<label index="pi_flexform_source" type="integer">59724999</label>
+			<label index="pi_flexform_source_frompage" type="integer">54186356</label>
+			<label index="pi_flexform_source_fromplugin" type="integer">264415450</label>
+			<label index="pi_flexform_source_fromteamleaders" type="integer">237852766</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
@@ -451,6 +469,12 @@
 			<label index="tt_content.pi_flexform.sortOrderDirection">Sorting direction</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection_asc">ascending</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection_desc">descending</label>
+			<label index="tt_content.pi_flexform.source_fromplugin">Which persons should be shown:</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders">Show the leaders of which team?</label>
+			<label index="pi_flexform_source">Where to select the person(s) to show?</label>
+			<label index="pi_flexform_source_frompage">from page (default)</label>
+			<label index="pi_flexform_source_fromplugin">from this plugin</label>
+			<label index="pi_flexform_source_fromteamleaders">from teams</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>
