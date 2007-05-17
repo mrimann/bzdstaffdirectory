@@ -56,6 +56,7 @@
 			<label index="tt_content.pi_flexform.disableBackLink">Disable back links?</label>
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Show the single view in a pop-up?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.source_fromplugin">Which persons should be shown:</label>
 			<label index="tt_content.pi_flexform.source_fromteamleaders">Show the leaders of which team?</label>
@@ -136,6 +137,7 @@
 			<label index="tt_content.pi_flexform.disableBackLink">Link &quot;zurück&quot; entfernen?</label>
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Namen zur Einzelansicht verlinken?</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Einzelansicht als PopUp anzeigen?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.source_fromplugin">Welche Person(en) sollen angezeigt werden?</label>
 			<label index="tt_content.pi_flexform.source_fromteamleaders">Die Leiter welcher Team(s) sollen angezeigt werden?</label>
@@ -323,6 +325,7 @@
 			<label index="pi_flexform_source_fromplugin" type="integer">264415450</label>
 			<label index="pi_flexform_source_fromteamleaders" type="integer">237852766</label>
 			<label index="tx_bzdstaffdirectory_groups.infopage" type="integer">65051560</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp" type="integer">176376326</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
@@ -479,6 +482,7 @@
 			<label index="pi_flexform_source_fromplugin">from this plugin</label>
 			<label index="pi_flexform_source_fromteamleaders">from teams</label>
 			<label index="tx_bzdstaffdirectory_groups.infopage">Page with information about this team</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Show the single view in a pop-up?</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>

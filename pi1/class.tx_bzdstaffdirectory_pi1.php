@@ -626,7 +626,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$content = '';
 		$this->backPid = intval($this->piVars['backPid']);
 		$this->showUid = intval($this->piVars['showUid']);
-
+		$this->weAreInPopUp = intval(t3lib_div::_GET('popUp'));
 
 		// exit this function if there's no UID transmitted, or if the transmitted
 		// uid is not an integer of positive value within the URL (otherwise the SQL-query will fail)
@@ -680,7 +680,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 * @return	string		the HTML code
 	 */
 	function showSinglePerson($person) {
-
 		// define all the standard fields (these are all fields, that can
 		// be output to the frontend directly from the DB without changes)
 		$allStandardFields = array(
@@ -771,11 +770,30 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$this->setMarkerContent('label_image', $this->pi_getLL('label_image'));
 
 		// define the marker for the back link
-		// the link is only shown if $this->backPid is set!
-		if ($this->backPid) {
-			$this->setMarkerContent('link_back', $this->pi_linkTP($this->pi_getLL('label_link_back'), array(), true, $this->backPid));
+		if ($this->weAreInPopUp) {
+			// Render a "close" link as we are in a popUp
+			$linkTag = '<a href="#" onClick="window.close()">'
+				.$this->pi_getLL('label_link_close')
+				.'</a>';
+			$this->setMarkerContent(
+				'link_back',
+				$linkTag
+			);
+
 		} else {
-			$this->readSubpartsToHide('link_back', 'field_wrapper');
+			// Render a "back" link, the link is only shown if $this->backPid is set!
+			if ($this->backPid) {
+				$this->setMarkerContent(
+					'link_back',
+					$this->pi_linkTP(
+						$this->pi_getLL('label_link_back'),
+						array(),
+						true,
+						$this->backPid)
+					);
+			} else {
+				$this->readSubpartsToHide('link_back', 'field_wrapper');
+			}
 		}
 
 		// define the person's name as the page title for indexing
@@ -1311,16 +1329,14 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$this->readSubpartsToHide('files', 'listitem_wrapper');
 			}
 
-			// create the link to the detail page
-			$linkParams = array(
-				'tx_bzdstaffdirectory_pi1[showUid]' => $this->getValue('uid', $person),
+			// Fill the marker for the link to the detail view
+			$this->setMarkerContent(
+				'link_detail',
+				$this->linkToDetailPage(
+					$this->pi_getLL('label_link_detail'),
+					$this->getValue('uid', $person)
+				)
 			);
-			// only add the backLink UID if not disabled via setup (to beautify realURL URLs)
-			if (!$this->getConfValueBoolean('disableBackLink', 's_teamlist')) {
-				$linkParams['tx_bzdstaffdirectory_pi1[backPid]'] = $GLOBALS['TSFE']->id;
-			}
-			$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
-			$this->setMarkerContent('link_detail', $linkToDetailPage);
 
 			// Make the title and name be linked to the single view.
 			if ($this->getConfValueBoolean('linkNamesToSingleView', 's_teamlist')) {
@@ -1330,7 +1346,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					'list_title',
 				);
 				foreach ($linkedMarkers as $currentMarker) {
-					$this->setMarkerContent($currentMarker, $this->pi_linkToPage($this->markers[$this->createMarkerName($currentMarker)],$this->detailPage,'',$linkParams));
+					$this->setMarkerContent(
+						$currentMarker,
+						$this->linkToDetailPage(
+							$this->markers[$this->createMarkerName($currentMarker)],
+							$this->getValue('uid', $person)
+						)
+					);
 				}
 			}
 
@@ -1347,7 +1369,59 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		return $result;
 	}
 
+	/**
+	 * Wraps the provided string in <a> tags and links it to the detail page.
+	 * Depending on the configuration, this is either a "normal" link, or some
+	 * magic JavaScript to open the detail view in a pop-up.
+	 *
+	 * @param	string		the string to wrap in <a> tags
+	 * @param	integer		the UID of the person to show in the single view
+	 *
+	 * @return	string		the HTML code needed to represent the link
+	 */
+	function linkToDetailPage($textToLink, $uid) {
+		$result = '';
 
+		// Check whether a normal link or a pop-up is requested
+		if (!$this->getConfValueBoolean('showSingleViewAsPopUp', 's_teamlist')) {
+			$linkParams = array(
+				'tx_bzdstaffdirectory_pi1[showUid]' => $uid,
+			);
+
+			// only add the backLink UID if not disabled via setup (to beautify
+			// realURL URLs)
+			if (!$this->getConfValueBoolean('disableBackLink', 's_teamlist')) {
+				$linkParams['tx_bzdstaffdirectory_pi1[backPid]'] = $GLOBALS['TSFE']->id;
+			}
+
+			$result = $this->pi_linkToPage(
+				$textToLink,
+				$this->detailPage,
+				'',
+				$linkParams
+			);
+		} else {
+			$linkParams = array(
+				'tx_bzdstaffdirectory_pi1[showUid]' => $uid,
+				'popUp' => 1
+			);
+
+			$result = $this->pi_linkToPage(
+				$textToLink,
+				$this->detailPage,
+				'',
+				$linkParams
+			);
+
+			$result = $this->pi_openAtagHrefInJSwindow(
+				$result,
+				'bla',
+				$this->getConfValueString('singleViewPopUpConfig')
+			);
+		}
+
+		return $result;
+	}
 
 	/**
 	 * Returns an image containing the provided e-mail address

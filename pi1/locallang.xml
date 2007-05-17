@@ -27,6 +27,7 @@
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">back</label>
+			<label index="label_link_close">close</label>
 			<label index="label_pleaseChoose">please choose</label>
 			<label index="header_contactperson_singular">Your contact person:</label>
 			<label index="header_contactperson_plural">Your contact persons:</label>
@@ -59,6 +60,7 @@
 			<label index="label_opinion">Meinung:</label>
 			<label index="label_link_detail">Details</label>
 			<label index="label_link_back">zurück</label>
+			<label index="label_link_close">schliessen</label>
 			<label index="label_pleaseChoose">bitte wählen</label>
 			<label index="header_contactperson_singular">Ihre Ansprechperson:</label>
 			<label index="header_contactperson_plural">Ihre Ansprechpersonen:</label>
@@ -137,6 +139,7 @@
 			<label index="header_contactperson_singular" type="integer">119817834</label>
 			<label index="header_contactperson_plural" type="integer">243230036</label>
 			<label index="label_pleaseChoose" type="integer">82132055</label>
+			<label index="label_link_close" type="integer">118945459</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email" type="integer">233919839</label>
@@ -203,6 +206,7 @@
 			<label index="header_contactperson_singular">Your contact person:</label>
 			<label index="header_contactperson_plural">Your contact persons:</label>
 			<label index="label_pleaseChoose">please choose</label>
+			<label index="label_link_close">close</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email">E-mail:</label>

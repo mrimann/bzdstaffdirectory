@@ -183,6 +183,14 @@
 								</config>
 						</TCEforms>
 					</linkNamesToSingleView>
+					<showSingleViewAsPopUp>
+						<TCEforms>
+								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.showSingleViewAsPopUp</label>
+								<config>
+										<type>check</type>
+								</config>
+						</TCEforms>
+					</showSingleViewAsPopUp>
 					<disableBackLink>
 						<TCEforms>
 								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.disableBackLink</label>
