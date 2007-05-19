@@ -413,6 +413,10 @@
 										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_5</numIndex>
 										<numIndex index="1">universal_field_5</numIndex>
 									</numIndex>
+									<numIndex index="16" type="array">
+										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.sorting</numIndex>
+										<numIndex index="1">sorting</numIndex>
+									</numIndex>
 								</items>
 								<maxitems>1</maxitems>
 								<size>1</size>

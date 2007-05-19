@@ -1141,7 +1141,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				'tx_bzdstaffdirectory_groups_teamleaders_mm',	// FROM
 				'uid_local IN(' . $teamUIDs .')',	//WHERE
 				'',	// GROUP BY
-				'',	// ORDER BY
+				'sorting',	// ORDER BY
 				''	//LIMIT
 			);
 	
@@ -1150,18 +1150,25 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					$groupLeaders[] = $member['uid_foreign'];
 				}
 	
-				// Second call to the DB: get the right order!
-				$groupLeadersUIDList = $this->convertArrayToCommaseparatedString($groupLeaders);
-				$res_groupLeadersSorted = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
-					'uid',	// SELECT
-					'tx_bzdstaffdirectory_persons',	// FROM
-					'uid IN(' . $groupLeadersUIDList . ') AND l18n_parent = 0',	//WHERE
-					'',	// GROUP BY
-					$sortOrder,	// ORDER BY
-					''	//LIMIT
-				);
-				while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupLeadersSorted))	{
-					$groupLeadersSorted[] = $member['uid'];
+				// Maybe we need to bring the (now unordered) users into a certain
+				// sorting.
+				if ($sortOrder != 'sorting ASC' AND $sortOrder != 'sorting DESC') {
+					// Second call to the DB: get the right order!
+					// TODO: Bring this block into it's own function!
+					$groupLeadersUIDList = $this->convertArrayToCommaseparatedString($groupLeaders);
+					$res_groupLeadersSorted = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+						'uid',	// SELECT
+						'tx_bzdstaffdirectory_persons',	// FROM
+						'uid IN(' . $groupLeadersUIDList . ') AND l18n_parent = 0',	//WHERE
+						'',	// GROUP BY
+						$sortOrder,	// ORDER BY
+						''	//LIMIT
+					);
+					while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupLeadersSorted))	{
+						$groupLeadersSorted[] = $member['uid'];
+					}
+				} else {
+					$groupLeadersSorted = $groupLeaders;
 				}
 			}
 		} else {
