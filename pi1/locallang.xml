@@ -93,6 +93,7 @@
 			<label index="label_opinion">Opinion:</label>
 			<label index="label_link_detail">Détails</label>
 			<label index="label_link_back">Retour</label>
+			<label index="label_link_close">Fermer</label>
 			<label index="label_pleaseChoose">Sélectionner svp.</label>
 			<label index="header_contactperson_singular">Votre interlocuteur:</label>
 			<label index="header_contactperson_plural">Vos interlocuteurs:</label>
@@ -172,6 +173,7 @@
 			<label index="error_recordNotTranslated" type="integer">239858004</label>
 			<label index="label_room" type="integer">121727316</label>
 			<label index="label_pleaseChoose" type="integer">82132055</label>
+			<label index="label_link_close" type="integer">118945459</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -239,6 +241,7 @@
 			<label index="error_recordNotTranslated">It seems that this record is not yet translated to your language.</label>
 			<label index="label_room">Room:</label>
 			<label index="label_pleaseChoose">please choose</label>
+			<label index="label_link_close">close</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

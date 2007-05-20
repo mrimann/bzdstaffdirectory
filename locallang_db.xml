@@ -199,10 +199,12 @@
 			<label index="tx_bzdstaffdirectory_persons.universal_field_3">Case universelle 3</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_4">Case universelle 4</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_5">Case universelle 5</label>
+			<label index="tx_bzdstaffdirectory_persons.sorting">Tri</label>
 			<label index="tx_bzdstaffdirectory_groups">Équipes</label>
 			<label index="tx_bzdstaffdirectory_groups.group_name">Nom équipe</label>
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Resp. équipe</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members">Membres équipe</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage">Page contenant l'information de cette équipe</label>
 			<label index="tt_content.list_type_pi1">BZD collaborateur liste</label>
 			<label index="tt_content.pi_flexform.teamlist">Liste équipe</label>
 			<label index="tt_content.pi_flexform.contactbox">Votre interlocuteur</label>
@@ -219,7 +221,10 @@
 			<label index="tt_content.pi_flexform.disableBackLink">Empècher back links?</label>
 			<label index="tt_content.pi_flexform.showimages">Montrer les images?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Relier les noms à chaque image?</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Afficher le détail dans un pop-up?</label>
 			<label index="tt_content.pi_flexform.startingpoint">Point de départ</label>
+			<label index="tt_content.pi_flexform.source_fromplugin">Quelle personne afficher</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders">Afficher le responsible de quelle équipe?</label>
 			<label index="tt_content.pi_flexform.detailPage">Page détails (où sont montrées les infos détails sur les personnes?)</label>
 			<label index="tt_content.pi_flexform.sortOrder">Classer par</label>
 			<label index="tt_content.pi_flexform.sortOrderDirection">Sens du classement</label>
@@ -228,6 +233,10 @@
 			<label index="tt_content.pi_flexform.sortOrderForLeaders">Classement par ordre pour le resp. d'équipe (une case nom)</label>
 			<label index="tt_content.pi_flexform.emailasimage">Montrer eMail sous forme d'une image?</label>
 			<label index="tt_content.pi_flexform.usergroup">Équipe à montrer</label>
+			<label index="pi_flexform_source">Où sélectionner la(les) personne(s) à afficher?</label>
+			<label index="pi_flexform_source_frompage">D'une page (par défaut)</label>
+			<label index="pi_flexform_source_fromplugin">De ce plugin</label>
+			<label index="pi_flexform_source_fromteamleaders">pour les équipes</label>
 			<label index="pi_flexform_listtype">Sélectionner ce qui doit être montré?</label>
 			<label index="pi_flexform_listtype_detail">DÉTAIL - informations détaillées</label>
 			<label index="pi_flexform_listtype_box">BOîTE - interlocuteur</label>
@@ -402,6 +411,15 @@
 			<label index="pi_flexform_spamprotectionmode_jsencrypted" type="integer">257680523</label>
 			<label index="pi_flexform_spamprotectionmode_plain" type="integer">187064803</label>
 			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person" type="integer">126920905</label>
+			<label index="tx_bzdstaffdirectory_persons.sorting" type="integer">41978420</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage" type="integer">65051560</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp" type="integer">176376326</label>
+			<label index="tt_content.pi_flexform.source_fromplugin" type="integer">258187017</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders" type="integer">183251614</label>
+			<label index="pi_flexform_source" type="integer">59724999</label>
+			<label index="pi_flexform_source_frompage" type="integer">54186356</label>
+			<label index="pi_flexform_source_fromplugin" type="integer">264415450</label>
+			<label index="pi_flexform_source_fromteamleaders" type="integer">237852766</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -560,6 +578,15 @@
 			<label index="pi_flexform_spamprotectionmode_jsencrypted">Encrypt it with JavaScript function</label>
 			<label index="pi_flexform_spamprotectionmode_plain">No protection, plain text.</label>
 			<label index="pages.tx_bzdstaffdirectory_bzd_contact_person">Contact Person</label>
+			<label index="tx_bzdstaffdirectory_persons.sorting">Sorting</label>
+			<label index="tx_bzdstaffdirectory_groups.infopage">Page with information about this team</label>
+			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Show the single view in a pop-up?</label>
+			<label index="tt_content.pi_flexform.source_fromplugin">Which persons should be shown:</label>
+			<label index="tt_content.pi_flexform.source_fromteamleaders">Show the leaders of which team?</label>
+			<label index="pi_flexform_source">Where to select the person(s) to show?</label>
+			<label index="pi_flexform_source_frompage">from page (default)</label>
+			<label index="pi_flexform_source_fromplugin">from this plugin</label>
+			<label index="pi_flexform_source_fromteamleaders">from teams</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

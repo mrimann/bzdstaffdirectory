@@ -17,6 +17,8 @@
 			<label index="pi1_plus_wiz_description">BZD Mitarbeiterverzeichnis</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
+			<label index="pi1_title">BZD Répertoire de personnel</label>
+			<label index="pi1_plus_wiz_description">BZD Répertoire de personnel</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
@@ -25,10 +27,16 @@
 			<label index="pi1_plus_wiz_description" type="integer">259821528</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
+			<label index="pi1_title" type="integer">259821528</label>
+			<label index="pi1_plus_wiz_description" type="integer">259821528</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
 		<languageKey index="de" type="array">
+			<label index="pi1_title">BZD Staff Directory</label>
+			<label index="pi1_plus_wiz_description">BZD Staff Directory</label>
+		</languageKey>
+		<languageKey index="fr" type="array">
 			<label index="pi1_title">BZD Staff Directory</label>
 			<label index="pi1_plus_wiz_description">BZD Staff Directory</label>
 		</languageKey>
