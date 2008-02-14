@@ -688,7 +688,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			'function',
 			'phone',
 			'location',
-			'opinion',
 			'tasks',
 			'room',
 			'officehours'
@@ -741,6 +740,16 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
 		} else {
 			$this->readSubpartsToHide('date_incompany', 'field_wrapper');
+		}
+
+		if ($this->hasValue('opinion', $person)) {
+			$this->setMarkerContent(
+				'opinion',
+				$this->pi_RTEcssText($this->getValue('opinion', $person, false))
+			);
+			$this->setMarkerContent('label_opinion', $this->pi_getLL('label_opinion'));
+		} else {
+			$this->readSubpartsToHide('opinion', 'field_wrapper');
 		}
 
 		if ($this->hasValue('date_birthdate', $person)) {
