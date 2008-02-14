@@ -38,8 +38,8 @@ $EM_CONF[$_EXTKEY] = array(
 		'depends' => array(
 			'cms' => '',
 			'bidirectional' => '1.1.0-',
-			'php' => '3.0.0-0.0.0',
-			'typo3' => '3.5.0-0.0.0',
+			'php' => '5.1.0-0.0.0',
+			'typo3' => '4.0.0-0.0.0',
 		),
 		'conflicts' => array(
 		),
