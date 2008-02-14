@@ -39,7 +39,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'last_name' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.last_name',		
 			'config' => array(
 				'type' => 'input',	
@@ -49,7 +49,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'first_name' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.first_name',		
 			'config' => array(
 				'type' => 'input',	
@@ -59,7 +59,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'title' => array(
 			'l10n_mode' => $l10n_mode,	
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.title',		
 			'config' => array(
 				'type' => 'input',	
@@ -68,7 +68,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'image' => array(
 			'l10n_mode' => $l10n_mode_image,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.image',		
 			'config' => array(
 				'type' => 'group',
@@ -84,7 +84,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'usergroups' => array(
 			'l10n_mode' => 'exclude',
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.usergroups',		
 			'config' => array(
 				'type' => 'select',	
@@ -112,7 +112,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'gender' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.gender',		
 			'config' => array(
 				'type' => 'select',
@@ -125,7 +125,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'date_incompany' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.date_incompany',
 			'config' => array(
 				'type' => 'input',
@@ -137,7 +137,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'date_birthdate' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.date_birthdate',
 			'config' => array(
 				'type' => 'input',
@@ -149,7 +149,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'function' => array(
 			'l10n_mode' => $l10n_mode,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.function',		
 			'config' => array(
 				'type' => 'input',	
@@ -159,7 +159,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'email' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.email',		
 			'config' => array(
 				'type' => 'input',	
@@ -169,7 +169,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'tasks' => array(
 			'l10n_mode' => $l10n_mode,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.tasks',		
 			'config' => array(
 				'type' => 'text',
@@ -179,7 +179,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'opinion' => array(
 			'l10n_mode' => $l10n_mode,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.opinion',		
 			'config' => array(
 				'type' => 'text',
@@ -189,7 +189,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'location' => array(
 			'l10n_mode' => $l10n_mode,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.location',		
 			'config' => array(
 				'type' => 'input',	
@@ -198,7 +198,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'room' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.room',		
 			'config' => array(
 				'type' => 'input',	
@@ -207,7 +207,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'phone' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.phone',		
 			'config' => array(
 				'type' => 'input',	
@@ -216,7 +216,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'officehours' => array(
 			'l10n_mode' => $l10n_mode,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.officehours',		
 			'config' => array(
 				'type' => 'input',	
@@ -225,7 +225,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		),
 		'files' => array(
 			'l10n_mode' => $l10n_mode_merge,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.files',		
 			'config' => array(
 				'type' => 'group',
@@ -286,7 +286,7 @@ if ($confArr['useUniversalField_1'] && !empty($confArr['fieldNameUniversalField_
 	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_1';
 	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_1'] = array(
 		'l10n_mode' => $l10n_mode,
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => $confArr['fieldNameUniversalField_1'],
 		'config' => array(
 			'type' => 'input',
@@ -299,7 +299,7 @@ if ($confArr['useUniversalField_2'] && !empty($confArr['fieldNameUniversalField_
 	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_2';
 	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_2'] = array(
 		'l10n_mode' => $l10n_mode,
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => $confArr['fieldNameUniversalField_2'],
 		'config' => array(
 			'type' => 'input',
@@ -312,7 +312,7 @@ if ($confArr['useUniversalField_3'] && !empty($confArr['fieldNameUniversalField_
 	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_3';
 	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_3'] = array(
 		'l10n_mode' => $l10n_mode,
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => $confArr['fieldNameUniversalField_3'],
 		'config' => array(
 			'type' => 'input',
@@ -325,7 +325,7 @@ if ($confArr['useUniversalField_4'] && !empty($confArr['fieldNameUniversalField_
 	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_4';
 	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_4'] = array(
 		'l10n_mode' => $l10n_mode,
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => $confArr['fieldNameUniversalField_4'],
 		'config' => array(
 			'type' => 'input',
@@ -338,7 +338,7 @@ if ($confArr['useUniversalField_5'] && !empty($confArr['fieldNameUniversalField_
 	$TCA['tx_bzdstaffdirectory_persons']['types']['0']['showitem'] .= ', universal_field_5';
 	$TCA['tx_bzdstaffdirectory_persons']['columns']['universal_field_5'] = array(
 		'l10n_mode' => $l10n_mode,
-		'exclude' => 0,
+		'exclude' => 1,
 		'label' => $confArr['fieldNameUniversalField_5'],
 		'config' => array(
 			'type' => 'input',
@@ -370,7 +370,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 		),
 		'group_name' => array(
 			'l10n_mode' => $l10n_mode,
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_name',		
 			'config' => array(
 				'type' => 'input',	
@@ -379,7 +379,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 		),
 		'group_leaders' => array(
 			'l10n_mode' => 'exclude',
-			'exclude' => 0,		
+			'exclude' => 1,		
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_leaders',		
 			'config' => array(
 				'type' => 'select',	
@@ -407,7 +407,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 		),
 		'team_members' => array(
 			'l10n_mode' => 'exclude',
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.group_members',
 			'config' => array(
 				'type' => 'select',
@@ -435,7 +435,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 		),
 		'infopage' => array(
 			'l10n_mode' => 'exclude',
-			'exclude' => 0,
+			'exclude' => 1,
 			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups.infopage',
 			'config' => array(
 				'type' => 'group',
