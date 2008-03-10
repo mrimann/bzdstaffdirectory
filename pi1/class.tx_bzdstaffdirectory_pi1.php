@@ -308,7 +308,10 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$currentTeam['uid'],
 				$this->getConfValue('ignoreTeamLeaders', 's_teamlist')
 			);
-			$groupMemberUIDs = $this->getTeamMembersFromMM($currentTeam['uid']);
+			$groupMemberUIDs = $this->getTeamMembersFromMM(
+				$currentTeam['uid'],
+				$this->teamListSortOrder
+			);
 
 			// set the header for each team
 			$currentTeamHTML = '';
