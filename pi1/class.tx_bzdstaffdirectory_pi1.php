@@ -1432,6 +1432,12 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$linkParams
 			);
 
+			// Undoes the htmlspecialchars() call from the function above. If this
+			// is not done, the further processin will result in URLs with stuff
+			// like &amp;&amp;
+			// See: https://bugs.oliverklee.com/show_bug.cgi?id=833
+			$result = htmlspecialchars_decode($result);
+
 			$result = $this->pi_openAtagHrefInJSwindow(
 				$result,
 				'bla',
