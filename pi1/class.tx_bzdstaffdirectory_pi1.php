@@ -1145,6 +1145,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			);
 	 	}
 
+		$allowedPids = $this->getAllowedPids();
+		if (!empty($allowedPids)) {
+			$additionalWhereClause = ' AND pid IN('.$allowedPids.')';
+		}
+
 		// don't show the team leaders, if ignoreTeamLeaders switch is set
 		if (!$ignoreTeamLeaders) {
 			// show the team leaders in the teamlist
@@ -1171,7 +1176,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					$res_groupLeadersSorted = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 						'uid',	// SELECT
 						'tx_bzdstaffdirectory_persons',	// FROM
-						'uid IN(' . $groupLeadersUIDList . ') AND l18n_parent = 0',	//WHERE
+						'uid IN(' . $groupLeadersUIDList . ') AND l18n_parent = 0'
+							.$additionalWhereClause,	//WHERE
 						'',	// GROUP BY
 						$sortOrder,	// ORDER BY
 						''	//LIMIT
@@ -1190,6 +1196,38 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 }
 
 	/**
+	 * Gets a list of PIDs from which we can fetch person records.
+	 *
+	 * @return	string		comma-separated list of PIDs, may be empty
+	 */
+	function getAllowedPids() {
+		if (!$this->hasConfValueString('startingpoint', 's_teamlist')) {
+			return '';
+		}
+
+		$startingPoint = $this->getConfValue(
+			'startingpoint',
+			's_teamlist'
+		);
+
+		if ($this->hasConfValueInteger('recursive', 's_teamlist')) {
+			$recursion = $this->getConfValue(
+				'recursive',
+				's_teamlist'
+			);
+		} else {
+			$recursion = 0;
+		}
+
+		$result = $this->pi_getPidList(
+			$startingPoint,
+			$recursion
+		);
+
+		return $result;
+	}
+
+	/**
 	 * Gets all associated team members for a given team.
 	 * The persons can be sorted by a given sort order.
 	 * 
@@ -1201,7 +1239,12 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	function getTeamMembersFromMM($team_uid, $sortOrder = '') {
 		$groupMembers = array();
 		$groupMembersSorted = array();
-		
+
+		$allowedPids = $this->getAllowedPids();
+		if (!empty($allowedPids)) {
+			$additionalWhereClause = ' AND pid IN('.$allowedPids.')';
+		}
+
 		$res_groupMembers = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_persons_usergroups_mm',	// FROM
@@ -1221,7 +1264,8 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$res_groupMembersSorted = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 				'uid',	// SELECT
 				'tx_bzdstaffdirectory_persons',	// FROM
-				'uid IN(' . $groupMembersUIDList . ') AND l18n_parent = 0',	//WHERE
+				'uid IN(' . $groupMembersUIDList . ') AND l18n_parent = 0'
+					.$additionalWhereClause,	//WHERE
 				'',	// GROUP BY
 				$sortOrder,	// ORDER BY
 				''	//LIMIT
