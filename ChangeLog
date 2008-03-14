@@ -1,4 +1,5 @@
 version 0.6.0 - currently working on
+- [#1741] Fix: Deleted team records with relations caused wrong output in pi1
 - [#1013] Change: List view now respects the startinpoint
 - [#833] Fix: Pop-Ups not working due to missing person-UID
 - [#1014] Fix: Grouped teamlist was not alphabetically ordered

@@ -912,7 +912,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			// we have more than one group and need to build a list
 			foreach ($memberOf as $actualGroupUID) {
 				$actualGroup = $this->getTeamDetails($actualGroupUID, true);
-				
+
 				// check if the team name should be linked to the team page
 				if ($actualGroup['infopage']) {
 					$teamName = $this->pi_linkTP(
@@ -1605,10 +1605,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		
 		$res_groups = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
-			'tx_bzdstaffdirectory_persons_usergroups_mm',	// FROM
-			'uid_local IN(' . $uid .')',	//WHERE
+			'tx_bzdstaffdirectory_persons_usergroups_mm m'
+				.' left join tx_bzdstaffdirectory_groups g'
+				.' on m.uid_foreign=g.uid',	// FROM
+			'm.uid_local IN(' . $uid .')'
+				.' AND g.hidden=0 AND g.deleted=0',	//WHERE
 			'',	// GROUP BY
-			'sorting',	// ORDER BY
+			'm.sorting',	// ORDER BY
 			''	//LIMIT
 		);
 
