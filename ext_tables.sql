@@ -70,6 +70,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons (
 	room tinytext NOT NULL,
 	phone tinytext NOT NULL,
 	officehours tinytext NOT NULL,
+	xing_profile_url tinytext NOT NULL,
 	files blob NOT NULL,
 	universal_field_1 tinytext NOT NULL,
 	universal_field_2 tinytext NOT NULL,

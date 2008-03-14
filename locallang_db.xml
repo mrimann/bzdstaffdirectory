@@ -28,6 +28,7 @@
 			<label index="tx_bzdstaffdirectory_persons.phone">Phone Number</label>
 			<label index="tx_bzdstaffdirectory_persons.room">Room Number</label>
 			<label index="tx_bzdstaffdirectory_persons.officehours">Office hours</label>
+			<label index="tx_bzdstaffdirectory_persons.xing_profile_url">Link to XING profile</label>
 			<label index="tx_bzdstaffdirectory_persons.opinion">Your Opinion</label>
 			<label index="tx_bzdstaffdirectory_persons.files">File(s)</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_1">Universal field 1</label>

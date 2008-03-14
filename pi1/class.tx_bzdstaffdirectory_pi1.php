@@ -769,6 +769,15 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->readSubpartsToHide('date_birthdate', 'field_wrapper');
 		}
 
+		// Shows a XING Icon that is linked to the person's XING profile, if
+		// a URL to the profile was stored for this person.
+		if ($this->hasValue('xing_profile_url', $person)) {
+			$this->setMarkerContent('xing', $this->getLinkedXingIcon($person));
+			$this->setMarkerContent('label_xing', $this->pi_getLL('label_xing'));
+		} else {
+			$this->readSubpartsToHide('xing', 'field_wrapper');
+		}
+
 		if ($this->hasValue('files', $person)) {
 			$this->setMarkerContent('files', $this->getFileList($person));
 			$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
@@ -859,6 +868,30 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		}
 
 		return $year_diff . ' ' . $this->pi_getLL('years');
+	}
+
+	/**
+	 * Returns the HTML sourcecode to display a XING Icon that is linked to to
+	 * the persons personal XING profile. Result will be an empty string if that
+	 * person has no URL for the profile in it's record - this must be checked
+	 * before!!
+	 *
+	 * @param	array		associative array containing all the information
+	 *
+	 * @return	string		HTML source for the linked icon, may be empty
+	 */
+	function getLinkedXingIcon($person) {
+		if (empty($person['xing_profile_url'])) {
+			return '';
+		}
+
+		$url = $person['xing_profile_url'];
+		$icon = 'http://www.xing.com/img/buttons/1_de_btn.gif';
+
+		$result = '<a href="'.$url.'" target="_blank"><img src="'
+			.$icon.'" width="85" height="23" alt="XING" border="0" /></a>';
+
+		return $result;
 	}
 
 	/**
