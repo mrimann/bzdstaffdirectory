@@ -68,6 +68,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# whether names should be linked to the single view
 	linkNamesToSingleView = 1
 
+	# whether to disable the links to the detail view completely
+	doNotLinkToDetailView = 0
+
 	# whether the single view should be shown as a pop-up
 	showSingleViewAsPopUp = 0
 

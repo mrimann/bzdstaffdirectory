@@ -1425,17 +1425,26 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$this->readSubpartsToHide('files', 'listitem_wrapper');
 			}
 
-			// Fill the marker for the link to the detail view
-			$this->setMarkerContent(
-				'link_detail',
-				$this->linkToDetailPage(
-					$this->pi_getLL('label_link_detail'),
-					$this->getValue('uid', $person)
-				)
-			);
+			// Fill the marker for the link to the detail view or hide it completely
+			// if linking to the detail page is disabled completely.
+			if (!$this->getConfValueBoolean('doNotLinkToDetailView', 's_teamlist')) {
+				$this->setMarkerContent(
+					'link_detail',
+					$this->linkToDetailPage(
+						$this->pi_getLL('label_link_detail'),
+						$this->getValue('uid', $person)
+					)
+				);
+			} else {
+				$this->readSubpartsToHide('link_detail');
+			}
 
-			// Make the title and name be linked to the single view.
-			if ($this->getConfValueBoolean('linkNamesToSingleView', 's_teamlist')) {
+			// Make the title and name be linked to the single view. This will only
+			// be done if linking to details page is not completely disabled and
+			// linking the names is enabled in the configuration.
+			if (!$this->getConfValueBoolean('doNotLinkToDetailView', 's_teamlist')
+				&& $this->getConfValueBoolean('linkNamesToSingleView', 's_teamlist')
+			) {
 				$linkedMarkers = array(
 					'first_name',
 					'last_name',

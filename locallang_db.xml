@@ -59,6 +59,7 @@
 			<label index="tt_content.pi_flexform.showimages">Show images?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Make names be linked to the single view?</label>
 			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Show the single view in a pop-up?</label>
+			<label index="tt_content.pi_flexform.doNotLinkToDetailView">Do not link to details page.</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startingpoint</label>
 			<label index="tt_content.pi_flexform.source_fromplugin">Which persons should be shown:</label>
 			<label index="tt_content.pi_flexform.source_fromteamleaders">Show the leaders of which team?</label>
@@ -111,6 +112,7 @@
 			<label index="tx_bzdstaffdirectory_persons.phone">Telefon</label>
 			<label index="tx_bzdstaffdirectory_persons.room">Büro/Raum</label>
 			<label index="tx_bzdstaffdirectory_persons.officehours">Bürozeiten</label>
+			<label index="tx_bzdstaffdirectory_persons.xing_profile_url">Link zum XING Profil</label>
 			<label index="tx_bzdstaffdirectory_persons.opinion">Meinung</label>
 			<label index="tx_bzdstaffdirectory_persons.files">Datei(en)</label>
 			<label index="tx_bzdstaffdirectory_persons.universal_field_1">Universelles Feld 1</label>
@@ -141,6 +143,7 @@
 			<label index="tt_content.pi_flexform.showimages">Fotos anzeigen?</label>
 			<label index="tt_content.pi_flexform.linkNamesToSingleView">Namen zur Einzelansicht verlinken?</label>
 			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Einzelansicht als PopUp anzeigen?</label>
+			<label index="tt_content.pi_flexform.doNotLinkToDetailView">Nicht zur Detailseite verlinken.</label>
 			<label index="tt_content.pi_flexform.startingpoint">Startpunkt</label>
 			<label index="tt_content.pi_flexform.source_fromplugin">Welche Person(en) sollen angezeigt werden?</label>
 			<label index="tt_content.pi_flexform.source_fromteamleaders">Die Leiter welcher Team(s) sollen angezeigt werden?</label>
@@ -339,6 +342,8 @@
 			<label index="tx_bzdstaffdirectory_groups.infopage" type="integer">65051560</label>
 			<label index="tt_content.pi_flexform.showSingleViewAsPopUp" type="integer">176376326</label>
 			<label index="tx_bzdstaffdirectory_persons.sorting" type="integer">41978420</label>
+			<label index="tx_bzdstaffdirectory_persons.xing_profile_url" type="integer">218899440</label>
+			<label index="tt_content.pi_flexform.doNotLinkToDetailView" type="integer">205663706</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
@@ -506,6 +511,8 @@
 			<label index="tx_bzdstaffdirectory_groups.infopage">Page with information about this team</label>
 			<label index="tt_content.pi_flexform.showSingleViewAsPopUp">Show the single view in a pop-up?</label>
 			<label index="tx_bzdstaffdirectory_persons.sorting">Sorting</label>
+			<label index="tx_bzdstaffdirectory_persons.xing_profile_url">Link to XING profile</label>
+			<label index="tt_content.pi_flexform.doNotLinkToDetailView">Do not link to details page.</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>
