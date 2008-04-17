@@ -425,7 +425,8 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 				'size' => 4,
 				'minitems' => 0,
 				'maxitems' => 9999,
-				'MM' => 'tx_bzdstaffdirectory_persons_usergroups_mm | foreign',
+				'MM' => 'tx_bzdstaffdirectory_persons_usergroups_mm',
+				'MM_foreign_select' => 1,
 				'wizards' => array(
 					'_PADDING' => 2,
 					'_VERTICAL' => 1,
@@ -442,6 +443,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 				)
 			)
 		),
+
 		'infopage' => array(
 			'l10n_mode' => 'exclude',
 			'exclude' => 1,

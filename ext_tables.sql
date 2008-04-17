@@ -7,6 +7,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons_usergroups_mm (
   uid_foreign int(11) DEFAULT '0' NOT NULL,
   tablenames varchar(30) DEFAULT '' NOT NULL,
   sorting int(11) DEFAULT '0' NOT NULL,
+  sorting_foreign int(11) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 );
@@ -21,6 +22,7 @@ CREATE TABLE tx_bzdstaffdirectory_groups_teamleaders_mm (
   uid_foreign int(11) DEFAULT '0' NOT NULL,
   tablenames varchar(30) DEFAULT '' NOT NULL,
   sorting int(11) DEFAULT '0' NOT NULL,
+  sorting_foreign int(11) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 );
@@ -35,6 +37,7 @@ CREATE TABLE tx_bzdstaffdirectory_pages_persons_mm (
   uid_foreign int(11) DEFAULT '0' NOT NULL,
   tablenames varchar(30) DEFAULT '' NOT NULL,
   sorting int(11) DEFAULT '0' NOT NULL,
+  sorting_foreign int(11) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 );
