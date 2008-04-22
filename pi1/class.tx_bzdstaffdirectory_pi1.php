@@ -825,6 +825,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			. ' '
 			. $this->getValue('last_name', $person);
 		$GLOBALS['TSFE']->indexedDocTitle = $indexedPageTitle;
+		$GLOBALS['TSFE']->page['title'] = $indexedPageTitle;
 
 		// merge the marker content with the template
 		$content .= $this->substituteMarkerArrayCached('TEMPLATE_DETAIL');
