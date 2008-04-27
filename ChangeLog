@@ -1,4 +1,5 @@
 version 0.7.0 - currently working on
+- [#1641] Refactoring: Added team class
 - [#1830] Feature: Changed page title to person's name in single view (SEO)
 - [#1642] Feature: Added base for unit testing
 

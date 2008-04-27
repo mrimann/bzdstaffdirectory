@@ -8,6 +8,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons_usergroups_mm (
   tablenames varchar(30) DEFAULT '' NOT NULL,
   sorting int(11) DEFAULT '0' NOT NULL,
   sorting_foreign int(11) DEFAULT '0' NOT NULL,
+  is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 );
@@ -23,6 +24,7 @@ CREATE TABLE tx_bzdstaffdirectory_groups_teamleaders_mm (
   tablenames varchar(30) DEFAULT '' NOT NULL,
   sorting int(11) DEFAULT '0' NOT NULL,
   sorting_foreign int(11) DEFAULT '0' NOT NULL,
+  is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 );
@@ -38,6 +40,7 @@ CREATE TABLE tx_bzdstaffdirectory_pages_persons_mm (
   tablenames varchar(30) DEFAULT '' NOT NULL,
   sorting int(11) DEFAULT '0' NOT NULL,
   sorting_foreign int(11) DEFAULT '0' NOT NULL,
+  is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
   KEY uid_local (uid_local),
   KEY uid_foreign (uid_foreign)
 );
@@ -54,6 +57,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons (
 	cruser_id int(11) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
 	l18n_diffsource mediumblob NOT NULL,
@@ -99,6 +103,7 @@ CREATE TABLE tx_bzdstaffdirectory_groups (
 	sorting int(10) DEFAULT '0' NOT NULL,
 	deleted tinyint(4) DEFAULT '0' NOT NULL,
 	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
 	sys_language_uid int(11) DEFAULT '0' NOT NULL,
 	l18n_parent int(11) DEFAULT '0' NOT NULL,
 	l18n_diffsource mediumblob NOT NULL,
