@@ -427,6 +427,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 				'maxitems' => 9999,
 				'MM' => 'tx_bzdstaffdirectory_persons_usergroups_mm',
 				'MM_foreign_select' => 1,
+				'MM_opposite_field' => 'uid_local',
 				'wizards' => array(
 					'_PADDING' => 2,
 					'_VERTICAL' => 1,
