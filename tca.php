@@ -89,7 +89,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 			'config' => array(
 				'type' => 'select',	
 				'foreign_table' => 'tx_bzdstaffdirectory_groups',	
-				'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_groups.uid',	
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_groups.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_groups.uid',	
 				'size' => 4,	
 				'minitems' => 0,
 				'maxitems' => 99,	
@@ -393,7 +393,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 			'config' => array(
 				'type' => 'select',	
 				'foreign_table' => 'tx_bzdstaffdirectory_persons',	
-				'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_persons.uid',	
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_persons.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_persons.uid',	
 				'size' => 4,	
 				'minitems' => 0,
 				'maxitems' => 99,	
@@ -421,7 +421,7 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 			'config' => array(
 				'type' => 'select',
 				'foreign_table' => 'tx_bzdstaffdirectory_persons',
-				'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_persons.last_name',
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_persons.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_persons.last_name',
 				'size' => 4,
 				'minitems' => 0,
 				'maxitems' => 9999,
