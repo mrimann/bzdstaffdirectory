@@ -1,6 +1,6 @@
 version 0.6.1 - currently working on
+- [#1746] Fix: Removed localized team/person names from the correspondig selectors in the BE form
 - [#1853] Fix: Bug with relations when edited from the team record
-
 
 version 0.6.0 - released 2008-04-17
 - [#1282] Feature: Remove links to the detail view
