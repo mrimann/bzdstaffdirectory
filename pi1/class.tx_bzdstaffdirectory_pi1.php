@@ -607,11 +607,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		$this->setMarkerContent('image', $this->getImage($person));
 
 		// create the link to the detail page
-		$linkParams = array(
-			'tx_bzdstaffdirectory_pi1[showUid]' => $this->getValue('uid', $person),
-			'tx_bzdstaffdirectory_pi1[backPid]' => $GLOBALS['TSFE']->id
-		);
-		$linkToDetailPage = $this->pi_linkTP($this->pi_getLL('label_link_detail'), $linkParams, true, $this->detailPage);
+		$linkToDetailPage = $this->linkToDetailPage($this->pi_getLL('label_link_detail'), $this->getValue('uid', $person));
 		$this->setMarkerContent('link_detail', $linkToDetailPage);
 
 		// merge the marker content with the template
@@ -1499,11 +1495,11 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$linkParams['tx_bzdstaffdirectory_pi1[backPid]'] = $GLOBALS['TSFE']->id;
 			}
 
-			$result = $this->pi_linkToPage(
+			$result = $this->pi_linkTP(
 				$textToLink,
-				$this->detailPage,
-				'',
-				$linkParams
+				$linkParams,
+				true,
+				$this->detailPage
 			);
 		} else {
 			$linkParams = array(
