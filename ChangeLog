@@ -1,4 +1,5 @@
 version 0.7.0 - currently working on
+- [#2038] Fix: Changed links to detail view to contain cHash
 - [#1746] Fix: Removed localized team/person names from the correspondig selectors in the BE form
 - [#1853] Fix: Bug with relations when edited from the team record
 - [#1640] Refactoring: Added person class
