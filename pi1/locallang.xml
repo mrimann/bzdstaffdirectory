@@ -19,7 +19,8 @@
 			<label index="label_first_name">First name:</label>
 			<label index="label_last_name">Last name:</label>
 			<label index="label_officehours">Office hours:</label>
-			<label index="label_location">Location:</label>
+			<label index="label_location_singular">Location:</label>
+			<label index="label_location_plural">Locations:</label>
 			<label index="label_tasks">Tasks:</label>
 			<label index="label_files">Files:</label>
 			<label index="label_groups_singular">Team:</label>
@@ -52,7 +53,8 @@
 			<label index="label_first_name">Vorname:</label>
 			<label index="label_last_name">Nachname:</label>
 			<label index="label_officehours">Bürozeiten:</label>
-			<label index="label_location">Standort:</label>
+			<label index="label_location_singular">Standort:</label>
+			<label index="label_location_plural">Standorte:</label>
 			<label index="label_tasks">Aufgaben:</label>
 			<label index="label_files">Dateien:</label>
 			<label index="label_groups_singular">Team:</label>
@@ -73,6 +75,7 @@
 			<label index="error_noGroupUID">Es ist keine Gruppe ausgewählt. Es muss mindestens eine Gruppe in den Einstellungen des Plugins ausgewählt werden.</label>
 			<label index="error_noDetailPage">Es ist keine Detailseite definiert. Bitte eine existierende Seite im Flexform oder im TS Setup definieren.</label>
 			<label index="error_recordNotTranslated">Dieser Datensatz ist noch nicht übersetzt und kann nicht angezeigt werden.</label>
+			<label index="label_location">Standort:</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email">Email:</label>
@@ -141,6 +144,8 @@
 			<label index="header_contactperson_plural" type="integer">243230036</label>
 			<label index="label_pleaseChoose" type="integer">82132055</label>
 			<label index="label_link_close" type="integer">118945459</label>
+			<label index="label_location_singular" type="integer">199837335</label>
+			<label index="label_location_plural" type="integer">30041596</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email" type="integer">233919839</label>
@@ -209,6 +214,8 @@
 			<label index="header_contactperson_plural">Your contact persons:</label>
 			<label index="label_pleaseChoose">please choose</label>
 			<label index="label_link_close">close</label>
+			<label index="label_location_singular">Location:</label>
+			<label index="label_location_plural">Locations:</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email">E-mail:</label>

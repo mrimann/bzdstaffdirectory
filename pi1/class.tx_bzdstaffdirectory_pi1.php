@@ -686,7 +686,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			'last_name',
 			'function',
 			'phone',
-			'location',
 			'tasks',
 			'room',
 			'officehours'
@@ -732,6 +731,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			$this->setMarkerContent('groups', $this->getGroups($this->showUid));
 		} else {
 			$this->readSubpartsToHide('groups', 'field_wrapper');
+		}
+
+		// Hides the locations line if the user has no location(s) assigned.
+		if ($this->getLocationsForPerson($this->showUid)) {
+			$this->setMarkerContent('location', $this->getLocationList($this->showUid));
+		} else {
+			$this->readSubpartsToHide('location', 'field_wrapper');
 		}
 
 		if ($this->hasValue('date_incompany', $person)) {
@@ -974,6 +980,62 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				$result = htmlspecialchars($actualGroup['group_name']);
 			}
 			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_singular'));
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns the HTML Code needed to show a list of location names on which a
+	 * user is located.
+	 *
+	 * If the location record is linked to a page that contains additional
+	 * information about this location, the entry in the returned list will be
+	 * linked to this page.
+	 *
+	 * @param	integer		the UID of the person to look up
+	 *
+	 * @return	string		HTML Code (unordered list if more than one location)
+	 */
+	function getLocationList($uid) {
+		$result = '';
+		$memberOf = $this->getLocationsForPerson($uid);
+		if (count($memberOf) > 1) {
+			// we have more than one location and need to build a list
+			foreach ($memberOf as $currentLocationUid) {
+				$currentLocation = $this->getLocationDetails($currentLocationUid, true);
+
+				// check if the location title should be linked to a detail page
+				if ($currentLocation['infopage']) {
+					$locationName = $this->pi_linkTP(
+						htmlspecialchars($currentLocation['title']),
+						array(),
+						true,
+						$currentLocation['infopage']
+					);
+				} else {
+					$locationName = htmlspecialchars($currentLocation['title']);
+				}
+				$memberOfList .= '<li>' . $locationName . '</li>';
+			}
+			$result = '<ul>' . $memberOfList . '</ul>';
+			$this->setMarkerContent('label_location', $this->pi_getLL('label_location_plural'));
+		} else {
+			// just one single location found, no list is needed
+			$currentLocation = $this->getLocationDetails($memberOf[0], true);
+
+			// check if the team name should be linked to the team page
+			if ($currentLocation['infopage']) {
+				$result = $this->pi_linkTP(
+					htmlspecialchars($currentLocation['title']),
+					array(),
+					true,
+					$currentLocation['infopage']
+				);
+			} else {
+				$result = htmlspecialchars($currentLocation['title']);
+			}
+			$this->setMarkerContent('label_location', $this->pi_getLL('label_location_singular'));
 		}
 
 		return $result;
@@ -1345,7 +1407,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 				'last_name',
 				'function',
 				'phone',
-				'location',
 				'opinion',
 				'tasks',
 				'room',
@@ -1633,6 +1694,56 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	}
 
 	/**
+	 * Queries the database and gets all details on the selected location.
+	 * 
+	 * @param	integer		the UID of the location to select
+	 * @param	boolean		whether to translate the records, default is no
+	 * 
+	 * @return	array		all the fields of the selected location, may be null
+	 */
+	function getLocationDetails($uid, $doTranslate = false) {
+		$resLocationDetails = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_locations',	// FROM
+			'uid = ' . $uid .t3lib_pageSelect::enableFields('tx_bzdstaffdirectory_locations'),	//WHERE
+			'',	// GROUP BY
+			'',	// ORDER BY
+			'1'	//LIMIT
+		);
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($resLocationDetails) > 0) {
+			$location = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($resLocationDetails);
+
+			// get the translated record if the content language is not the default language
+			if ($GLOBALS['TSFE']->sys_language_content && $doTranslate) {
+				$OLmode = ($this->sys_language_mode == 'strict'?'hideNonTranslated':'');
+				$translated_record = $GLOBALS['TSFE']->sys_page->getRecordOverlay(
+					'tx_bzdstaffdirectory_locations',
+					$location,
+					$GLOBALS['TSFE']->sys_language_content,
+					$OLmode
+				);
+				if ($this->sys_language_mode != 'strict'
+					OR !empty($translated_record['l18n_parent'])
+					) {
+					// found a valid translation, return the groups with the translated information.
+					$location = $translated_record;
+				} else {
+					// There's an empty translation found (can only happen if sys_language_mode = strict).
+					// Act as if NO group could be retrieved from the database.
+					$location = NULL;
+				}
+			} else {
+				// no translation requested or available - return the record in default language
+			}
+		} else {
+			$location = NULL;
+		}
+
+		return $location;
+	}
+
+
+	/**
 	 * Returns an array containing team UIDs of which the provided person is memberOf.
 	 * 
 	 * @param	integer		UID of the person to search for
@@ -1660,6 +1771,37 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			}
 		}
 		return $groups;
+	}
+
+	/**
+	 * Returns an array containing location UIDs that were assigned to a given
+	 * person.
+	 * 
+	 * @param	integer		UID of the person to search for
+	 * 
+	 * @return	array		containing location UIDs
+	 */
+	function getLocationsForPerson($uid) {
+		$locations = array();
+		
+		$res_locations = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_persons_locations_mm m'
+				.' left join tx_bzdstaffdirectory_locations l'
+				.' on m.uid_foreign=l.uid',	// FROM
+			'm.uid_local IN(' . $uid .')'
+				.' AND l.hidden=0 AND l.deleted=0',	//WHERE
+			'',	// GROUP BY
+			'm.sorting',	// ORDER BY
+			''	//LIMIT
+		);
+
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_locations) > 0)	{
+			while($location = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_locations))	{
+				$locations[] = $location['uid_foreign'];
+			}
+		}
+		return $locations;
 	}
 
 	/**

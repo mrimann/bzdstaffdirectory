@@ -1,6 +1,13 @@
 version 0.7.0 - currently working on
+- [#244] Feature: Add locations as relations
+
+- Change the output on pi1 (should work like the list of team where a person is
+a member)
+
+
+
 - [#2038] Fix: Changed links to detail view to contain cHash
-- [#1746] Fix: Removed localized team/person names from the correspondig selectors in the BE form
+- [#1746] Fix: Removed localized team/person names from the corresponding selectors in the BE form
 - [#1853] Fix: Bug with relations when edited from the team record
 - [#1640] Refactoring: Added person class
 - [#1641] Refactoring: Added team class

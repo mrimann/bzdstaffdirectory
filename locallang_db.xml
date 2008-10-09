@@ -42,6 +42,10 @@
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Group Leaders</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members">Group Members</label>
 			<label index="tx_bzdstaffdirectory_groups.infopage">Page with information about this team</label>
+			<label index="tx_bzdstaffdirectory_locations">Locations</label>
+			<label index="tx_bzdstaffdirectory_locations.title">Title</label>
+			<label index="tx_bzdstaffdirectory_locations.address">Address</label>
+			<label index="tx_bzdstaffdirectory_locations.infopage">Page with information about this location</label>
 			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
 			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>

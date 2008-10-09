@@ -188,12 +188,31 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 			)
 		),
 		'location' => array(
-			'l10n_mode' => $l10n_mode,
-			'exclude' => 1,		
-			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.location',		
+			'l10n_mode' => 'exclude',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons.location',
 			'config' => array(
-				'type' => 'input',	
-				'size' => '30'
+				'type' => 'select',
+				'foreign_table' => 'tx_bzdstaffdirectory_locations',
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_locations.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_locations.uid',	
+				'size' => 4,
+				'minitems' => 0,
+				'maxitems' => 99,
+				'MM' => 'tx_bzdstaffdirectory_persons_locations_mm',
+				'wizards' => array(
+					'_PADDING' => 2,
+					'_VERTICAL' => 1,
+					'list' => array(
+						'type' => 'script',
+						'title' => 'List',
+						'icon' => 'list.gif',
+						'params' => array(
+							'table'=>'tx_bzdstaffdirectory_locations',
+							'pid' => '###CURRENT_PID###',
+						),
+						'script' => 'wizard_list.php'
+					)
+				)
 			)
 		),
 		'room' => array(
@@ -500,4 +519,99 @@ $TCA['tx_bzdstaffdirectory_groups'] = array(
 		'1' => array('showitem' => '')
 	)
 );
+
+/*
+ * This is the default Table Configuration Array for the locations table.
+ */
+$TCA['tx_bzdstaffdirectory_locations'] = array(
+	'ctrl' => $TCA['tx_bzdstaffdirectory_locations']['ctrl'],
+	'interface' => array(
+		'showRecordFieldList' => 'hidden,title'
+	),
+	'feInterface' => $TCA['tx_bzdstaffdirectory_locations']['feInterface'],
+	'columns' => array(
+		'hidden' => array(
+			'l10n_mode' => $hideNewLocalizations,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.hidden',
+			'config' => array(
+				'type' => 'check',
+				'default' => '0'
+			)
+		),
+		'title' => array(
+			'l10n_mode' => $l10n_mode,
+			'exclude' => 1,		
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_locations.title',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30',
+			)
+		),
+		'address' => array(
+			'l10n_mode' => $l10n_mode,
+			'exclude' => 1,		
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_locations_address',		
+			'config' => array(
+				'type' => 'text',
+				'cols' => '30',	
+				'rows' => '5'
+			)
+		),
+		'infopage' => array(
+			'l10n_mode' => 'exclude',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_locations.infopage',
+			'config' => array(
+				'type' => 'group',
+				'internal_type' => 'db',
+				'allowed' => 'pages',
+				'size' => 1,
+				'minitems' => 0,
+				'maxitems' => 1,
+				'show_thumbs' => 1
+			)
+		),
+		'sys_language_uid' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'sys_language',
+				'foreign_table_where' => 'ORDER BY sys_language.title',
+				'items' => array(
+					array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1),
+					array('LLL:EXT:lang/locallang_general.php:LGL.default_value',0)
+				)
+			)
+		),
+		'l18n_parent' => array(
+			'displayCond' => 'FIELD:sys_language_uid:>:0',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+			'config' => array(
+				'type' => 'select',
+				'items' => array(
+					array(
+						'',
+						0
+					),
+				),
+				'foreign_table' => 'tx_bzdstaffdirectory_groups',
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_groups.uid=###CURRENT_PID### AND tx_bzdstaffdirectory_groups.sys_language_uid IN (-1,0)',
+			)
+		),
+		'l18n_diffsource' => array(
+			'config'=>array(
+				'type'=>'passthrough')
+		)
+	),
+	'types' => array(
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, title, address, infopage')
+	),
+	'palettes' => array(
+		'1' => array('showitem' => '')
+	)
+);
+
 ?>
