@@ -1,4 +1,5 @@
 version 0.7.0 - currently working on
+- [#2270] Fix: Compatibility with TYPO3 4.3
 - [#244] Feature: Add locations as relations
 - [#2038] Fix: Changed links to detail view to contain cHash
 - [#1746] Fix: Removed localized team/person names from the corresponding selectors in the BE form
