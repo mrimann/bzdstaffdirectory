@@ -29,8 +29,9 @@
 
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templateHelper.php');
 
-class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
+class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
 	var $scriptRelPath = 'pi1/class.tx_bzdstaffdirectory_pi1.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'bzd_staff_directory';	// The extension key.
@@ -133,7 +134,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					// Select the team leaders
 					$this->teamLeadersUIDArray = $this->getTeamLeadersFromMM(
 						$this->teamUidList,
-						$this->getConfValue('ignoreTeamLeaders', 's_teamlist')
+						$this->getConfValueBoolean('ignoreTeamLeaders', 's_teamlist')
 					);
 
 					// select the team members
@@ -1058,9 +1059,9 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		if (empty($fN) && $this->getConfValueBoolean('showDummyPictures', 's_template')) {
 			switch($this->getValue('gender', $person))
 			{
-				case 2	:	$lconf['image.']['file'] = $this->getConfValue('dummyPictureFemale', $sheet = 's_template', true);
+				case 2	:	$lconf['image.']['file'] = $this->getConfValueString('dummyPictureFemale', $sheet = 's_template', true);
 									break;
-				case 1	:	$lconf['image.']['file'] = $this->getConfValue('dummyPictureMale', $sheet = 's_template', true);
+				case 1	:	$lconf['image.']['file'] = $this->getConfValueString('dummyPictureMale', $sheet = 's_template', true);
 									break;
 				case 0	:	// The fallthrough is intended.
 				default	:	// no gender specified or "not defined" is selected
@@ -1226,12 +1227,12 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	 function getTeamLeadersFromMM($teamUIDs, $ignoreTeamLeaders = false) {
 	 	$groupLeaders = array();
 	 	$groupLeadersSorted = array();
-	 	$sortOrder = $this->getConfValue(
+	 	$sortOrder = $this->getConfValueString(
 			'sortOrderForLeaders',
 			's_teamlist'
 		);
 	 	if ($sortOrder) {
-	 		$sortOrder .= ' ' . $this->getConfValue(
+	 		$sortOrder .= ' ' . $this->getConfValueString(
 				'sortOrderForLeadersDirection',
 				's_teamlist'
 			);
@@ -1297,13 +1298,13 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 			return '';
 		}
 
-		$startingPoint = $this->getConfValue(
+		$startingPoint = $this->getConfValueInteger(
 			'startingpoint',
 			's_teamlist'
 		);
 
 		if ($this->hasConfValueInteger('recursive', 's_teamlist')) {
-			$recursion = $this->getConfValue(
+			$recursion = $this->getConfValueInteger(
 				'recursive',
 				's_teamlist'
 			);
@@ -1512,7 +1513,7 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 					$this->setMarkerContent(
 						$currentMarker,
 						$this->linkToDetailPage(
-							$this->markers[$this->createMarkerName($currentMarker)],
+							$this->getValue($currentMarker, $person),
 							$this->getValue('uid', $person)
 						)
 					);
@@ -1805,116 +1806,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 	}
 
 	/**
-	 * Gets a value from flexforms or TS setup.
-	 * The priority lies on flexforms; if nothing is found there, the value
-	 * from TS setup is returned. If there is no field with that name in TS setup,
-	 * an empty string is returned.
-	 *
-	 * @param	string		field name to extract
-	 * @param	string		sheet pointer, eg. "sDEF"
-	 * @param	string		whether this is a filename, which has to be combined with a path
-	 *
-	 * @return	string		the value of the corresponding flexforms or TS setup entry (may be empty)
-	 *
-	 * @access	private
-	 */
-	function getConfValue($fieldName, $sheet = 'sDEF', $isFileName = false) {
-		$flexformsValue = $this->pi_getFFvalue($this->cObj->data['pi_flexform'], $fieldName, $sheet);
-		if ($isFileName && !empty($flexformsValue)) {
-			$flexformsValue = $this->addPathToFileName($flexformsValue);
-		}
-		$confValue = isset($this->conf[$fieldName]) ? $this->conf[$fieldName] : '';
-
-		return ($flexformsValue) ? $flexformsValue : $confValue;
-	}
-
-	/**
-	 * Gets a trimmed string value from flexforms or TS setup.
-	 * The priority lies on flexforms; if nothing is found there, the value
-	 * from TS setup is returned. If there is no field with that name in TS setup,
-	 * an empty string is returned.
-	 *
-	 * @param	string		field name to extract
-	 * @param	string		sheet pointer, eg. "sDEF"
-	 * @param	string		whether this is a filename, which has to be combined with a path
-	 *
-	 * @return	string		the trimmed value of the corresponding flexforms or TS setup entry (may be empty)
-	 *
-	 * @access	protected
-	 */
-	function getConfValueString($fieldName, $sheet = 'sDEF', $isFileName = false) {
-		return trim($this->getConfValue($fieldName, $sheet, $isFileName));
-	}
-
-	/**
-	 * Checks whether a string value from flexforms or TS setup is set.
-	 * The priority lies on flexforms; if nothing is found there, the value
-	 * from TS setup is checked. If there is no field with that name in TS setup,
-	 * false is returned.
-	 *
-	 * @param	string		field name to extract
-	 * @param	string		sheet pointer, eg. "sDEF"
-	 *
-	 * @return	boolean		whether there is a non-empty value in the corresponding flexforms or TS setup entry
-	 *
-	 * @access	protected
-	 */
-	function hasConfValueString($fieldName, $sheet = 'sDEF') {
-		return ($this->getConfValueString($fieldName, $sheet) != '');
-	}
-
-	/**
-	 * Gets an integer value from flexforms or TS setup.
-	 * The priority lies on flexforms; if nothing is found there, the value
-	 * from TS setup is returned. If there is no field with that name in TS setup,
-	 * zero is returned.
-	 *
-	 * @param	string		field name to extract
-	 * @param	string		sheet pointer, eg. "sDEF"
-	 *
-	 * @return	integer		the inval'ed value of the corresponding flexforms or TS setup entry
-	 *
-	 * @access	protected
-	 */
-	function getConfValueInteger($fieldName, $sheet = 'sDEF') {
-		return intval($this->getConfValue($fieldName, $sheet));
-	}
-
-	/**
-	 * Checks whether an integer value from flexforms or TS setup is set and non-zero.
-	 * The priority lies on flexforms; if nothing is found there, the value
-	 * from TS setup is checked. If there is no field with that name in TS setup,
-	 * false is returned.
-	 *
-	 * @param	string		field name to extract
-	 * @param	string		sheet pointer, eg. "sDEF"
-	 *
-	 * @return	boolean		whether there is a non-zero value in the corresponding flexforms or TS setup entry
-	 *
-	 * @access	protected
-	 */
-	function hasConfValueInteger($fieldName, $sheet = 'sDEF') {
-		return (boolean) $this->getConfValueInteger($fieldName, $sheet);
-	}
-
-	/**
-	 * Gets a boolean value from flexforms or TS setup.
-	 * The priority lies on flexforms; if nothing is found there, the value
-	 * from TS setup is returned. If there is no field with that name in TS setup,
-	 * false is returned.
-	 *
-	 * @param	string		field name to extract
-	 * @param	string		sheet pointer, eg. "sDEF"
-	 *
-	 * @return	boolean		the boolean value of the corresponding flexforms or TS setup entry
-	 *
-	 * @access	protected
-	 */
-	function getConfValueBoolean($fieldName, $sheet = 'sDEF') {
-		return (boolean) $this->getConfValue($fieldName, $sheet);
-	}
-
-	/**
 	 * fills the internal array '$this->langArr' with the available syslanguages
 	 *
 	 * @return	void
@@ -1933,166 +1824,6 @@ class tx_bzdstaffdirectory_pi1 extends tslib_pibase {
 		}
 
 		return;
-	}
-
-	/**
-	 * Sets a marker's content.
-	 *
-	 * Example: If the prefix is "field" and the marker name is "one", the marker
-	 * "###FIELD_ONE###" will be written.
-	 *
-	 * If the prefix is empty and the marker name is "one", the marker
-	 * "###ONE###" will be written.
-	 *
-	 * @param	string		the marker's name without the ### signs, case-insensitive, will get uppercased, must not be empty
-	 * @param	string		the marker's content, may be empty
-	 * @param	string		prefix to the marker name (may be empty, case-insensitive, will get uppercased)
-	 *
-	 * @access	protected
-	 */
-	function setMarkerContent($markerName, $content, $prefix = '') {
-		$this->markers[$this->createMarkerName($markerName, $prefix)] = $content;
-
-		return;
-	}
-
-	/**
-	 * Takes a comma-separated list of subpart names and writes them to $this->subpartsToHide.
-	 * In the process, the names are changed from 'aname' to '###BLA_ANAME###' and used as keys.
-	 * The corresponding values in the array are empty strings.
-	 *
-	 * Example: If the prefix is "field" and the list is "one,two", the array keys
-	 * "###FIELD_ONE###" and "###FIELD_TWO###" will be written.
-	 *
-	 * If the prefix is empty and the list is "one,two", the array keys
-	 * "###ONE###" and "###TWO###" will be written.
-	 *
-	 * @param	string		comma-separated list of at least 1 subpart name to hide (case-insensitive, will get uppercased)
-	 * @param	string		prefix to the subpart names (may be empty, case-insensitive, will get uppercased)
-	 *
-	 * @access	protected
-	 */
-	function readSubpartsToHide($subparts, $prefix = '') {
-		$subpartNames = explode(',', $subparts);
-
-		foreach ($subpartNames as $currentSubpartName) {
-			$this->subpartsToHide[$this->createMarkerName($currentSubpartName, $prefix)] = '';
-		}
-
-		return;
-	}
-
-	/**
-	 * Creates an uppercase marker (or subpart) name from a given name and an optional prefix.
-	 *
-	 * Example: If the prefix is "field" and the marker name is "one", the result will be
-	 * "###FIELD_ONE###".
-	 *
-	 * If the prefix is empty and the marker name is "one", the result will be "###ONE###".
-	 *
-	 * @param	string		the name of the marker, case insensitive (will be uppercased), must not be empty
-	 * @param	string		the prefix, case insensitive (will be uppercased), may be empty
-	 *
-	 * @access	private
-	 */
-	function createMarkerName($markerName, $prefix = '') {
-		// if a prefix is provided, uppercase it and separate it with an underscore
-		if ($prefix) {
-			$prefix = strtoupper($prefix).'_';
-		}
-
-		return '###'.$prefix.strtoupper(trim($markerName)).'###';
-	}
-
-	/**
-	 * Multi substitution function with caching. Wrapper function for cObj->substituteMarkerArrayCached(),
-	 * using $this->markers and $this->subparts as defaults.
-	 *
-	 * During the process, the following happens:
-	 * 1. $this->subpartsTohide will be removed
-	 * 2. for the other subparts, the subpart marker comments will be removed
-	 * 3. markes are replaced with their corresponding contents.
-	 *
-	 * @param	string		key of the subpart from $this->templateCache, e.g. 'LIST_ITEM' (without the ###)
-	 *
-	 * @return	string		content stream with the markers replaced
-	 *
-	 * @access	protected
-	 */
-	function substituteMarkerArrayCached($key) {
-		// remove subparts (lines) that will be hidden
-		$noHiddenSubparts = $this->cObj->substituteMarkerArrayCached($this->templateCache[$key], array(), $this->subpartsToHide);
-
-		// remove subpart markers by replacing the subparts with just their content
-		$noSubpartMarkers = $this->cObj->substituteMarkerArrayCached($noHiddenSubparts, array(), $this->templateCache);
-
-		// replace markers with their content
-		return $this->cObj->substituteMarkerArrayCached($noSubpartMarkers, $this->markers);
-	}
-
-	/**
-	 * Retrieves all subparts from the plugin template and write them to $this->templateCache.
-	 *
-	 * The subpart names are automatically retrieved from the template file set in $this->conf['templateFile']
-	 * (or via flexforms) and are used as array keys. For this, the ### are removed, but the names stay uppercase.
-	 *
-	 * Example: The subpart ###MY_SUBPART### will be stored with the array key 'MY_SUBPART'.
-	 *
-	 * Please note that each subpart may only occur once in the template file.
-	 *
-	 * @access	protected
-	 */
-	function getTemplateCode() {
-		/** the whole template file as a string */
-		$templateRawCode = $this->cObj->fileResource($this->getConfValueString('templateFile', 's_template', true));
-		$this->markerNames = $this->findMarkers($templateRawCode);
-
-		$subpartNames = $this->findSubparts($templateRawCode);
-
-		foreach ($subpartNames as $currentSubpartName) {
-			$this->templateCache[$currentSubpartName] = $this->cObj->getSubpart($templateRawCode, $currentSubpartName);
-		}
-		return;
-	}
-
-	/**
-	 * Finds all subparts within a template.
-	 * The subparts must be within HTML comments.
-	 *
-	 * @param	string		the whole template file as a string
-	 *
-	 * @return	array		a list of the subpart names (uppercase, without ###, e.g. 'MY_SUBPART')
-	 *
-	 * @access	protected
-	 */
-	function findSubparts($templateRawCode) {
-		$matches = array();
-		preg_match_all('/<!-- *(###)([^#]+)(###)/', $templateRawCode, $matches);
-
-		return array_unique($matches[2]);
-	}
-
-	/**
-	 * Finds all markers within a template.
-	 * Note: This also finds subpart names.
-	 *
-	 * The result is one long string that is easy to process using regular expressions.
-	 *
-	 * Example: If the markers ###FOO### and ###BAR### are found, the string "#FOO#BAR#" would be returned.
-	 *
-	 * @param	string		the whole template file as a string
-	 *
-	 * @return	string		a list of markes as one long string, separated, prefixed and postfixed by '#'
-	 *
-	 * @access	private
-	 */
-	function findMarkers($templateRawCode) {
-		$matches = array();
-		preg_match_all('/(###)([^#]+)(###)/', $templateRawCode, $matches);
-
-		$markerNames = array_unique($matches[2]);
-
-		return '#'.implode('#', $markerNames).'#';
 	}
 
 	/**
