@@ -11,6 +11,7 @@
 		<languageKey index="default" type="array">
 			<label index="label_email">E-mail:</label>
 			<label index="label_phone">Phone:</label>
+			<label index="label_xing">XING:</label>
 			<label index="label_room">Room:</label>
 			<label index="label_function">Function:</label>
 			<label index="label_date_incompany">In company since:</label>
@@ -80,6 +81,7 @@
 		<languageKey index="fr" type="array">
 			<label index="label_email">Email:</label>
 			<label index="label_phone">Téléphone:</label>
+			<label index="label_xing">Xing:</label>
 			<label index="label_room">Secteur:</label>
 			<label index="label_function">Fonction:</label>
 			<label index="label_date_incompany">Travaille pour la Société depuis:</label>
@@ -88,7 +90,8 @@
 			<label index="label_first_name">Prénom:</label>
 			<label index="label_last_name">Nom:</label>
 			<label index="label_officehours">Horaires bureau:</label>
-			<label index="label_location">Ville:</label>
+			<label index="label_location_singular">Standort:</label>
+			<label index="label_location_plural">Standorte:</label>
 			<label index="label_tasks">Tâches:</label>
 			<label index="label_files">Fichiers:</label>
 			<label index="label_groups_singular">Équipe:</label>
@@ -109,6 +112,7 @@
 			<label index="error_noGroupUID">Aucun groupe choisi. Au moins un groupe doit être choisi dans les réglages du Plugin.</label>
 			<label index="error_noDetailPage">Aucune page détails définie. Sélectionner svp une page existante sous forme flexible ou Setup type script.</label>
 			<label index="error_recordNotTranslated">Cette information n'est pas encore traduite et ne peut être affichée.</label>
+			<label index="label_location">Ville:</label>
 		</languageKey>
 	</data>
 	<orig_hash type="array">
@@ -179,6 +183,9 @@
 			<label index="label_room" type="integer">121727316</label>
 			<label index="label_pleaseChoose" type="integer">82132055</label>
 			<label index="label_link_close" type="integer">118945459</label>
+			<label index="label_xing" type="integer">37974788</label>
+			<label index="label_location_singular" type="integer">199837335</label>
+			<label index="label_location_plural" type="integer">30041596</label>
 		</languageKey>
 	</orig_hash>
 	<orig_text type="array">
@@ -249,6 +256,9 @@
 			<label index="label_room">Room:</label>
 			<label index="label_pleaseChoose">please choose</label>
 			<label index="label_link_close">close</label>
+			<label index="label_xing">XING:</label>
+			<label index="label_location_singular">Location:</label>
+			<label index="label_location_plural">Locations:</label>
 		</languageKey>
 	</orig_text>
 </T3locallang>

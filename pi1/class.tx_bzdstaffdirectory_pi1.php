@@ -294,6 +294,8 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	function showTeamListGrouped() {
 		$content = '';
 
+		$this->setLabelFields();
+
 		// get the teams (ordered as in the content element) and add them to an
 		// array.
 		$selectedGroups = $this->getConfValueString('usergroup', 's_teamlist');
@@ -359,6 +361,8 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	 * @return	string		the HTML output
 	 */
 	function showTeamlistMixed() {
+		$this->setLabelFields();
+
 		// create and display the list header
 		$content = $this->createListHeader();
 
@@ -1370,6 +1374,45 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		return $groupMembersSorted;
 	}
 
+	/**
+	 * Sets all the labels that could be used in the template.
+	 */
+	function setLabelFields() {
+		$allLabelFields = array(
+			'function',
+			'phone',
+			'email',
+			'xing',
+			'room',
+			'officehours',
+			'location',
+			'tasks',
+			'files',
+			'groups',
+			'date_birthdate',
+			'date_incompany',
+			'date_age',
+			'first_name',
+			'last_name',
+			'officehours',
+			'location_singular',
+			'tasks',
+			'files',
+			'groups_singular',
+			'opinion',
+			'universal_field_1',
+			'universal_field_2',
+			'universal_field_3',
+			'universal_field_4',
+			'universal_field_5',
+		);
+		foreach($allLabelFields as $key) {
+			$this->setMarkerContent(
+				'label_'.$key,
+				$this->pi_getLL('label_'.$key)
+			);
+		}
+	}
 
 	/**
 	 * Generates the HTML output for the list entry of exact one person.
@@ -1427,7 +1470,6 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			foreach($allStandardFields as $key) {
 				if ($this->hasValue($key, $person)) {
 					$this->setMarkerContent($key, $this->getValue($key, $person, true));
-					$this->setMarkerContent('label_'.$key, $this->pi_getLL('label_'.$key));
 				} else {
 					$this->readSubpartsToHide($key, 'listitem_wrapper');
 				}
