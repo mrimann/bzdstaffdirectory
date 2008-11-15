@@ -38,7 +38,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	var $pi_checkCHash = TRUE;
 	var $langArr;
 	var $sys_language_mode;
-	
+
 	/**
 	 * [Put your description here]
 	 */
@@ -75,7 +75,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 		// Get Listing-Type from Flexform-Settings
 		$this->code = (string)strtoupper(trim($this->pi_getFFvalue($this->cObj->data['pi_flexform'],'listtype','s_welcome')));
-		
+
 		// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
 		$this->lconf = $this->conf[$this->code."."];
 
@@ -99,7 +99,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Generates a teamlist. The teamleaders are shown on top of the list, then the rest of the team members follow.
-	 * 
+	 *
 	 * @return	string		the complete HTML Output for this module
 	 */
 	function show_teamlist()	{
@@ -122,8 +122,8 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		if (!empty($this->detailPage)) {
 			if ($this->getConfValueBoolean('ignoreGroupSelection','s_teamlist')) {
 				// Define the PID for the startingpoint
-				$startingpoint = $this->getConfValueInteger('startingpoint','s_teamlist');
-	
+				$startingpoint = $this->getAllowedPids();
+
 				$this->teamMembersUIDArray = $this->getTeamMembersFromStartingpoint($startingpoint, $this->teamListSortOrder);
 
 				// Initialize the team leaders array as an empty array as no team leaders
@@ -307,7 +307,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		foreach ($teams as $currentTeam) {
 			$groupLeaderUIDs = $this->getTeamLeadersFromMM(
 				$currentTeam['uid'],
-				$this->getConfValue('ignoreTeamLeaders', 's_teamlist')
+				$this->getConfValueBoolean('ignoreTeamLeaders', 's_teamlist')
 			);
 			$groupMemberUIDs = $this->getTeamMembersFromMM(
 				$currentTeam['uid'],
@@ -644,7 +644,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			'',	// ORDER BY
 			'1'	//LIMIT
 		);
-		
+
 		// Check if there's a person to display. Otherwise show an error message.
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_person) > 0 )	{
 			$row_person = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_person);
@@ -1070,7 +1070,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 			// just set the unisex dummy image, if this is not forbidden in the setup
 			if ($lconf['image.']['file'] == '' && $this->getConfValueBoolean('showUnisexDummyImage', 's_template')) {
-				$lconf['image.']['file'] = $this->getConfValue('dummyPictureDefault', $sheet = 's_template', true);			
+				$lconf['image.']['file'] = $this->getConfValueString('dummyPictureDefault', $sheet = 's_template', true);
 			}
 		} else {
 			$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' . $fN;
@@ -1117,7 +1117,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 								break;
 			case "asimagejsencrypted":	$emailArray = $this->email_asimage($address, true);
 								break;
-			case "plain"		:	
+			case "plain"		:
 			default				:	$emailArray['display'] = $address;
 								break;
 		}
@@ -1128,9 +1128,9 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Converts an Array (which contains UIDs) to a comma separated string to use in DB queries.
-	 * 
+	 *
 	 * @param	array	the UIDs
-	 * 
+	 *
 	 * @return	string	the UIDs, comma separated
 	 */
 	function convertArrayToCommaseparatedString($inputArray) {
@@ -1140,14 +1140,14 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			$result .= ', ' . $uid;
 		}
 
-		return trim($result, ',');	
+		return trim($result, ',');
 	}
 
 
 	/**
 	 * Queries the Database to select all details of a single person.
 	 * If requested, it gets overlayed with a valid translation and given back as a translated record.
-	 * 
+	 *
 	 * @param	integer		the uid of the person to fetch from the database
 	 * @param	bolean		whether it should get translated or not, default is not to translate
 	 *
@@ -1254,12 +1254,12 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 				'sorting',	// ORDER BY
 				''	//LIMIT
 			);
-	
+
 			if ($GLOBALS['TYPO3_DB']->sql_num_rows($res_groupLeaders) > 0)	{
 				while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groupLeaders))	{
 					$groupLeaders[] = $member['uid_foreign'];
 				}
-	
+
 				// Maybe we need to bring the (now unordered) users into a certain
 				// sorting.
 				if ($sortOrder != 'sorting ASC' AND $sortOrder != 'sorting DESC') {
@@ -1323,10 +1323,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	/**
 	 * Gets all associated team members for a given team.
 	 * The persons can be sorted by a given sort order.
-	 * 
+	 *
 	 * @param	string		comma separated list of team UIDs to look for
 	 * @param	string		field name used to order the records
-	 * 
+	 *
 	 * @return	array		array of all member uids
 	 */
 	function getTeamMembersFromMM($team_uid, $sortOrder = '') {
@@ -1373,10 +1373,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Generates the HTML output for the list entry of exact one person.
-	 * 
+	 *
 	 * @param	integer		the uid of the person to show
 	 * @param	boolean		whether this person is a group leader or not
-	 * 
+	 *
 	 * @return	string		the complete HTML for this persons entry in the list
 	 */
 	function showPersonInTeamList($uid, $isLeader = false)	{
@@ -1595,10 +1595,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Returns an image containing the provided e-mail address
-	 * 
+	 *
 	 * @param	string		the e-mail address to protect
 	 * @param	boolean		whether the image should include an encrypted link
-	 * 
+	 *
 	 * @return	array		associative array containing the infos to fill the markers
 	 */
 	function email_asimage($email, $includeEncryptedLink = false)	{
@@ -1621,7 +1621,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			$result['begin'] = '';
 			$result['end'] = '';
 		}
-		
+
 		return $result;
 	}
 
@@ -1629,9 +1629,9 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	/**
 	 * Returns the provided e-mail address encrypted with the default
 	 * TYPO3-JavaScript-Encryption.
-	 * 
+	 *
 	 * @param	string		the e-mail address to protect
-	 * 
+	 *
 	 * @return	array		associative array containing the parts to fill the markers
 	 */
 	function email_jsencrypted($email)	{
@@ -1647,10 +1647,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Queries the database and gets all details on the selected groups/teams.
-	 * 
+	 *
 	 * @param	integer		the UID of the team to select
 	 * @param	boolean		whether to translate the records, default is no
-	 * 
+	 *
 	 * @return	array		all the fields of the selected team, may be null
 	 */
 	function getTeamDetails($uid, $doTranslate = false) {
@@ -1696,10 +1696,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Queries the database and gets all details on the selected location.
-	 * 
+	 *
 	 * @param	integer		the UID of the location to select
 	 * @param	boolean		whether to translate the records, default is no
-	 * 
+	 *
 	 * @return	array		all the fields of the selected location, may be null
 	 */
 	function getLocationDetails($uid, $doTranslate = false) {
@@ -1746,14 +1746,14 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 	/**
 	 * Returns an array containing team UIDs of which the provided person is memberOf.
-	 * 
+	 *
 	 * @param	integer		UID of the person to search for
-	 * 
+	 *
 	 * @return	array		containing team UIDs
 	 */
 	function getMemberOfGroups($uid) {
 		$groups = array();
-		
+
 		$res_groups = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_persons_usergroups_mm m'
@@ -1777,14 +1777,14 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	/**
 	 * Returns an array containing location UIDs that were assigned to a given
 	 * person.
-	 * 
+	 *
 	 * @param	integer		UID of the person to search for
-	 * 
+	 *
 	 * @return	array		containing location UIDs
 	 */
 	function getLocationsForPerson($uid) {
 		$locations = array();
-		
+
 		$res_locations = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
 			'*',	// SELECT
 			'tx_bzdstaffdirectory_persons_locations_mm m'
@@ -1861,7 +1861,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		} else {
 			$result = $person[$key];
 		}
-		
+
 		return $result;
 	}
 
@@ -1908,7 +1908,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	 * @param	string		the path to the file (without filename), must contain a slash at the end, may contain a slash at the beginning (if not relative)
 	 *
 	 * @return	string		the complete path including file name
-	 * 
+	 *
 	 * @access	protected
 	 */
 	function addPathToFileName($fileName, $path = '') {
