@@ -1,3 +1,6 @@
+version 0.8.0 - currently working on
+
+
 version 0.7.0 - released 2008-11-24
 - [#2349] Change: Enabled setting of labels for whole template (thanks to Olaf Schumann)
 - [#2351] Fix: Recursive flag not taken into account when "Ignore group selection" active (Thanks to Olaf Schumann)
