@@ -1,3 +1,6 @@
+version 0.7.1 - currently working on
+- [#2382] Fix: PHP error when loading oelib template helper due to camel-case filename
+
 version 0.7.0 - released 2008-11-24
 - [#2349] Change: Enabled setting of labels for whole template (thanks to Olaf Schumann)
 - [#2351] Fix: Recursive flag not taken into account when "Ignore group selection" active (Thanks to Olaf Schumann)
