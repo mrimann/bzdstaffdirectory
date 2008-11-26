@@ -29,7 +29,7 @@
 
 
 require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templateHelper.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php');
 
 class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
