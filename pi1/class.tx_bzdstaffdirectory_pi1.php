@@ -187,20 +187,20 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 					$GLOBALS['TSFE']->id
 				);
 				$url .= '#bzdgroup_'.$currentTeam['uid'];
-				$this->setMarkerContent('jumpmenu_id', $url);
-				$this->setMarkerContent(
+				$this->setMarker('jumpmenu_id', $url);
+				$this->setMarker(
 					'jumpmenu_name',
 					htmlspecialchars($currentTeam['group_name'])
 				);
 				// merge the marker content with the template
-				$options .= $this->substituteMarkerArrayCached('JUMPMENU_ITEM');
+				$options .= $this->getSubpart('JUMPMENU_ITEM');
 			}
 		}
 
 		// merge the jumpmenu template with some content
-		$this->setMarkerContent('jumpmenu_options', $options);
-		$this->setMarkerContent('jumpmenu_please_choose', $this->pi_getLL('label_pleaseChoose'));
-		$result = $this->substituteMarkerArrayCached('TEMPLATE_JUMPMENU');
+		$this->setMarker('jumpmenu_options', $options);
+		$this->setMarker('jumpmenu_please_choose', $this->pi_getLL('label_pleaseChoose'));
+		$result = $this->getSubpart('TEMPLATE_JUMPMENU');
 
 		return $result;
 	}
@@ -318,15 +318,15 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 			// set the header for each team
 			$currentTeamHTML = '';
-			$this->setMarkerContent(
+			$this->setMarker(
 				'anchor',
 				'bzdgroup_'.$currentTeam['uid']
 			);
-			$this->setMarkerContent(
+			$this->setMarker(
 				'team_name',
 				$currentTeam['group_name']
 			);
-			$currentTeamHeader = $this->substituteMarkerArrayCached('TEAM_HEADER');
+			$currentTeamHeader = $this->getSubpart('TEAM_HEADER');
 
 			// Now output the team leaders and members
 			foreach($groupLeaderUIDs as $currentLeaderUID) {
@@ -523,12 +523,12 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 			// define the header, will always be shown
 			if (count($personUIDs) > 1) {
-				$this->setMarkerContent('header_contactperson', $this->pi_getLL('header_contactperson_plural'));
+				$this->setMarker('header_contactperson', $this->pi_getLL('header_contactperson_plural'));
 			} else {
-				$this->setMarkerContent('header_contactperson', $this->pi_getLL('header_contactperson_singular'));
+				$this->setMarker('header_contactperson', $this->pi_getLL('header_contactperson_singular'));
 			}
 
-			$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX_HEADER');
+			$content .= $this->getSubpart('TEMPLATE_BOX_HEADER');
 
 			foreach ($personUIDs as $currentUID) {
 				// get the details of the contact person from the database
@@ -561,7 +561,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 				// unset the person array for next loop
 				unset($person);
 			}
-			$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX_FOOTER');
+			$content .= $this->getSubpart('TEMPLATE_BOX_FOOTER');
 		} else {
 			// no person is found for this page - that's ok, no error message
 		}
@@ -581,42 +581,42 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$this->detailPage = $this->getConfValueInteger('detailPage', 's_contactbox');
 
 		if ($this->hasValue('title', $person)) {
-			$this->setMarkerContent('title', $this->getValue('title', $person, true));
-			$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
+			$this->setMarker('title', $this->getValue('title', $person, true));
+			$this->setMarker('label_title', $this->pi_getLL('label_title'));
 		} else {
-			$this->readSubpartsToHide('title', 'field_wrapper');
+			$this->hideSubparts('title', 'field_wrapper');
 		}
 
 		if ($this->hasValue('first_name', $person)) {
-			$this->setMarkerContent('first_name', $this->getValue('first_name', $person, true));
-			$this->setMarkerContent('label_first_name', $this->pi_getLL('label_first_name'));
+			$this->setMarker('first_name', $this->getValue('first_name', $person, true));
+			$this->setMarker('label_first_name', $this->pi_getLL('label_first_name'));
 		} else {
-			$this->readSubpartsToHide('first_name', 'field_wrapper');
+			$this->hideSubparts('first_name', 'field_wrapper');
 		}
 
 		if ($this->hasValue('last_name', $person)) {
-			$this->setMarkerContent('last_name', $this->getValue('last_name', $person, true));
-			$this->setMarkerContent('label_last_name', $this->pi_getLL('label_last_name'));
+			$this->setMarker('last_name', $this->getValue('last_name', $person, true));
+			$this->setMarker('label_last_name', $this->pi_getLL('label_last_name'));
 		} else {
-			$this->readSubpartsToHide('last_name', 'field_wrapper');
+			$this->hideSubparts('last_name', 'field_wrapper');
 		}
 
 		if ($this->hasValue('function', $person)) {
-			$this->setMarkerContent('function', $this->getValue('function', $person, true));
-			$this->setMarkerContent('label_function', $this->pi_getLL('label_function'));
+			$this->setMarker('function', $this->getValue('function', $person, true));
+			$this->setMarker('label_function', $this->pi_getLL('label_function'));
 		} else {
-			$this->readSubpartsToHide('function', 'field_wrapper');
+			$this->hideSubparts('function', 'field_wrapper');
 		}
 
 		// define the marker for the image (always shown)
-		$this->setMarkerContent('image', $this->getImage($person));
+		$this->setMarker('image', $this->getImage($person));
 
 		// create the link to the detail page
 		$linkToDetailPage = $this->linkToDetailPage($this->pi_getLL('label_link_detail'), $this->getValue('uid', $person));
-		$this->setMarkerContent('link_detail', $linkToDetailPage);
+		$this->setMarker('link_detail', $linkToDetailPage);
 
 		// merge the marker content with the template
-		$content .= $this->substituteMarkerArrayCached('TEMPLATE_BOX_PERSON');
+		$content .= $this->getSubpart('TEMPLATE_BOX_PERSON');
 
 		return $content;
 	}
@@ -701,101 +701,101 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			if ($this->arrConf['useUniversalField_' . $i]) {
 				$allStandardFields[] = 'universal_field_' . $i;
 			} else {
-				$this->readSubpartsToHide('universal_field_' . $i, 'field_wrapper');
+				$this->hideSubparts('universal_field_' . $i, 'field_wrapper');
 			}
 		}
 
 		// fill the markers of all the simple fields
 		foreach($allStandardFields as $key) {
 			if ($this->hasValue($key, $person)) {
-				$this->setMarkerContent($key, $this->getValue($key, $person, true));
-				$this->setMarkerContent('label_'.$key, $this->pi_getLL('label_'.$key));
+				$this->setMarker($key, $this->getValue($key, $person, true));
+				$this->setMarker('label_'.$key, $this->pi_getLL('label_'.$key));
 			} else {
-				$this->readSubpartsToHide($key, 'field_wrapper');
+				$this->hideSubparts($key, 'field_wrapper');
 			}
 		}
 
 		// define the other markers
 		if ($this->hasValue('title', $person)) {
-			$this->setMarkerContent('title', $this->getValue('title', $person, true));
-			$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
+			$this->setMarker('title', $this->getValue('title', $person, true));
+			$this->setMarker('label_title', $this->pi_getLL('label_title'));
 		} else {
-			$this->readSubpartsToHide('title', 'field_wrapper');
+			$this->hideSubparts('title', 'field_wrapper');
 		}
 
 		if ($this->hasValue('email', $person)) {
 			$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview');
-			$this->setMarkerContent('email', $this->getEmail($person, $spamProtectionMode));
-			$this->setMarkerContent('label_email', $this->pi_getLL('label_email'));
+			$this->setMarker('email', $this->getEmail($person, $spamProtectionMode));
+			$this->setMarker('label_email', $this->pi_getLL('label_email'));
 		} else {
-			$this->readSubpartsToHide('email', 'field_wrapper');
+			$this->hideSubparts('email', 'field_wrapper');
 		}
 
 		// Hide the groups line if the user is not member in any of the groups.
 		if ($this->getMemberOfGroups($this->showUid)) {
-			$this->setMarkerContent('groups', $this->getGroups($this->showUid));
+			$this->setMarker('groups', $this->getGroups($this->showUid));
 		} else {
-			$this->readSubpartsToHide('groups', 'field_wrapper');
+			$this->hideSubparts('groups', 'field_wrapper');
 		}
 
 		// Hides the locations line if the user has no location(s) assigned.
 		if ($this->getLocationsForPerson($this->showUid)) {
-			$this->setMarkerContent('location', $this->getLocationList($this->showUid));
+			$this->setMarker('location', $this->getLocationList($this->showUid));
 		} else {
-			$this->readSubpartsToHide('location', 'field_wrapper');
+			$this->hideSubparts('location', 'field_wrapper');
 		}
 
 		if ($this->hasValue('date_incompany', $person)) {
-			$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
-			$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
+			$this->setMarker('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
+			$this->setMarker('label_date_incompany', $this->pi_getLL('label_date_incompany'));
 		} else {
-			$this->readSubpartsToHide('date_incompany', 'field_wrapper');
+			$this->hideSubparts('date_incompany', 'field_wrapper');
 		}
 
 		if ($this->hasValue('opinion', $person)) {
-			$this->setMarkerContent(
+			$this->setMarker(
 				'opinion',
 				$this->pi_RTEcssText($this->getValue('opinion', $person, false))
 			);
-			$this->setMarkerContent('label_opinion', $this->pi_getLL('label_opinion'));
+			$this->setMarker('label_opinion', $this->pi_getLL('label_opinion'));
 		} else {
-			$this->readSubpartsToHide('opinion', 'field_wrapper');
+			$this->hideSubparts('opinion', 'field_wrapper');
 		}
 
 		if ($this->hasValue('date_birthdate', $person)) {
 			if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
 				// show the age of the person instead of the birthdate
-				$this->setMarkerContent('date_birthdate', $this->getAge($person['date_birthdate']));
-				$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_age'));
+				$this->setMarker('date_birthdate', $this->getAge($person['date_birthdate']));
+				$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_age'));
 			} else {
 				// show the birthdate
-				$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
-				$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+				$this->setMarker('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
+				$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
 			}
 		} else {
-			$this->readSubpartsToHide('date_birthdate', 'field_wrapper');
+			$this->hideSubparts('date_birthdate', 'field_wrapper');
 		}
 
 		// Shows a XING Icon that is linked to the person's XING profile, if
 		// a URL to the profile was stored for this person.
 		if ($this->hasValue('xing_profile_url', $person)) {
-			$this->setMarkerContent('xing', $this->getLinkedXingIcon($person));
-			$this->setMarkerContent('label_xing', $this->pi_getLL('label_xing'));
+			$this->setMarker('xing', $this->getLinkedXingIcon($person));
+			$this->setMarker('label_xing', $this->pi_getLL('label_xing'));
 		} else {
-			$this->readSubpartsToHide('xing', 'field_wrapper');
+			$this->hideSubparts('xing', 'field_wrapper');
 		}
 
 		if ($this->hasValue('files', $person)) {
-			$this->setMarkerContent('files', $this->getFileList($person));
-			$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
+			$this->setMarker('files', $this->getFileList($person));
+			$this->setMarker('label_files', $this->pi_getLL('label_files'));
 		} else {
-			$this->readSubpartsToHide('files', 'field_wrapper');
+			$this->hideSubparts('files', 'field_wrapper');
 		}
 
 		// The image is shown in every case, the subpart will never be hidden.
 		// If no image is stored for this user, a dummy picture will be shown.
-		$this->setMarkerContent('image', $this->getImage($person));
-		$this->setMarkerContent('label_image', $this->pi_getLL('label_image'));
+		$this->setMarker('image', $this->getImage($person));
+		$this->setMarker('label_image', $this->pi_getLL('label_image'));
 
 		// define the marker for the back link
 		if ($this->weAreInPopUp) {
@@ -803,7 +803,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			$linkTag = '<a href="#" onClick="window.close()">'
 				.$this->pi_getLL('label_link_close')
 				.'</a>';
-			$this->setMarkerContent(
+			$this->setMarker(
 				'link_back',
 				$linkTag
 			);
@@ -811,7 +811,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		} else {
 			// Render a "back" link, the link is only shown if $this->backPid is set!
 			if ($this->backPid) {
-				$this->setMarkerContent(
+				$this->setMarker(
 					'link_back',
 					$this->pi_linkTP(
 						$this->pi_getLL('label_link_back'),
@@ -820,7 +820,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 						$this->backPid)
 					);
 			} else {
-				$this->readSubpartsToHide('link_back', 'field_wrapper');
+				$this->hideSubparts('link_back', 'field_wrapper');
 			}
 		}
 
@@ -835,7 +835,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$GLOBALS['TSFE']->page['title'] = $indexedPageTitle;
 
 		// merge the marker content with the template
-		$content .= $this->substituteMarkerArrayCached('TEMPLATE_DETAIL');
+		$content .= $this->getSubpart('TEMPLATE_DETAIL');
 
 		return $content;
 	}
@@ -968,7 +968,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 				$memberOfList .= '<li>' . $teamName . '</li>';
 			}
 			$result = '<ul>' . $memberOfList . '</ul>';
-			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_plural'));
+			$this->setMarker('label_groups', $this->pi_getLL('label_groups_plural'));
 		} else {
 			// just one single group found, no list is needed
 			$actualGroup = $this->getTeamDetails($memberOf[0], true);
@@ -984,7 +984,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			} else {
 				$result = htmlspecialchars($actualGroup['group_name']);
 			}
-			$this->setMarkerContent('label_groups', $this->pi_getLL('label_groups_singular'));
+			$this->setMarker('label_groups', $this->pi_getLL('label_groups_singular'));
 		}
 
 		return $result;
@@ -1024,7 +1024,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 				$memberOfList .= '<li>' . $locationName . '</li>';
 			}
 			$result = '<ul>' . $memberOfList . '</ul>';
-			$this->setMarkerContent('label_location', $this->pi_getLL('label_location_plural'));
+			$this->setMarker('label_location', $this->pi_getLL('label_location_plural'));
 		} else {
 			// just one single location found, no list is needed
 			$currentLocation = $this->getLocationDetails($memberOf[0], true);
@@ -1040,7 +1040,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			} else {
 				$result = htmlspecialchars($currentLocation['title']);
 			}
-			$this->setMarkerContent('label_location', $this->pi_getLL('label_location_singular'));
+			$this->setMarker('label_location', $this->pi_getLL('label_location_singular'));
 		}
 
 		return $result;
@@ -1407,7 +1407,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			'universal_field_5',
 		);
 		foreach($allLabelFields as $key) {
-			$this->setMarkerContent(
+			$this->setMarker(
 				'label_'.$key,
 				$this->pi_getLL('label_'.$key)
 			);
@@ -1431,16 +1431,16 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$person = $this->getPersonDetails($uid, true);
 		if ($person) {
 			if ($isLeader) {
-				$this->setMarkerContent('class', 'tx_bzdstaffdirectory_teamlist_person, leader');
+				$this->setMarker('class', 'tx_bzdstaffdirectory_teamlist_person, leader');
 			} else {
-				$this->setMarkerContent('class', 'tx_bzdstaffdirectory_teamlist_person');
+				$this->setMarker('class', 'tx_bzdstaffdirectory_teamlist_person');
 			}
 
 			if ($showImage) {
 				// If no image is stored for this user, a dummy picture will be shown.
-				$this->setMarkerContent('image', $this->getImage($person));
+				$this->setMarker('image', $this->getImage($person));
 			} else {
-				$this->readSubpartsToHide('image', 'listitem_wrapper');
+				$this->hideSubparts('image', 'listitem_wrapper');
 			}
 
 
@@ -1462,74 +1462,74 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 				if ($this->arrConf['useUniversalField_' . $i]) {
 					$allStandardFields[] = 'universal_field_' . $i;
 				} else {
-					$this->readSubpartsToHide('universal_field_' . $i, 'listitem_wrapper');
+					$this->hideSubparts('universal_field_' . $i, 'listitem_wrapper');
 				}
 			}
 
 			// fill the markers of all the simple fields
 			foreach($allStandardFields as $key) {
 				if ($this->hasValue($key, $person)) {
-					$this->setMarkerContent($key, $this->getValue($key, $person, true));
+					$this->setMarker($key, $this->getValue($key, $person, true));
 				} else {
-					$this->readSubpartsToHide($key, 'listitem_wrapper');
+					$this->hideSubparts($key, 'listitem_wrapper');
 				}
 			}
 
 
 			// Now set all the other markers, that will contain processed data
 			if ($this->hasValue('title', $person)) {
-				$this->setMarkerContent('list_title', $this->getValue('title', $person, true));
-				$this->setMarkerContent('label_title', $this->pi_getLL('label_title'));
+				$this->setMarker('list_title', $this->getValue('title', $person, true));
+				$this->setMarker('label_title', $this->pi_getLL('label_title'));
 			} else {
-				$this->readSubpartsToHide('title', 'listitem_wrapper');
+				$this->hideSubparts('title', 'listitem_wrapper');
 			}
 
 			if ($this->hasValue('email', $person)) {
 				$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist');
-				$this->setMarkerContent('email', $this->getEmail($person, $spamProtectionMode));
-				$this->setMarkerContent('label_email', $this->pi_getLL('label_email'));
+				$this->setMarker('email', $this->getEmail($person, $spamProtectionMode));
+				$this->setMarker('label_email', $this->pi_getLL('label_email'));
 			} else {
-				$this->readSubpartsToHide('email', 'listitem_wrapper');
+				$this->hideSubparts('email', 'listitem_wrapper');
 			}
 
 			if ($this->getMemberOfGroups($uid)) {
-				$this->setMarkerContent('groups', $this->getGroups($uid));
+				$this->setMarker('groups', $this->getGroups($uid));
 			} else {
-				$this->readSubpartsToHide('groups', 'listitem_wrapper');
+				$this->hideSubparts('groups', 'listitem_wrapper');
 			}
 
 			if ($this->hasValue('date_incompany', $person)) {
-				$this->setMarkerContent('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
-				$this->setMarkerContent('label_date_incompany', $this->pi_getLL('label_date_incompany'));
+				$this->setMarker('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
+				$this->setMarker('label_date_incompany', $this->pi_getLL('label_date_incompany'));
 			} else {
-				$this->readSubpartsToHide('date_incompany', 'listitem_wrapper');
+				$this->hideSubparts('date_incompany', 'listitem_wrapper');
 			}
 
 			if ($this->hasValue('date_birthdate', $person)) {
 				if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
 					// show the age of the person instead of the birthdate
-					$this->setMarkerContent('date_birthdate', $this->getAge($person['date_birthdate']));
-					$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_age'));
+					$this->setMarker('date_birthdate', $this->getAge($person['date_birthdate']));
+					$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_age'));
 				} else {
 					// show the birthdate
-					$this->setMarkerContent('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
-					$this->setMarkerContent('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+					$this->setMarker('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
+					$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
 				}
 			} else {
-				$this->readSubpartsToHide('date_birthdate', 'listitem_wrapper');
+				$this->hideSubparts('date_birthdate', 'listitem_wrapper');
 			}
 
 			if ($this->hasValue('files', $person)) {
-				$this->setMarkerContent('files', $this->getFileList($person));
-				$this->setMarkerContent('label_files', $this->pi_getLL('label_files'));
+				$this->setMarker('files', $this->getFileList($person));
+				$this->setMarker('label_files', $this->pi_getLL('label_files'));
 			} else {
-				$this->readSubpartsToHide('files', 'listitem_wrapper');
+				$this->hideSubparts('files', 'listitem_wrapper');
 			}
 
 			// Fill the marker for the link to the detail view or hide it completely
 			// if linking to the detail page is disabled completely.
 			if (!$this->getConfValueBoolean('doNotLinkToDetailView', 's_teamlist')) {
-				$this->setMarkerContent(
+				$this->setMarker(
 					'link_detail',
 					$this->linkToDetailPage(
 						$this->pi_getLL('label_link_detail'),
@@ -1537,7 +1537,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 					)
 				);
 			} else {
-				$this->readSubpartsToHide('link_detail');
+				$this->hideSubparts('link_detail');
 			}
 
 			// Make the title and name be linked to the single view. This will only
@@ -1552,7 +1552,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 					'list_title',
 				);
 				foreach ($linkedMarkers as $currentMarker) {
-					$this->setMarkerContent(
+					$this->setMarker(
 						$currentMarker,
 						$this->linkToDetailPage(
 							$this->getValue($currentMarker, $person),
@@ -1563,7 +1563,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			}
 
 			// merge the marker content with the template
-			$result .= $this->substituteMarkerArrayCached('LIST_ITEM');
+			$result .= $this->getSubpart('LIST_ITEM');
 
 			// reset the markers (may be they are empty for the next person)
 			$this->markers = array();
@@ -1916,7 +1916,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	 * @access	protected
 	 */
 	function createListHeader() {
-		$result = $this->substituteMarkerArrayCached('LIST_HEADER');
+		$result = $this->getSubpart('LIST_HEADER');
 
 		return $result;
 	}
@@ -1931,7 +1931,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	 * @access	protected
 	 */
 	function createListFooter() {
-		$result = $this->substituteMarkerArrayCached('LIST_FOOTER');
+		$result = $this->getSubpart('LIST_FOOTER');
 
 		return $result;
 	}
