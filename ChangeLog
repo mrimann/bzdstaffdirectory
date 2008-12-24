@@ -1,5 +1,7 @@
-version 0.7.1 - released 2008-11-26
+version 0.7.2 - released 2008-12-24
 - [#2445] Fix: Replaced all calls to deprecated methods from oelib - now compatible with oelib >=0.5.0
+
+version 0.7.1 - released 2008-11-26
 - [#2382] Fix: PHP error when loading oelib template helper due to camel-case filename
 
 version 0.7.0 - released 2008-11-24
