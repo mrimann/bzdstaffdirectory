@@ -691,7 +691,6 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			'last_name',
 			'function',
 			'phone',
-			'tasks',
 			'room',
 			'officehours'
 		);
@@ -760,6 +759,19 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			$this->setMarker('label_opinion', $this->pi_getLL('label_opinion'));
 		} else {
 			$this->hideSubparts('opinion', 'field_wrapper');
+		}
+
+		if ($this->hasValue('tasks', $person)) {
+			$this->setMarker(
+				'tasks',
+				$this->cObj->stdWrap(
+					$this->getValue('tasks', $person, true),
+					$this->conf['DETAIL.']['tasks.']
+				)
+			);
+			$this->setMarker('label_tasks', $this->pi_getLL('label_tasks'));
+		} else {
+			$this->readSubpartsToHide('tasks', 'field_wrapper');
 		}
 
 		if ($this->hasValue('date_birthdate', $person)) {

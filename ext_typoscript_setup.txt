@@ -12,7 +12,7 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	recursive = 1
 
 	# detail page
-	detailPage = 
+	detailPage =
 
 	# configuration for the box view
 	box {
@@ -44,7 +44,7 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	# By default, the default language version of a record will be shown if no translation is found.
 	# You can set this to "strict" to hide non translated records.
 	# --> read the section about the multilanguage features in the manual of this extension!!
-	sys_language_mode = 
+	sys_language_mode =
 
 	# Date format used to show dates in the frontend
 	dateFormatYMD = %e. %B %Y
@@ -103,7 +103,7 @@ plugin.tx_bzdstaffdirectory_pi1 {
 		}
 	}
 
-	
+
 	TEAMLIST  {
 		image {
 			file.maxW = 105
@@ -116,8 +116,13 @@ plugin.tx_bzdstaffdirectory_pi1 {
 			file.maxW = 180
 			file.params =
 			popup.maxW = 800
-			popup.maxH = 
+			popup.maxH =
 			popup.params =
+		}
+		tasks {
+			wrap = <ul>|</ul>
+			split.token.char = 10
+			split.wrap = <li>|</li>
 		}
 	}
 	BOX  {
