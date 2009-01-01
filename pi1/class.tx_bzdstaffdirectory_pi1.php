@@ -771,7 +771,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			);
 			$this->setMarker('label_tasks', $this->pi_getLL('label_tasks'));
 		} else {
-			$this->readSubpartsToHide('tasks', 'field_wrapper');
+			$this->hideSubparts('tasks', 'field_wrapper');
 		}
 
 		if ($this->hasValue('date_birthdate', $person)) {
