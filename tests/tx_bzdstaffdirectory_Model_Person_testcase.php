@@ -44,7 +44,8 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			array(
 				'first_name' => 'Max',
 				'last_name' => 'Muster',
-				'date_birthdate' => '2583839999'
+				'date_birthdate' => '2583839999',
+				'title' => 'Dr.',
 			)
 		);
 		$this->createPerson($this->uid);
@@ -91,6 +92,19 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			'Muster',
 			$this->fixture->getLastName()
+		);
+	}
+
+	public function testHasTitleReturnsTrueWithSetTitle() {
+		$this->assertTrue(
+			$this->fixture->hasTitle()
+		);
+	}
+
+	public function testGetTitleReturnsTitle() {
+		$this->assertEquals(
+			'Dr.',
+			$this->fixture->getTitle()
 		);
 	}
 

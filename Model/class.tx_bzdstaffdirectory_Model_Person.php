@@ -54,6 +54,24 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	}
 
 	/**
+	 * Returns a boolean value whether the person has a title set or not.
+	 *
+	 * @return boolean whether a title is set or not
+	 */
+	public function hasTitle() {
+		return $this->hasString('title');
+	}
+
+	/**
+	 * Returns the title of the person.
+	 *
+	 * @return string the title of the person, may be empty
+	 */
+	public function getTitle() {
+		return $this->getAsString('title');
+	}
+
+	/**
 	 * Returns the age of the person.
 	 *
 	 * @return integer the age in years, rounded

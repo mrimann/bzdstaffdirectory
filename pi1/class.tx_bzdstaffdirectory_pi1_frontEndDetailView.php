@@ -88,13 +88,18 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 	public function render() {
 		// merge the marker content with the template
 		$this->setMarker('first_name', $this->person->getFirstName());
+
+
+		if ($this->person->hasTitle()) {
+			$this->setMarker('title', $this->person->getTitle());
+			$this->setMarker('label_title', $this->pi_getLL('label_title'));
+		} else {
+			$this->hideSubparts('title', 'field_wrapper');
+		}
+
+
+
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
-
-		return $result;
-
-
-		$this->setMarker('count_down_message', $message);
-		$result = $this->getSubpart('COUNTDOWN');
 
 		$this->checkConfiguration();
 		$result .= $this->getWrappedConfigCheckMessage();

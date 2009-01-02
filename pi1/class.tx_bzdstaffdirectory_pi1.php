@@ -734,13 +734,13 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			}
 		}
 
-		// define the other markers
-		if ($this->hasValue('title', $person)) {
-			$this->setMarker('title', $this->getValue('title', $person, true));
-			$this->setMarker('label_title', $this->pi_getLL('label_title'));
-		} else {
-			$this->hideSubparts('title', 'field_wrapper');
-		}
+//		// define the other markers
+//		if ($this->hasValue('title', $person)) {
+//			$this->setMarker('title', $this->getValue('title', $person, true));
+//			$this->setMarker('label_title', $this->pi_getLL('label_title'));
+//		} else {
+//			$this->hideSubparts('title', 'field_wrapper');
+//		}
 
 		if ($this->hasValue('email', $person)) {
 			$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview');

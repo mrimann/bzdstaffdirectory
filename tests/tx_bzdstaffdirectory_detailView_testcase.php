@@ -58,6 +58,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			'tx_bzdstaffdirectory_persons',
 			array(
 				'first_name' => 'Johannes',
+				'title' => 'Dr.',
 			)
 		);
 
@@ -98,6 +99,25 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	public function testRenderContainsFirstName() {
 		$this->assertContains(
 			'Johannes',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsTitle() {
+		$this->assertContains(
+			'Dr.',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainTitleMarkerIfNoTitleSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###TITLE###',
 			$this->fixture->render()
 		);
 	}
