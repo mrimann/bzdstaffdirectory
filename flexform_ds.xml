@@ -6,26 +6,26 @@
 		<s_welcome>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.settings</sheetTitle>
+					<sheetTitle>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.settings</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<listtype>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_listtype</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_listtype</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_listtype_teamlist</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_listtype_teamlist</numIndex>
 										<numIndex index="1">TEAMLIST</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_listtype_box</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_listtype_box</numIndex>
 										<numIndex index="1">BOX</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_listtype_detail</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_listtype_detail</numIndex>
 										<numIndex index="1">DETAIL</numIndex>
 									</numIndex>
 								</items>
@@ -40,13 +40,13 @@
 		<s_template>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.template</sheetTitle>
+					<sheetTitle>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.template</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<templateFile>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.template_file</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.template_file</label>
 							<config>
 								<type>group</type>
 								<internal_type>file</internal_type>
@@ -61,7 +61,7 @@
 					</templateFile>
 					<cssFile>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.css_file</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.css_file</label>
 							<config>
 								<type>group</type>
 								<internal_type>file</internal_type>
@@ -80,13 +80,13 @@
 		<s_teamlist>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.teamlist</sheetTitle>
+					<sheetTitle>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.teamlist</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<liststyle>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_liststyle</label>
 							<config>
 								<type>select</type>
 								<items type="array">
@@ -95,19 +95,19 @@
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_mixed</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_liststyle_mixed</numIndex>
 										<numIndex index="1">mixed</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_names</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_liststyle_names</numIndex>
 										<numIndex index="1">names</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_images</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_liststyle_images</numIndex>
 										<numIndex index="1">images</numIndex>
 									</numIndex>
 									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_liststyle_grouped</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_liststyle_grouped</numIndex>
 										<numIndex index="1">grouped</numIndex>
 									</numIndex>
 								</items>
@@ -119,7 +119,7 @@
 					</liststyle>
 					<usergroup>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_group</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_group</label>
 							<config>
 								<type>select</type>
 								<foreign_table>tx_bzdstaffdirectory_groups</foreign_table>
@@ -128,14 +128,14 @@
 								<autoSizeMax>10</autoSizeMax>
 								<minitems>0</minitems>
 								<maxitems>99</maxitems>
-								<itemsHeader>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_group</itemsHeader>
+								<itemsHeader>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_group</itemsHeader>
 								<allowNonIdValues>1</allowNonIdValues>
 							</config>
 						</TCEforms>
 					</usergroup>
 					<ignoreGroupSelection>
 						<TCEforms>
-								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.ignoreGroupSelection</label>
+								<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.ignoreGroupSelection</label>
 								<config>
 										<type>check</type>
 										<default>0</default>
@@ -144,7 +144,7 @@
 					</ignoreGroupSelection>
 					<ignoreTeamLeaders>
 						<TCEforms>
-								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.ignoreTeamLeaders</label>
+								<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.ignoreTeamLeaders</label>
 								<config>
 										<type>check</type>
 										<default>0</default>
@@ -154,7 +154,7 @@
 					<startingpoint>
 						<TCEforms>
 						<exclude>1</exclude>
-						<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.startingpoint</label>
+						<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.startingpoint</label>
 						<config>
 							<type>group</type>
 							<internal_type>db</internal_type>
@@ -205,7 +205,7 @@
 					</recursive>
 					<showimages>
 						<TCEforms>
-								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.showimages</label>
+								<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.showimages</label>
 								<config>
 										<type>check</type>
 										<default>1</default>
@@ -214,7 +214,7 @@
 					</showimages>
 					<linkNamesToSingleView>
 						<TCEforms>
-								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.linkNamesToSingleView</label>
+								<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.linkNamesToSingleView</label>
 								<config>
 										<type>check</type>
 								</config>
@@ -222,7 +222,7 @@
 					</linkNamesToSingleView>
 					<doNotLinkToDetailView>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.doNotLinkToDetailView</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.doNotLinkToDetailView</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -230,7 +230,7 @@
 					</doNotLinkToDetailView>
 					<showSingleViewAsPopUp>
 						<TCEforms>
-								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.showSingleViewAsPopUp</label>
+								<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.showSingleViewAsPopUp</label>
 								<config>
 										<type>check</type>
 								</config>
@@ -238,7 +238,7 @@
 					</showSingleViewAsPopUp>
 					<disableBackLink>
 						<TCEforms>
-								<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.disableBackLink</label>
+								<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.disableBackLink</label>
 								<config>
 										<type>check</type>
 										<default>0</default>
@@ -247,24 +247,24 @@
 					</disableBackLink>
 					<spamprotectionmode>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_jsencrypted</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_jsencrypted</numIndex>
 										<numIndex index="1">jsencrypted</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_plain</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_plain</numIndex>
 										<numIndex index="1">plain</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_asimage</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_asimage</numIndex>
 										<numIndex index="1">asimage</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_asimagejsencrypted</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_asimagejsencrypted</numIndex>
 										<numIndex index="1">asimagejsencrypted</numIndex>
 									</numIndex>
 								</items>
@@ -277,7 +277,7 @@
 					<detailPage>
 						<TCEforms>
 						<exclude>1</exclude>
-						<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.detailPage</label>
+						<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.detailPage</label>
 						<config>
 							<type>group</type>
 							<internal_type>db</internal_type>
@@ -291,72 +291,72 @@
 					</detailPage>
 					<sortOrder>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.sortOrder</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.sortOrder</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.last_name</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.last_name</numIndex>
 										<numIndex index="1">last_name</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.first_name</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.first_name</numIndex>
 										<numIndex index="1">first_name</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.title</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.title</numIndex>
 										<numIndex index="1">title</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.gender</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.gender</numIndex>
 										<numIndex index="1">gender</numIndex>
 									</numIndex>
 									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_birthdate</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_birthdate</numIndex>
 										<numIndex index="1">date_birthdate</numIndex>
 									</numIndex>
 									<numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_incompany</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_incompany</numIndex>
 										<numIndex index="1">date_incompany</numIndex>
 									</numIndex>
 									<numIndex index="6" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.function</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.function</numIndex>
 										<numIndex index="1">function</numIndex>
 									</numIndex>
 									<numIndex index="7" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.email</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.email</numIndex>
 										<numIndex index="1">email</numIndex>
 									</numIndex>
 									<numIndex index="8" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.opinion</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.opinion</numIndex>
 										<numIndex index="1">opinion</numIndex>
 									</numIndex>
 									<numIndex index="9" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.location</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.location</numIndex>
 										<numIndex index="1">location</numIndex>
 									</numIndex>
 									<numIndex index="10" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.room</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.room</numIndex>
 										<numIndex index="1">room</numIndex>
 									</numIndex>
 									<numIndex index="11" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_1</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_1</numIndex>
 										<numIndex index="1">universal_field_1</numIndex>
 									</numIndex>
 									<numIndex index="12" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_2</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_2</numIndex>
 										<numIndex index="1">universal_field_2</numIndex>
 									</numIndex>
 									<numIndex index="13" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_3</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_3</numIndex>
 										<numIndex index="1">universal_field_3</numIndex>
 									</numIndex>
 									<numIndex index="14" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_4</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_4</numIndex>
 										<numIndex index="1">universal_field_4</numIndex>
 									</numIndex>
 									<numIndex index="15" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_5</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_5</numIndex>
 										<numIndex index="1">universal_field_5</numIndex>
 									</numIndex>
 								</items>
@@ -368,16 +368,16 @@
 					</sortOrder>
 					<sortOrderDirection>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.sortOrderDirection</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.sortOrderDirection</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_asc</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_asc</numIndex>
 										<numIndex index="1">ASC</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_desc</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_desc</numIndex>
 										<numIndex index="1">DESC</numIndex>
 									</numIndex>
 								</items>
@@ -389,77 +389,77 @@
 					</sortOrderDirection>
 					<sortOrderForLeaders>
 						<TCEforms>
-						<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.sortOrderForLeaders</label>
+						<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.sortOrderForLeaders</label>
 
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.last_name</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.last_name</numIndex>
 										<numIndex index="1">last_name</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.first_name</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.first_name</numIndex>
 										<numIndex index="1">first_name</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.title</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.title</numIndex>
 										<numIndex index="1">title</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.gender</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.gender</numIndex>
 										<numIndex index="1">gender</numIndex>
 									</numIndex>
 									<numIndex index="4" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_birthdate</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_birthdate</numIndex>
 										<numIndex index="1">date_birthdate</numIndex>
 									</numIndex>
 									<numIndex index="5" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_incompany</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.date_incompany</numIndex>
 										<numIndex index="1">date_incompany</numIndex>
 									</numIndex>
 									<numIndex index="6" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.function</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.function</numIndex>
 										<numIndex index="1">function</numIndex>
 									</numIndex>
 									<numIndex index="7" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.email</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.email</numIndex>
 										<numIndex index="1">email</numIndex>
 									</numIndex>
 									<numIndex index="8" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.opinion</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.opinion</numIndex>
 										<numIndex index="1">opinion</numIndex>
 									</numIndex>
 									<numIndex index="9" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.location</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.location</numIndex>
 										<numIndex index="1">location</numIndex>
 									</numIndex>
 									<numIndex index="10" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.room</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.room</numIndex>
 										<numIndex index="1">room</numIndex>
 									</numIndex>
 									<numIndex index="11" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_1</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_1</numIndex>
 										<numIndex index="1">universal_field_1</numIndex>
 									</numIndex>
 									<numIndex index="12" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_2</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_2</numIndex>
 										<numIndex index="1">universal_field_2</numIndex>
 									</numIndex>
 									<numIndex index="13" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_3</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_3</numIndex>
 										<numIndex index="1">universal_field_3</numIndex>
 									</numIndex>
 									<numIndex index="14" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_4</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_4</numIndex>
 										<numIndex index="1">universal_field_4</numIndex>
 									</numIndex>
 									<numIndex index="15" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_5</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.universal_field_5</numIndex>
 										<numIndex index="1">universal_field_5</numIndex>
 									</numIndex>
 									<numIndex index="16" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tx_bzdstaffdirectory_persons.sorting</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tx_bzdstaffdirectory_persons.sorting</numIndex>
 										<numIndex index="1">sorting</numIndex>
 									</numIndex>
 								</items>
@@ -471,16 +471,16 @@
 					</sortOrderForLeaders>
 					<sortOrderForLeadersDirection>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.sortOrderDirection</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.sortOrderDirection</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_asc</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_asc</numIndex>
 										<numIndex index="1">ASC</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_desc</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:tt_content.pi_flexform.sortOrderDirection_desc</numIndex>
 										<numIndex index="1">DESC</numIndex>
 									</numIndex>
 								</items>
@@ -496,13 +496,13 @@
 		<s_detailview>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.detailview</sheetTitle>
+					<sheetTitle>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.detailview</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<click_enlarge>
 							<TCEforms>
-									<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.click_enlarge</label>
+									<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.click_enlarge</label>
 									<config>
 											<type>check</type>
 									</config>
@@ -510,24 +510,24 @@
 					</click_enlarge>
 					<spamprotectionmode>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_jsencrypted</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_jsencrypted</numIndex>
 										<numIndex index="1">jsencrypted</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_plain</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_plain</numIndex>
 										<numIndex index="1">plain</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_asimage</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_asimage</numIndex>
 										<numIndex index="1">asimage</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_spamprotectionmode_asimagejsencrypted</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode_asimagejsencrypted</numIndex>
 										<numIndex index="1">asimagejsencrypted</numIndex>
 									</numIndex>
 								</items>
@@ -539,7 +539,7 @@
 				      </spamprotectionmode>
 					<showAgeInsteadOfBirthdate>
 							<TCEforms>
-									<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.showAgeInsteadOfBirthdate</label>
+									<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.showAgeInsteadOfBirthdate</label>
 									<config>
 											<type>check</type>
 									</config>
@@ -551,26 +551,26 @@
 		<s_contactbox>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.contactbox</sheetTitle>
+					<sheetTitle>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.contactbox</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<source>
 						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_source</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_source</label>
 							<config>
 								<type>select</type>
 								<items type="array">
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_source_frompage</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_source_frompage</numIndex>
 										<numIndex index="1">page</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_source_fromplugin</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_source_fromplugin</numIndex>
 										<numIndex index="1">plugin</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:bzd_staff_directory/locallang_db.xml:pi_flexform_source_fromteamleaders</numIndex>
+										<numIndex index="0">LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_source_fromteamleaders</numIndex>
 										<numIndex index="1">teamleaders</numIndex>
 									</numIndex>
 								</items>
@@ -583,7 +583,7 @@
 					<source_plugin>
 						<TCEforms>
 							<exclude>1</exclude>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.source_fromplugin</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.source_fromplugin</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -598,7 +598,7 @@
 					<source_teamleaders>
 						<TCEforms>
 							<exclude>1</exclude>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.source_fromteamleaders</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.source_fromteamleaders</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>
@@ -613,7 +613,7 @@
 					<detailPage>
 						<TCEforms>
 							<exclude>1</exclude>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.detailPage</label>
+							<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.detailPage</label>
 							<config>
 								<type>group</type>
 								<internal_type>db</internal_type>

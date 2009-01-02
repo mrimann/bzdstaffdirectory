@@ -1,7 +1,7 @@
 <?php
 
 ########################################################################
-# Extension Manager/Repository config file for ext: "bzd_staff_directory"
+# Extension Manager/Repository config file for ext: "bzdstaffdirectory"
 #
 # Auto generated 24-11-2008 17:14
 #

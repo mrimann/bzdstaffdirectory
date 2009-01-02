@@ -36,22 +36,22 @@ class tx_bzdstaffdirectory_pi1_wizicon {
 		$LL = $this->includeLocalLang();
 
 		$wizardItems['plugins_tx_bzdstaffdirectory_pi1'] = array(
-			'icon'=>t3lib_extMgm::extRelPath('bzd_staff_directory').'pi1/ce_wiz.gif',
+			'icon'=>t3lib_extMgm::extRelPath('bzdstaffdirectory').'pi1/ce_wiz.gif',
 			'title'=>$LANG->getLLL('pi1_title',$LL),
 			'description'=>$LANG->getLLL('pi1_plus_wiz_description',$LL),
-			'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=bzd_staff_directory_pi1'
+			'params'=>'&defVals[tt_content][CType]=list&defVals[tt_content][list_type]=bzdstaffdirectory_pi1'
 		);
 
 		return $wizardItems;
 	}
 
     /**
-     * Includes the locallang file for the 'bzd_staff_directory' extension
+     * Includes the locallang file for the 'bzdstaffdirectory' extension
      *
      * @return    array        The LOCAL_LANG array
      */
     function includeLocalLang()    {
-        $llFile = t3lib_extMgm::extPath('bzd_staff_directory').'locallang.xml';
+        $llFile = t3lib_extMgm::extPath('bzdstaffdirectory').'locallang.xml';
         $LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
         return $LOCAL_LANG;
     }
@@ -60,8 +60,8 @@ class tx_bzdstaffdirectory_pi1_wizicon {
 
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzd_staff_directory/pi1/class.tx_bzdstaffdirectory_pi1_wizicon.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzd_staff_directory/pi1/class.tx_bzdstaffdirectory_pi1_wizicon.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/pi1/class.tx_bzdstaffdirectory_pi1_wizicon.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/pi1/class.tx_bzdstaffdirectory_pi1_wizicon.php']);
 }
 
 ?>

@@ -22,7 +22,7 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * The general Exception class in the 'bzd_staff_directory' extension.
+ * The general Exception class in the 'bzdstaffdirectory' extension.
  *
  * @package		TYPO3
  * @subpackage	tx_bzdstaffdirectory

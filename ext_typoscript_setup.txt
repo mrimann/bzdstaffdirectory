@@ -1,9 +1,9 @@
 plugin.tx_bzdstaffdirectory_pi1 {
 	# location of the template file
-	templateFile = typo3conf/ext/bzd_staff_directory/media/bzdstaff_template.htm
+	templateFile = typo3conf/ext/bzdstaffdirectory/media/bzdstaff_template.htm
 
 	# location of the CSS file (leave empty to include no CSS file)
-	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
+	cssFile = typo3conf/ext/bzdstaffdirectory/media/bzd_staff_directory.css
 
 	# comma-separated list of PIDs from where the records should be fetched
 	startingpoint =
@@ -36,9 +36,9 @@ plugin.tx_bzdstaffdirectory_pi1 {
 	showUnisexDummyImage = 1
 
 	# default dummy pictures
-	dummyPictureDefault = EXT:bzd_staff_directory/media/noimg.jpg
-	dummyPictureMale = EXT:bzd_staff_directory/media/dummyPictureMale.jpg
-	dummyPictureFemale = EXT:bzd_staff_directory/media/dummyPictureFemale.jpg
+	dummyPictureDefault = EXT:bzdstaffdirectory/media/noimg.jpg
+	dummyPictureMale = EXT:bzdstaffdirectory/media/dummyPictureMale.jpg
+	dummyPictureFemale = EXT:bzdstaffdirectory/media/dummyPictureFemale.jpg
 
 	# whether unlocalized records should be shown or not
 	# By default, the default language version of a record will be shown if no translation is found.

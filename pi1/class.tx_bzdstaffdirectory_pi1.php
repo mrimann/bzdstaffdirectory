@@ -22,7 +22,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Plugin 'BZD Staff Directory' for the 'bzd_staff_directory' extension.
+ * Plugin 'BZD Staff Directory' for the 'bzdstaffdirectory' extension.
  *
  * @author	Mario Rimann <typo3-coding@rimann.org>
  */
@@ -34,7 +34,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php
 class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
 	var $scriptRelPath = 'pi1/class.tx_bzdstaffdirectory_pi1.php';	// Path to this script relative to the extension dir.
-	var $extKey = 'bzd_staff_directory';	// The extension key.
+	var $extKey = 'bzdstaffdirectory';	// The extension key.
 	var $pi_checkCHash = TRUE;
 	var $langArr;
 	var $sys_language_mode;
@@ -50,7 +50,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$this->pi_initPIflexForm();
 		$this->getTemplateCode();
 
-		$this->arrConf = unserialize($GLOBALS["TYPO3_CONF_VARS"]["EXT"]["extConf"]['bzd_staff_directory']);
+		$this->arrConf = unserialize($GLOBALS["TYPO3_CONF_VARS"]["EXT"]["extConf"]['bzdstaffdirectory']);
 
 
 
@@ -58,7 +58,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$this->uploadFolder = 'uploads/tx_bzdstaffdirectory/';
 
 		// Deinfe the path to the media folder
-		$this->mediaFolder = 'typo3conf/ext/bzd_staff_directory/media/';
+		$this->mediaFolder = 'typo3conf/ext/bzdstaffdirectory/media/';
 
 		// include CSS in header of page
 		if ($this->hasConfValueString('cssFile', 's_template_special')) {
@@ -1976,8 +1976,8 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 }
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzd_staff_directory/pi1/class.tx_bzdstaffdirectory_pi1.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzd_staff_directory/pi1/class.tx_bzdstaffdirectory_pi1.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/pi1/class.tx_bzdstaffdirectory_pi1.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/pi1/class.tx_bzdstaffdirectory_pi1.php']);
 }
 
 ?>

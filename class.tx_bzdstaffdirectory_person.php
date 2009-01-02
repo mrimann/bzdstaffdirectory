@@ -22,14 +22,14 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * The person class in the 'bzd_staff_directory' extension.
+ * The person class in the 'bzdstaffdirectory' extension.
  *
  * @package		TYPO3
  * @subpackage	tx_bzdstaffdirectory
  * @author		Mario Rimann <typo3-coding@rimann.org>
  */
 
-require_once(t3lib_extMgm::extPath('bzd_staff_directory').'class.tx_bzdstaffdirectory_objectFromDb.php');
+require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_objectFromDb.php');
 
 
 class tx_bzdstaffdirectory_person extends tx_bzdstaffdirectory_objectFromDb{

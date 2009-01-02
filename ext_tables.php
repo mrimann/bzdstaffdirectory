@@ -5,7 +5,7 @@ t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_persons");
 
 $TCA["tx_bzdstaffdirectory_persons"] = Array (
 	"ctrl" => Array (
-		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons",		
+		"title" => "LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_persons",		
 		'label' => 'last_name',
 		'label_alt' => 'first_name',
 		'label_alt_force' => 1,
@@ -36,7 +36,7 @@ t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_groups");
 
 $TCA["tx_bzdstaffdirectory_groups"] = Array (
 	"ctrl" => Array (
-		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups",		
+		"title" => "LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_groups",		
 		"label" => "group_name",	
 		"tstamp" => "tstamp",
 		"crdate" => "crdate",
@@ -63,7 +63,7 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 
 $TCA["tx_bzdstaffdirectory_locations"] = Array (
 	'ctrl' => Array (
-		'title' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_locations',
+		'title' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_locations',
 		'label' => 'title',
 		'tstamp' => 'tstamp',
 		'crdate' => 'crdate',
@@ -95,9 +95,9 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$_EXTKEY.'_pi1']='pi_fle
 
 
 
-t3lib_extMgm::addPlugin(Array('LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.list_type_pi1', $_EXTKEY.'_pi1'),'list_type');
+t3lib_extMgm::addPlugin(Array('LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.list_type_pi1', $_EXTKEY.'_pi1'),'list_type');
 
-t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_pi1','FILE:EXT:bzd_staff_directory/flexform_ds.xml');
+t3lib_extMgm::addPiFlexFormValue($_EXTKEY.'_pi1','FILE:EXT:bzdstaffdirectory/flexform_ds.xml');
 
 t3lib_extMgm::addStaticFile($_EXTKEY,"pi1/static/","BZD Staff Directory");
 
@@ -108,7 +108,7 @@ $tempColumns = Array (
 	'tx_bzdstaffdirectory_bzd_contact_person' => Array (
 		'l10n_mode' => $l10n_mode_merge,
 		'exclude' => 0,		
-		'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:pages.tx_bzdstaffdirectory_bzd_contact_person',		
+		'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:pages.tx_bzdstaffdirectory_bzd_contact_person',		
 		'config' => Array (
 			'type' => 'select',	
 			'foreign_table' => 'tx_bzdstaffdirectory_persons',	

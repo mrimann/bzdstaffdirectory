@@ -22,7 +22,7 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * The objectFromDB class in the 'bzd_staff_directory' extension.
+ * The objectFromDB class in the 'bzdstaffdirectory' extension.
  * 
  * This class represents an object that is created from a DB record.
  *
@@ -38,7 +38,7 @@
  * @author		Oliver Klee <typo3-coding@oliverklee.de>
  */
 
-require_once(t3lib_extMgm::extPath('bzd_staff_directory').'class.tx_bzdstaffdirectory_objectFromDb.php');
+require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_objectFromDb.php');
 
 
 class tx_bzdstaffdirectory_objectFromDb {

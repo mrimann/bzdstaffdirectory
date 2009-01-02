@@ -22,7 +22,7 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Testcase for the objectFromDb class in the 'bzd_staff_directory' extension.
+ * Testcase for the objectFromDb class in the 'bzdstaffdirectory' extension.
  *
  * @package		TYPO3
  * @subpackage	tx_bzdstaffdirectory
@@ -30,8 +30,8 @@
  */
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_testingFramework.php');
-require_once(t3lib_extMgm::extPath('bzd_staff_directory').'class.tx_bzdstaffdirectory_objectFromDb.php');
-require_once(t3lib_extMgm::extPath('bzd_staff_directory').'tests/fixtures/class.tx_bzdstaffdirectory_objectFromDb_child.php');
+require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_objectFromDb.php');
+require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'tests/fixtures/class.tx_bzdstaffdirectory_objectFromDb_child.php');
 
 
 class tx_bzdstaffdirectory_objectFromDb_testcase extends tx_phpunit_testcase {
