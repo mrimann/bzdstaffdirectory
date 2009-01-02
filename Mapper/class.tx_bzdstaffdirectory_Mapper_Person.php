@@ -24,11 +24,12 @@
 
 /**
  * Class 'tx_bzdstaffdirectory_Mapper_Person' for the 'bzdstaffdirectory' extension.
+ * The original code is from tx_oelib, thanks Oli and Niels!
  *
- * This class represents a mapper for front-end users.
+ * This class represents a mapper for persons.
  *
  * @package TYPO3
- * @subpackage tx_oelib
+ * @subpackage tx_bzdstaffdirectory
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Mario Rimann <mario@screenteam.com>
@@ -49,35 +50,6 @@ class tx_bzdstaffdirectory_Mapper_Person extends tx_oelib_DataMapper {
 			'uid' => 1,
 			'first_name' => 'foobar'
 		);
-		$uid = $data['uid'];
-
-		try {
-			$model = $this->map->get($uid);
-		} catch (tx_oelib_Exception_NotFound $exception) {
-			// The data already is in memory. So there's no need to read it from
-			// the DB again.
-			$model = $this->createAndFillModel($data);
-			$this->map->add($model);
-		}
-
-		return $model;
-	}
-
-	/**
-	 * Gets the currently logged in front-end user.
-	 *
-	 * @return tx_oelib_Model_FrontEndUser the logged in front-end user, will
-	 *                                     be null if no user is logged in or
-	 *                                     if there is no front end
-	 */
-	public function getLoggedInUser() {
-		if (!isset($GLOBALS['TSFE']) || !$GLOBALS['TSFE']
-			|| !((boolean) $GLOBALS['TSFE']->loginUser)
-		) {
-			return null;
-		}
-
-		$data = $GLOBALS['TSFE']->fe_user->user;
 		$uid = $data['uid'];
 
 		try {

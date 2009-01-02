@@ -23,14 +23,16 @@
 ***************************************************************/
 
 /**
- * Class 'tx_oelib_Model_FrontEndUser' for the 'oelib' extension.
+ * Class 'tx_bzdstaffdirectory_Model_Person' for the 'bzdstaffdirectory' extension.
+ * The original code is from the Seminar Manager (tx_seminars), thanks Oli!
  *
- * This class represents a front-end user.
+ * This class represents a person.
  *
  * @package TYPO3
- * @subpackage tx_oelib
+ * @subpackage tx_bzdstaffdirectory
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
+ * @author Mario Rimann <mario@screenteam.com>
  */
 class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	/**
@@ -61,7 +63,7 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_oelib_Model_FrontEndUser.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_oelib_Model_FrontEndUser.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_bzdstaffdirectory_Model_Person.php']);
 }
 ?>

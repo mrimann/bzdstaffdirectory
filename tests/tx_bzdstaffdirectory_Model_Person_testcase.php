@@ -47,8 +47,6 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'date_birthdate' => '2583839999'
 			)
 		);
-		$this->fixture = new tx_bzdstaffdirectory_Model_Person($this->uid);
-		$this->fixture->setData(array('uid' => $this->uid));
 		$this->createPerson($this->uid);
 	}
 
@@ -71,6 +69,9 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			$this->fixture = null;
 		}
 	}
+
+
+
 
 	public function testGetUid() {
 		$this->assertEquals(

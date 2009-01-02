@@ -21,24 +21,19 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
-/**
- * Testcase for the detail view class in the 'bzdstaffdirectory' extension.
- *
- * @package		TYPO3
- * @subpackage	tx_bzdstaffdirectory
- * @author		Mario Rimann <mario@screenteam.com>
- */
 
 require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
 
 /**
- * Testcase for the 'frontEndCountdown' class in the 'seminars' extension.
+ * Testcase for the 'frontEndDetailView' class in the 'bzdstaffdirectory' extension.
+ * The original code is from the Seminar Manager (tx_seminars), thanks Oli and Niels!
  *
  * @package TYPO3
- * @subpackage tx_seminars
+ * @subpackage tx_bzdstaffdirectory
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Niels Pardon <mail@niels-pardon.de>
+ * @author Mario Rimann <mario@screenteam.com>
  */
 class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testcase {
 	/**
@@ -109,4 +104,3 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 }
 
 ?>
-
