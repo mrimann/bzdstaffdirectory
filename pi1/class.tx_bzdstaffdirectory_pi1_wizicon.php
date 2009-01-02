@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005 Mario Rimann (mario.rimann@bbzdietikon.ch)
+*  (c) 2005-2009 Mario Rimann (mario.rimann@bbzdietikon.ch)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is

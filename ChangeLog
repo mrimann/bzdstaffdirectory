@@ -1,4 +1,5 @@
 version 0.8.0 - currently working on
+- [#2510] Updated copyright lines to 2009
 - [#1843] Refactoring: Added new detailView class
 - [#2509] Change: Changed extension key to "bzdstaffdirectory"
 - [#1923] Feature: Add stdWrap properties to the "tasks" field

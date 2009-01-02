@@ -3,9 +3,6 @@ ToDo
 - Move all the global configuration (from Extension Manager for example) to static TS-Setup.
 	- Change code to reflect this (settings are now coming from another place)
 
-- Rework the generation of the output – part II: Use default TYPO3 functions where
-  possible (e.g. for list view). Change the template where necessary.
-
 - Allow a user to select the font for rendering the images of the email address in
   singleview (it's hardcoded at the moment - working with my template).
 

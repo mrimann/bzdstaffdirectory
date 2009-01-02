@@ -22,15 +22,43 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * The general Exception class in the 'bzdstaffdirectory' extension.
+ * The team class in the 'bzd_staff_directory' extension.
  *
  * @package		TYPO3
  * @subpackage	tx_bzdstaffdirectory
  * @author		Mario Rimann <typo3-coding@rimann.org>
  */
 
-class tx_bzdstaffdirectory_Exception extends Exception{
+require_once(t3lib_extMgm::extPath('bzd_staff_directory').'class.tx_bzdstaffdirectory_objectFromDb.php');
 
+
+class tx_bzdstaffdirectory_team extends tx_bzdstaffdirectory_objectFromDb{
+
+	/**
+	 * The constructor for this class.
+	 */
+	public function __construct($uid, $dbResult = null) {
+		$this->tableName = 'tx_bzdstaffdirectory_groups';
+		parent::__construct($uid, $dbResult);
+	}
+
+	/**
+	 * Returns the title / team name of the team.
+	 *
+	 * @return	string		the title of the team
+	 */
+	public function getTitle() {
+		return $this->getRecordPropertyString('group_name');
+	}
+
+	/**
+	 * Returns the UID of the info page for this team.
+	 *
+	 * @return	integer		the UID of the infopage of this team
+	 */
+	public function getInfoPageUid() {
+		return $this->getRecordPropertyInteger('infopage');
+	}
 }
 
 ?>
