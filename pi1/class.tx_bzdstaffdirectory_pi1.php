@@ -28,8 +28,12 @@
  */
 
 
-require_once(PATH_tslib.'class.tslib_pibase.php');
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php');
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
+
+//require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_controller.php');
+//require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
+
+//require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php');
 
 class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
@@ -51,7 +55,6 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$this->getTemplateCode();
 
 		$this->arrConf = unserialize($GLOBALS["TYPO3_CONF_VARS"]["EXT"]["extConf"]['bzdstaffdirectory']);
-
 
 
 		// Define the path to the upload folder
@@ -86,7 +89,9 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 								break;
 			case "BOX"		:	$content .= $this->show_box();
 								break;
-			case "DETAIL"	:	$content .= $this->show_detail();
+			case "DETAIL"	:	//$this->controller->setShowUid(intval($this->piVars['showUid']));
+								//$this->controller->setBackPid(intval($this->piVars['backPid']));
+								$content .= $this->renderDetailView();
 								break;
 			default			:	$content .= $this->pi_getLL('error_noListType');
 								break;
@@ -94,6 +99,21 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		return $this->pi_wrapInBaseClass($content);
 	}
 
+
+
+	function renderDetailView() {
+		$detailViewClassName = t3lib_div::makeInstanceClassName(
+				'tx_bzdstaffdirectory_pi1_frontEndDetailView'
+		);
+		$detailView = new $detailViewClassName($this->conf, $this->cObj);
+		$detailView->setPerson(intval($this->piVars['showUid']));
+		$result = $detailView->render();
+		$detailView->__destruct();
+		unset($detailView);
+
+
+		return $result;
+	}
 
 
 
@@ -670,7 +690,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			}
 		} else {
 			// there's no person with this UID
-			$content .= $this->pi_getLL('error_noPersonOnUID');
+			$content .= $this->translate('error_noPersonOnUID');
 		}
 
 		return $content;
@@ -1881,6 +1901,171 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	}
 
 	/**
+<<<<<<< .mine
+	 * Sets a marker's content.
+	 *
+	 * Example: If the prefix is "field" and the marker name is "one", the marker
+	 * "###FIELD_ONE###" will be written.
+	 *
+	 * If the prefix is empty and the marker name is "one", the marker
+	 * "###ONE###" will be written.
+	 *
+	 * @param	string		the marker's name without the ### signs, case-insensitive, will get uppercased, must not be empty
+	 * @param	string		the marker's content, may be empty
+	 * @param	string		prefix to the marker name (may be empty, case-insensitive, will get uppercased)
+	 *
+	 * @access	protected
+	 */
+	function setMarkerContent($markerName, $content, $prefix = '') {
+		$this->markers[$this->createMarkerName($markerName, $prefix)] = $content;
+
+		return;
+	}
+
+	/**
+	 * Takes a comma-separated list of subpart names and writes them to $this->subpartsToHide.
+	 * In the process, the names are changed from 'aname' to '###BLA_ANAME###' and used as keys.
+	 * The corresponding values in the array are empty strings.
+	 *
+	 * Example: If the prefix is "field" and the list is "one,two", the array keys
+	 * "###FIELD_ONE###" and "###FIELD_TWO###" will be written.
+	 *
+	 * If the prefix is empty and the list is "one,two", the array keys
+	 * "###ONE###" and "###TWO###" will be written.
+	 *
+	 * @param	string		comma-separated list of at least 1 subpart name to hide (case-insensitive, will get uppercased)
+	 * @param	string		prefix to the subpart names (may be empty, case-insensitive, will get uppercased)
+	 *
+	 * @access	protected
+	 */
+	function readSubpartsToHide($subparts, $prefix = '') {
+		$subpartNames = explode(',', $subparts);
+
+		foreach ($subpartNames as $currentSubpartName) {
+			$this->subpartsToHide[$this->createMarkerName($currentSubpartName, $prefix)] = '';
+		}
+
+		return;
+	}
+
+	/**
+	 * Creates an uppercase marker (or subpart) name from a given name and an optional prefix.
+	 *
+	 * Example: If the prefix is "field" and the marker name is "one", the result will be
+	 * "###FIELD_ONE###".
+	 *
+	 * If the prefix is empty and the marker name is "one", the result will be "###ONE###".
+	 *
+	 * @param	string		the name of the marker, case insensitive (will be uppercased), must not be empty
+	 * @param	string		the prefix, case insensitive (will be uppercased), may be empty
+	 *
+	 * @access	private
+	 */
+	function createMarkerName($markerName, $prefix = '') {
+		// if a prefix is provided, uppercase it and separate it with an underscore
+		if ($prefix) {
+			$prefix = strtoupper($prefix).'_';
+		}
+
+		return '###'.$prefix.strtoupper(trim($markerName)).'###';
+	}
+
+	/**
+	 * Multi substitution function with caching. Wrapper function for cObj->substituteMarkerArrayCached(),
+	 * using $this->markers and $this->subparts as defaults.
+	 *
+	 * During the process, the following happens:
+	 * 1. $this->subpartsTohide will be removed
+	 * 2. for the other subparts, the subpart marker comments will be removed
+	 * 3. markes are replaced with their corresponding contents.
+	 *
+	 * @param	string		key of the subpart from $this->templateCache, e.g. 'LIST_ITEM' (without the ###)
+	 *
+	 * @return	string		content stream with the markers replaced
+	 *
+	 * @access	protected
+	 */
+	function substituteMarkerArrayCached($key) {
+		// remove subparts (lines) that will be hidden
+		$noHiddenSubparts = $this->cObj->substituteMarkerArrayCached($this->templateCache[$key], array(), $this->subpartsToHide);
+
+		// remove subpart markers by replacing the subparts with just their content
+		$noSubpartMarkers = $this->cObj->substituteMarkerArrayCached($noHiddenSubparts, array(), $this->templateCache);
+
+		// replace markers with their content
+		return $this->cObj->substituteMarkerArrayCached($noSubpartMarkers, $this->markers);
+	}
+
+	/**
+	 * Retrieves all subparts from the plugin template and write them to $this->templateCache.
+	 *
+	 * The subpart names are automatically retrieved from the template file set in $this->conf['templateFile']
+	 * (or via flexforms) and are used as array keys. For this, the ### are removed, but the names stay uppercase.
+	 *
+	 * Example: The subpart ###MY_SUBPART### will be stored with the array key 'MY_SUBPART'.
+	 *
+	 * Please note that each subpart may only occur once in the template file.
+	 *
+	 * @access	protected
+	 */
+/*	function getTemplateCode() {
+		// the whole template file as a string
+		$templateRawCode = $this->cObj->fileResource($this->getConfValueString('templateFile', 's_template', true));
+		$this->markerNames = $this->findMarkers($templateRawCode);
+
+		$subpartNames = $this->findSubparts($templateRawCode);
+
+		foreach ($subpartNames as $currentSubpartName) {
+			$this->templateCache[$currentSubpartName] = $this->cObj->getSubpart($templateRawCode, $currentSubpartName);
+		}
+		return;
+	}
+*/
+
+	/**
+	 * Finds all subparts within a template.
+	 * The subparts must be within HTML comments.
+	 *
+	 * @param	string		the whole template file as a string
+	 *
+	 * @return	array		a list of the subpart names (uppercase, without ###, e.g. 'MY_SUBPART')
+	 *
+	 * @access	protected
+	 */
+/*	function findSubparts($templateRawCode) {
+		$matches = array();
+		preg_match_all('/<!-- *(###)([^#]+)(###)/', $templateRawCode, $matches);
+
+		return array_unique($matches[2]);
+	}
+*/
+
+	/**
+	 * Finds all markers within a template.
+	 * Note: This also finds subpart names.
+	 *
+	 * The result is one long string that is easy to process using regular expressions.
+	 *
+	 * Example: If the markers ###FOO### and ###BAR### are found, the string "#FOO#BAR#" would be returned.
+	 *
+	 * @param	string		the whole template file as a string
+	 *
+	 * @return	string		a list of markes as one long string, separated, prefixed and postfixed by '#'
+	 *
+	 * @access	private
+	 */
+/*	function findMarkers($templateRawCode) {
+		$matches = array();
+		preg_match_all('/(###)([^#]+)(###)/', $templateRawCode, $matches);
+
+		$markerNames = array_unique($matches[2]);
+
+		return '#'.implode('#', $markerNames).'#';
+	}
+*/
+	/**
+=======
+>>>>>>> .r407
 	 * Checks whether a given person record has a certain field set.
 	 *
 	 * @param	string		field name to check

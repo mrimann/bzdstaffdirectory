@@ -22,7 +22,7 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 /**
- * Testcase for the team class in the 'bzdstaffdirectory' extension.
+ * Testcase for the person class in the 'bzdstaffdirectory' extension.
  *
  * @package		TYPO3
  * @subpackage	tx_bzdstaffdirectory
@@ -30,10 +30,9 @@
  */
 
 require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_testingFramework.php');
-require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_team.php');
 
 
-class tx_bzdstaffdirectory_team_testcase extends tx_phpunit_testcase {
+class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 	private $fixture;
 	private $uid;
 
@@ -41,13 +40,16 @@ class tx_bzdstaffdirectory_team_testcase extends tx_phpunit_testcase {
 		$this->testingFramework = new tx_oelib_testingFramework('tx_bzdstaffdirectory');
 
 		$this->uid = $this->testingFramework->createRecord(
-			'tx_bzdstaffdirectory_groups',
+			'tx_bzdstaffdirectory_persons',
 			array(
-				'group_name' => 'Test project FOOBAR 42',
-				'infopage' => '42'
+				'first_name' => 'Max',
+				'last_name' => 'Muster',
+				'date_birthdate' => '2583839999'
 			)
 		);
-		$this->fixture = new tx_bzdstaffdirectory_team($this->uid);
+		$this->fixture = new tx_bzdstaffdirectory_Model_Person($this->uid);
+		$this->fixture->setData(array('uid' => $this->uid));
+		$this->createPerson($this->uid);
 	}
 
 	protected function tearDown() {
@@ -56,21 +58,47 @@ class tx_bzdstaffdirectory_team_testcase extends tx_phpunit_testcase {
 		unset($this->fixture);
 	}
 
+	/**
+	 * Creates a person in $this->fixture.
+	 *
+	 * @param integer a person's UID, must be >= 0
+	 */
+	private function createPerson($personUid) {
+		try {
+			$this->fixture = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Person')
+					->find($personUid);
+		} catch (tx_oelib_Exception_NotFound $exception) {
+			$this->fixture = null;
+		}
+	}
 
-	public function testGetTitle() {
+	public function testGetUid() {
 		$this->assertEquals(
-			'Test project FOOBAR 42',
-			$this->fixture->getTitle()
+			$this->uid,
+			$this->fixture->getUid()
 		);
 	}
 
-	public function testGetInfoPageUid() {
+	public function testGetFirstName() {
 		$this->assertEquals(
-			'42',
-			$this->fixture->getInfoPageUid()
+			'Max',
+			$this->fixture->getFirstName()
 		);
 	}
 
+	public function testGetLastName() {
+		$this->assertEquals(
+			'Muster',
+			$this->fixture->getLastName()
+		);
+	}
+
+	public function testGetAge() {
+		$this->assertEquals(
+			25,
+			$this->fixture->getAge()
+		);
+	}
 
 }
 

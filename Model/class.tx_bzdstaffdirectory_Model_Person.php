@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-* (c) 2008 Mario Rimann (typo3-coding@rimann.org)
+* (c) 2008-2009 Oliver Klee <typo3-coding@oliverklee.de>
 * All rights reserved
 *
 * This script is part of the TYPO3 project. The TYPO3 project is
@@ -21,46 +21,47 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
 /**
- * The person class in the 'bzdstaffdirectory' extension.
+ * Class 'tx_oelib_Model_FrontEndUser' for the 'oelib' extension.
  *
- * @package		TYPO3
- * @subpackage	tx_bzdstaffdirectory
- * @author		Mario Rimann <typo3-coding@rimann.org>
+ * This class represents a front-end user.
+ *
+ * @package TYPO3
+ * @subpackage tx_oelib
+ *
+ * @author Oliver Klee <typo3-coding@oliverklee.de>
  */
-
-require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_objectFromDb.php');
-
-
-class tx_bzdstaffdirectory_person extends tx_bzdstaffdirectory_objectFromDb{
-
-	/**
-	 * The constructor for this class.
-	 */
-	public function __construct($uid, $dbResult = null) {
-		$this->tableName = 'tx_bzdstaffdirectory_persons';
-		parent::__construct($uid, $dbResult);
-	}
-
+class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	/**
 	 * Returns the first name of the person.
 	 *
-	 * @return	string		the first name of the person, plain text
+	 * @return string the first name of the person, plain text
 	 */
 	public function getFirstName() {
-		return $this->getRecordPropertyString('first_name');
+		return $this->getAsString('first_name');
 	}
 
 	/**
 	 * Returns the last name of the person.
 	 *
-	 * @return	string		the last name of the person, plain text
+	 * @return string the last name of the person, plain text
 	 */
 	public function getLastName() {
-		return $this->getRecordPropertyString('last_name');
+		return $this->getAsString('last_name');
 	}
 
-
+	/**
+	 * Returns the age of the person.
+	 *
+	 * @return integer the age in years, rounded
+	 */
+	public function getAge() {
+		return $this->getAsInteger('date_birthdate');
+	}
 }
 
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_oelib_Model_FrontEndUser.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_oelib_Model_FrontEndUser.php']);
+}
 ?>
