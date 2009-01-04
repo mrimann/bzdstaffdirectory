@@ -35,6 +35,29 @@
  * @author Mario Rimann <mario@screenteam.com>
  */
 class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
+
+	/**
+	 * The list of allowed standard fields.
+	 *
+	 * @var array $standardFields
+	 */
+	private $standardFields;
+
+	/**
+	 * The constructor for this class.
+	 */
+	public function __construct() {
+		// Sets all the standard fields.
+		$this->standardFields = array(
+			'first_name',
+			'last_name',
+			'function',
+			'phone',
+			'room',
+			'officehours'
+		);
+	}
+
 	/**
 	 * Returns the first name of the person.
 	 *
@@ -78,6 +101,56 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	 */
 	public function getAge() {
 		return $this->getAsInteger('date_birthdate');
+	}
+
+	/**
+	 * Returns the value of standard fields. A standard field is a simple
+	 * text field in the database which can be returned as an unprocessed
+	 * string.
+	 *
+	 * @throws Exception if $key is empty
+	 * @throws Exception if $key is not in the array of valid keys
+	 *
+	 * @param string the key/fieldname of the field to return
+	 *
+	 * @return string the data for $key, may be empty
+	 */
+	public function getStandardField($key) {
+		if (empty($key)) {
+			throw new Exception('$key must not be empty!');
+		}
+
+		if (!in_array($key, $this->standardFields)) {
+			throw new Exception($key . ' was an illegal key!');
+		}
+
+		return $this->getAsString($key);
+	}
+
+	/**
+	 * Checks whether the person has a certain standard field set or not.
+	 *
+	 * @throws Exception if $key is empty
+	 * @throws Exception if $key is not in the array of valid keys
+	 *
+	 * @param string the key/fieldname of the field to return
+	 *
+	 * @return boolean true if the requested field is not empty, false otherwise
+	 */
+	public function hasStandardField($key) {
+		if (empty($key)) {
+			throw new Exception('$key must not be empty!');
+		}
+
+		if (!in_array($key, $this->standardFields)) {
+			throw new Exception($key . ' was an illegal key!');
+		}
+
+		return $this->hasString($key);
+	}
+
+	public function getStandardFieldList() {
+		return $this->standardFields;
 	}
 }
 

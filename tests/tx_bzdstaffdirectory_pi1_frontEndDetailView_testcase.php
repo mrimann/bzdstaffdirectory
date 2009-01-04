@@ -57,8 +57,13 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		$this->personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons',
 			array(
-				'first_name' => 'Johannes',
+				'first_name' => 'John',
+				'last_name' => 'Doe',
 				'title' => 'Dr.',
+				'room' => '301',
+				'officehours' => '07:00 - 17:00',
+				'function' => 'Master of Desaster',
+				'phone' => '+41 44 123 45 67',
 			)
 		);
 
@@ -98,7 +103,14 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
 	public function testRenderContainsFirstName() {
 		$this->assertContains(
-			'Johannes',
+			'John',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsLastName() {
+		$this->assertContains(
+			'Doe',
 			$this->fixture->render()
 		);
 	}
@@ -110,7 +122,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 	}
 
-	public function testRenderDoesNotContainTitleMarkerIfNoTitleSet() {
+	public function testRenderDoesNotContainTitleMarkerIfTitleNotSet() {
 		$this->personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
@@ -121,6 +133,85 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsRoom() {
+		$this->assertContains(
+			'301',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainRoomMarkerIfRoomNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###ROOM###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsOfficeHours() {
+		$this->assertContains(
+			'07:00 - 17:00',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainOfficeHoursMarkerIfOfficeHoursNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###OFFICEHOURS###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsPhone() {
+		$this->assertContains(
+			'+41 44 123 45 67',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainPhoneMarkerIfPhoneNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###PHONE###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsFunction() {
+		$this->assertContains(
+			'Master of Desaster',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainFunctionMarkerIfFunctionNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###FUNCTION###',
+			$this->fixture->render()
+		);
+	}
+
+
+
 }
 
 ?>

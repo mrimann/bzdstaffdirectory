@@ -46,6 +46,10 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'last_name' => 'Muster',
 				'date_birthdate' => '2583839999',
 				'title' => 'Dr.',
+				'officehours' => '07:00 - 17:00',
+				'function' => 'Master of Desaster',
+				'phone' => '+41 44 123 45 67',
+				'room' => '301',
 			)
 		);
 		$this->createPerson($this->uid);
@@ -105,6 +109,80 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			'Dr.',
 			$this->fixture->getTitle()
+		);
+	}
+
+	public function testHasStandardFieldReturnsTrueOnValidKeyAndFilledField() {
+		$this->assertTrue($this->fixture->hasStandardField('room'));
+	}
+
+	public function testHasStandardFieldReturnsFalseOnValidKeyButEmptyField() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse($this->fixture->hasStandardField('function'));
+	}
+
+	public function testHasStandardFieldThrowsExceptionOnEmptyKey() {
+		$this->setExpectedException(
+			'Exception', '$key must not be empty!'
+		);
+
+		$this->fixture->hasStandardField('');
+	}
+
+	public function testHasStandardFieldThrowsExceptionOnIllegalKey() {
+		$this->setExpectedException(
+			'Exception', 'foobar was an illegal key!'
+		);
+
+		$this->fixture->hasStandardField('foobar');
+	}
+
+	public function testGetStandardFieldThrowsExceptionOnIllegalKey() {
+		$this->setExpectedException(
+			'Exception', 'foobar was an illegal key!'
+		);
+
+		$this->fixture->getStandardField('foobar');
+	}
+
+	public function testGetStandardFieldThrowsExceptionOnEmptyKey() {
+		$this->setExpectedException(
+			'Exception', '$key must not be empty!'
+		);
+
+		$this->fixture->getStandardField('');
+	}
+
+	public function testGetStandardFieldWithRoom() {
+		$this->assertEquals(
+			'301',
+			$this->fixture->getStandardField('room')
+		);
+	}
+
+	public function testGetStandardFieldWithOfficeHours() {
+		$this->assertEquals(
+			'07:00 - 17:00',
+			$this->fixture->getStandardField('officehours')
+		);
+	}
+
+	public function testGetStandardFieldWithPhone() {
+		$this->assertEquals(
+			'+41 44 123 45 67',
+			$this->fixture->getStandardField('phone')
+		);
+	}
+
+	public function testGetStandardFieldWithFunction() {
+		$this->assertEquals(
+			'Master of Desaster',
+			$this->fixture->getStandardField('function')
 		);
 	}
 

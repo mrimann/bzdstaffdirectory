@@ -724,15 +724,15 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			}
 		}
 
-		// fill the markers of all the simple fields
-		foreach($allStandardFields as $key) {
-			if ($this->hasValue($key, $person)) {
-				$this->setMarker($key, $this->getValue($key, $person, true));
-				$this->setMarker('label_'.$key, $this->pi_getLL('label_'.$key));
-			} else {
-				$this->hideSubparts($key, 'field_wrapper');
-			}
-		}
+//		// fill the markers of all the simple fields
+//		foreach($allStandardFields as $key) {
+//			if ($this->hasValue($key, $person)) {
+//				$this->setMarker($key, $this->getValue($key, $person, true));
+//				$this->setMarker('label_'.$key, $this->pi_getLL('label_'.$key));
+//			} else {
+//				$this->hideSubparts($key, 'field_wrapper');
+//			}
+//		}
 
 //		// define the other markers
 //		if ($this->hasValue('title', $person)) {

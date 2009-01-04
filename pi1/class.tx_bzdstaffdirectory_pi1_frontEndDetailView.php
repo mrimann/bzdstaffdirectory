@@ -88,6 +88,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 	public function render() {
 		// merge the marker content with the template
 		$this->setMarker('first_name', $this->person->getFirstName());
+		$this->setMarker('last_name', $this->person->getLastName());
 
 
 		if ($this->person->hasTitle()) {
@@ -95,6 +96,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->setMarker('label_title', $this->pi_getLL('label_title'));
 		} else {
 			$this->hideSubparts('title', 'field_wrapper');
+		}
+
+		// Fills the markers of all the standard fields
+		foreach($this->person->getStandardFieldList() as $key) {
+			if ($this->person->hasStandardField($key)) {
+				$this->setMarker($key, $this->person->getStandardField($key));
+				$this->setMarker('label_'.$key, $this->pi_getLL('label_'.$key));
+			} else {
+				$this->hideSubparts($key, 'field_wrapper');
+			}
 		}
 
 
