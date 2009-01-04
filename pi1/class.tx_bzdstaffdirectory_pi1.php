@@ -704,25 +704,25 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	 * @return	string		the HTML code
 	 */
 	function showSinglePerson($person) {
-		// define all the standard fields (these are all fields, that can
-		// be output to the frontend directly from the DB without changes)
-		$allStandardFields = array(
-			'first_name',
-			'last_name',
-			'function',
-			'phone',
-			'room',
-			'officehours'
-		);
-
-		// depending on the configuration of the universal fields: show or hide them
-		for ($i = 1; $i <= 5; $i++) {
-			if ($this->arrConf['useUniversalField_' . $i]) {
-				$allStandardFields[] = 'universal_field_' . $i;
-			} else {
-				$this->hideSubparts('universal_field_' . $i, 'field_wrapper');
-			}
-		}
+//		// define all the standard fields (these are all fields, that can
+//		// be output to the frontend directly from the DB without changes)
+//		$allStandardFields = array(
+//			'first_name',
+//			'last_name',
+//			'function',
+//			'phone',
+//			'room',
+//			'officehours'
+//		);
+//
+//		// depending on the configuration of the universal fields: show or hide them
+//		for ($i = 1; $i <= 5; $i++) {
+//			if ($this->arrConf['useUniversalField_' . $i]) {
+//				$allStandardFields[] = 'universal_field_' . $i;
+//			} else {
+//				$this->hideSubparts('universal_field_' . $i, 'field_wrapper');
+//			}
+//		}
 
 //		// fill the markers of all the simple fields
 //		foreach($allStandardFields as $key) {

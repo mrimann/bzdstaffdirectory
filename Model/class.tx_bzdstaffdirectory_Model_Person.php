@@ -54,7 +54,12 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 			'function',
 			'phone',
 			'room',
-			'officehours'
+			'officehours',
+			'universal_field_1',
+			'universal_field_2',
+			'universal_field_3',
+			'universal_field_4',
+			'universal_field_5',
 		);
 	}
 

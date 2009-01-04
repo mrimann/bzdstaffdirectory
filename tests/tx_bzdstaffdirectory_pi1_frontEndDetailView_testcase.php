@@ -64,6 +64,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'officehours' => '07:00 - 17:00',
 				'function' => 'Master of Desaster',
 				'phone' => '+41 44 123 45 67',
+				'universal_field_1' => 'Universal Value',
 			)
 		);
 
@@ -206,6 +207,25 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
 		$this->assertNotContains(
 			'###FUNCTION###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsUniversalField1() {
+		$this->assertContains(
+			'Universal Value',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainUniversalField1MarkerIfUniversalField1NotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###UNIVERSAL_FIELD_1###',
 			$this->fixture->render()
 		);
 	}
