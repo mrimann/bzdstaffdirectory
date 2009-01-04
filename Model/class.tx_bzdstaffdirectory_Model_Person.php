@@ -149,6 +149,11 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 		return $this->hasString($key);
 	}
 
+	/**
+	 * Returns the list of all standard fields.
+	 *
+	 * @return array all standard fields ($this->standardFields)
+	 */
 	public function getStandardFieldList() {
 		return $this->standardFields;
 	}
