@@ -64,6 +64,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'officehours' => '07:00 - 17:00',
 				'function' => 'Master of Desaster',
 				'phone' => '+41 44 123 45 67',
+				'email' => 'chief@example.org',
 				'universal_field_1' => 'Universal Value',
 			)
 		);
@@ -230,6 +231,69 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 	}
 
+	public function testRenderContainsEmailAsPlainTextByDefault() {
+		$this->assertContains(
+			'chief@example.org',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsEmailAsPlainTextByConfiguration() {
+		$this->fixture->setConfigurationValue('spamProtectionMode', 'plain');
+
+		$this->assertContains(
+			'chief@example.org',
+			$this->fixture->render()
+		);
+	}
+
+
+	public function testRenderContainsEmailJavaScriptEncrypted() {
+		$this->fixture->setConfigurationValue('spamProtectionMode', 'jsencrypted');
+		$GLOBALS['TSFE']->spamProtectEmailAddresses = 1;
+
+		$this->assertContains(
+			'<a href="javascript:linkTo_UnCryptMailto(\'nbjmup+dijfgAfybnqmf/psh\');">',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsEmailAsImage() {
+		$this->fixture->setConfigurationValue('spamProtectionMode', 'asimage');
+
+		$this->assertContains(
+			'<img src="typo3temp/GB/',
+			$this->fixture->render()
+		);
+
+		$this->assertContains(
+			'gif" width="104" height="19" alt="" title="" />',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsEmailJSEncryptedImage() {
+		$this->fixture->setConfigurationValue('spamProtectionMode', 'asimagejsencrypted');
+		$GLOBALS['TSFE']->spamProtectEmailAddresses = 1;
+
+		$this->assertContains(
+			'chief@example.orgJSIMG',
+			$this->fixture->render()
+		);
+	}
+
+
+	public function testRenderDoesNotContainEmailMarkerIfEmailNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###EMAIL###',
+			$this->fixture->render()
+		);
+	}
 
 
 }

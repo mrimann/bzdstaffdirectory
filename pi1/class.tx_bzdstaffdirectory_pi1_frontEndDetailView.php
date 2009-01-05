@@ -106,7 +106,13 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			}
 		}
 
+		if ($this->person->hasStandardField('email')) {
+			$this->setMarker('email', $this->getEmail());
+		} else {
+			$this->hideSubparts('email', 'field_wrapper');
+		}
 
+		// TODO: Use setOrDeletedMarkerIfNotEmpty() !!!
 
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
 
@@ -117,55 +123,80 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 	}
 
 	/**
-	 * Returns a localized string representing an amount of seconds in words.
-	 * For example:
-	 * 150000 seconds -> "1 day"
-	 * 200000 seconds -> "2 days"
-	 * 50000 seconds -> "13 hours"
-	 * The function uses localized strings and also looks for proper usage of
-	 * singular/plural.
+	 * Generates the E-mail address for the detail view. The return can be
+	 * a plain-text address or wrapped in <a> tags.
 	 *
-	 * @param integer the amount of seconds to rewrite into words
-	 *
-	 * @return string a localized string representing the time left until the
-	 *                event starts
+	 * @return string the HTML code for displaying the email address (may be just plain-text)
 	 */
-	private function createCountdownMessage($seconds) {
-		if ($seconds > 82800) {
-			// more than 23 hours left, show the time in days
-			$countdownValue = round($seconds / ONE_DAY);
-			if ($countdownValue > 1) {
-				$countdownText = $this->translate('countdown_days_plural');
-			} else {
-				$countdownText = $this->translate('countdown_days_singular');
-			}
-		} elseif ($seconds > 3540) {
-			// more than 59 minutes left, show the time in hours
-			$countdownValue = round($seconds / 3600);
-			if ($countdownValue > 1) {
-				$countdownText = $this->translate('countdown_hours_plural');
-			} else {
-				$countdownText = $this->translate('countdown_hours_singular');
-			}
-		} elseif ($seconds > 59) {
-			// more than 59 seconds left, show the time in minutes
-			$countdownValue = round($seconds / 60);
-			if ($countdownValue > 1) {
-				$countdownText = $this->translate('countdown_minutes_plural');
-			} else {
-				$countdownText = $this->translate('countdown_minutes_singular');
-			}
+	private function getEmail() {
+		$emailArray = array();
+		$result = '';
+		$address = $this->person->getStandardField('email');
+
+		switch($this->getConfValueString('spamProtectionMode', 's_detailview'))
+		{
+			case 'jsencrypted'	:	$emailArray = $this->getEmailJsEncrypted($address);
+								break;
+			case 'asimage'		:	$emailArray = $this->getEmailAsImage($address);
+								break;
+			case 'asimagejsencrypted':	$emailArray = $this->getEmailAsImage($address, true);
+								break;
+			case 'plain'		:
+			default				:	$emailArray['display'] = $address;
+								break;
+		}
+		$result = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
+
+		return $result;
+	}
+
+	/**
+	 * Returns an image containing the provided e-mail address.
+	 *
+	 * @param boolean whether the image should include an encrypted link
+	 *
+	 * @return array associative array containing the information to fill the markers
+	 */
+	private function getEmailAsImage($includeEncryptedLink = false)	{
+		$email = $this->person->getStandardField('email');
+
+		$emailconf['image.']['file'] = 'GIFBUILDER';
+		$emailconf['image.']['file.']['10'] = 'TEXT';
+		$emailconf['image.']['file.']['10.']['text'] = $email;
+		$emailconf['image.']['file.']['10.']['fontFile'] = 't3lib/fonts/vera.ttf';
+		$emailconf['image.']['file.']['10.']['fontSize'] = '11';
+		$emailconf['image.']['file.']['10.']['offset'] = '0, 14';
+		$emailconf['image.']['file.']['10.']['nicetext'] = 1;
+		$emailconf['image.']['file.']['XY'] ='[10.w]+1, [10.h]+4';
+
+		$result['display'] = $this->cObj->IMAGE($emailconf['image.']);
+		if ($includeEncryptedLink) {
+			$encrypted = $this->getEmailJsEncrypted($email);
+			$result['begin'] = $encrypted['begin'];
+			$result['end'] = $encrypted['end'];
 		} else {
-			// less than 60 seconds left, show the time in seconds
-			$countdownValue = $seconds;
-			$countdownText = $this->translate('countdown_seconds_plural');
+			$result['begin'] = '';
+			$result['end'] = '';
 		}
 
-		return sprintf(
-			$this->translate('message_countdown'),
-			$countdownValue,
-			$countdownText
-		);
+		return $result;
+	}
+
+	/**
+	 * Returns the person's email address with the default TYPO3-JavaScript-Encryption.
+	 *
+	 * @return array associative array containing the parts to fill the markers
+	 */
+	private function getEmailJsEncrypted()	{
+		$email = $this->person->getStandardField('email');
+
+		$mailto = $this->cObj->getMailTo($email,$email);
+		$result = array();
+		$result['display'] = $mailto[1];
+		$result['begin'] = '<a href="'.$mailto[0].'">';
+		$result['end'] = '</a>';
+
+		return $result;
 	}
 
 	/**

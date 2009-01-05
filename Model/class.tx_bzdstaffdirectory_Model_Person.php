@@ -51,6 +51,7 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 		$this->standardFields = array(
 			'first_name',
 			'last_name',
+			'email',
 			'function',
 			'phone',
 			'room',

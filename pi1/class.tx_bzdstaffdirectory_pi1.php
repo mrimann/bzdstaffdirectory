@@ -1131,36 +1131,36 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		return $result;
 	}
 
-	/**
-	 * Generates the E-mail address for the detail view.
-	 *
-	 * @param	array		associative array containing all the information
-	 * @param	string		the mode selected in the configuration / flexform, may be empty
-	 *
-	 * @return	string		the HTML code for displaying the E-Mail address
-	 */
-	function getEmail($person, $spamProtectionMode = '') {
-		$emailArray = array();
-		$email = '';
-		$address = $this->getValue('email', $person);
-
-		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
-		switch($spamProtectionMode)
-		{
-			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($address);
-								break;
-			case "asimage"		:	$emailArray = $this->email_asimage($address);
-								break;
-			case "asimagejsencrypted":	$emailArray = $this->email_asimage($address, true);
-								break;
-			case "plain"		:
-			default				:	$emailArray['display'] = $address;
-								break;
-		}
-		$email = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
-
-		return $email;
-	}
+//	/**
+//	 * Generates the E-mail address for the detail view.
+//	 *
+//	 * @param	array		associative array containing all the information
+//	 * @param	string		the mode selected in the configuration / flexform, may be empty
+//	 *
+//	 * @return	string		the HTML code for displaying the E-Mail address
+//	 */
+//	function getEmail($person, $spamProtectionMode = '') {
+//		$emailArray = array();
+//		$email = '';
+//		$address = $this->getValue('email', $person);
+//
+//		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
+//		switch($spamProtectionMode)
+//		{
+//			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($address);
+//								break;
+//			case "asimage"		:	$emailArray = $this->email_asimage($address);
+//								break;
+//			case "asimagejsencrypted":	$emailArray = $this->email_asimage($address, true);
+//								break;
+//			case "plain"		:
+//			default				:	$emailArray['display'] = $address;
+//								break;
+//		}
+//		$email = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
+//
+//		return $email;
+//	}
 
 	/**
 	 * Converts an Array (which contains UIDs) to a comma separated string to use in DB queries.
@@ -1667,37 +1667,37 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		return $result;
 	}
 
-	/**
-	 * Returns an image containing the provided e-mail address
-	 *
-	 * @param	string		the e-mail address to protect
-	 * @param	boolean		whether the image should include an encrypted link
-	 *
-	 * @return	array		associative array containing the infos to fill the markers
-	 */
-	function email_asimage($email, $includeEncryptedLink = false)	{
-		$emailconf["image."]["file"] = 'GIFBUILDER';
-		$emailconf["image."]["file."]["10"] = 'TEXT';
-		$emailconf["image."]["file."]["10."]["text"] = $email;
-// FIXME: Make Font, Fontsize etc. configurable via Flexform!!
-		$emailconf["image."]["file."]["10."]["fontFile"] = 't3lib/fonts/verdana.ttf';
-		$emailconf["image."]["file."]["10."]["fontSize"] = '11';
-		$emailconf["image."]["file."]["10."]["offset"] = '0, 14';
-		$emailconf["image."]["file."]["10."]["nicetext"] = 1;
-		$emailconf["image."]["file."]["XY"] ='[10.w]+1, [10.h]+4';
-
-		$result['display'] = $this->cObj->IMAGE($emailconf['image.']);
-		if ($includeEncryptedLink) {
-			$encrypted = $this->email_jsencrypted($email);
-			$result['begin'] = $encrypted['begin'];
-			$result['end'] = $encrypted['end'];
-		} else {
-			$result['begin'] = '';
-			$result['end'] = '';
-		}
-
-		return $result;
-	}
+//	/**
+//	 * Returns an image containing the provided e-mail address
+//	 *
+//	 * @param	string		the e-mail address to protect
+//	 * @param	boolean		whether the image should include an encrypted link
+//	 *
+//	 * @return	array		associative array containing the infos to fill the markers
+//	 */
+//	function email_asimage($email, $includeEncryptedLink = false)	{
+//		$emailconf["image."]["file"] = 'GIFBUILDER';
+//		$emailconf["image."]["file."]["10"] = 'TEXT';
+//		$emailconf["image."]["file."]["10."]["text"] = $email;
+//// FIXME: Make Font, Fontsize etc. configurable via Flexform!!
+//		$emailconf["image."]["file."]["10."]["fontFile"] = 't3lib/fonts/verdana.ttf';
+//		$emailconf["image."]["file."]["10."]["fontSize"] = '11';
+//		$emailconf["image."]["file."]["10."]["offset"] = '0, 14';
+//		$emailconf["image."]["file."]["10."]["nicetext"] = 1;
+//		$emailconf["image."]["file."]["XY"] ='[10.w]+1, [10.h]+4';
+//
+//		$result['display'] = $this->cObj->IMAGE($emailconf['image.']);
+//		if ($includeEncryptedLink) {
+//			$encrypted = $this->email_jsencrypted($email);
+//			$result['begin'] = $encrypted['begin'];
+//			$result['end'] = $encrypted['end'];
+//		} else {
+//			$result['begin'] = '';
+//			$result['end'] = '';
+//		}
+//
+//		return $result;
+//	}
 
 
 	/**

@@ -245,7 +245,7 @@
 								</config>
 						</TCEforms>
 					</disableBackLink>
-					<spamprotectionmode>
+					<spamProtectionMode>
 						<TCEforms>
 							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode</label>
 							<config>
@@ -273,7 +273,7 @@
 								<default>plain</default>
 							</config>
 						</TCEforms>
-				      </spamprotectionmode>
+				      </spamProtectionMode>
 					<detailPage>
 						<TCEforms>
 						<exclude>1</exclude>
@@ -508,7 +508,7 @@
 									</config>
 							</TCEforms>
 					</click_enlarge>
-					<spamprotectionmode>
+					<spamProtectionMode>
 						<TCEforms>
 							<label>LLL:EXT:bzdstaffdirectory/locallang_db.xml:pi_flexform_spamprotectionmode</label>
 							<config>
@@ -536,7 +536,7 @@
 								<default>plain</default>
 							</config>
 						</TCEforms>
-				      </spamprotectionmode>
+				      </spamProtectionMode>
 					<showAgeInsteadOfBirthdate>
 							<TCEforms>
 									<label>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.showAgeInsteadOfBirthdate</label>

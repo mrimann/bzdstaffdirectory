@@ -50,6 +50,7 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'function' => 'Master of Desaster',
 				'phone' => '+41 44 123 45 67',
 				'room' => '301',
+				'email' => 'chief@example.org',
 			)
 		);
 		$this->createPerson($this->uid);
@@ -183,6 +184,13 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			'Master of Desaster',
 			$this->fixture->getStandardField('function')
+		);
+	}
+
+	public function testGetStandardFieldWithEmail() {
+		$this->assertEquals(
+			'chief@example.org',
+			$this->fixture->getStandardField('email')
 		);
 	}
 
