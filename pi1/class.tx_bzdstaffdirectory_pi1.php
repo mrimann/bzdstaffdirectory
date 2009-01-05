@@ -1700,23 +1700,23 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 //	}
 
 
-	/**
-	 * Returns the provided e-mail address encrypted with the default
-	 * TYPO3-JavaScript-Encryption.
-	 *
-	 * @param	string		the e-mail address to protect
-	 *
-	 * @return	array		associative array containing the parts to fill the markers
-	 */
-	function email_jsencrypted($email)	{
-		$mailto = $this->cObj->getMailTo($email,$email);
-		$result = array();
-		$result['display'] = $mailto[1];
-		$result['begin'] = '<a href="'.$mailto[0].'">';
-		$result['end'] = '</a>';
-
-		return $result;
-	}
+//	/**
+//	 * Returns the provided e-mail address encrypted with the default
+//	 * TYPO3-JavaScript-Encryption.
+//	 *
+//	 * @param	string		the e-mail address to protect
+//	 *
+//	 * @return	array		associative array containing the parts to fill the markers
+//	 */
+//	function email_jsencrypted($email)	{
+//		$mailto = $this->cObj->getMailTo($email,$email);
+//		$result = array();
+//		$result['display'] = $mailto[1];
+//		$result['begin'] = '<a href="'.$mailto[0].'">';
+//		$result['end'] = '</a>';
+//
+//		return $result;
+//	}
 
 
 	/**
