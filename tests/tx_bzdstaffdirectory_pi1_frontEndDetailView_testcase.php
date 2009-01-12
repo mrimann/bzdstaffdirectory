@@ -66,6 +66,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'phone' => '+41 44 123 45 67',
 				'email' => 'chief@example.org',
 				'universal_field_1' => 'Universal Value',
+				'date_birthdate' => strtotime("-10 years"),
 			)
 		);
 
@@ -294,6 +295,76 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsBirthDate() {
+		$this->assertContains(
+			date('F Y', strtotime("-10 years")),
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderTakesFormatForBirthDateIntoAccount() {
+		$this->fixture->setConfigurationValue('dateFormatBirthday', 'j. F Y');
+
+		$this->assertContains(
+			date('j. F Y', strtotime("-10 years")),
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainBirthDateMarkerIfBirthDateNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###DATE_BIRTHDATE###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsAgeIfShowAgeInsteadOfBirthDateIsActive() {
+		$this->fixture->setConfigurationValue('showAgeInsteadOfBirthdate', 1);
+
+		$this->assertContains(
+			'10',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsAgeLabelIfShowAgeInsteadOfBirthDateIsActive() {
+		$this->fixture->setConfigurationValue('showAgeInsteadOfBirthdate', 1);
+
+		$this->assertContains(
+			'Age',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainBirthDateLabelIfShowAgeInsteadOfBirthDateIsActive() {
+		$this->fixture->setConfigurationValue('showAgeInsteadOfBirthdate', 1);
+
+		$this->assertNotContains(
+			'Birthdate',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainAgeMarkerIfBirthDateNotSet() {
+		$this->fixture->setConfigurationValue('showAgeInsteadOfBirthdate', 1);
+
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###DATE_BIRTHDATE###',
+			$this->fixture->render()
+		);
+	}
+
 
 
 }

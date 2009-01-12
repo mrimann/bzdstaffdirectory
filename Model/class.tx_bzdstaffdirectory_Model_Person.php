@@ -101,12 +101,27 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	}
 
 	/**
-	 * Returns the age of the person.
+	 * Returns the age of the person calculated from the birthdate and
+	 * the current date.
 	 *
-	 * @return integer the age in years, rounded
+	 * @return integer the age in years
 	 */
 	public function getAge() {
-		return $this->getAsInteger('date_birthdate');
+		$birthDate = $this->getBirthdate();
+
+		$yearDiff  = date("Y") - $birthDate->format('Y');
+		$monthDiff = date("m") - $birthDate->format('m');
+		$dayDiff   = date("d") - $birthDate->format('d');
+		if ($monthDiff < 0) {
+			// today is at leat in the month before the birthday
+			$yearDiff--;
+		} elseif (($monthDiff==0) && ($dayDiff < 0)) {
+			// today is in the same month as the birthday, but
+			// before the birthday
+			$yearDiff--;
+		}
+
+		return $yearDiff;
 	}
 
 	/**
@@ -162,6 +177,32 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	 */
 	public function getStandardFieldList() {
 		return $this->standardFields;
+	}
+
+	/**
+	 * Returns the birth date as DateTime object.
+	 *
+	 * @return DateTime the birth date of the person
+	 */
+	public function getBirthdate() {
+		$result = new DateTime(
+			strftime(
+				'%Y-%m-%d',
+				$this->getAsInteger('date_birthdate')
+			)
+		);
+
+		return $result;
+	}
+
+	/**
+	 * Checks whether the person has a birth date defined.
+	 *
+	 * @return boolean true if a birth date is set, false otherwise
+	 *
+	 */
+	public function hasBirthDate() {
+		return ($this->getAsInteger('date_birthdate')) ? true : false;
 	}
 }
 

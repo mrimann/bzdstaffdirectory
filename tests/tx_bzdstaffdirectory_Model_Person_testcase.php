@@ -44,13 +44,13 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			array(
 				'first_name' => 'Max',
 				'last_name' => 'Muster',
-				'date_birthdate' => '2583839999',
 				'title' => 'Dr.',
 				'officehours' => '07:00 - 17:00',
 				'function' => 'Master of Desaster',
 				'phone' => '+41 44 123 45 67',
 				'room' => '301',
 				'email' => 'chief@example.org',
+				'date_birthdate' => strtotime("-10 years"),
 			)
 		);
 		$this->createPerson($this->uid);
@@ -194,9 +194,46 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 	}
 
-	public function testGetAge() {
+	public function testHasBirthDateReturnsTrueIfBirthDateSet() {
+		$this->assertTrue(
+			$this->fixture->hasBirthDate()
+		);
+	}
+
+	public function testHasBirthDateReturnsFalseIfNoBirthDateSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse(
+			$this->fixture->hasBirthDate()
+		);
+	}
+
+	public function testGetBirthDateReturnsDateObject() {
+		$this->assertTrue(
+			is_a($this->fixture->getBirthDate(), DateTime)
+		);
+	}
+
+	public function testGetBirthDateReturnsCorrectBirthDate() {
 		$this->assertEquals(
-			25,
+			date('Y-m-d', strtotime("-10 years")),
+			$this->fixture->getBirthDate()->format('Y-m-d')
+		);
+	}
+
+	public function testGetAgeReturnsInteger() {
+		$this->assertTrue(
+			is_int($this->fixture->getAge())
+		);
+	}
+
+	public function testGetAgeReturnsCorrectValue() {
+		$this->assertEquals(
+			10,
 			$this->fixture->getAge()
 		);
 	}

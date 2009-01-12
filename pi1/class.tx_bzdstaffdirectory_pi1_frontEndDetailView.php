@@ -106,13 +106,28 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			}
 		}
 
+		// TODO: Use setOrDeletedMarkerIfNotEmpty() !!!
+
 		if ($this->person->hasStandardField('email')) {
 			$this->setMarker('email', $this->getEmail());
 		} else {
 			$this->hideSubparts('email', 'field_wrapper');
 		}
 
-		// TODO: Use setOrDeletedMarkerIfNotEmpty() !!!
+		// Fills the markers for birth date or age depending on the configuration.
+		if ($this->person->hasBirthDate()) {
+			if (!$this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
+				$format = $this->getConfValueString('dateFormatBirthday');
+				$format = (!empty($format)) ? $format : 'F Y';
+				$this->setMarker('date_birthdate', $this->person->getBirthDate()->format($format));
+			} else {
+				$this->setMarker('date_birthdate', $this->person->getAge());
+				$this->setMarker('label_date_birthdate', $this->translate('label_date_age'));
+			}
+		} else {
+			$this->hideSubparts('date_birthdate', 'field_wrapper');
+		}
+
 
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
 

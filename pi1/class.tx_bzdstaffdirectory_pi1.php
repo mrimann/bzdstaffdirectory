@@ -1131,36 +1131,36 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		return $result;
 	}
 
-//	/**
-//	 * Generates the E-mail address for the detail view.
-//	 *
-//	 * @param	array		associative array containing all the information
-//	 * @param	string		the mode selected in the configuration / flexform, may be empty
-//	 *
-//	 * @return	string		the HTML code for displaying the E-Mail address
-//	 */
-//	function getEmail($person, $spamProtectionMode = '') {
-//		$emailArray = array();
-//		$email = '';
-//		$address = $this->getValue('email', $person);
-//
-//		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
-//		switch($spamProtectionMode)
-//		{
-//			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($address);
-//								break;
-//			case "asimage"		:	$emailArray = $this->email_asimage($address);
-//								break;
-//			case "asimagejsencrypted":	$emailArray = $this->email_asimage($address, true);
-//								break;
-//			case "plain"		:
-//			default				:	$emailArray['display'] = $address;
-//								break;
-//		}
-//		$email = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
-//
-//		return $email;
-//	}
+	/**
+	 * Generates the E-mail address for the detail view.
+	 *
+	 * @param	array		associative array containing all the information
+	 * @param	string		the mode selected in the configuration / flexform, may be empty
+	 *
+	 * @return	string		the HTML code for displaying the E-Mail address
+	 */
+	function getEmail($person, $spamProtectionMode = '') {
+		$emailArray = array();
+		$email = '';
+		$address = $this->getValue('email', $person);
+
+		// Output of the e-mail address depending on the settings from flexform (spam protection mode)
+		switch($spamProtectionMode)
+		{
+			case "jsencrypted"	:	$emailArray = $this->email_jsencrypted($address);
+								break;
+			case "asimage"		:	$emailArray = $this->email_asimage($address);
+								break;
+			case "asimagejsencrypted":	$emailArray = $this->email_asimage($address, true);
+								break;
+			case "plain"		:
+			default				:	$emailArray['display'] = $address;
+								break;
+		}
+		$email = $emailArray['begin'] . $emailArray['display'] . $emailArray['end'];
+
+		return $email;
+	}
 
 	/**
 	 * Converts an Array (which contains UIDs) to a comma separated string to use in DB queries.
