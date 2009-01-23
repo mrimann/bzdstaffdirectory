@@ -6,8 +6,7 @@ ToDo
 - Allow a user to select the font for rendering the images of the email address in
   singleview (it's hardcoded at the moment - working with my template).
 
-- Add a search form to search for a person (search in fields first-name, last-name,
-  function and user-tasks)
+- Add a search form to search for a person (search in all fields)
 
 - Idea: Add configuration, if detailed information on the team leader should be
   displayed in the teamlist
