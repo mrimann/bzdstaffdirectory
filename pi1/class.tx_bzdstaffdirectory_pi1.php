@@ -1601,7 +1601,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			$this->markers = array();
 
 			// reset the hidden subparts (may be they are needed in the next row)
-			$this->subpartsToHide = array();
+			$this->resetSubpartsHiding();
 		}
 
 		return $result;
