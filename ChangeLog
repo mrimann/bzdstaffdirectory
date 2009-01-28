@@ -1,3 +1,6 @@
+version 0.7.3 - currently working on
+- [#2640] Fix: Hidden subparts caused some missing fields in the list view.
+
 version 0.7.2 - released 2008-12-24
 - [#2445] Fix: Replaced all calls to deprecated methods from oelib - now compatible with oelib >=0.5.0
 
