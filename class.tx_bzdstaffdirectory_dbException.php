@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-* (c) 2009 Mario Rimann (typo3-coding@rimann.org)
+* (c) 2009 Mario Rimann (mario@screenteam.com)
 * All rights reserved
 *
 * This script is part of the TYPO3 project. The TYPO3 project is
@@ -26,7 +26,7 @@
  *
  * @package		TYPO3
  * @subpackage	tx_bzdstaffdirectory
- * @author		Mario Rimann <typo3-coding@rimann.org>
+ * @author		Mario Rimann <mario@screenteam.com>
  */
 
 class tx_bzdstaffdirectory_dbException extends tx_bzdstaffdirectory_Exception{
