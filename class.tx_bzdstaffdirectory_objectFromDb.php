@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-* (c) 2008 Mario Rimann (typo3-coding@rimann.org)
+* (c) 2009 Mario Rimann (typo3-coding@rimann.org)
 * All rights reserved
 *
 * This script is part of the TYPO3 project. The TYPO3 project is
@@ -23,7 +23,7 @@
 ***************************************************************/
 /**
  * The objectFromDB class in the 'bzd_staff_directory' extension.
- * 
+ *
  * This class represents an object that is created from a DB record.
  *
  * This is an abstract class; don't instantiate it.

@@ -1,4 +1,5 @@
 version 0.7.3 - currently working on
+- [#2510] Updated copyright lines to 2009
 - [#2640] Fix: Hidden subparts caused some missing fields in the list view.
 
 version 0.7.2 - released 2008-12-24
