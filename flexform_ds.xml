@@ -37,46 +37,6 @@
 				</el>
 			</ROOT>
 		</s_welcome>
-		<s_template>
-			<ROOT>
-				<TCEforms>
-					<sheetTitle>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.template</sheetTitle>
-				</TCEforms>
-				<type>array</type>
-				<el>
-					<templateFile>
-						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.template_file</label>
-							<config>
-								<type>group</type>
-								<internal_type>file</internal_type>
-								<allowed>tmpl,html,htm</allowed>
-								<max_size>100</max_size>
-								<uploadfolder>uploads/tx_bzdstaffdirectory</uploadfolder>
-								<maxitems>1</maxitems>
-								<size>1</size>
-								<selectedListStyle>Width:180px</selectedListStyle>
-							</config>
-						</TCEforms>
-					</templateFile>
-					<cssFile>
-						<TCEforms>
-							<label>LLL:EXT:bzd_staff_directory/locallang_db.php:tt_content.pi_flexform.css_file</label>
-							<config>
-								<type>group</type>
-								<internal_type>file</internal_type>
-								<allowed>css</allowed>
-								<max_size>100</max_size>
-								<uploadfolder>uploads/tx_bzdstaffdirectory</uploadfolder>
-								<maxitems>1</maxitems>
-								<size>1</size>
-								<selectedListStyle>Width:180px</selectedListStyle>
-							</config>
-						</TCEforms>
-					</cssFile>
-				</el>
-			</ROOT>
-		</s_template>
 		<s_teamlist>
 			<ROOT>
 				<TCEforms>
