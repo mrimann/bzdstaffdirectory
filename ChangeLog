@@ -1,5 +1,4 @@
 version 0.8.0 - currently working on
-
 - [#2640] Fix: Hidden subparts caused some missing fields in the list view.
 - [#2511] Cleaned up the copy/pasted stuff from oelib/seminars
 - [#2513] Updated copyright lines to new mail address
