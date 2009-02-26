@@ -5,14 +5,14 @@ t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_persons");
 
 $TCA["tx_bzdstaffdirectory_persons"] = Array (
 	"ctrl" => Array (
-		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons",		
+		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_persons",
 		'label' => 'last_name',
 		'label_alt' => 'first_name',
 		'label_alt_force' => 1,
 		"tstamp" => "tstamp",
 		"crdate" => "crdate",
 		"cruser_id" => "cruser_id",
-		"default_sortby" => "ORDER BY last_name",	
+		"default_sortby" => "ORDER BY last_name",
 		"delete" => "deleted",
 		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.php:LGL.prependAtCopy',
 		'copyAfterDuplFields' => 'sys_language_uid',
@@ -20,7 +20,7 @@ $TCA["tx_bzdstaffdirectory_persons"] = Array (
    		'transOrigPointerField' => 'l18n_parent',
 		'transOrigDiffSourceField' => 'l18n_diffsource',
 		'languageField' => 'sys_language_uid',
-		"enablecolumns" => Array (		
+		"enablecolumns" => Array (
 			"disabled" => "hidden",
 		),
 		"dynamicConfigFile" => t3lib_extMgm::extPath($_EXTKEY)."tca.php",
@@ -36,12 +36,12 @@ t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_groups");
 
 $TCA["tx_bzdstaffdirectory_groups"] = Array (
 	"ctrl" => Array (
-		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups",		
-		"label" => "group_name",	
+		"title" => "LLL:EXT:bzd_staff_directory/locallang_db.php:tx_bzdstaffdirectory_groups",
+		"label" => "group_name",
 		"tstamp" => "tstamp",
 		"crdate" => "crdate",
 		"cruser_id" => "cruser_id",
-		"sortby" => "sorting",	
+		"sortby" => "sorting",
 		"delete" => "deleted",
 		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.php:LGL.prependAtCopy',
 		'copyAfterDuplFields' => 'sys_language_uid',
@@ -49,7 +49,7 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
    		'transOrigPointerField' => 'l18n_parent',
 		'transOrigDiffSourceField' => 'l18n_diffsource',
 		'languageField' => 'sys_language_uid',
-		"enablecolumns" => Array (		
+		"enablecolumns" => Array (
 			"disabled" => "hidden",
 		),
 		"dynamicConfigFile" => t3lib_extMgm::extPath($_EXTKEY)."tca.php",
@@ -60,6 +60,7 @@ $TCA["tx_bzdstaffdirectory_groups"] = Array (
 	)
 );
 
+t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_locations");
 
 $TCA["tx_bzdstaffdirectory_locations"] = Array (
 	'ctrl' => Array (
@@ -76,7 +77,7 @@ $TCA["tx_bzdstaffdirectory_locations"] = Array (
    		'transOrigPointerField' => 'l18n_parent',
 		'transOrigDiffSourceField' => 'l18n_diffsource',
 		'languageField' => 'sys_language_uid',
-		'enablecolumns' => array (		
+		'enablecolumns' => array (
 			'disabled' => 'hidden',
 		),
 		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
@@ -107,16 +108,16 @@ if (TYPO3_MODE=="BE")	$TBE_MODULES_EXT["xMOD_db_new_content_el"]["addElClasses"]
 $tempColumns = Array (
 	'tx_bzdstaffdirectory_bzd_contact_person' => Array (
 		'l10n_mode' => $l10n_mode_merge,
-		'exclude' => 0,		
-		'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:pages.tx_bzdstaffdirectory_bzd_contact_person',		
+		'exclude' => 0,
+		'label' => 'LLL:EXT:bzd_staff_directory/locallang_db.php:pages.tx_bzdstaffdirectory_bzd_contact_person',
 		'config' => Array (
-			'type' => 'select',	
-			'foreign_table' => 'tx_bzdstaffdirectory_persons',	
-			'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_persons.last_name ASC',	
-			'size' => 4,	
+			'type' => 'select',
+			'foreign_table' => 'tx_bzdstaffdirectory_persons',
+			'foreign_table_where' => 'ORDER BY tx_bzdstaffdirectory_persons.last_name ASC',
+			'size' => 4,
 			'minitems' => 0,
-			'maxitems' => 5,	
-			'MM' => 'tx_bzdstaffdirectory_pages_persons_mm',	
+			'maxitems' => 5,
+			'MM' => 'tx_bzdstaffdirectory_pages_persons_mm',
 			'wizards' => Array(
 				'_PADDING' => 2,
 				'_VERTICAL' => 1,

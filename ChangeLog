@@ -1,3 +1,6 @@
+version 0.7.4 - currently working on
+- [#2756] Change: Allow location records on regular pages
+
 version 0.7.3 - released 2009-02-13
 - [#2704] Removed flexform options for HTML file and CSS file as they didn't work anyway
 - [#2513] Updated copyright lines to new mail address
