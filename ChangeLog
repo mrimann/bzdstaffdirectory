@@ -1,4 +1,5 @@
-version 0.7.4 - currently working on
+version 0.7.4 - released 2009-02-27
+- [#2567] Fix: SQL errors in the box view when having no persons selected
 - [#2761] Fix: Person's title is not shown correctly in the list view
 - [#2762] Change: Extension is now usable as global extension
 - [#2756] Change: Allow location records on regular pages

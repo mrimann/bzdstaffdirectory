@@ -405,25 +405,29 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	 * Returns the uids of the contact person(s) that are selected in the
 	 * flexform config of the current plugin.
 	 *
-	 * @return	array		the uid(s) of the contact person(s)
+	 * @return array the uid(s) of the contact person(s), may be empty
 	 */
 	function getContactPersonFromPlugin() {
-		$selectedPersons = explode(
-			',',
-			$this->getConfValueString(
-				'source_plugin',
-				's_contactbox'
-				)
-			);
+		$config = $this->getConfValueString(
+			'source_plugin',
+			's_contactbox'
+		);
 
-		return $selectedPersons;
+		if ($config == '') {
+			return array();
+		}
+
+		return explode(
+			',',
+			$config
+		);
 	}
 
 	/**
 	 * Returns the leaders from the selected teams and returns their uid as
 	 * an array.
 	 *
-	 * @return	array		the uid(s) of the contact person(s)
+	 * @return array the uid(s) of the contact person(s), may be empty
 	 */
 	function getContactPersonFromTeams() {
 		// read the selected teams
@@ -431,6 +435,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 			'source_teamleaders',
 			's_contactbox'
 		);
+
+		if ($selectedTeams == '') {
+			return array();
+		}
 
 		// fetch the team leaders for each team
 		$contactPersons = $this->getTeamLeadersFromMM(
