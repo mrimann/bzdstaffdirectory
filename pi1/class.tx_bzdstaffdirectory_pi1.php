@@ -1478,7 +1478,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 
 			// Now set all the other markers, that will contain processed data
 			if ($this->hasValue('title', $person)) {
-				$this->setMarker('list_title', $this->getValue('title', $person, true));
+				$this->setMarker('title', $this->getValue('title', $person, true));
 				$this->setMarker('label_title', $this->pi_getLL('label_title'));
 			} else {
 				$this->hideSubparts('title', 'listitem_wrapper');
