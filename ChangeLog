@@ -1,4 +1,5 @@
 version 0.8.0 - currently working on
+- [#2761] Fix: Person's title is not shown correctly in the list view
 - [#2762] Change: Extension is now usable as global extension
 - [#2756] Change: Allow location records on regular pages
 - [#2640] Fix: Hidden subparts caused some missing fields in the list view.
