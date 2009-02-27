@@ -1,9 +1,9 @@
 plugin.tx_bzdstaffdirectory_pi1 {
 	# location of the template file
-	templateFile = typo3conf/ext/bzd_staff_directory/media/bzdstaff_template.htm
+	templateFile = EXT:bzd_staff_directory/media/bzdstaff_template.htm
 
 	# location of the CSS file (leave empty to include no CSS file)
-	cssFile = typo3conf/ext/bzd_staff_directory/media/bzd_staff_directory.css
+	cssFile = EXT:bzd_staff_directory/media/bzd_staff_directory.css
 
 	# comma-separated list of PIDs from where the records should be fetched
 	startingpoint =
