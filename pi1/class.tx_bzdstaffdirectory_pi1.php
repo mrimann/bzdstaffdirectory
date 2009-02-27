@@ -61,7 +61,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 		$this->uploadFolder = 'uploads/tx_bzdstaffdirectory/';
 
 		// Deinfe the path to the media folder
-		$this->mediaFolder = 'typo3conf/ext/bzdstaffdirectory/media/';
+		$this->mediaFolder = t3lib_extMgm::extPath('bzdstaffdirectory') . 'media/';
 
 		// include CSS in header of page
 		if ($this->hasConfValueString('cssFile', 's_template_special')) {
