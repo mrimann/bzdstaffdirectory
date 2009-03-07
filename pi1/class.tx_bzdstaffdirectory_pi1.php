@@ -1589,7 +1589,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 				$linkedMarkers = array(
 					'first_name',
 					'last_name',
-					'list_title',
+					'title',
 				);
 				foreach ($linkedMarkers as $currentMarker) {
 					$this->setMarker(
