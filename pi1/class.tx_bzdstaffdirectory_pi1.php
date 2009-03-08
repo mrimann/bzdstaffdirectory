@@ -1520,7 +1520,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			}
 
 			if ($this->hasValue('email', $person)) {
-				$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_teamlist');
+				$spamProtectionMode = $this->getConfValueString('spamProtectionMode','s_teamlist');
 				$this->setMarker('email', $this->getEmail($person, $spamProtectionMode));
 				$this->setMarker('label_email', $this->pi_getLL('label_email'));
 			} else {
@@ -1670,56 +1670,56 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		return $result;
 	}
 
-//	/**
-//	 * Returns an image containing the provided e-mail address
-//	 *
-//	 * @param	string		the e-mail address to protect
-//	 * @param	boolean		whether the image should include an encrypted link
-//	 *
-//	 * @return	array		associative array containing the infos to fill the markers
-//	 */
-//	function email_asimage($email, $includeEncryptedLink = false)	{
-//		$emailconf["image."]["file"] = 'GIFBUILDER';
-//		$emailconf["image."]["file."]["10"] = 'TEXT';
-//		$emailconf["image."]["file."]["10."]["text"] = $email;
-//// FIXME: Make Font, Fontsize etc. configurable via Flexform!!
-//		$emailconf["image."]["file."]["10."]["fontFile"] = 't3lib/fonts/verdana.ttf';
-//		$emailconf["image."]["file."]["10."]["fontSize"] = '11';
-//		$emailconf["image."]["file."]["10."]["offset"] = '0, 14';
-//		$emailconf["image."]["file."]["10."]["nicetext"] = 1;
-//		$emailconf["image."]["file."]["XY"] ='[10.w]+1, [10.h]+4';
-//
-//		$result['display'] = $this->cObj->IMAGE($emailconf['image.']);
-//		if ($includeEncryptedLink) {
-//			$encrypted = $this->email_jsencrypted($email);
-//			$result['begin'] = $encrypted['begin'];
-//			$result['end'] = $encrypted['end'];
-//		} else {
-//			$result['begin'] = '';
-//			$result['end'] = '';
-//		}
-//
-//		return $result;
-//	}
+	/**
+	 * Returns an image containing the provided e-mail address
+	 *
+	 * @param	string		the e-mail address to protect
+	 * @param	boolean		whether the image should include an encrypted link
+	 *
+	 * @return	array		associative array containing the infos to fill the markers
+	 */
+	function email_asimage($email, $includeEncryptedLink = false)	{
+		$emailconf["image."]["file"] = 'GIFBUILDER';
+		$emailconf["image."]["file."]["10"] = 'TEXT';
+		$emailconf["image."]["file."]["10."]["text"] = $email;
+// FIXME: Make Font, Fontsize etc. configurable via Flexform!!
+		$emailconf["image."]["file."]["10."]["fontFile"] = 't3lib/fonts/verdana.ttf';
+		$emailconf["image."]["file."]["10."]["fontSize"] = '11';
+		$emailconf["image."]["file."]["10."]["offset"] = '0, 14';
+		$emailconf["image."]["file."]["10."]["nicetext"] = 1;
+		$emailconf["image."]["file."]["XY"] ='[10.w]+1, [10.h]+4';
+
+		$result['display'] = $this->cObj->IMAGE($emailconf['image.']);
+		if ($includeEncryptedLink) {
+			$encrypted = $this->email_jsencrypted($email);
+			$result['begin'] = $encrypted['begin'];
+			$result['end'] = $encrypted['end'];
+		} else {
+			$result['begin'] = '';
+			$result['end'] = '';
+		}
+
+		return $result;
+	}
 
 
-//	/**
-//	 * Returns the provided e-mail address encrypted with the default
-//	 * TYPO3-JavaScript-Encryption.
-//	 *
-//	 * @param	string		the e-mail address to protect
-//	 *
-//	 * @return	array		associative array containing the parts to fill the markers
-//	 */
-//	function email_jsencrypted($email)	{
-//		$mailto = $this->cObj->getMailTo($email,$email);
-//		$result = array();
-//		$result['display'] = $mailto[1];
-//		$result['begin'] = '<a href="'.$mailto[0].'">';
-//		$result['end'] = '</a>';
-//
-//		return $result;
-//	}
+	/**
+	 * Returns the provided e-mail address encrypted with the default
+	 * TYPO3-JavaScript-Encryption.
+	 *
+	 * @param	string		the e-mail address to protect
+	 *
+	 * @return	array		associative array containing the parts to fill the markers
+	 */
+	function email_jsencrypted($email)	{
+		$mailto = $this->cObj->getMailTo($email,$email);
+		$result = array();
+		$result['display'] = $mailto[1];
+		$result['begin'] = '<a href="'.$mailto[0].'">';
+		$result['end'] = '</a>';
+
+		return $result;
+	}
 
 
 	/**
