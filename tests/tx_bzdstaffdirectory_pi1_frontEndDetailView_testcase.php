@@ -69,6 +69,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'email' => 'chief@example.org',
 				'universal_field_1' => 'Universal Value',
 				'date_birthdate' => strtotime("-10 years"),
+				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
 			)
 		);
 
@@ -300,6 +301,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderContainsEmailAsImage() {
+        $this->markTestIncomplete(
+          'This test does not work as expected yet, some path/permission issues with generated images.'
+        );
+
 		$this->fixture->setConfigurationValue('spamProtectionMode', 'asimage');
 
 		$this->assertContains(
@@ -314,6 +319,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderContainsEmailJSEncryptedImage() {
+        $this->markTestIncomplete(
+          'This test does not work as expected yet, some path/permission issues with generated images.'
+        );
+
 		$this->fixture->setConfigurationValue('spamProtectionMode', 'asimagejsencrypted');
 		$GLOBALS['TSFE']->spamProtectEmailAddresses = 1;
 
@@ -405,6 +414,28 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 	}
 
+	public function testRenderContainsXingIconAndLinkIfUrlWasStoredInPersonRecord() {
+		$this->assertContains(
+			'<img src="http://www.xing.com/img/buttons/1_de_btn.gif" width="85" height="23" alt="XING" border="0" />',
+			$this->fixture->render()
+		);
+		$this->assertContains(
+			'<a href="http://www.xing.com/profile/foo.bar" target="_blank">',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainXingMarkerIfXingLinkNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###XING###',
+			$this->fixture->render()
+		);
+	}
 
 
 }

@@ -203,10 +203,27 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	 * Checks whether the person has a birth date defined.
 	 *
 	 * @return boolean true if a birth date is set, false otherwise
-	 *
 	 */
 	public function hasBirthDate() {
 		return ($this->getAsInteger('date_birthdate')) ? true : false;
+	}
+
+	/**
+	 * Checks whether the person has a XING profile URL set.
+	 *
+	 * @return boolean true if the field is set, false otherwise
+	 */
+	public function hasXingProfile() {
+		return $this->hasString('xing_profile_url');
+	}
+
+	/**
+	 * Returns the link to the XING profile of the person.
+	 *
+	 * @return string the URL to the XING profile, may be empty
+	 */
+	public function getXingProfileLink() {
+		return $this->getAsString('xing_profile_url');
 	}
 }
 

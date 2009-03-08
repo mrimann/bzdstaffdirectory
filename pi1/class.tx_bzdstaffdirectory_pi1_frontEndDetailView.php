@@ -132,10 +132,42 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		}
 
 
+		// Shows a XING Icon that is linked to the person's XING profile, if
+		// a URL to the profile was stored for this person.
+		if ($this->person->HasXingProfile()) {
+			$this->setMarker('xing', $this->getLinkedXingIcon());
+		} else {
+			$this->hideSubparts('xing', 'field_wrapper');
+		}
+
+
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
 
 		$this->checkConfiguration();
 		$result .= $this->getWrappedConfigCheckMessage();
+
+		return $result;
+	}
+
+	/**
+	 * Returns the HTML sourcecode to display a XING Icon that is linked to
+	 * the persons personal XING profile. Result will be an empty string if that
+	 * person has no URL for the profile in it's record - this must be checked
+	 * before!!
+	 *
+	 * @return	string		HTML source for the linked icon, may be empty
+	 */
+	private function getLinkedXingIcon() {
+		$url = $this->person->getXingProfileLink();
+
+		if ($url == '') {
+			return '';
+		}
+
+		$icon = 'http://www.xing.com/img/buttons/1_de_btn.gif';
+
+		$result = '<a href="' . $url . '" target="_blank"><img src="' .
+			$icon . '" width="85" height="23" alt="XING" border="0" /></a>';
 
 		return $result;
 	}

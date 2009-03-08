@@ -813,12 +813,12 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 
 		// Shows a XING Icon that is linked to the person's XING profile, if
 		// a URL to the profile was stored for this person.
-		if ($this->hasValue('xing_profile_url', $person)) {
-			$this->setMarker('xing', $this->getLinkedXingIcon($person));
-			$this->setMarker('label_xing', $this->pi_getLL('label_xing'));
-		} else {
-			$this->hideSubparts('xing', 'field_wrapper');
-		}
+//		if ($this->hasValue('xing_profile_url', $person)) {
+//			$this->setMarker('xing', $this->getLinkedXingIcon($person));
+//			$this->setMarker('label_xing', $this->pi_getLL('label_xing'));
+//		} else {
+//			$this->hideSubparts('xing', 'field_wrapper');
+//		}
 
 		if ($this->hasValue('files', $person)) {
 			$this->setMarker('files', $this->getFileList($person));

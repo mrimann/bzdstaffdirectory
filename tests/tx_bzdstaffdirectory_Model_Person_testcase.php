@@ -52,6 +52,7 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'room' => '301',
 				'email' => 'chief@example.org',
 				'date_birthdate' => strtotime("-10 years"),
+				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
 			)
 		);
 		$this->createPerson($this->uid);
@@ -250,6 +251,44 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			10,
 			$this->fixture->getAge()
+		);
+	}
+
+	public function testHasXingProfileReturnsTrueIfLinkIsSet() {
+		$this->assertTrue(
+			$this->fixture->hasXingProfile()
+		);
+	}
+
+	public function testHasXingProfileReturnsFalseIfNoLinkIsSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse(
+			$this->fixture->hasXingProfile()
+		);
+	}
+
+	public function testGetXingProfileLinkReturnsTheStoredLink() {
+		$this->assertEquals(
+			'http://www.xing.com/profile/foo.bar',
+			$this->fixture->getXingProfileLink()
+		);
+	}
+
+	public function testGetXingProfileLinkReturnsEmptyStringIfNoProfileSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertEquals(
+			'',
+			$this->fixture->getXingProfileLink()
 		);
 	}
 
