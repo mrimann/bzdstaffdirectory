@@ -51,7 +51,8 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'mobile_phone' => '+41 79 123 45 67',
 				'room' => '301',
 				'email' => 'chief@example.org',
-				'date_birthdate' => strtotime("-10 years"),
+				'date_birthdate' => strtotime('-10 years'),
+				'date_incompany' => strtotime('-10 years'),
 				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
 			)
 		);
@@ -289,6 +290,37 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			'',
 			$this->fixture->getXingProfileLink()
+		);
+	}
+
+	public function testHasDateInCompanyReturnsTrueIfDateIsSet() {
+		$this->assertTrue(
+			$this->fixture->hasDateInCompany()
+		);
+	}
+
+	public function testHasDateInCompanyReturnsFalseIfNoDateIsSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse(
+			$this->fixture->hasDateInCompany()
+		);
+	}
+
+	public function testGetDateInCompanyReturnsDateObject() {
+		$this->assertTrue(
+			is_a($this->fixture->getDateInCompany(), DateTime)
+		);
+	}
+
+	public function testGetDateInCompanyReturnsCorrectBirthDate() {
+		$this->assertEquals(
+			date('Y-m-d', strtotime("-10 years")),
+			$this->fixture->getDateInCompany()->format('Y-m-d')
 		);
 	}
 

@@ -131,6 +131,14 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('date_birthdate', 'field_wrapper');
 		}
 
+		// Shows the date since when this person is in the company.
+		if ($this->person->hasDateInCompany()) {
+			$format = $this->getConfValueString('dateFormatInCompany');
+			$format = (!empty($format)) ? $format : 'F Y';
+			$this->setMarker('date_incompany', $this->person->getDateInCompany()->format($format));
+		} else {
+			$this->hideSubparts('date_incompany', 'field_wrapper');
+		}
 
 		// Shows a XING Icon that is linked to the person's XING profile, if
 		// a URL to the profile was stored for this person.

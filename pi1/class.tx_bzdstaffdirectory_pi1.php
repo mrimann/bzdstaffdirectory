@@ -745,13 +745,13 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 //			$this->hideSubparts('title', 'field_wrapper');
 //		}
 
-		if ($this->hasValue('email', $person)) {
-			$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview');
-			$this->setMarker('email', $this->getEmail($person, $spamProtectionMode));
-			$this->setMarker('label_email', $this->pi_getLL('label_email'));
-		} else {
-			$this->hideSubparts('email', 'field_wrapper');
-		}
+//		if ($this->hasValue('email', $person)) {
+//			$spamProtectionMode = $this->pi_getFFvalue($this->cObj->data['pi_flexform'],'spamprotectionmode','s_detailview');
+//			$this->setMarker('email', $this->getEmail($person, $spamProtectionMode));
+//			$this->setMarker('label_email', $this->pi_getLL('label_email'));
+//		} else {
+//			$this->hideSubparts('email', 'field_wrapper');
+//		}
 
 		// Hide the groups line if the user is not member in any of the groups.
 		if ($this->getMemberOfGroups($this->showUid)) {
@@ -767,12 +767,12 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			$this->hideSubparts('location', 'field_wrapper');
 		}
 
-		if ($this->hasValue('date_incompany', $person)) {
-			$this->setMarker('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
-			$this->setMarker('label_date_incompany', $this->pi_getLL('label_date_incompany'));
-		} else {
-			$this->hideSubparts('date_incompany', 'field_wrapper');
-		}
+//		if ($this->hasValue('date_incompany', $person)) {
+//			$this->setMarker('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
+//			$this->setMarker('label_date_incompany', $this->pi_getLL('label_date_incompany'));
+//		} else {
+//			$this->hideSubparts('date_incompany', 'field_wrapper');
+//		}
 
 		if ($this->hasValue('opinion', $person)) {
 			$this->setMarker(
@@ -797,19 +797,19 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			$this->hideSubparts('tasks', 'field_wrapper');
 		}
 
-		if ($this->hasValue('date_birthdate', $person)) {
-			if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
-				// show the age of the person instead of the birthdate
-				$this->setMarker('date_birthdate', $this->getAge($person['date_birthdate']));
-				$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_age'));
-			} else {
-				// show the birthdate
-				$this->setMarker('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
-				$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
-			}
-		} else {
-			$this->hideSubparts('date_birthdate', 'field_wrapper');
-		}
+//		if ($this->hasValue('date_birthdate', $person)) {
+//			if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
+//				// show the age of the person instead of the birthdate
+//				$this->setMarker('date_birthdate', $this->getAge($person['date_birthdate']));
+//				$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_age'));
+//			} else {
+//				// show the birthdate
+//				$this->setMarker('date_birthdate', $this->getFormattedDate($person['date_birthdate'], 'dateFormatBirthday'));
+//				$this->setMarker('label_date_birthdate', $this->pi_getLL('label_date_birthdate'));
+//			}
+//		} else {
+//			$this->hideSubparts('date_birthdate', 'field_wrapper');
+//		}
 
 		// Shows a XING Icon that is linked to the person's XING profile, if
 		// a URL to the profile was stored for this person.

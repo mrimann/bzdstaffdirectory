@@ -225,6 +225,32 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	public function getXingProfileLink() {
 		return $this->getAsString('xing_profile_url');
 	}
+
+	/**
+	 * Checks whether this person has set, since when he/she is in the company.
+	 *
+	 * @return boolean whether the person has the date_incompany field set
+	 */
+	public function hasDateInCompany() {
+		return $this->hasInteger('date_incompany');
+	}
+
+	/**
+	 * Returns the date since when this person is in the company.
+	 *
+	 * @return DateTime the date since when this person is in the company
+	 */
+	public function getDateInCompany() {
+		$result = new DateTime(
+			strftime(
+				'%Y-%m-%d',
+				$this->getAsInteger('date_incompany')
+			)
+		);
+
+		return $result;
+
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {

@@ -68,7 +68,8 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'mobile_phone' => '+41 79 123 45 67',
 				'email' => 'chief@example.org',
 				'universal_field_1' => 'Universal Value',
-				'date_birthdate' => strtotime("-10 years"),
+				'date_birthdate' => strtotime('-10 years'),
+				'date_incompany' => strtotime('-2 years'),
 				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
 			)
 		);
@@ -448,6 +449,25 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
 		$this->assertNotContains(
 			'###XING###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsDateInCompany() {
+		$this->assertContains(
+			date('F Y', strtotime("-2 years")),
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainDateInCompanyMarkerIfDateNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###DATE_INCOMPANY###',
 			$this->fixture->render()
 		);
 	}
