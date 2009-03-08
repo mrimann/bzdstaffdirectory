@@ -352,6 +352,21 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 	}
 
+	public function testRenderContainsBirthDateBefore1970() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'date_birthdate' => strtotime('2 November 1969'),
+			)
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertContains(
+			date('F Y', strtotime("2 November 1969")),
+			$this->fixture->render()
+		);
+	}
+
 	public function testRenderTakesFormatForBirthDateIntoAccount() {
 		$this->fixture->setConfigurationValue('dateFormatBirthday', 'j. F Y');
 
