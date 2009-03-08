@@ -1,4 +1,5 @@
 version 0.8.0 - currently working on
+- [#2382] Fix: PHP error when loading oelib template helper due to camel-case filename
 - [#2802] Change: Added a comma in list template between surname and first name (looks better)
 - [#2523] Change: Make use of the oelib AutoLoader consistent
 - [#2719] Feature: Additional fields for nickname and mobile phone number
@@ -16,7 +17,6 @@ version 0.8.0 - currently working on
 - [#2509] Change: Changed extension key to "bzdstaffdirectory"
 - [#1923] Feature: Add stdWrap properties to the "tasks" field
 - [#2445] Fix: Replaced all calls to deprecated methods from oelib - now compatible with oelib >=0.5.0
-- [#2382] Fix: PHP error when loading oelib template helper due to camel-case filename
 
 version 0.7.0 - released 2008-11-24
 - [#2349] Change: Enabled setting of labels for whole template (thanks to Olaf Schumann)

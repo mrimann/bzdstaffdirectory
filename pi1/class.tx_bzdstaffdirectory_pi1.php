@@ -29,7 +29,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  *
  * @author	Mario Rimann <mario@screenteam.com>
  */
-class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
+class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
 	var $scriptRelPath = 'pi1/class.tx_bzdstaffdirectory_pi1.php';	// Path to this script relative to the extension dir.
 	var $extKey = 'bzdstaffdirectory';	// The extension key.
