@@ -21,6 +21,9 @@
 *
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
+
 /**
  * Testcase for the person class in the 'bzdstaffdirectory' extension.
  *
@@ -28,10 +31,6 @@
  * @subpackage	tx_bzdstaffdirectory
  * @author		Mario Rimann <mario@screenteam.com>
  */
-
-require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_testingFramework.php');
-
-
 class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 	private $fixture;
 	private $uid;

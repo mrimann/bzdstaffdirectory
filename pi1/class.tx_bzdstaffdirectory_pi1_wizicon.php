@@ -21,14 +21,12 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
 /**
  * Class that adds the wizard icon.
  *
  * @author	Mario Rimann <mario.rimann@bbzdietikon.ch>
  */
-
-
-
 class tx_bzdstaffdirectory_pi1_wizicon {
 	function proc($wizardItems)	{
 		global $LANG;

@@ -22,6 +22,8 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
+
 /**
  * Class 'tx_bzdstaffdirectory_Mapper_Person' for the 'bzdstaffdirectory' extension.
  * The original code is from tx_oelib, thanks Oli and Niels!

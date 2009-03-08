@@ -22,6 +22,8 @@
 * This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
+
 /**
  * Class 'frontEndView' for the 'bzdstaffdirectory' extension. Originally
  * written for the Seminar Manager (tx_seminars).

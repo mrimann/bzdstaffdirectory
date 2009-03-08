@@ -21,20 +21,14 @@
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
+
+require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
+
 /**
  * Plugin 'BZD Staff Directory' for the 'bzdstaffdirectory' extension.
  *
  * @author	Mario Rimann <mario@screenteam.com>
  */
-
-
-require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
-
-//require_once(t3lib_extMgm::extPath('bzdstaffdirectory').'class.tx_bzdstaffdirectory_controller.php');
-//require_once(t3lib_extMgm::extPath('oelib').'class.tx_oelib_templatehelper.php');
-
-//require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_templatehelper.php');
-
 class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
 	var $scriptRelPath = 'pi1/class.tx_bzdstaffdirectory_pi1.php';	// Path to this script relative to the extension dir.
