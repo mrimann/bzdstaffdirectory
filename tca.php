@@ -224,10 +224,28 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 				'size' => '30'
 			)
 		),
+		'nickname' => array(
+			'l10n_mode' => $l10n_mode_merge,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_persons.nickname',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30'
+			)
+		),
 		'phone' => array(
 			'l10n_mode' => $l10n_mode_merge,
 			'exclude' => 1,
 			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_persons.phone',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30'
+			)
+		),
+		'mobile_phone' => array(
+			'l10n_mode' => $l10n_mode_merge,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_persons.mobile_phone',
 			'config' => array(
 				'type' => 'input',
 				'size' => '30'
@@ -302,7 +320,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		)
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, last_name, first_name, title, email, phone, function, gender, date_birthdate, date_incompany, image, usergroups, location, room, officehours, xing_profile_url, tasks, opinion;;;richtext[paste|bold|italic|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts_css], files')
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, last_name, first_name, title, email, phone, mobile_phone, function, nickname, gender, date_birthdate, date_incompany, image, usergroups, location, room, officehours, xing_profile_url, tasks, opinion;;;richtext[paste|bold|italic|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts_css], files')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')

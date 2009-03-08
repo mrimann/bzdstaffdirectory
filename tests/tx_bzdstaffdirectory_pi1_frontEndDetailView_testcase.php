@@ -63,7 +63,9 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'room' => '301',
 				'officehours' => '07:00 - 17:00',
 				'function' => 'Master of Desaster',
+				'nickname' => 'Mickey Mouse',
 				'phone' => '+41 44 123 45 67',
+				'mobile_phone' => '+41 79 123 45 67',
 				'email' => 'chief@example.org',
 				'universal_field_1' => 'Universal Value',
 				'date_birthdate' => strtotime("-10 years"),
@@ -194,6 +196,25 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 	}
 
+	public function testRenderContainsMobilePhone() {
+		$this->assertContains(
+			'+41 79 123 45 67',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainMobilePhoneMarkerIfMobilePhoneNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###MOBILE_PHONE###',
+			$this->fixture->render()
+		);
+	}
+
 	public function testRenderContainsFunction() {
 		$this->assertContains(
 			'Master of Desaster',
@@ -209,6 +230,25 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
 		$this->assertNotContains(
 			'###FUNCTION###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsNickname() {
+		$this->assertContains(
+			'Mickey Mouse',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainNicknameMarkerIfNicknameNotSet() {
+		$this->personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->fixture->setPerson($this->personUid);
+
+		$this->assertNotContains(
+			'###NICKNAME###',
 			$this->fixture->render()
 		);
 	}

@@ -54,8 +54,10 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 			'email',
 			'function',
 			'phone',
+			'mobile_phone',
 			'room',
 			'officehours',
+			'nickname',
 			'universal_field_1',
 			'universal_field_2',
 			'universal_field_3',
@@ -206,7 +208,7 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	}
 }
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/oelib/Model/class.tx_bzdstaffdirectory_Model_Person.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']);
 }
 ?>

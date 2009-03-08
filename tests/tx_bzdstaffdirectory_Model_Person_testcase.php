@@ -47,7 +47,9 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'title' => 'Dr.',
 				'officehours' => '07:00 - 17:00',
 				'function' => 'Master of Desaster',
+				'nickname' => 'Mickey Mouse',
 				'phone' => '+41 44 123 45 67',
+				'mobile_phone' => '+41 79 123 45 67',
 				'room' => '301',
 				'email' => 'chief@example.org',
 				'date_birthdate' => strtotime("-10 years"),
@@ -173,10 +175,24 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 	}
 
+	public function testGetStandardFieldWithNickname() {
+		$this->assertEquals(
+			'Mickey Mouse',
+			$this->fixture->getStandardField('nickname')
+		);
+	}
+
 	public function testGetStandardFieldWithPhone() {
 		$this->assertEquals(
 			'+41 44 123 45 67',
 			$this->fixture->getStandardField('phone')
+		);
+	}
+
+	public function testGetStandardFieldWithMobilePhone() {
+		$this->assertEquals(
+			'+41 79 123 45 67',
+			$this->fixture->getStandardField('mobile_phone')
 		);
 	}
 

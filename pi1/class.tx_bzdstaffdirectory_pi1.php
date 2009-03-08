@@ -719,6 +719,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templateHelper {
 //			'last_name',
 //			'function',
 //			'phone',
+//			'mobile_phone',
 //			'room',
 //			'officehours'
 //		);

@@ -26,7 +26,9 @@
 			<label index="tx_bzdstaffdirectory_persons.tasks">User Tasks</label>
 			<label index="tx_bzdstaffdirectory_persons.location">Location</label>
 			<label index="tx_bzdstaffdirectory_persons.phone">Phone Number</label>
+			<label index="tx_bzdstaffdirectory_persons.mobile_phone">Mobile Phone Number</label>
 			<label index="tx_bzdstaffdirectory_persons.room">Room Number</label>
+			<label index="tx_bzdstaffdirectory_persons.nickname">Nickname</label>
 			<label index="tx_bzdstaffdirectory_persons.officehours">Office hours</label>
 			<label index="tx_bzdstaffdirectory_persons.xing_profile_url">Link to XING profile</label>
 			<label index="tx_bzdstaffdirectory_persons.opinion">Your Opinion</label>
@@ -114,7 +116,9 @@
 			<label index="tx_bzdstaffdirectory_persons.tasks">Aufgaben</label>
 			<label index="tx_bzdstaffdirectory_persons.location">Standort</label>
 			<label index="tx_bzdstaffdirectory_persons.phone">Telefon</label>
+			<label index="tx_bzdstaffdirectory_persons.mobile_phone">Mobiltelefon</label>
 			<label index="tx_bzdstaffdirectory_persons.room">Büro/Raum</label>
+			<label index="tx_bzdstaffdirectory_persons.nickname">Spitzname</label>
 			<label index="tx_bzdstaffdirectory_persons.officehours">Bürozeiten</label>
 			<label index="tx_bzdstaffdirectory_persons.xing_profile_url">Link zum XING Profil</label>
 			<label index="tx_bzdstaffdirectory_persons.opinion">Meinung</label>
@@ -130,6 +134,10 @@
 			<label index="tx_bzdstaffdirectory_groups.group_leaders">Gruppenleiter</label>
 			<label index="tx_bzdstaffdirectory_groups.group_members">Team-Mitglieder</label>
 			<label index="tx_bzdstaffdirectory_groups.infopage">Seite mit weiterführenden Informationen über dieses Team</label>
+			<label index="tx_bzdstaffdirectory_locations">Ort</label>
+			<label index="tx_bzdstaffdirectory_locations.title">Titel</label>
+			<label index="tx_bzdstaffdirectory_locations.address">Adresse</label>
+			<label index="tx_bzdstaffdirectory_locations.infopage">Seite mit Informationen über diesen Ort</label>
 			<label index="tt_content.list_type_pi1">BZD Mitarbeiterverzeichnis</label>
 			<label index="tt_content.pi_flexform.teamlist">Team Liste</label>
 			<label index="tt_content.pi_flexform.contactbox">Kontaktperson (BOX)</label>
@@ -348,6 +356,12 @@
 			<label index="tx_bzdstaffdirectory_persons.sorting" type="integer">41978420</label>
 			<label index="tx_bzdstaffdirectory_persons.xing_profile_url" type="integer">218899440</label>
 			<label index="tt_content.pi_flexform.doNotLinkToDetailView" type="integer">205663706</label>
+			<label index="tx_bzdstaffdirectory_persons.mobile_phone" type="integer">253446044</label>
+			<label index="tx_bzdstaffdirectory_persons.nickname" type="integer">24583042</label>
+			<label index="tx_bzdstaffdirectory_locations" type="integer">250336056</label>
+			<label index="tx_bzdstaffdirectory_locations.title" type="integer">192455458</label>
+			<label index="tx_bzdstaffdirectory_locations.address" type="integer">232242979</label>
+			<label index="tx_bzdstaffdirectory_locations.infopage" type="integer">5729429</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
@@ -517,6 +531,12 @@
 			<label index="tx_bzdstaffdirectory_persons.sorting">Sorting</label>
 			<label index="tx_bzdstaffdirectory_persons.xing_profile_url">Link to XING profile</label>
 			<label index="tt_content.pi_flexform.doNotLinkToDetailView">Do not link to details page.</label>
+			<label index="tx_bzdstaffdirectory_persons.mobile_phone">Mobile Phone Number</label>
+			<label index="tx_bzdstaffdirectory_persons.nickname">Nickname</label>
+			<label index="tx_bzdstaffdirectory_locations">Locations</label>
+			<label index="tx_bzdstaffdirectory_locations.title">Title</label>
+			<label index="tx_bzdstaffdirectory_locations.address">Address</label>
+			<label index="tx_bzdstaffdirectory_locations.infopage">Page with information about this location</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>
