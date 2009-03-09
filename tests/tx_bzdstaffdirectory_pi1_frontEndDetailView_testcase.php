@@ -74,15 +74,8 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			)
 		);
 
-		$this->fixture = new tx_bzdstaffdirectory_pi1_frontEndDetailView(
-			array(
-				'isStaticTemplateLoaded' => 1,
-				'templateFile' => 'EXT:bzdstaffdirectory/media/bzdstaff_template.htm',
-			),
-			$GLOBALS['TSFE']->cObj
-		);
-		$this->fixture->setPerson($this->personUid);
-		$this->fixture->setTestMode();
+		// Generates the fixture in $this->fixture.
+		$this->getNewFixture($this->personUid);
 	}
 
 	public function tearDown() {
@@ -90,6 +83,27 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		$this->fixture->__destruct();
 
 		unset($this->fixture, $this->testingFramework);
+	}
+
+	/**
+	 * Creates a new fixture in $this->fixture. This is mainly used to render
+	 * the detail view for a different (less general) person record for testing.
+	 *
+	 * @param integer UID of the person to render the detail view for
+	 */
+	private function getNewFixture($personUid) {
+		unset($this->fixture);
+
+		$this->fixture = new tx_bzdstaffdirectory_pi1_frontEndDetailView(
+			$personUid,
+			array(
+				'isStaticTemplateLoaded' => 1,
+				'templateFile' => 'EXT:bzdstaffdirectory/media/bzdstaff_template.htm',
+			),
+			$GLOBALS['TSFE']->cObj
+		);
+
+		$this->fixture->setTestMode();
 	}
 
 
@@ -130,10 +144,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainTitleMarkerIfTitleNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###TITLE###',
@@ -149,10 +163,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainRoomMarkerIfRoomNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###ROOM###',
@@ -168,10 +182,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainOfficeHoursMarkerIfOfficeHoursNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###OFFICEHOURS###',
@@ -187,10 +201,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainPhoneMarkerIfPhoneNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###PHONE###',
@@ -206,10 +220,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainMobilePhoneMarkerIfMobilePhoneNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###MOBILE_PHONE###',
@@ -225,10 +239,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainFunctionMarkerIfFunctionNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###FUNCTION###',
@@ -244,10 +258,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainNicknameMarkerIfNicknameNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###NICKNAME###',
@@ -263,10 +277,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainUniversalField1MarkerIfUniversalField1NotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###UNIVERSAL_FIELD_1###',
@@ -335,10 +349,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
 
 	public function testRenderDoesNotContainEmailMarkerIfEmailNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###EMAIL###',
@@ -354,13 +368,14 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderContainsBirthDateBefore1970() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons',
 			array(
+				'title' => 'foo',
 				'date_birthdate' => strtotime('2 November 1969'),
 			)
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertContains(
 			date('F Y', strtotime("2 November 1969")),
@@ -378,10 +393,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainBirthDateMarkerIfBirthDateNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###DATE_BIRTHDATE###',
@@ -417,12 +432,13 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainAgeMarkerIfBirthDateNotSet() {
-		$this->fixture->setConfigurationValue('showAgeInsteadOfBirthdate', 1);
-
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
+
+		$this->fixture->setConfigurationValue('showAgeInsteadOfBirthdate', 1);
+
 
 		$this->assertNotContains(
 			'###DATE_BIRTHDATE###',
@@ -442,10 +458,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainXingMarkerIfXingLinkNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###XING###',
@@ -461,10 +477,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderDoesNotContainDateInCompanyMarkerIfDateNotSet() {
-		$this->personUid = $this->testingFramework->createRecord(
+		$personUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons'
 		);
-		$this->fixture->setPerson($this->personUid);
+		$this->getNewFixture($personUid);
 
 		$this->assertNotContains(
 			'###DATE_INCOMPANY###',

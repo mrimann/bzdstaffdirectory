@@ -15,7 +15,7 @@ version 0.8.0 - currently working on
 - [#2511] Cleaned up the copy/pasted stuff from oelib/seminars
 - [#2513] Updated copyright lines to new mail address
 - [#2510] Updated copyright lines to 2009
-- [#1843] Refactoring: Added new detailView class
+- [#1843, #2544] Refactoring: Added new detailView class
 - [#2509] Change: Changed extension key to "bzdstaffdirectory"
 - [#1923] Feature: Add stdWrap properties to the "tasks" field
 - [#2445] Fix: Replaced all calls to deprecated methods from oelib - now compatible with oelib >=0.5.0

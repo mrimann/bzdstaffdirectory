@@ -94,13 +94,18 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 	}
 
 
-
+	/**
+	 * Calls the view class for the detail view and returns the HTML code for
+	 * the view.
+	 *
+	 * @return string HTML source for the detail view
+	 */
 	function renderDetailView() {
 		$detailViewClassName = t3lib_div::makeInstanceClassName(
 				'tx_bzdstaffdirectory_pi1_frontEndDetailView'
 		);
-		$detailView = new $detailViewClassName($this->conf, $this->cObj);
-		$detailView->setPerson(intval($this->piVars['showUid']));
+		$detailView = new $detailViewClassName(intval($this->piVars['showUid']), $this->conf, $this->cObj);
+//		$detailView->setPerson(intval($this->piVars['showUid']));
 		$result = $detailView->render();
 		$detailView->__destruct();
 		unset($detailView);

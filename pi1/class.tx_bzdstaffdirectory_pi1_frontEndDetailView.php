@@ -39,7 +39,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 	public $scriptRelPath = 'pi1/class.tx_bzdstaffdirectory_pi1_frontEndDetailView.php';
 
 	/**
-	 * @var tx_bzdstaffdirectory_person the person for which we want to show the
+	 * @var tx_bzdstaffdirectory_Model_Person the person for which we want to show the
 	 *                          detail view.
 	 */
 	private $person = null;
@@ -48,6 +48,26 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 	 * @var boolean true if the current object is in test mode, false otherwise
 	 */
 	private $testMode = false;
+
+	/**
+	 * The constructor.
+	 *
+	 * @param integer UID of the person to show
+	 * @param array TypoScript configuration for the plugin
+	 * @param tslib_cObj the parent cObj content, needed for the flexforms
+	 */
+	public function __construct($personUid, $configuration, $cObj) {
+		$this->cObj = $cObj;
+		$this->init($configuration);
+		$this->pi_initPIflexForm();
+
+		$this->getTemplateCode();
+		$this->setLabels();
+		$this->setCSS();
+
+		// Generates the person object and stores it in $this->person.
+		$this->createPerson($personUid);
+	}
 
 	/**
 	 * The destructor.
@@ -62,10 +82,6 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 
 	}
 
-	public function setPerson($personUid) {
-		$this->person = $this->createPerson($personUid);
-	}
-
 	/**
 	 * Creates a person in $this->person.
 	 *
@@ -73,13 +89,13 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 	 */
 	private function createPerson($personUid) {
 		try {
-			$person = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Person')
-					->find($personUid);
+			$mapper = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Person');
+			if ($mapper->existsModel($personUid)) {
+				$this->person = $mapper->find($personUid);
+			}
 		} catch (tx_oelib_Exception_NotFound $exception) {
-			$person = null;
+			$this->person = null;
 		}
-
-		return $person;
 	}
 
 	/**
