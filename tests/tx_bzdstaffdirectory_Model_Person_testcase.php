@@ -229,6 +229,21 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 	}
 
+	public function testHasBirthDateReturnsTrueIfBirthdateBefore1970IsSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'date_birthdate' => strtotime('2 November 1969'),
+			)
+		);
+
+		$this->createPerson($personUid);
+
+		$this->assertTrue(
+			$this->fixture->hasBirthDate()
+		);
+	}
+
 	public function testGetBirthDateReturnsDateObject() {
 		$this->assertTrue(
 			is_a($this->fixture->getBirthDate(), DateTime)

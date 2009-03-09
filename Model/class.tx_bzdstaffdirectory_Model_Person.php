@@ -205,7 +205,7 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	 * @return boolean true if a birth date is set, false otherwise
 	 */
 	public function hasBirthDate() {
-		return ($this->getAsInteger('date_birthdate')) ? true : false;
+		return $this->hasInteger('date_birthdate');
 	}
 
 	/**
