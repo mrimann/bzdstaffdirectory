@@ -71,6 +71,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'date_birthdate' => strtotime('-10 years'),
 				'date_incompany' => strtotime('-2 years'),
 				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
+				'opinion' => 'louder, harder, scooter - or so',
 			)
 		);
 
@@ -488,7 +489,24 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 	}
 
+	public function testRenderContainsOpinion() {
+		$this->assertContains(
+			'louder, harder, scooter - or so',
+			$this->fixture->render()
+		);
+	}
 
+	public function testRenderDoesNotContainOpinionMarkerIfOpinionNotSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertNotContains(
+			'###OPINION###',
+			$this->fixture->render()
+		);
+	}
 }
 
 ?>

@@ -249,7 +249,24 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 		);
 
 		return $result;
+	}
 
+	/**
+	 * Checks whether this person has an opinion stored.
+	 *
+	 * @return boolean whether the field opinion is set and non empty
+	 */
+	public function hasOpinion() {
+		return $this->hasString('opinion') && $this->getAsString('opinion') != '';
+	}
+
+	/**
+	 * Returns the opinion of this person.
+	 *
+	 * @return string the opinion, may be empty
+	 */
+	public function getOpinion() {
+		return $this->getAsString('opinion');
 	}
 }
 

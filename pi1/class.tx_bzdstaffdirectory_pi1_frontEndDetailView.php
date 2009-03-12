@@ -164,6 +164,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('xing', 'field_wrapper');
 		}
 
+		// Shows the opinion of this person.
+		if ($this->person->hasOpinion()) {
+			$this->setMarker(
+				'opinion',
+				$this->pi_RTEcssText($this->person->getOpinion())
+			);
+		} else {
+			$this->hideSubparts('opinion', 'field_wrapper');
+		}
+
 
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
 

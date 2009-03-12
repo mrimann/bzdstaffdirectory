@@ -54,6 +54,7 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'date_birthdate' => strtotime('-10 years'),
 				'date_incompany' => strtotime('-10 years'),
 				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
+				'opinion' => 'louder, harder, scooter - or so',
 			)
 		);
 		$this->createPerson($this->uid);
@@ -336,6 +337,27 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			date('Y-m-d', strtotime("-10 years")),
 			$this->fixture->getDateInCompany()->format('Y-m-d')
+		);
+	}
+
+	public function testHasOpinionReturnsTrueIfOpinionIsSet() {
+		$this->assertTrue($this->fixture->hasOpinion());
+	}
+
+	public function testHasOpinionReturnsFalseIfNoOpinionSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse($this->fixture->hasOpinion());
+	}
+
+	public function testGetOpinionReturnsTheStoredValue() {
+		$this->assertEquals(
+			'louder, harder, scooter - or so',
+			$this->fixture->getOpinion()
 		);
 	}
 

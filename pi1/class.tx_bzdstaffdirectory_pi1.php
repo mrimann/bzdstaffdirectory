@@ -779,15 +779,15 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 //			$this->hideSubparts('date_incompany', 'field_wrapper');
 //		}
 
-		if ($this->hasValue('opinion', $person)) {
-			$this->setMarker(
-				'opinion',
-				$this->pi_RTEcssText($this->getValue('opinion', $person, false))
-			);
-			$this->setMarker('label_opinion', $this->pi_getLL('label_opinion'));
-		} else {
-			$this->hideSubparts('opinion', 'field_wrapper');
-		}
+//		if ($this->hasValue('opinion', $person)) {
+//			$this->setMarker(
+//				'opinion',
+//				$this->pi_RTEcssText($this->getValue('opinion', $person, false))
+//			);
+//			$this->setMarker('label_opinion', $this->pi_getLL('label_opinion'));
+//		} else {
+//			$this->hideSubparts('opinion', 'field_wrapper');
+//		}
 
 		if ($this->hasValue('tasks', $person)) {
 			$this->setMarker(
