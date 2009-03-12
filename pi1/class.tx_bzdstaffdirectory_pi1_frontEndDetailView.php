@@ -67,6 +67,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 
 		// Generates the person object and stores it in $this->person.
 		$this->createPerson($personUid);
+
+
+		// Sets the person's name as page title (mainly for indexing)
+		$indexedPageTitle =
+			($this->person->hasTitle()) ? $this->person->getTitle() . ' ' : '' .
+			$this->person->getFirstName() .
+			' ' .
+			$this->person->getLastName();
+		$GLOBALS['TSFE']->indexedDocTitle = $indexedPageTitle;
+		$GLOBALS['TSFE']->page['title'] = $indexedPageTitle;
 	}
 
 	/**

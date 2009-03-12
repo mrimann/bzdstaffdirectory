@@ -864,15 +864,15 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			}
 		}
 
-		// define the person's name as the page title for indexing
-		$personsTitle = ($this->hasValue('title', $person)) ? $this->getValue('title', $person) . ' ' : '';
-		$indexedPageTitle =
-			$personsTitle
-			. $this->getValue('first_name', $person)
-			. ' '
-			. $this->getValue('last_name', $person);
-		$GLOBALS['TSFE']->indexedDocTitle = $indexedPageTitle;
-		$GLOBALS['TSFE']->page['title'] = $indexedPageTitle;
+//		// define the person's name as the page title for indexing
+//		$personsTitle = ($this->hasValue('title', $person)) ? $this->getValue('title', $person) . ' ' : '';
+//		$indexedPageTitle =
+//			$personsTitle
+//			. $this->getValue('first_name', $person)
+//			. ' '
+//			. $this->getValue('last_name', $person);
+//		$GLOBALS['TSFE']->indexedDocTitle = $indexedPageTitle;
+//		$GLOBALS['TSFE']->page['title'] = $indexedPageTitle;
 
 		// merge the marker content with the template
 		$content .= $this->getSubpart('TEMPLATE_DETAIL');
