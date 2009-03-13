@@ -757,13 +757,13 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 //		} else {
 //			$this->hideSubparts('email', 'field_wrapper');
 //		}
-
-		// Hide the groups line if the user is not member in any of the groups.
-		if ($this->getMemberOfGroups($this->showUid)) {
-			$this->setMarker('groups', $this->getGroups($this->showUid));
-		} else {
-			$this->hideSubparts('groups', 'field_wrapper');
-		}
+//
+//		// Hide the groups line if the user is not member in any of the groups.
+//		if ($this->getMemberOfGroups($this->showUid)) {
+//			$this->setMarker('groups', $this->getGroups($this->showUid));
+//		} else {
+//			$this->hideSubparts('groups', 'field_wrapper');
+//		}
 
 		// Hides the locations line if the user has no location(s) assigned.
 		if ($this->getLocationsForPerson($this->showUid)) {

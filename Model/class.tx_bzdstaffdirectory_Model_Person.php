@@ -268,6 +268,47 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	public function getOpinion() {
 		return $this->getAsString('opinion');
 	}
+
+	/**
+	 * Checks whether this person is member of any teams. For this, only the
+	 * relation counter is checked.
+	 *
+	 * @return boolean whether this person is member of any team
+	 */
+	public function hasTeams() {
+		return (boolean)$this->getAsInteger('usergroups');
+	}
+
+	/**
+	 * Returns a list of teams on which this person is member of.
+	 *
+	 * @return array UID's of the teams
+	 */
+	public function getTeams() {
+		$teams = new tx_oelib_List();
+
+		$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_persons_usergroups_mm m'
+				.' left join tx_bzdstaffdirectory_groups g'
+				.' on m.uid_foreign=g.uid',	// FROM
+			'm.uid_local IN(' . $this->getUid() .')'
+				.' AND g.hidden=0 AND g.deleted=0',	//WHERE
+			'',	// GROUP BY
+			'm.sorting',	// ORDER BY
+			''	//LIMIT
+		);
+
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($dbResult) > 0)	{
+			while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult))	{
+				$currentTeam = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Team')
+					->find($member['uid_foreign']);
+				$teams->add($currentTeam);
+			}
+		}
+
+		return $teams;
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {

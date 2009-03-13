@@ -184,6 +184,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('opinion', 'field_wrapper');
 		}
 
+		// Shows the teams on which the person is member of.
+		if ($this->person->hasTeams()) {
+			$this->setMarker(
+				'groups',
+				$this->getTeamsAsList()
+			);
+		} else {
+			$this->hideSubparts('groups', 'field_wrapper');
+
+		}
 
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
 
@@ -191,6 +201,59 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		$result .= $this->getWrappedConfigCheckMessage();
 
 		return $result;
+	}
+
+	/**
+	 * Returns HTML source to display either a single entry or a whole list of
+	 * teams.
+	 *
+	 * @return string HTML source for the team list, may be empty if no teams are assigned
+	 */
+	private function getTeamsAsList() {
+		$result = '';
+		$teams = $this->person->getTeams();
+
+		// Exit if no teams are assigned
+		if ($teams->count() == 0) {
+			return $result;
+		}
+
+		if ($teams->count() > 1) {
+			// we have more than one group and need to build a list
+			while ($currentTeam = $teams->current()) {
+
+				// check if the team name should be linked to the team page
+				if ($currentTeam->hasInfopage()) {
+					$teamName = $this->cObj->getTypoLink(
+						htmlspecialchars($currentTeam->getTitle()),
+						$currentTeam->getInfopagePid()
+					);
+				} else {
+					$teamName = htmlspecialchars($currentTeam->getTitle());
+				}
+				$memberOfList .= '<li>' . $teamName . '</li>';
+				$teams->next();
+			}
+			$result = '<ul>' . $memberOfList . '</ul>';
+			$this->setMarker('label_groups', $this->pi_getLL('label_groups_plural'));
+		} else {
+			// just one single group found, no list is needed
+			$currentTeam = $teams->current();
+
+			// check if the team name should be linked to the team page
+			if ($currentTeam->hasInfopage()) {
+				$result = $this->cObj->getTypoLink(
+					htmlspecialchars($currentTeam->getTitle()),
+					$currentTeam->getInfopagePid()
+				);
+			} else {
+				$result = htmlspecialchars($currentTeam->getTitle());
+			}
+			$this->setMarker('label_groups', $this->pi_getLL('label_groups_singular'));
+		}
+
+		return $result;
+
 	}
 
 	/**

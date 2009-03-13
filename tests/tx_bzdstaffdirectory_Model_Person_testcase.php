@@ -361,6 +361,121 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 	}
 
+	public function testHasTeamsReturnsFalseOnNoTeamMemberhip() {
+		$this->assertFalse($this->fixture->hasTeams());
+	}
+
+	public function testHasTeamsReturnsTrueOnSingleTeamMembership() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$teamUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array()
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid,
+			'usergroups'
+		);
+		$this->createPerson($personUid);
+
+		$this->assertTrue($this->fixture->hasTeams());
+	}
+
+	public function testHasTeamsReturnsTrueOnMultipleTeamMembership() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$teamUid1 = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array()
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid1,
+			'usergroups'
+		);
+		$teamUid2 = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array()
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid2,
+			'usergroups'
+		);
+		$this->createPerson($personUid);
+
+		$this->assertTrue($this->fixture->hasTeams());
+	}
+
+	public function testGetTeamsReturnsEmptyListOnNoMembership() {
+		$this->assertTrue(
+			$this->fixture->getTeams()->isEmpty()
+		);
+	}
+
+	public function testGetTeamsReturnsArrayWithOneUidOnSingleTeamMembership() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$teamUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array()
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid,
+			'usergroups'
+		);
+		$this->createPerson($personUid);
+
+		$this->assertEquals(
+			1,
+			$this->fixture->getTeams()->count()
+		);
+	}
+
+	public function testGetTeamsReturnsArrayWithMultipleUidsOnMultipleTeamMembership() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$teamUid1 = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array()
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid1,
+			'usergroups'
+		);
+		$teamUid2 = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array()
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid2,
+			'usergroups'
+		);
+		$this->createPerson($personUid);
+
+		$this->assertEquals(
+			2,
+			$this->fixture->getTeams()->count()
+		);
+	}
 }
 
 ?>

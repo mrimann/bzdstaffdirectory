@@ -507,6 +507,106 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsTeamEntryOnSingleTeamMembership() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$teamUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array(
+				'group_name' => 'Test-Team',
+			)
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid,
+			'usergroups'
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'<td>Test-Team</td>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsTeamListOnMultipleTeamMembership() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$teamUid1 = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array(
+				'group_name' => 'Test-Team',
+			)
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid1,
+			'usergroups'
+		);
+		$teamUid2 = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array(
+				'group_name' => 'Second-Team',
+			)
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid2,
+			'usergroups'
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'<li>Test-Team</li>',
+			$this->fixture->render()
+		);
+
+		$this->assertContains(
+			'<li>Second-Team</li>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsLinkedTeamNameIfTeamHasInfopage() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$pid = $this->testingFramework->createFrontEndPage(
+
+		);
+		$teamUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_groups',
+			array(
+				'group_name' => 'Test-Team',
+				'infopage' => $pid,
+			)
+		);
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$teamUid,
+			'usergroups'
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'<a href="?id=' . $pid . '" >Test-Team</a>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainTeamsMarkerIfNoTeamsAssigned() {
+		$this->assertNotContains(
+			'###GROUPS###',
+			$this->fixture->render()
+		);
+	}
 }
 
 ?>
