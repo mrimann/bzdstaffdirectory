@@ -142,6 +142,11 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('email', 'field_wrapper');
 		}
 
+		// The image is shown in every case, the subpart will never be hidden.
+		// If no image is stored for this user, a dummy picture will be shown.
+		$this->setMarker('image', $this->getImage());
+
+
 		// Fills the markers for birth date or age depending on the configuration.
 		if ($this->person->hasBirthDate()) {
 			if (!$this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
@@ -222,6 +227,64 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 
 		$this->checkConfiguration();
 		$result .= $this->getWrappedConfigCheckMessage();
+
+		return $result;
+	}
+
+	/**
+	 * Returns the HTML code to show the image of the person. If the person has
+	 * an image, this one is rendered. If person has no image assigned, a gender-
+	 * specific dummy image is shown if the gender is set (otherwise a general
+	 * dummy image is shown).
+	 *
+	 * @return string HTML code for the image
+	 */
+	function getImage() {
+		$result = '';
+
+		// Get Configuration Data (TypoScript Setup). Depending on "CODE" (what to show)
+		$lconf = $this->conf['DETAIL.'];
+
+		if ($this->person->hasImage()) {
+			$lconf['image.']['file'] = 'uploads/tx_bzdstaffdirectory/' .
+				$this->person->getImage();
+		}
+
+		if ($this->getConfValueBoolean('showDummyPictures', 's_template')) {
+			switch($this->person->getGender())
+			{
+				case 2	:	$lconf['image.']['file'] = $this->getConfValueString('dummyPictureFemale', $sheet = 's_template', true);
+									break;
+				case 1	:	$lconf['image.']['file'] = $this->getConfValueString('dummyPictureMale', $sheet = 's_template', true);
+									break;
+				case 0	:	// The fallthrough is intended.
+				default	:	// no gender specified or "not defined" is selected
+									break;
+			}
+
+			// just set the unisex dummy image, if this is not forbidden in the setup
+			if ($lconf['image.']['file'] == '' && $this->getConfValueBoolean('showUnisexDummyImage', 's_template')) {
+				$lconf['image.']['file'] = $this->getConfValueString('dummyPictureDefault', $sheet = 's_template', true);
+			}
+		} else {
+			//
+		}
+
+		// Depending on the settings in the Flexform of the content object, the image will be wrapped with a link (to click enlarge the image).
+		$imageconf = array();
+		if ($this->getConfValueBoolean('click_enlarge', 's_detailview') && $this->person->hasImage())	{
+			// Render the pop-up image with the size limitations from TS Setup.
+			$popUpImageArray = $this->cObj->getImgResource($lconf['image.']['file'], $lconf['image.']['popup.']);
+
+			$imageconf['enable'] = 1;
+			$imageconf['JSwindow'] = 1;
+			$imageconf['wrap'] = '<a href="javascript: close();"> | </a>';
+
+			$result = $this->cObj->imageLinkWrap($this->cObj->IMAGE($lconf['image.']),$popUpImageArray[3],$imageconf);
+
+		} else	{
+			$result = $this->cObj->IMAGE($lconf['image.']);
+		}
 
 		return $result;
 	}

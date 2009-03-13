@@ -624,6 +624,50 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsImageOfPersonWithImage() {
+		$this->markTestIncomplete(
+          'This test does not work as expected yet, generated images can not be tested right now.'
+        );
+
+        $this->assertContains(
+			'smurf300.jpg',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsUnisexDummyImageForPersonWithoutImageAndNoGenderSet() {
+		$this->markTestIncomplete(
+          'This test does not work as expected yet, generated images can not be tested right now.'
+        );
+
+        $this->assertContains(
+			'unisex_dummy.jpg',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsMaleDummyImageForMalePersonWithoutImage() {
+		$this->markTestIncomplete(
+          'This test does not work as expected yet, generated images can not be tested right now.'
+        );
+
+        $this->assertContains(
+			'male_dummy.jpg',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsFemaleDummyImageForFemalePersonWithoutImage() {
+		$this->markTestIncomplete(
+          'This test does not work as expected yet, generated images can not be tested right now.'
+        );
+
+        $this->assertContains(
+			'female_dummy.jpg',
+			$this->fixture->render()
+		);
+	}
 }
 
 ?>

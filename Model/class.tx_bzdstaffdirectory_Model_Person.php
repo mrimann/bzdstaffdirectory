@@ -309,6 +309,45 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 
 		return $teams;
 	}
+
+	/**
+	 * Checks whether this person has an image stored.
+	 *
+	 * @return boolean true if an image is set, false otherwise
+	 */
+	public function hasImage() {
+		return $this->hasString('image');
+	}
+
+	/**
+	 * Returns the filename of the stored image for this person.
+	 *
+	 * @return string the filename of the portrait, may be empty
+	 */
+	public function getImage() {
+		return $this->getAsString('image');
+	}
+
+	/**
+	 * Checks whether this person has a gender defined.
+	 *
+	 * @return boolean true if no gender is set (value = 0), false otherwise
+	 */
+	public function hasGender() {
+		return $this->hasInteger('gender');
+	}
+
+	/**
+	 * Returns the gender of this person, represented as an integer:
+	 * 0 = not set
+	 * 1 = male
+	 * 2 = female
+	 *
+	 * @return integer the gender of this person, may be zero but not null
+	 */
+	public function getGender() {
+		return $this->getAsInteger('gender');
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {

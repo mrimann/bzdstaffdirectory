@@ -55,6 +55,8 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'date_incompany' => strtotime('-10 years'),
 				'xing_profile_url' => 'http://www.xing.com/profile/foo.bar',
 				'opinion' => 'louder, harder, scooter - or so',
+				'image' => 'smurf300.jpg',
+				'gender' => 1,
 			)
 		);
 		$this->createPerson($this->uid);
@@ -474,6 +476,63 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			2,
 			$this->fixture->getTeams()->count()
+		);
+	}
+
+	public function testHasImageReturnsFalseIfNoImageSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse(
+			$this->fixture->hasImage()
+		);
+	}
+
+	public function testHasImageReturnsTrueIfAnImageIsSet() {
+		$this->assertTrue(
+			$this->fixture->hasImage()
+		);
+	}
+
+	public function getImageReturnsTheStoredFileName() {
+		$this->assertEquals(
+			'smurf300.jpg',
+			$this->fixture->getImage()
+		);
+	}
+
+	public function testHasGenderReturnsFalseIfGenderUndefined() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse(
+			$this->fixture->hasGender()
+		);
+	}
+
+	public function testGetGenderReturnsZeroIfGenderUndefined() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array()
+		);
+		$this->createPerson($personUid);
+
+		$this->assertEquals(
+			0,
+			$this->fixture->getGender()
+		);
+	}
+
+	public function testGetGenderReturnsSetGender() {
+		$this->assertEquals(
+			1,
+			$this->fixture->getGender()
 		);
 	}
 }

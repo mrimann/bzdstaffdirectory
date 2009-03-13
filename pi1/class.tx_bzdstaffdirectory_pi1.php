@@ -837,10 +837,10 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			$this->hideSubparts('files', 'field_wrapper');
 		}
 
-		// The image is shown in every case, the subpart will never be hidden.
-		// If no image is stored for this user, a dummy picture will be shown.
-		$this->setMarker('image', $this->getImage($person));
-		$this->setMarker('label_image', $this->pi_getLL('label_image'));
+//		// The image is shown in every case, the subpart will never be hidden.
+//		// If no image is stored for this user, a dummy picture will be shown.
+//		$this->setMarker('image', $this->getImage($person));
+//		$this->setMarker('label_image', $this->pi_getLL('label_image'));
 
 		// define the marker for the back link
 		if ($this->weAreInPopUp) {
