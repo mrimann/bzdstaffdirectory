@@ -83,9 +83,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 								break;
 			case "BOX"		:	$content .= $this->show_box();
 								break;
-			case "DETAIL"	:	//$this->controller->setShowUid(intval($this->piVars['showUid']));
-								//$this->controller->setBackPid(intval($this->piVars['backPid']));
-								$content .= $this->renderDetailView();
+			case "DETAIL"	:	$content .= $this->renderDetailView();
 								break;
 			default			:	$content .= $this->pi_getLL('error_noListType');
 								break;
