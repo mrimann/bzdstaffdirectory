@@ -125,7 +125,6 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('title', 'field_wrapper');
 		}
 
-
 		// Fills the markers of all the standard fields
 		foreach($this->person->getStandardFieldList() as $key) {
 			if ($this->person->hasStandardField($key)) {
@@ -194,6 +193,30 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('groups', 'field_wrapper');
 
 		}
+
+		// Shows the back link if needed
+		if ($this->weAreInPopUp) {
+			// Render a "close" link as we are in a popUp
+			$linkTag = '<a href="#" onClick="window.close()">'
+				.$this->pi_getLL('label_link_close')
+				.'</a>';
+			$this->setMarker(
+				'link_back',
+				$linkTag
+			);
+		} else {
+			if ($this->conf['backPid']) {
+				$this->setMarker(
+					'link_back',
+					$this->cObj->getTypoLink(
+						$this->pi_getLL('label_link_back'),
+						$this->conf['backPid'])
+					);
+			} else {
+				$this->hideSubparts('link_back', 'field_wrapper');
+			}
+		}
+
 
 		$result .= $this->getSubpart('TEMPLATE_DETAIL');
 

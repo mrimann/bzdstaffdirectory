@@ -607,6 +607,23 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsBackLinkIfPidDefined() {
+		$pid = $this->testingFramework->createFrontEndPage();
+		$this->fixture->setConfigurationValue('backPid', $pid);
+
+		$this->assertContains(
+			'<a href="?id=' . $pid . '" >back</a>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainBackLinkMarkerIfNoPidSet() {
+		$this->assertNotContains(
+			'###LINK_BACK###',
+			$this->fixture->render()
+		);
+	}
 }
 
 ?>
