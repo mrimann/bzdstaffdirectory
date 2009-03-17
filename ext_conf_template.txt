@@ -10,6 +10,9 @@ hideNewLocalizations = 0
 #cat=basic/enable/180; type=boolean; label= Prepend at Copy: Here you can disable adding of the text "(copy [#])" to titles of copied records.
 prependAtCopy = 1
 
+#cat=basic/enable/190; type=string; label=Required fields for persons records: Define which input fields are required for person records. List has to be comma separated. Possible values are: first_name, last_name, title, image, usergroups, date_incompany, date_birthdate, function, email, room, nickname, phone, mobile_phone, officehours, xing_profile_url.
+requiredFields = first_name,last_name
+
 #cat=basic/enable/200; type=boolean; label=Use the universal field 1?
 useUniversalField_1 = 0
 

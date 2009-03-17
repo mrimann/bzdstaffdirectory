@@ -44,7 +44,6 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'required'
 			)
 		),
 		'first_name' => array(
@@ -54,7 +53,6 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'required'
 			)
 		),
 		'title' => array(
@@ -154,7 +152,6 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'required'
 			)
 		),
 		'email' => array(
@@ -164,7 +161,6 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 			'config' => array(
 				'type' => 'input',
 				'size' => '30',
-				'eval' => 'required'
 			)
 		),
 		'tasks' => array(
@@ -393,7 +389,28 @@ if ($confArr['useUniversalField_5'] && !empty($confArr['fieldNameUniversalField_
 	);
 }
 
-
+// check and mark required input fields for a persons record
+// Explodes required fields from extension configuration to array.
+$requiredFields = explode(',', $confArr['requiredFields']); 
+// Delete duplicate entries.
+$requiredFields = array_unique($requiredFields); 
+// For all required fields do ...
+foreach ($requiredFields as $requiredField) { 
+	// Trim spaces and co.
+	$requiredField = trim($requiredField); 
+	// Is the field name already existing? Only then it's a valid entry!
+	if (array_key_exists($requiredField, $TCA['tx_bzdstaffdirectory_persons']['columns'])) { 
+		// Is 'eval' already set?
+		if (array_key_exists('eval', $TCA['tx_bzdstaffdirectory_persons']['columns'][$requiredField]['config'])) {
+			// 'eval' is already set, so append 'required'.
+			$TCA['tx_bzdstaffdirectory_persons']['columns'][$requiredField]['config']['eval'] .= ',required';
+		}
+		else {
+			// 'eval' isn't already set, so set it 'required' 
+			$TCA['tx_bzdstaffdirectory_persons']['columns'][$requiredField]['config']['eval'] = 'required';
+		}
+	}
+}
 
 /*
  * This is the default Table Configuration Array for the teams table.
