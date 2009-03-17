@@ -322,7 +322,17 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 
 		// get the teams (ordered as in the content element) and add them to an
 		// array.
-		$selectedGroups = $this->getConfValueString('usergroup', 's_teamlist');
+		// Does the user want do ignore the group selection?
+		if ($this->getConfValueBoolean('ignoreGroupSelection', 's_teamlist')) { 
+			// Then it fetchs all available groups in startingpoint.
+			$startingpoint = $this->getAllowedPids();
+			$selectedGroups = implode(',', $this->getGroupsFromStartingpoint($startingpoint));
+		}
+		else {
+			// Otherwise it fetchs only chosen groups.
+			$selectedGroups = $this->getConfValueString('usergroup', 's_teamlist');
+		} 
+		
 		foreach (explode(',', $selectedGroups) as $currentGroup) {
 			$teams[] = $this->getTeamArray($currentGroup, true);
 		}
@@ -377,6 +387,33 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		}
 
 		return $content;
+	}
+	
+	/**
+	 * Gets all the groups from a given startingpoint.
+	 *
+	 * @param string comma separated list of PIDs
+	 *
+	 * @return array array of the group uids
+	 */
+	function getGroupsFromStartingpoint($pidList) {
+		$groups = array();
+
+		$res_groups = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'uid',	// SELECT
+			'tx_bzdstaffdirectory_groups',	// FROM
+			'pid IN(' . $pidList . ') AND l18n_parent = 0',	//WHERE
+			'',	// GROUP BY
+			'',	// ORDER BY
+			''	//LIMIT
+		);
+		
+		while($group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groups))	{
+			$groups[] = $group['uid'];
+		}
+
+
+		return $groups;
 	}
 
 	/**
