@@ -1,4 +1,6 @@
 version 0.8.0 - currently working on
+TEST TEST TEST
+
 - [#2718] Feature: Required fields now can be configured in extension config
 - [#2809] Fix: When 'ignore group selection' in grouped team view is enabled now all groups are selected
 - [#211] Change: Dates prior to 1970 can now be saved properly (depends on TYPO3 4.2 now!)
