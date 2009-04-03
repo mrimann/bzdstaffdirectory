@@ -323,7 +323,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		// get the teams (ordered as in the content element) and add them to an
 		// array.
 		// Does the user want do ignore the group selection?
-		if ($this->getConfValueBoolean('ignoreGroupSelection', 's_teamlist')) { 
+		if ($this->getConfValueBoolean('ignoreGroupSelection', 's_teamlist')) {
 			// Then it fetchs all available groups in startingpoint.
 			$startingpoint = $this->getAllowedPids();
 			$selectedGroups = implode(',', $this->getGroupsFromStartingpoint($startingpoint));
@@ -331,8 +331,8 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		else {
 			// Otherwise it fetchs only chosen groups.
 			$selectedGroups = $this->getConfValueString('usergroup', 's_teamlist');
-		} 
-		
+		}
+
 		foreach (explode(',', $selectedGroups) as $currentGroup) {
 			$teams[] = $this->getTeamArray($currentGroup, true);
 		}
@@ -388,7 +388,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 
 		return $content;
 	}
-	
+
 	/**
 	 * Gets all the groups from a given startingpoint.
 	 *
@@ -407,7 +407,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			'',	// ORDER BY
 			''	//LIMIT
 		);
-		
+
 		while($group = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($res_groups))	{
 			$groups[] = $group['uid'];
 		}
@@ -807,12 +807,12 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 //			$this->hideSubparts('groups', 'field_wrapper');
 //		}
 
-		// Hides the locations line if the user has no location(s) assigned.
-		if ($this->getLocationsForPerson($this->showUid)) {
-			$this->setMarker('location', $this->getLocationList($this->showUid));
-		} else {
-			$this->hideSubparts('location', 'field_wrapper');
-		}
+//		// Hides the locations line if the user has no location(s) assigned.
+//		if ($this->getLocationsForPerson($this->showUid)) {
+//			$this->setMarker('location', $this->getLocationList($this->showUid));
+//		} else {
+//			$this->hideSubparts('location', 'field_wrapper');
+//		}
 
 //		if ($this->hasValue('date_incompany', $person)) {
 //			$this->setMarker('date_incompany', $this->getFormattedDate($person['date_incompany'], 'dateFormatInCompany'));
