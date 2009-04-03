@@ -821,6 +821,28 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsTasksOnNonEmptyTaskField() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array('tasks' => 'FooBar-Task')
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'FooBar-Task',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainTasksMarkerOnNoTasks() {
+		$this->assertNotContains(
+			'###TASKS###',
+			$this->fixture->render()
+		);
+	}
+
+
 }
 
 ?>

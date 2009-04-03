@@ -831,18 +831,18 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 //			$this->hideSubparts('opinion', 'field_wrapper');
 //		}
 
-		if ($this->hasValue('tasks', $person)) {
-			$this->setMarker(
-				'tasks',
-				$this->cObj->stdWrap(
-					$this->getValue('tasks', $person, true),
-					$this->conf['DETAIL.']['tasks.']
-				)
-			);
-			$this->setMarker('label_tasks', $this->pi_getLL('label_tasks'));
-		} else {
-			$this->hideSubparts('tasks', 'field_wrapper');
-		}
+//		if ($this->hasValue('tasks', $person)) {
+//			$this->setMarker(
+//				'tasks',
+//				$this->cObj->stdWrap(
+//					$this->getValue('tasks', $person, true),
+//					$this->conf['DETAIL.']['tasks.']
+//				)
+//			);
+//			$this->setMarker('label_tasks', $this->pi_getLL('label_tasks'));
+//		} else {
+//			$this->hideSubparts('tasks', 'field_wrapper');
+//		}
 
 //		if ($this->hasValue('date_birthdate', $person)) {
 //			if ($this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {

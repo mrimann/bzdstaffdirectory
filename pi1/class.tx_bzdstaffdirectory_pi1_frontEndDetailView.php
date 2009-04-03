@@ -178,7 +178,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('xing', 'field_wrapper');
 		}
 
-		// Shows the opinion of this person.
+			// Shows the opinion of this person.
 		if ($this->person->hasOpinion()) {
 			$this->setMarker(
 				'opinion',
@@ -186,6 +186,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			);
 		} else {
 			$this->hideSubparts('opinion', 'field_wrapper');
+		}
+
+		// Shows the tasks of this person.
+		if ($this->person->hasTasks()) {
+			$this->setMarker(
+				'tasks',
+				$this->pi_RTEcssText($this->person->getTasks())
+			);
+		} else {
+			$this->hideSubparts('tasks', 'field_wrapper');
 		}
 
 		// Shows the teams on which the person is member of.

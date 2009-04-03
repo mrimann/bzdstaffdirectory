@@ -261,12 +261,30 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	}
 
 	/**
+	 * Checks whether this person has tasks stored.
+	 *
+	 * @return boolean whether the field tasks is set and non empty
+	 */
+	public function hasTasks() {
+		return $this->hasString('tasks') && $this->getAsString('tasks') != '';
+	}
+
+	/**
 	 * Returns the opinion of this person.
 	 *
 	 * @return string the opinion, may be empty
 	 */
 	public function getOpinion() {
 		return $this->getAsString('opinion');
+	}
+
+	/**
+	 * Returns the tasks of this person.
+	 *
+	 * @return string the tasks, may be empty
+	 */
+	public function getTasks() {
+		return $this->getAsString('tasks');
 	}
 
 	/**

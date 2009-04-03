@@ -655,6 +655,44 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			count($this->fixture->getFiles())
 		);
 	}
+
+	public function testHasTasksReturnsFalseOnNoTasks() {
+		$this->assertFalse($this->fixture->hasTasks());
+	}
+
+	public function testHasTasksReturnsTrueOnNonEmptyTaskField() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'tasks' => 'blablabla',
+			)
+		);
+		$this->createPerson($personUid);
+
+		$this->assertTrue($this->fixture->hasTasks());
+	}
+
+	public function testGetTasksReturnsEmptyStringOnNoTasks() {
+		$this->assertEquals(
+			'',
+			$this->fixture->getTasks()
+		);
+	}
+
+	public function testGetTasksReturnsTheStoredTasks() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'tasks' => 'blablabla',
+			)
+		);
+		$this->createPerson($personUid);
+
+		$this->assertEquals(
+			'blablabla',
+			$this->fixture->getTasks()
+		);
+	}
 }
 
 ?>
