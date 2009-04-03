@@ -325,10 +325,10 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 				$fileList .= '<li>' . $currentFile . '</li>';
 			}
 			$result = '<ul>' . $fileList . '</ul>';
-			$this->setMarker('label_files', $this->pi_getLL('label_files_plural'));
+			$this->setMarker('label_files', $this->translate('label_files_plural'));
 		} else {
 			$result = $files[0];
-			$this->setMarker('label_files', $this->pi_getLL('label_files_singular'));
+			$this->setMarker('label_files', $this->translate('label_files_singular'));
 		}
 
 		return $result;
@@ -366,7 +366,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 				$teams->next();
 			}
 			$result = '<ul>' . $memberOfList . '</ul>';
-			$this->setMarker('label_groups', $this->pi_getLL('label_groups_plural'));
+			$this->setMarker('label_groups', $this->translate('label_groups_plural'));
 		} else {
 			// just one single group found, no list is needed
 			$currentTeam = $teams->current();
@@ -380,7 +380,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			} else {
 				$result = htmlspecialchars($currentTeam->getTitle());
 			}
-			$this->setMarker('label_groups', $this->pi_getLL('label_groups_singular'));
+			$this->setMarker('label_groups', $this->translate('label_groups_singular'));
 		}
 
 		return $result;
@@ -418,7 +418,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 				$locations->next();
 			}
 			$result = '<ul>' . $memberOfList . '</ul>';
-			$this->setMarker('label_location', $this->pi_getLL('label_location_plural'));
+			$this->setMarker('label_location', $this->translate('label_location_plural'));
 		} else {
 			// just one single location found, no list is needed
 			$currentLocation = $locations->current();
@@ -432,7 +432,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			} else {
 				$result = htmlspecialchars($currentLocation->getTitle());
 			}
-			$this->setMarker('label_location', $this->pi_getLL('label_location_singular'));
+			$this->setMarker('label_location', $this->translate('label_location_singular'));
 		}
 
 		return $result;
