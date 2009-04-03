@@ -579,7 +579,7 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 	}
 
-	public function testGetLocationsReturnsListOfLocations() {
+	public function testGetLocationsReturnsListOfLocationsOnOneAssignedLocation() {
 		$this->createLocationAndAssignPerson($this->uid);
 
 		$this->assertEquals(
@@ -588,13 +588,71 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 	}
 
-	public function testGetLocationsThrowsExceptionOnNoLocations() {
+	public function testGetLocationsReturnsListOfLocationsOnTwoAssignedLocations() {
 		$this->createLocationAndAssignPerson($this->uid, 'Team A');
 		$this->createLocationAndAssignPerson($this->uid, 'Team B');
 
 		$this->assertEquals(
 			2,
 			$this->fixture->getLocations()->count()
+		);
+	}
+
+	public function testHasFilesReturnsFalseIfNoFilesAssigned() {
+		$this->assertFalse(
+			$this->fixture->hasFiles()
+		);
+	}
+
+	public function testHasFilesReturnsTrueOnOneAssignedFile() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'files' => 'foo.jpg',
+			)
+		);
+		$this->createPerson($personUid);
+
+		$this->assertTrue(
+			$this->fixture->hasFiles()
+		);
+	}
+
+	public function testGetFilesReturnsEmptyArray() {
+		$this->assertEquals(
+			array(),
+			$this->fixture->getFiles()
+		);
+	}
+
+	public function testGetFilesReturnsArrayOfFileNamesOnOneFile() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'files' => 'foo.jpg',
+			)
+		);
+		$this->createPerson($personUid);
+
+		$this->assertEquals(
+			1,
+			count($this->fixture->getFiles())
+		);
+	}
+
+	public function testGetFilesReturnsArrayOfFileNamesOnTwoFiles() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'files' => 'foo.jpg,bar.jpg',
+			)
+		);
+		$this->createPerson($personUid);
+
+
+		$this->assertEquals(
+			2,
+			count($this->fixture->getFiles())
 		);
 	}
 }

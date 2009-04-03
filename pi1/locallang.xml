@@ -25,7 +25,8 @@
 			<label index="label_location_singular">Location:</label>
 			<label index="label_location_plural">Locations:</label>
 			<label index="label_tasks">Tasks:</label>
-			<label index="label_files">Files:</label>
+			<label index="label_files_singular">File:</label>
+			<label index="label_files_plural">Files:</label>
 			<label index="label_groups_singular">Team:</label>
 			<label index="label_groups_plural">Teams:</label>
 			<label index="label_opinion">Opinion:</label>

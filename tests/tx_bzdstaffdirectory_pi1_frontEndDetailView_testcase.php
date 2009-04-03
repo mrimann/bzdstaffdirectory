@@ -758,6 +758,69 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			$this->fixture->render()
 		);
 	}
+
+	public function testRenderContainsFileNameAsTextOnOneFile() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array('files' => 'foo.jpg')
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'<td>foo.jpg</td>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsFileNamesAsListOnTwoFiles() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array('files' => 'foo.jpg,bar.jpg')
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'<li>foo.jpg</li>',
+			$this->fixture->render()
+		);
+		$this->assertContains(
+			'<li>bar.jpg</li>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsSingularLabelOnOneFile() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array('files' => 'foo.jpg')
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'File:',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsPluralLabelOnTwoFiles() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array('files' => 'foo.jpg,bar.jpg')
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'Files:',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainFilesMarkerIfNoFilesAssigned() {
+		$this->assertNotContains(
+			'###FILES###',
+			$this->fixture->render()
+		);
+	}
 }
 
 ?>

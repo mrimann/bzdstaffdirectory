@@ -209,6 +209,13 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('location', 'field_wrapper');
 		}
 
+		// Shows the files assigned to this person
+		if ($this->person->hasFiles()) {
+			$this->setMarker('files', $this->getFileList());
+		} else {
+			$this->hideSubparts('files', 'field_wrapper');
+		}
+
 		// Shows the back link if needed
 		if ($this->weAreInPopUp) {
 			// Render a "close" link as we are in a popUp
@@ -294,6 +301,34 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 
 		} else	{
 			$result = $this->cObj->IMAGE($lconf['image.']);
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Returns either a single file name or a list of file names and sets the
+	 * appropriate label.
+	 *
+	 * @return string HTML to show the list of files
+	 */
+	private function getFileList() {
+		$files = $this->person->getFiles();
+
+		if (count($files) == 0) {
+			return '';
+		}
+
+		if (count($files) > 1) {
+			$fileList = '';
+			foreach ($files as $currentFile) {
+				$fileList .= '<li>' . $currentFile . '</li>';
+			}
+			$result = '<ul>' . $fileList . '</ul>';
+			$this->setMarker('label_files', $this->pi_getLL('label_files_plural'));
+		} else {
+			$result = $files[0];
+			$this->setMarker('label_files', $this->pi_getLL('label_files_singular'));
 		}
 
 		return $result;

@@ -867,12 +867,12 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 //			$this->hideSubparts('xing', 'field_wrapper');
 //		}
 
-		if ($this->hasValue('files', $person)) {
-			$this->setMarker('files', $this->getFileList($person));
-			$this->setMarker('label_files', $this->pi_getLL('label_files'));
-		} else {
-			$this->hideSubparts('files', 'field_wrapper');
-		}
+//		if ($this->hasValue('files', $person)) {
+//			$this->setMarker('files', $this->getFileList($person));
+//			$this->setMarker('label_files', $this->pi_getLL('label_files'));
+//		} else {
+//			$this->hideSubparts('files', 'field_wrapper');
+//		}
 
 //		// The image is shown in every case, the subpart will never be hidden.
 //		// If no image is stored for this user, a dummy picture will be shown.

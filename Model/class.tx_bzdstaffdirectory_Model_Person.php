@@ -389,6 +389,30 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	public function getGender() {
 		return $this->getAsInteger('gender');
 	}
+
+	/**
+	 * Checks whether this person has any files stored in it's record.
+	 *
+	 * @return boolean true if at least one file is assigned, false otherwise
+	 */
+	public function hasFiles() {
+		return ($this->getAsString('files') != '');
+	}
+
+	/**
+	 * Returns a list of file names that are assigned to this person.
+	 *
+	 * @return array the file names
+	 */
+	public function getFiles() {
+		$result = array();
+
+		if (!$this->hasFiles()) {
+			return $result;
+		}
+
+		return explode(',', $this->getAsString('files'));
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {
