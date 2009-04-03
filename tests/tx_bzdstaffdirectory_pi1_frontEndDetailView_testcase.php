@@ -767,7 +767,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		$this->getNewFixture($personUid);
 
 		$this->assertContains(
-			'<td>foo.jpg</td>',
+			'<td><a href="uploads/tx_bzdstaffdirectory/foo.jpg" >foo.jpg</a></td>',
 			$this->fixture->render()
 		);
 	}
@@ -780,11 +780,11 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		$this->getNewFixture($personUid);
 
 		$this->assertContains(
-			'<li>foo.jpg</li>',
+			'<li><a href="uploads/tx_bzdstaffdirectory/foo.jpg" >foo.jpg</a></li>',
 			$this->fixture->render()
 		);
 		$this->assertContains(
-			'<li>bar.jpg</li>',
+			'<li><a href="uploads/tx_bzdstaffdirectory/bar.jpg" >bar.jpg</a></li>',
 			$this->fixture->render()
 		);
 	}

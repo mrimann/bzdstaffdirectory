@@ -322,12 +322,20 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		if (count($files) > 1) {
 			$fileList = '';
 			foreach ($files as $currentFile) {
-				$fileList .= '<li>' . $currentFile . '</li>';
+				$link = $this->cObj->getTypoLink(
+					$currentFile,
+					'uploads/tx_bzdstaffdirectory/' . $currentFile
+				);
+				$fileList .= '<li>' . $link . '</li>';
 			}
 			$result = '<ul>' . $fileList . '</ul>';
 			$this->setMarker('label_files', $this->translate('label_files_plural'));
 		} else {
-			$result = $files[0];
+			$result = $this->cObj->getTypoLink(
+				$files[0],
+				'uploads/tx_bzdstaffdirectory/' . $files[0]
+			);
+
 			$this->setMarker('label_files', $this->translate('label_files_singular'));
 		}
 
