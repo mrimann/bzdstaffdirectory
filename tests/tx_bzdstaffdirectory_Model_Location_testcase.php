@@ -80,6 +80,41 @@ class tx_bzdstaffdirectory_Model_Location_testcase extends tx_phpunit_testcase {
 			$this->fixture->getTitle()
 		);
 	}
+
+	public function testHasInfopageRetrunsFalseIfNoPageSet() {
+		$this->assertFalse(
+			$this->fixture->hasInfopage()
+		);
+	}
+
+	public function testHasInfopageReturnsTrueIfPageIsSet() {
+		$locationUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_locations',
+			array(
+				'infopage' => 99
+			)
+		);
+		$this->createLocation($locationUid);
+
+		$this->assertTrue(
+			$this->fixture->hasInfopage()
+		);
+	}
+
+	public function testGetInfopagePidReturnsTheSetPid() {
+		$locationUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_locations',
+			array(
+				'infopage' => 99
+			)
+		);
+		$this->createLocation($locationUid);
+
+		$this->assertEquals(
+			99,
+			$this->fixture->getInfopagePid()
+		);
+	}
 }
 
 ?>

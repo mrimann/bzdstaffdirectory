@@ -282,7 +282,7 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	/**
 	 * Returns a list of teams on which this person is member of.
 	 *
-	 * @return array UID's of the teams
+	 * @return tx_oelib_List a list of team objects
 	 */
 	public function getTeams() {
 		$teams = new tx_oelib_List();
@@ -308,6 +308,47 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 		}
 
 		return $teams;
+	}
+
+	/**
+	 * Checks whether this person is assigned to any location. For this, only
+	 * the relation counter is checked.
+	 *
+	 * @return boolean whether this person is assigned to any team
+	 */
+	public function hasLocation() {
+		return (boolean)$this->getAsInteger('location');
+	}
+
+	/**
+	 * Returns a list of locations to which this person is assigned.
+	 *
+	 * @return tx_oelib_List a list of location objects
+	 */
+	public function getLocations() {
+		$locations = new tx_oelib_List();
+
+		$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_persons_locations_mm m'
+				.' left join tx_bzdstaffdirectory_locations l'
+				.' on m.uid_foreign=l.uid',	// FROM
+			'm.uid_local IN(' . $this->getUid() .')'
+				.' AND l.hidden=0 AND l.deleted=0',	//WHERE
+			'',	// GROUP BY
+			'm.sorting',	// ORDER BY
+			''	//LIMIT
+		);
+
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($dbResult) > 0)	{
+			while($relation = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult))	{
+				$currentLocation = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Location')
+					->find($relation['uid_foreign']);
+				$locations->add($currentLocation);
+			}
+		}
+
+		return $locations;
 	}
 
 	/**

@@ -43,6 +43,24 @@ class tx_bzdstaffdirectory_Model_Location extends tx_oelib_Model {
 	public function getTitle() {
 		return $this->getAsString('title');
 	}
+
+	/**
+	 * Checks whether this location has an info page selected
+	 *
+	 * @return boolean true if the location has a page defined, false otherwise
+	 */
+	public function hasInfopage() {
+		return $this->hasInteger('infopage');
+	}
+
+	/**
+	 * Returns the PID of the info page of this location.
+	 *
+	 * @return integer the PID of the infopage
+	 */
+	public function getInfopagePid() {
+		return $this->getAsInteger('infopage');
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Location.php']) {

@@ -199,6 +199,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 
 		}
 
+		// Shows the location to which this user is assigned.
+		if ($this->person->hasLocation()) {
+			$this->setMarker(
+				'location',
+				$this->getLocationAsList()
+			);
+		} else {
+			$this->hideSubparts('location', 'field_wrapper');
+		}
+
 		// Shows the back link if needed
 		if ($this->weAreInPopUp) {
 			// Render a "close" link as we are in a popUp
@@ -339,7 +349,58 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		}
 
 		return $result;
+	}
 
+	/**
+	 * Returns HTML source to display either a single entry or a whole list of
+	 * locations.
+	 *
+	 * @return string HTML source for the location list, may be empty if no locations are assigned
+	 */
+	private function getLocationAsList() {
+		$result = '';
+		$locations = $this->person->getLocations();
+
+		// Exit if no locations are assigned
+		if ($locations->count() == 0) {
+			return $result;
+		}
+
+		if ($locations->count() > 1) {
+			// we have more than one location and need to build a list
+			while ($currentLocation = $locations->current()) {
+
+				// check if the location name should be linked to the infopage of the location
+				if ($currentLocation->hasInfopage()) {
+					$locationName = $this->cObj->getTypoLink(
+						htmlspecialchars($currentLocation->getTitle()),
+						$currentLocation->getInfopagePid()
+					);
+				} else {
+					$locationName = htmlspecialchars($currentLocation->getTitle());
+				}
+				$memberOfList .= '<li>' . $locationName . '</li>';
+				$locations->next();
+			}
+			$result = '<ul>' . $memberOfList . '</ul>';
+			$this->setMarker('label_location', $this->pi_getLL('label_location_plural'));
+		} else {
+			// just one single location found, no list is needed
+			$currentLocation = $locations->current();
+
+			// check if the location name should be linked to the infopage of the team
+			if ($currentLocation->hasInfopage()) {
+				$result = $this->cObj->getTypoLink(
+					htmlspecialchars($currentLocation->getTitle()),
+					$currentLocation->getInfopagePid()
+				);
+			} else {
+				$result = htmlspecialchars($currentLocation->getTitle());
+			}
+			$this->setMarker('label_location', $this->pi_getLL('label_location_singular'));
+		}
+
+		return $result;
 	}
 
 	/**

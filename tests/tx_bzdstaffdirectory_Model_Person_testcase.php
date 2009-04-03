@@ -82,7 +82,30 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		}
 	}
 
+	/**
+	 * Creates a new location record in the database and creates a relation between
+	 * the new location record and a person record identified by the personUID.
+	 *
+	 * @param integer the person's UID
+	 * @return integer the new location record's UID
+	 */
+	private function createLocationAndAssignPerson($personUid, $locationTitle = 'dummy Location') {
+		$locationUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_locations',
+			array(
+				'title' => $locationTitle
+			)
+		);
 
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$locationUid,
+			'location'
+		);
+
+		return $locationUid;
+	}
 
 
 	public function testGetUid() {
@@ -533,6 +556,45 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			1,
 			$this->fixture->getGender()
+		);
+	}
+
+	public function testHasLocationReturnsFalseIfNoLocationIsAssigned() {
+		$this->assertFalse(
+			$this->fixture->hasLocation()
+		);
+	}
+
+	public function testHasLocationReturnsTrueOnOneAssignedLocation() {
+		$this->createLocationAndAssignPerson($this->uid);
+
+		$this->assertTrue(
+			$this->fixture->hasLocation()
+		);
+	}
+
+	public function testGetLocationsReturnsEmptyListOnNoLocation() {
+		$this->assertTrue(
+			$this->fixture->getLocations()->isEmpty()
+		);
+	}
+
+	public function testGetLocationsReturnsListOfLocations() {
+		$this->createLocationAndAssignPerson($this->uid);
+
+		$this->assertEquals(
+			1,
+			$this->fixture->getLocations()->count()
+		);
+	}
+
+	public function testGetLocationsThrowsExceptionOnNoLocations() {
+		$this->createLocationAndAssignPerson($this->uid, 'Team A');
+		$this->createLocationAndAssignPerson($this->uid, 'Team B');
+
+		$this->assertEquals(
+			2,
+			$this->fixture->getLocations()->count()
 		);
 	}
 }

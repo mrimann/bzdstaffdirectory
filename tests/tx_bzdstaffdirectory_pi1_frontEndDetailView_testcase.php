@@ -107,6 +107,30 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		$this->fixture->setTestMode();
 	}
 
+	/**
+	 * Creates a new location record in the database and creates a relation between
+	 * the new location record and a person record identified by the personUID.
+	 *
+	 * @param integer the person's UID
+	 * @return integer the new location record's UID
+	 */
+	private function createLocationAndAssignPerson($personUid, $locationTitle = 'Dummy Location') {
+		$locationUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_locations',
+			array(
+				'title' => $locationTitle
+			)
+		);
+
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$locationUid,
+			'location'
+		);
+
+		return $locationUid;
+	}
 
 	//////////////////////////////////////////
 	// General tests concerning the fixture.
@@ -665,6 +689,72 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
         $this->assertContains(
 			'female_dummy.jpg',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsLocationAsTextOnOneLocation() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+
+		$this->createLocationAndAssignPerson($personUid, 'Team A');
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'Team A',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsListOfLocationsOnTwoLocations() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->createLocationAndAssignPerson($personUid, 'Team A');
+		$this->createLocationAndAssignPerson($personUid, 'Team B');
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'<li>Team A</li>',
+			$this->fixture->render()
+		);
+		$this->assertContains(
+			'<li>Team B</li>',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsSingularLabelOnOneLocation() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->createLocationAndAssignPerson($personUid);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'Location:',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsPluralLabelOnTwoLocations() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->createLocationAndAssignPerson($personUid);
+		$this->createLocationAndAssignPerson($personUid);
+		$this->getNewFixture($personUid);
+
+		$this->assertContains(
+			'Locations:',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainLocationMarkerIfNoLocationAssigned() {
+		$this->assertNotContains(
+			'###LOCATION###',
 			$this->fixture->render()
 		);
 	}
