@@ -57,14 +57,6 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		// Deinfe the path to the media folder
 		$this->mediaFolder = t3lib_extMgm::extPath('bzdstaffdirectory') . 'media/';
 
-		// include CSS in header of page
-		if ($this->hasConfValueString('cssFile', 's_template_special')) {
-			// First check if our CSS file has already been included:
-			if (!in_array ('<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template', true).'";</style>', $GLOBALS['TSFE']->additionalHeaderData)) {
-				$GLOBALS['TSFE']->additionalHeaderData[] = '<style type="text/css">@import "'.$this->getConfValueString('cssFile', 's_template', true).'";</style>';
-			}
-		}
-
 		// load available syslanguages
 		$this->initLanguages();
 		// sys_language_mode defines what to do if the requested translation is not found

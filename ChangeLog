@@ -1,4 +1,5 @@
 version 0.8.0 - currently working on
+- [#2972] Fix: CSS file is now correctly loaded via TypoScript
 - [#2547] Feature: Provide an update script
 - [#2718] Feature: Required fields now can be configured in extension config
 - [#2809] Fix: When 'ignore group selection' in grouped team view is enabled now all groups are selected
