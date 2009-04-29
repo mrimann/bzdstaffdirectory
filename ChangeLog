@@ -3,7 +3,7 @@ version 0.8.0 - currently working on
 - [#2718] Feature: Required fields now can be configured in extension config
 - [#2809] Fix: When 'ignore group selection' in grouped team view is enabled now all groups are selected
 - [#211] Change: Dates prior to 1970 can now be saved properly (depends on TYPO3 4.2 now!)
-- [#2801] Email address in the list view is not secured against spam
+- [#2801] Fix: Email address in the list view is not secured against spam
 - [#2382] Fix: PHP error when loading oelib template helper due to camel-case filename
 - [#2802] Change: Added a comma in list template between surname and first name (looks better)
 - [#2523] Change: Make use of the oelib AutoLoader consistent
@@ -15,7 +15,7 @@ version 0.8.0 - currently working on
 - [#2762] Change: Extension is now usable as global extension
 - [#2756] Change: Allow location records on regular pages
 - [#2640] Fix: Hidden subparts caused some missing fields in the list view.
-- [#2511] Cleaned up the copy/pasted stuff from oelib/seminars
+- [#2511] Cleanup: Cleaned up the copy/pasted stuff from oelib/seminars
 - [#2513] Updated copyright lines to new mail address
 - [#2510] Updated copyright lines to 2009
 - [#1843, #2544] Refactoring: Added new detailView class
