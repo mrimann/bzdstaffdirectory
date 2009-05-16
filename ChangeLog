@@ -1,4 +1,5 @@
-version 0.8.0 - currently working on
+version 0.8.0 - released 2009-05-16 at T3DD09
+If you upgrade an existing installation, read the upgrade notes in the documentation!!!
 - [#2972] Fix: CSS file is now correctly loaded via TypoScript
 - [#2547] Feature: Provide an update script
 - [#2718] Feature: Required fields now can be configured in extension config
