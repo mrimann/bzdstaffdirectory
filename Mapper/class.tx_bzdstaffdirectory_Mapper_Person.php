@@ -65,48 +65,6 @@ class tx_bzdstaffdirectory_Mapper_Person extends tx_oelib_DataMapper {
 
 		return $model;
 	}
-
-	/**
-	 * Checks whether a model with a certain UID actually exists in the database
-	 * and could be loaded.
-	 *
-	 * This method was backported from oelib trunk as it does not exist in the
-	 * current version 0.5.2 which is available in TER.
-	 * @TODO: Remove this method, as soon as oelib 0.5.3/0.6.0 is released to TER
-	 * and increase the requirement!
-	 * @see https://bugs.oliverklee.com/show_bug.cgi?id=2992
-	 *
-	 * @param integer the UID of the record to retrieve, must be > 0
-	 * @param boolean whether hidden records should be allowed to be retrieved
-	 *
-	 * @return boolean true if a model with the UID $uid exists in the database,
-	 *                 false otherwise
-	 */
-	public function existsModel($uid, $allowHidden = false) {
-		$model = $this->find($uid);
-
-		if ($model->isGhost()) {
-			$this->load($model);
-		}
-
-		return $model->isLoaded() && (!$model->isHidden() || $allowHidden);
-	}
-
-	/**
-	 * Checks whether this model is a ghost (has a UID, but is not fully loaded
-	 * yet).
-	 *
-	 * This method was backported from oelib trunk as it does not exist in the
-	 * current version 0.5.2 which is available in TER.
-	 * @TODO: Remove this method, as soon as oelib 0.5.3/0.6.0 is released to TER
-	 * and increase the requirement!
-	 * @see https://bugs.oliverklee.com/show_bug.cgi?id=2992
- 	 *
-	 * @return boolean true if this model is a ghost, false otherwise
-	 */
-	public function isGhost() {
-		return ($this->loadStatus == self::STATUS_GHOST);
-	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Mapper/class.tx_bzdstaffdirectory_Mapper_Person.php']) {
