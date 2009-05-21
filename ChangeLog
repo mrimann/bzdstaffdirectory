@@ -1,3 +1,6 @@
+version 0.8.1 - currently working on
+- [#2989] Fix: Problems with missing methods / dependency to oelib
+
 version 0.8.0 - released 2009-05-16 at T3DD09
 If you upgrade an existing installation, read the upgrade notes in the documentation!!!
 - [#2972] Fix: CSS file is now correctly loaded via TypoScript
