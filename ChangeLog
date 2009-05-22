@@ -1,5 +1,5 @@
 version 0.9.0 - currently working on
-
+- [#2989] Fixed some dependency issues to oelib (increased version requirement)
 
 version 0.8.0 - released 2009-05-16 at T3DD09
 If you upgrade an existing installation, read the upgrade notes in the documentation!!!
