@@ -1,5 +1,11 @@
 version 0.8.1 - currently working on
+IMPORTANT: This version needs an intermediate version of oelib to work properly!
+As long as version 0.6.0 of oelib is not finally released, install the following
+version (oelib development trunk as of 2009-05-21, which will after some more
+cleanup be released as 0.6.0):
+http://rimann.org/fileadmin/T3X_oelib-0_5_99-z-200905211333.t3x.zip
 
+- [#2989] Fix: Dependency issue with oelib < 0.6.0, see comment above!
 
 version 0.8.0 - released 2009-05-16 at T3DD09
 If you upgrade an existing installation, read the upgrade notes in the documentation!!!
