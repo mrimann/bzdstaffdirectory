@@ -1,4 +1,4 @@
-version 0.8.1 - currently working on
+version 0.8.1 - released 2009-05-22
 IMPORTANT: This version needs an intermediate version of oelib to work properly!
 As long as version 0.6.0 of oelib is not finally released, install the following
 version (oelib development trunk as of 2009-05-21, which will after some more
