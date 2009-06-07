@@ -1,3 +1,6 @@
+version 0.8.2 - currently working on
+- [#3033] Fix: team leaders get invalid CSS classes
+
 version 0.8.1 - released 2009-05-22
 IMPORTANT: This version needs an intermediate version of oelib to work properly!
 As long as version 0.6.0 of oelib is not finally released, install the following
