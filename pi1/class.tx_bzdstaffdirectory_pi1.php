@@ -1249,7 +1249,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		$person = $this->getPersonDetails($uid, true);
 		if ($person) {
 			if ($isLeader) {
-				$this->setMarker('class', 'tx_bzdstaffdirectory_teamlist_person, leader');
+				$this->setMarker('class', 'tx_bzdstaffdirectory_teamlist_person leader');
 			} else {
 				$this->setMarker('class', 'tx_bzdstaffdirectory_teamlist_person');
 			}
