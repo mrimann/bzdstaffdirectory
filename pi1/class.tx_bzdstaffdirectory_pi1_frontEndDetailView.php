@@ -277,7 +277,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 				$this->person->getImage();
 		}
 
-		if ($this->getConfValueBoolean('showDummyPictures', 's_template')) {
+		if ($this->getConfValueBoolean('showDummyPictures', 's_template') && !$this->person->hasImage()) {
 			switch($this->person->getGender())
 			{
 				case 2	:	$lconf['image.']['file'] = $this->getConfValueString('dummyPictureFemale', $sheet = 's_template', true);
