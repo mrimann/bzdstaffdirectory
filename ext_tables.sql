@@ -29,6 +29,20 @@ CREATE TABLE tx_bzdstaffdirectory_persons_locations_mm (
   KEY uid_foreign (uid_foreign)
 );
 
+#
+# Table structure for table 'tx_bzdstaffdirectory_persons_functions_mm'
+# 
+#
+CREATE TABLE tx_bzdstaffdirectory_persons_functions_mm (
+  uid_local int(11) DEFAULT '0' NOT NULL,
+  uid_foreign int(11) DEFAULT '0' NOT NULL,
+  tablenames varchar(30) DEFAULT '' NOT NULL,
+  sorting int(11) DEFAULT '0' NOT NULL,
+  sorting_foreign int(11) DEFAULT '0' NOT NULL,
+  is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
+  KEY uid_local (uid_local),
+  KEY uid_foreign (uid_foreign)
+);
 
 #
 # Table structure for table 'tx_bzdstaffdirectory_groups_teamleaders_mm'
@@ -62,6 +76,7 @@ CREATE TABLE tx_bzdstaffdirectory_pages_persons_mm (
 );
 
 
+
 #
 # Table structure for table 'tx_bzdstaffdirectory_persons'
 #
@@ -86,6 +101,7 @@ CREATE TABLE tx_bzdstaffdirectory_persons (
 	date_birthdate int(11) DEFAULT '0' NOT NULL,
 	date_incompany int(11) DEFAULT '0' NOT NULL,
 	function tinytext NOT NULL,
+	functions int(11) DEFAULT '0' NOT NULL,
 	email tinytext NOT NULL,
 	tasks text NOT NULL,
 	opinion text NOT NULL,
@@ -154,6 +170,28 @@ CREATE TABLE tx_bzdstaffdirectory_locations (
 	title tinytext NOT NULL,
 	address text NOT NULL,
 	infopage int(11) DEFAULT '0' NOT NULL,
+
+	PRIMARY KEY (uid),
+	KEY parent (pid)
+);
+
+#
+# Table structure for table 'tx_bzdstaffdirectory_functions'
+#
+CREATE TABLE tx_bzdstaffdirectory_functions (
+	uid int(11) NOT NULL auto_increment,
+	pid int(11) DEFAULT '0' NOT NULL,
+	tstamp int(11) DEFAULT '0' NOT NULL,
+	crdate int(11) DEFAULT '0' NOT NULL,
+	cruser_id int(11) DEFAULT '0' NOT NULL,
+	sorting int(10) DEFAULT '0' NOT NULL,
+	deleted tinyint(4) DEFAULT '0' NOT NULL,
+	hidden tinyint(4) DEFAULT '0' NOT NULL,
+	is_dummy_record tinyint(1) DEFAULT '0' NOT NULL,
+	sys_language_uid int(11) DEFAULT '0' NOT NULL,
+	l18n_parent int(11) DEFAULT '0' NOT NULL,
+	l18n_diffsource mediumblob NOT NULL,
+	title tinytext NOT NULL,
 
 	PRIMARY KEY (uid),
 	KEY parent (pid)

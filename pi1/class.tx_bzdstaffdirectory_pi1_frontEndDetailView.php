@@ -147,6 +147,12 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		$this->setMarker('image', $this->getImage());
 
 
+		if ($this->person->hasFunction()) {
+			$this->setMarker('function', $this->person->getFunction()->getTitle());
+		} else {
+			$this->hideSubparts('function', 'field_wrapper');
+		}
+
 		// Fills the markers for birth date or age depending on the configuration.
 		if ($this->person->hasBirthDate()) {
 			if (!$this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {

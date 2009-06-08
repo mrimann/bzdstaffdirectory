@@ -46,7 +46,6 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 				'last_name' => 'Muster',
 				'title' => 'Dr.',
 				'officehours' => '07:00 - 17:00',
-				'function' => 'Master of Desaster',
 				'nickname' => 'Mickey Mouse',
 				'phone' => '+41 44 123 45 67',
 				'mobile_phone' => '+41 79 123 45 67',
@@ -112,6 +111,33 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		return $locationUid;
 	}
 
+	/**
+	 * Creates a new function record in the database and creates a relation between
+	 * the new function record and a person record identified by the personUID.
+	 *
+	 * @param integer the person's UID
+	 * @param string the title of the function record, optional
+	 *
+	 * @return integer the new location record's UID
+	 */
+	private function createFunctionAndAssignToPerson($personUid, $functionTitle = 'Bla bla specialist') {
+		$functionUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_functions',
+			array(
+				'title' => $functionTitle
+			)
+		);
+
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$functionUid,
+			'functions'
+		);
+
+		return $functionUid;
+	}
+
 
 	public function testGetUid() {
 		$this->assertEquals(
@@ -125,6 +151,20 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			'Max',
 			$this->fixture->getFirstName()
 		);
+	}
+
+	public function testGetFunctionReturnsFunctionObject() {
+		$this->createFunctionAndAssignToPerson($this->uid, 'Master of Desaster');
+		$this->assertTrue($this->fixture->getFunction() instanceof tx_bzdstaffdirectory_Model_Function);
+	}
+
+	public function testHasFunctionReturnsTrueIfFunctionIsAssigned() {
+		$this->createFunctionAndAssignToPerson($this->uid, 'Master of Desaster');
+		$this->assertTrue($this->fixture->hasFunction());
+	}
+
+	public function testHasFunctionReturnsFalseIfNoFunctionAssigned() {
+		$this->assertFalse($this->fixture->hasFunction());
 	}
 
 	public function testGetLastName() {
@@ -158,7 +198,7 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		);
 		$this->createPerson($personUid);
 
-		$this->assertFalse($this->fixture->hasStandardField('function'));
+		$this->assertFalse($this->fixture->hasStandardField('first_name'));
 	}
 
 	public function testHasStandardFieldThrowsExceptionOnEmptyKey() {
@@ -225,13 +265,6 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			'+41 79 123 45 67',
 			$this->fixture->getStandardField('mobile_phone')
-		);
-	}
-
-	public function testGetStandardFieldWithFunction() {
-		$this->assertEquals(
-			'Master of Desaster',
-			$this->fixture->getStandardField('function')
 		);
 	}
 

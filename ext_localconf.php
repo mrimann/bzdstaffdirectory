@@ -6,6 +6,12 @@ t3lib_extMgm::addUserTSConfig('
 t3lib_extMgm::addUserTSConfig('
 	options.saveDocNew.tx_bzdstaffdirectory_groups=1
 ');
+t3lib_extMgm::addUserTSConfig('
+	options.saveDocNew.tx_bzdstaffdirectory_locations=1
+');
+t3lib_extMgm::addUserTSConfig('
+	options.saveDocNew.tx_bzdstaffdirectory_functions=1
+');
 
   ## Extending TypoScript from static template uid=43 to set up userdefined tag:
 t3lib_extMgm::addTypoScript($_EXTKEY,'editorcfg','

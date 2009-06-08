@@ -16,6 +16,7 @@
 			<label index="tx_bzdstaffdirectory_persons.image">Image</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Group membership</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Function / Job Description</label>
+			<label index="tx_bzdstaffdirectory_persons.functions">Function(s)</label>
 			<label index="tx_bzdstaffdirectory_persons.gender">Gender</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.notSet">not defined</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.male">male</label>
@@ -48,6 +49,8 @@
 			<label index="tx_bzdstaffdirectory_locations.title">Title</label>
 			<label index="tx_bzdstaffdirectory_locations.address">Address</label>
 			<label index="tx_bzdstaffdirectory_locations.infopage">Page with information about this location</label>
+			<label index="tx_bzdstaffdirectory_functions">Functions</label>
+			<label index="tx_bzdstaffdirectory_functions.title">Function / Job Description</label>
 			<label index="tt_content.list_type_pi1">BZD Staff Directory</label>
 			<label index="tt_content.pi_flexform.teamlist">Teamlist</label>
 			<label index="tt_content.pi_flexform.contactbox">Contact person (Box)</label>

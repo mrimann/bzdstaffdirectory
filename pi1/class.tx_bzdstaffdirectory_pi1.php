@@ -1267,7 +1267,6 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			$allStandardFields = array(
 				'first_name',
 				'last_name',
-				'function',
 				'phone',
 				'opinion',
 				'tasks',
@@ -1300,6 +1299,20 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 				$this->setMarker('label_title', $this->pi_getLL('label_title'));
 			} else {
 				$this->hideSubparts('title', 'listitem_wrapper');
+			}
+
+			// Shows the function of the person if one is assigned.
+			if ($this->hasValue('function', $person) || $this->hasValue('functions', $person)) {
+				if ($this->hasValue('functions', $person)) {
+					$functionObject = $this->getFunction($person);
+					$function = $functionObject->getTitle();
+				} else {
+					$function = $this->getValue('function', $person);
+				}
+
+				$this->setMarker('function', $function);
+			} else {
+				$this->hideSubparts('function', 'listitem_wrapper');
 			}
 
 			if ($this->hasValue('email', $person)) {
@@ -1391,6 +1404,37 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Returns the function of the current person as an instance of a function model.
+	 *
+	 * TODO: Remove this function as soon as the list view is nice MVC'ed :-)
+	 *
+	 * @param array associative array with all the details of this person
+	 *
+	 * @return tx_bzdstaffdirectory_Model_Function the function model
+	 */
+	private function getFunction($person) {
+		$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_persons_functions_mm m'
+				.' left join tx_bzdstaffdirectory_functions l'
+				.' on m.uid_foreign=l.uid',	// FROM
+			'm.uid_local IN(' . $person['uid'] .')'
+				.' AND l.hidden=0 AND l.deleted=0',	//WHERE
+			'',	// GROUP BY
+			'm.sorting',	// ORDER BY
+			'1'	//LIMIT
+		);
+
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($dbResult) > 0)	{
+			$relation = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult);
+			$function = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Function')
+					->find($relation['uid_foreign']);
+		}
+
+		return $function;
 	}
 
 	/**

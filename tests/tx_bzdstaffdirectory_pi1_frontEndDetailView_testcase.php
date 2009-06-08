@@ -62,7 +62,6 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 				'title' => 'Dr.',
 				'room' => '301',
 				'officehours' => '07:00 - 17:00',
-				'function' => 'Master of Desaster',
 				'nickname' => 'Mickey Mouse',
 				'phone' => '+41 44 123 45 67',
 				'mobile_phone' => '+41 79 123 45 67',
@@ -134,6 +133,33 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		);
 
 		return $locationUid;
+	}
+
+	/**
+	 * Creates a new function record in the database and creates a relation between
+	 * the new function record and a person record identified by the personUID.
+	 *
+	 * @param integer the person's UID
+	 * @param string the title of the function record, optional
+	 *
+	 * @return integer the new location record's UID
+	 */
+	private function createFunctionAndAssignToPerson($personUid, $functionTitle = 'Bla bla specialist') {
+		$functionUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_functions',
+			array(
+				'title' => $functionTitle
+			)
+		);
+
+		$this->testingFramework->createRelationAndUpdateCounter(
+			'tx_bzdstaffdirectory_persons',
+			$personUid,
+			$functionUid,
+			'functions'
+		);
+
+		return $functionUid;
 	}
 
 	//////////////////////////////////////////
@@ -261,6 +287,12 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderContainsFunction() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->createFunctionAndAssignToPerson($personUid, 'Master of Desaster');
+		$this->getNewFixture($personUid);
+
 		$this->assertContains(
 			'Master of Desaster',
 			$this->fixture->render()

@@ -54,7 +54,6 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 			'first_name',
 			'last_name',
 			'email',
-			'function',
 			'phone',
 			'mobile_phone',
 			'room',
@@ -102,6 +101,42 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	 */
 	public function getTitle() {
 		return $this->getAsString('title');
+	}
+
+	/**
+	 * Checks whether this person has any function assigned
+	 *
+	 * @return boolean true if at least one function is assigned, false otherwise
+	 */
+	public function hasFunction() {
+		return (boolean)$this->getAsInteger('functions');
+	}
+
+	/**
+	 * Returns the function of this person as an object.
+	 *
+	 * @return tx_bzdstaffdirectory_Model_Function the function of this person
+	 */
+	public function getFunction() {
+		$dbResult = $GLOBALS['TYPO3_DB']->exec_SELECTquery(
+			'*',	// SELECT
+			'tx_bzdstaffdirectory_persons_functions_mm m'
+				.' left join tx_bzdstaffdirectory_functions l'
+				.' on m.uid_foreign=l.uid',	// FROM
+			'm.uid_local IN(' . $this->getUid() .')'
+				.' AND l.hidden=0 AND l.deleted=0',	//WHERE
+			'',	// GROUP BY
+			'm.sorting',	// ORDER BY
+			'1'	//LIMIT
+		);
+
+		if ($GLOBALS['TYPO3_DB']->sql_num_rows($dbResult) > 0)	{
+			$relation = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult);
+			$function = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Function')
+					->find($relation['uid_foreign']);
+		}
+
+		return $function;
 	}
 
 	/**

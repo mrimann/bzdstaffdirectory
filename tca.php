@@ -154,6 +154,20 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 				'size' => '30',
 			)
 		),
+		'functions' => array(
+			'l10n_mode' => 'exclude',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_persons.functions',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'tx_bzdstaffdirectory_functions',
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_functions.l18n_parent = 0 ORDER BY tx_bzdstaffdirectory_functions.uid',
+				'size' => 4,
+				'minitems' => 0,
+				'maxitems' => 99,
+				'MM' => 'tx_bzdstaffdirectory_persons_functions_mm',
+			)
+		),
 		'email' => array(
 			'l10n_mode' => $l10n_mode_merge,
 			'exclude' => 1,
@@ -316,7 +330,7 @@ $TCA['tx_bzdstaffdirectory_persons'] = Array (
 		)
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, last_name, first_name, title, email, phone, mobile_phone, function, nickname, gender, date_birthdate, date_incompany, image, usergroups, location, room, officehours, xing_profile_url, tasks, opinion;;;richtext[paste|bold|italic|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts_css], files')
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, last_name, first_name, title, email, phone, mobile_phone, function, functions, nickname, gender, date_birthdate, date_incompany, image, usergroups, location, room, officehours, xing_profile_url, tasks, opinion;;;richtext[paste|bold|italic|formatblock|class|left|center|right|orderedlist|unorderedlist|outdent|indent|link|image]:rte_transform[mode=ts_css], files')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -391,22 +405,22 @@ if ($confArr['useUniversalField_5'] && !empty($confArr['fieldNameUniversalField_
 
 // check and mark required input fields for a persons record
 // Explodes required fields from extension configuration to array.
-$requiredFields = explode(',', $confArr['requiredFields']); 
+$requiredFields = explode(',', $confArr['requiredFields']);
 // Delete duplicate entries.
-$requiredFields = array_unique($requiredFields); 
+$requiredFields = array_unique($requiredFields);
 // For all required fields do ...
-foreach ($requiredFields as $requiredField) { 
+foreach ($requiredFields as $requiredField) {
 	// Trim spaces and co.
-	$requiredField = trim($requiredField); 
+	$requiredField = trim($requiredField);
 	// Is the field name already existing? Only then it's a valid entry!
-	if (array_key_exists($requiredField, $TCA['tx_bzdstaffdirectory_persons']['columns'])) { 
+	if (array_key_exists($requiredField, $TCA['tx_bzdstaffdirectory_persons']['columns'])) {
 		// Is 'eval' already set?
 		if (array_key_exists('eval', $TCA['tx_bzdstaffdirectory_persons']['columns'][$requiredField]['config'])) {
 			// 'eval' is already set, so append 'required'.
 			$TCA['tx_bzdstaffdirectory_persons']['columns'][$requiredField]['config']['eval'] .= ',required';
 		}
 		else {
-			// 'eval' isn't already set, so set it 'required' 
+			// 'eval' isn't already set, so set it 'required'
 			$TCA['tx_bzdstaffdirectory_persons']['columns'][$requiredField]['config']['eval'] = 'required';
 		}
 	}
@@ -643,6 +657,77 @@ $TCA['tx_bzdstaffdirectory_locations'] = array(
 	),
 	'types' => array(
 		'0' => array('showitem' => 'hidden;;1;;1-1-1, title, address, infopage')
+	),
+	'palettes' => array(
+		'1' => array('showitem' => '')
+	)
+);
+
+
+/*
+ * This is the default Table Configuration Array for the functions table.
+ */
+$TCA['tx_bzdstaffdirectory_functions'] = array(
+	'ctrl' => $TCA['tx_bzdstaffdirectory_functions']['ctrl'],
+	'interface' => array(
+		'showRecordFieldList' => 'hidden,title'
+	),
+	'feInterface' => $TCA['tx_bzdstaffdirectory_functions']['feInterface'],
+	'columns' => array(
+		'hidden' => array(
+			'l10n_mode' => $hideNewLocalizations,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.hidden',
+			'config' => array(
+				'type' => 'check',
+				'default' => '0'
+			)
+		),
+		'title' => array(
+			'l10n_mode' => $l10n_mode,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_functions.title',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30',
+			)
+		),
+		'sys_language_uid' => array(
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.language',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'sys_language',
+				'foreign_table_where' => 'ORDER BY sys_language.title',
+				'items' => array(
+					array('LLL:EXT:lang/locallang_general.php:LGL.allLanguages',-1),
+					array('LLL:EXT:lang/locallang_general.php:LGL.default_value',0)
+				)
+			)
+		),
+		'l18n_parent' => array(
+			'displayCond' => 'FIELD:sys_language_uid:>:0',
+			'exclude' => 1,
+			'label' => 'LLL:EXT:lang/locallang_general.php:LGL.l18n_parent',
+			'config' => array(
+				'type' => 'select',
+				'items' => array(
+					array(
+						'',
+						0
+					),
+				),
+				'foreign_table' => 'tx_bzdstaffdirectory_functions',
+				'foreign_table_where' => 'AND tx_bzdstaffdirectory_functions.uid=###CURRENT_PID### AND tx_bzdstaffdirectory_functions.sys_language_uid IN (-1,0)',
+			)
+		),
+		'l18n_diffsource' => array(
+			'config'=>array(
+				'type'=>'passthrough')
+		)
+	),
+	'types' => array(
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, title')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')

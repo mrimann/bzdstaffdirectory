@@ -88,6 +88,34 @@ $TCA["tx_bzdstaffdirectory_locations"] = Array (
 	)
 );
 
+t3lib_extMgm::allowTableOnStandardPages("tx_bzdstaffdirectory_functions");
+
+$TCA["tx_bzdstaffdirectory_functions"] = Array (
+	'ctrl' => Array (
+		'title' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_functions',
+		'label' => 'title',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'sortby' => 'sorting',
+		'delete' => 'deleted',
+		'prependAtCopy' => 'LLL:EXT:lang/locallang_general.php:LGL.prependAtCopy',
+		'copyAfterDuplFields' => 'sys_language_uid',
+		'useColumnsForDefaultValues' => 'sys_language_uid',
+   		'transOrigPointerField' => 'l18n_parent',
+		'transOrigDiffSourceField' => 'l18n_diffsource',
+		'languageField' => 'sys_language_uid',
+		'enablecolumns' => array (
+			'disabled' => 'hidden',
+		),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY).'tca.php',
+		'iconfile' => t3lib_extMgm::extRelPath($_EXTKEY).'icon_tx_bzdstaffdirectory_functions.gif',
+	),
+	'feInterface' => array (
+		'fe_admin_fieldList' => 'hidden, title',
+	)
+);
+
 
 t3lib_div::loadTCA('tt_content');
 $TCA['tt_content']['types']['list']['subtypes_excludelist'][$_EXTKEY.'_pi1']='layout, select_key, pages, recursive';
