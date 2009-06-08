@@ -41,6 +41,7 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->uid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_persons',
 			array(
+				'tstamp' => $GLOBALS['SIM_EXEC_TIME'],
 				'first_name' => 'Max',
 				'last_name' => 'Muster',
 				'title' => 'Dr.',
@@ -87,13 +88,17 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 	 * the new location record and a person record identified by the personUID.
 	 *
 	 * @param integer the person's UID
+	 * @param string the title of the location record, optional
+	 * @param string the address of the location, optional
+	 *
 	 * @return integer the new location record's UID
 	 */
-	private function createLocationAndAssignPerson($personUid, $locationTitle = 'dummy Location') {
+	private function createLocationAndAssignPerson($personUid, $locationTitle = 'dummy Location', $address = '') {
 		$locationUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_locations',
 			array(
-				'title' => $locationTitle
+				'title' => $locationTitle,
+				'address' => $address
 			)
 		);
 
@@ -691,6 +696,66 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 		$this->assertEquals(
 			'blablabla',
 			$this->fixture->getTasks()
+		);
+	}
+
+	public function testHasPhoneReturnsTrueIfPhoneNumberSet() {
+		$this->assertTrue($this->fixture->hasPhone());
+	}
+
+	public function testHasPhoneReturnsFalseIfPhoneNumberNotSet() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'tasks' => 'blablabla',
+			)
+		);
+		$this->createPerson($personUid);
+
+		$this->assertFalse($this->fixture->hasPhone());
+	}
+
+
+	public function testHasVcfDataReturnsTrueIfAllDataIsSet() {
+		$this->createLocationAndAssignPerson(
+			$this->fixture->getUid(),
+			'Dummy Location',
+			'Dummy Address'
+		);
+
+		$this->assertTrue(
+			$this->fixture->hasVcfData()
+		);
+	}
+
+	public function testHasVcfDataReturnsFalseIfPhoneNumberIsMissing() {
+		$this->assertFalse(
+			$this->fixture->hasVcfData()
+		);
+	}
+
+	public function testHasVcfDataReturnsFalseIfNoLocationAssigned() {
+		$this->assertFalse(
+			$this->fixture->hasVcfData()
+		);
+	}
+
+	public function testHasVcfDataReturnsFalseIfLocationHasNoAddress() {
+		$this->createLocationAndAssignPerson(
+			$this->uid,
+			'test location',
+			''
+		);
+
+		$this->assertFalse(
+			$this->fixture->hasVcfData()
+		);
+	}
+
+	public function testGetLastUpdateTimestampReturnsCorrectValue() {
+		$this->assertEquals(
+			$GLOBALS['SIM_EXEC_TIME'],
+			$this->fixture->getLastUpdateTimestamp()
 		);
 	}
 }

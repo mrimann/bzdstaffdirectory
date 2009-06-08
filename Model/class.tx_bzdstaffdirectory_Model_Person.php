@@ -431,6 +431,53 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 
 		return explode(',', $this->getAsString('files'));
 	}
+
+	/**
+	 * Checks whether a phone number was stored for this person.
+	 *
+	 * @return boolean true if phone number is stored, false otherwise
+	 */
+	public function hasPhone() {
+		return $this->hasString('phone');
+	}
+
+	/**
+	 * Returns the timestamp of the last modification.
+	 *
+	 * @return integer the timestamp of last modification
+	 */
+	public function getLastUpdateTimestamp() {
+		return $this->getAsInteger('tstamp');
+	}
+
+	/**
+	 * Checks whether the neccessary data for rendering a vCard is available.
+	 * To fulfill the requirements, the following conditions must be true:
+	 * - the person has at least one location assigned
+	 * - the first assigned location has an address stored
+	 * - the person has a phone number
+	 *
+	 * Other fields like name/email are mandatory, too. But they are required
+	 * fields in the backend.
+	 *
+	 * @return boolean true if all is set, false otherwise
+	 */
+	public function hasVcfData() {
+		if (!$this->hasLocation()) {
+			return false;
+		}
+
+		if (!$this->getLocations()->current()->hasAddress()) {
+			return false;
+		}
+
+
+		if (!$this->hasPhone()) {
+			return false;
+		}
+
+		return true;
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Person.php']) {

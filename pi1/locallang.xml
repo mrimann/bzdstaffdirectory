@@ -13,6 +13,7 @@
 			<label index="label_phone">Phone:</label>
 			<label index="label_mobile_phone">Mobile Phone:</label>
 			<label index="label_xing">XING:</label>
+			<label index="label_vcf">Get vCard</label>
 			<label index="label_room">Room:</label>
 			<label index="label_function">Function:</label>
 			<label index="label_nickname">Nickname:</label>

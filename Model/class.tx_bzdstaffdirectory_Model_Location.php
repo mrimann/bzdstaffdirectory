@@ -61,6 +61,15 @@ class tx_bzdstaffdirectory_Model_Location extends tx_oelib_Model {
 	public function getInfopagePid() {
 		return $this->getAsInteger('infopage');
 	}
+
+	/**
+	 * Checks whether this location has an address stored.
+	 *
+	 * @return boolean true if the address field is not empty, false otherwise
+	 */
+	public function hasAddress() {
+		return $this->hasString('address');
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Location.php']) {

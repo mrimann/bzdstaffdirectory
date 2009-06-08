@@ -112,13 +112,17 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	 * the new location record and a person record identified by the personUID.
 	 *
 	 * @param integer the person's UID
+	 * @param string the location's title
+	 * @param string the address
+	 *
 	 * @return integer the new location record's UID
 	 */
-	private function createLocationAndAssignPerson($personUid, $locationTitle = 'Dummy Location') {
+	private function createLocationAndAssignPerson($personUid, $locationTitle = 'Dummy Location', $address = '') {
 		$locationUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_locations',
 			array(
-				'title' => $locationTitle
+				'title' => $locationTitle,
+				'address' => $address
 			)
 		);
 
@@ -490,6 +494,67 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 
 		$this->assertNotContains(
 			'###XING###',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsVcfIconIfPersonHasAllData() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'first_name' => 'Dummy',
+				'phone' => '12345'
+			)
+		);
+		$this->createLocationAndAssignPerson(
+			$personUid,
+			'foo bar',
+			'address'
+		);
+		$this->getNewFixture($personUid);
+		$this->fixture->setConfigurationValue('vcfIcon', 'typo3conf/ext/bzdstaffdirectory/media/icon_vcf.gif');
+
+		$this->assertContains(
+			'icon_vcf.gif',
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderContainsVcfIconWithCorrectLinkIfPersonHasAllData() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons',
+			array(
+				'first_name' => 'Dummy',
+				'phone' => '12345'
+			)
+		);
+		$this->createLocationAndAssignPerson(
+			$personUid,
+			'foo bar',
+			'address'
+		);
+		$this->getNewFixture($personUid);
+		$this->fixture->setConfigurationValue('vcfIcon', 'typo3conf/ext/bzdstaffdirectory/media/icon_vcf.gif');
+
+		$this->assertContains(
+			'eID=tx_bzdstaffdirectory_vcf',
+			$this->fixture->render()
+		);
+
+		$this->assertContains(
+			'personUid=' . $personUid,
+			$this->fixture->render()
+		);
+	}
+
+	public function testRenderDoesNotContainVcfMarkerIfPersonHasNotAllDataForVcf() {
+		$personUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_persons'
+		);
+		$this->getNewFixture($personUid);
+
+		$this->assertNotContains(
+			'vcf',
 			$this->fixture->render()
 		);
 	}

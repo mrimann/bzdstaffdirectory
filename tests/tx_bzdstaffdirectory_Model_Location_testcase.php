@@ -115,6 +115,23 @@ class tx_bzdstaffdirectory_Model_Location_testcase extends tx_phpunit_testcase {
 			$this->fixture->getInfopagePid()
 		);
 	}
+
+	public function testHasAddressReturnsTrueIfAddressNotEmpty() {
+		$locationUid = $this->testingFramework->createRecord(
+			'tx_bzdstaffdirectory_locations',
+			array(
+				'title' => 'Dummy location',
+				'address' => 'Address Dummy'
+			)
+		);
+		$this->createLocation($locationUid);
+
+		$this->assertTrue($this->fixture->hasAddress());
+	}
+
+	public function testHasAddressReturnsFalseIfAddressIsEmpty() {
+		$this->assertFalse($this->fixture->hasAddress());
+	}
 }
 
 ?>

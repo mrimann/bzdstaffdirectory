@@ -14,4 +14,8 @@ t3lib_extMgm::addTypoScript($_EXTKEY,'editorcfg','
 
 
 t3lib_extMgm::addPItoST43($_EXTKEY,'pi1/class.tx_bzdstaffdirectory_pi1.php','_pi1','list_type',1);
+
+
+$TYPO3_CONF_VARS['FE']['eID_include']['tx_bzdstaffdirectory_vcf'] = 'EXT:bzdstaffdirectory/class.tx_bzdstaffdirectory_eID.php';
+
 ?>

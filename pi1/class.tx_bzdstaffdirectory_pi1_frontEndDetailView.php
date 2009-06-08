@@ -178,7 +178,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 			$this->hideSubparts('xing', 'field_wrapper');
 		}
 
-			// Shows the opinion of this person.
+		// Shows a little linked VCF icon so that the visitor can fetch a vCard
+		// for the shown person.
+		if ($this->person->hasVcfData()) {
+			$this->setMarker('vcf_icon', $this->getConfValueString('vcfIcon'));
+			$this->setMarker('vcf_link', '?eID=tx_bzdstaffdirectory_vcf&personUid=' . $this->person->getUid());
+		} else {
+			$this->hideSubparts('vcf', 'field_wrapper');
+		}
+
+		// Shows the opinion of this person.
 		if ($this->person->hasOpinion()) {
 			$this->setMarker(
 				'opinion',
