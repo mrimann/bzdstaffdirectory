@@ -188,7 +188,16 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		// for the shown person.
 		if ($this->person->hasVcfData()) {
 			$this->setMarker('vcf_icon', $this->getConfValueString('vcfIcon'));
-			$this->setMarker('vcf_link', '?eID=tx_bzdstaffdirectory_vcf&personUid=' . $this->person->getUid());
+			$this->setMarker(
+				'vcf_link',
+				$this->cObj->getTypoLink_URL(
+					$GLOBALS['TSFE']->id,
+					array(
+						'tx_bzdstaffdirectory_pi1[showUid]' => $this->person->getUid(),
+						'tx_bzdstaffdirectory_pi1[vcf]' => 1
+					)
+				)
+			);
 		} else {
 			$this->hideSubparts('vcf', 'field_wrapper');
 		}

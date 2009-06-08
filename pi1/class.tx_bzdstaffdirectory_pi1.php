@@ -95,9 +95,16 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			$this->conf['DETAIL.']['backPid'] = intval($this->piVars['backPid']);
 		}
 
-		$detailViewClassName = t3lib_div::makeInstanceClassName(
-				'tx_bzdstaffdirectory_pi1_frontEndDetailView'
-		);
+		if (isset($this->piVars['vcf'])) {
+			$detailViewClassName = t3lib_div::makeInstanceClassName(
+				'tx_bzdstaffdirectory_pi1_frontEndVcfView'
+			);
+		} else {
+			$detailViewClassName = t3lib_div::makeInstanceClassName(
+					'tx_bzdstaffdirectory_pi1_frontEndDetailView'
+			);
+		}
+
 		$detailView = new $detailViewClassName(
 			intval($this->piVars['showUid']),
 			$this->conf,
@@ -108,6 +115,18 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		$detailView->__destruct();
 		unset($detailView);
 
+		if (isset($this->piVars['vcf'])) {
+			//		header("Pragma: public"); // required
+//		header("Expires: 0");
+//		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+//		header("Cache-Control: private",false); // required for certain browsers
+		header("Content-Type: text/x-vcard");
+		header('Content-Disposition: attachment; filename="vCard.vcf";');
+//		header("Content-Transfer-Encoding: binary");
+//		header("Content-Length: 20".(2));
+			echo trim($result);
+			exit;
+		}
 		return $result;
 	}
 

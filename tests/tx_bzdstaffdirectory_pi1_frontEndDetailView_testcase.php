@@ -569,12 +569,7 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 		$this->fixture->setConfigurationValue('vcfIcon', 'typo3conf/ext/bzdstaffdirectory/media/icon_vcf.gif');
 
 		$this->assertContains(
-			'eID=tx_bzdstaffdirectory_vcf',
-			$this->fixture->render()
-		);
-
-		$this->assertContains(
-			'personUid=' . $personUid,
+			'tx_bzdstaffdirectory_pi1[showUid]=' . $personUid . '&tx_bzdstaffdirectory_pi1[vcf]=1',
 			$this->fixture->render()
 		);
 	}
