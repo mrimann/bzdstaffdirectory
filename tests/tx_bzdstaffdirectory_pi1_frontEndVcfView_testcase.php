@@ -69,7 +69,7 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 		$this->createLocationAndAssignPerson(
 			$this->personUid,
 			'Dummy Location',
-			'Dummy Address'
+			'Dummy Address' . chr(13) . 'Street 42' . chr(13) . '8000 ZŸrich'
 		);
 
 		// Generates the fixture in $this->fixture.
@@ -190,6 +190,8 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 	}
 
 	public function testRenderContainsCompanyName() {
+		$this->fixture->setConfigurationValue('companyNameToShowInVCard', 'Dummy Company');
+
 		$this->assertContains(
 			'ORG:Dummy Company',
 			$this->fixture->render()
@@ -197,7 +199,15 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 	}
 
 	public function testRenderContainsLocationAddress() {
-		$this->fail();
+		$this->assertContains(
+			'ADR;TYPE=WORK:;;Dummy Address;Street 42;8000 ZŸrich',
+			$this->fixture->render()
+		);
+
+		$this->assertContains(
+			'LABEL;TYPE=WORK:Dummy Address\nStreet 42\n8000 ZŸrich',
+			$this->fixture->render()
+		);
 	}
 
 	public function testRenderContainsPhoneNumber() {
@@ -209,7 +219,7 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 
 	public function testRenderContainsEmailAddress() {
 		$this->assertContains(
-			'EMAIL;TYPE=PREF,INTERNET:john@doe.org',
+			'EMAIL;TYPE=PREF,INTERNET:chief@example.org',
 			$this->fixture->render()
 		);
 	}

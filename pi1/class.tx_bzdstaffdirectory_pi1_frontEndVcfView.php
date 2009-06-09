@@ -108,7 +108,11 @@ class tx_bzdstaffdirectory_pi1_frontEndVcfView extends tx_bzdstaffdirectory_pi1_
 		$this->setMarker('function', $this->person->getFunction()->getTitle());
 		$this->setMarker('phone', $this->person->getStandardField('phone'));
 		$this->setMarker('email', $this->person->getStandardField('email'));
-		$this->setMarker('company', 'Pumuckl');
+		$this->setMarker('company', $this->getConfValueString('companyNameToShowInVCard'));
+
+		$address = $this->person->getLocations()->current()->getAddress();
+		$this->setMarker('address_pure', str_replace(chr(13), ';', $address));
+		$this->setMarker('address_newline', str_replace(chr(13), '\n', $address));
 
 		$rev = date('Ymd\THis\Z', $this->person->getLastUpdateTimestamp());
 		$this->setMarker('rev', $rev);

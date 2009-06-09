@@ -70,6 +70,15 @@ class tx_bzdstaffdirectory_Model_Location extends tx_oelib_Model {
 	public function hasAddress() {
 		return $this->hasString('address');
 	}
+
+	/**
+	 * Returns the whole address for this location
+	 *
+	 * @return string the address
+	 */
+	public function getAddress() {
+		return $this->getAsString('address');
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Location.php']) {
