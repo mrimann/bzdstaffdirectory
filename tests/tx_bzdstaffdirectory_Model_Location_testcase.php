@@ -42,6 +42,10 @@ class tx_bzdstaffdirectory_Model_Location_testcase extends tx_phpunit_testcase {
 			'tx_bzdstaffdirectory_locations',
 			array(
 				'title' => 'Dummy Location',
+				'address' => 'Address Dummy',
+				'zip' => '8000',
+				'city' => 'ZŸrich',
+				'country' => 'Schweiz'
 			)
 		);
 		$this->createLocation($this->uid);
@@ -130,22 +134,43 @@ class tx_bzdstaffdirectory_Model_Location_testcase extends tx_phpunit_testcase {
 	}
 
 	public function testHasAddressReturnsFalseIfAddressIsEmpty() {
-		$this->assertFalse($this->fixture->hasAddress());
-	}
-
-	public function testGetAddressReturnsTheAddress() {
 		$locationUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_locations',
 			array(
 				'title' => 'Dummy location',
-				'address' => 'Address Dummy'
+				'address' => ''
 			)
 		);
 		$this->createLocation($locationUid);
 
+		$this->assertFalse($this->fixture->hasAddress());
+	}
+
+	public function testGetAddressReturnsTheAddress() {
 		$this->assertEquals(
 			'Address Dummy',
 			$this->fixture->getAddress()
+		);
+	}
+
+	public function testGetCityReturnsCityName() {
+		$this->assertEquals(
+			'ZŸrich',
+			$this->fixture->getCity()
+		);
+	}
+
+	public function testGetZipReturnsZip() {
+		$this->assertEquals(
+			'8000',
+			$this->fixture->getZip()
+		);
+	}
+
+	public function testGetCountryReturnsCountryName() {
+		$this->assertEquals(
+			'Schweiz',
+			$this->fixture->getCountry()
 		);
 	}
 }

@@ -79,6 +79,33 @@ class tx_bzdstaffdirectory_Model_Location extends tx_oelib_Model {
 	public function getAddress() {
 		return $this->getAsString('address');
 	}
+
+	/**
+	 * Returns the city name for this location
+	 *
+	 * @return strint the city name
+	 */
+	public function getCity() {
+		return $this->getAsString('city');
+	}
+
+	/**
+	 * Returns the ZIP for this location
+	 *
+	 * @return string the ZIP
+	 */
+	public function getZip() {
+		return $this->getAsString('zip');
+	}
+
+	/**
+	 * Returns the country for this location
+	 *
+	 * @return string the country name
+	 */
+	public function getCountry() {
+		return $this->getAsString('country');
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Model/class.tx_bzdstaffdirectory_Model_Location.php']) {

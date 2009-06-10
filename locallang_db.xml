@@ -48,6 +48,9 @@
 			<label index="tx_bzdstaffdirectory_locations">Locations</label>
 			<label index="tx_bzdstaffdirectory_locations.title">Title</label>
 			<label index="tx_bzdstaffdirectory_locations.address">Address</label>
+			<label index="tx_bzdstaffdirectory_locations.zip">ZIP</label>
+			<label index="tx_bzdstaffdirectory_locations.city">City</label>
+			<label index="tx_bzdstaffdirectory_locations.country">Country</label>
 			<label index="tx_bzdstaffdirectory_locations.infopage">Page with information about this location</label>
 			<label index="tx_bzdstaffdirectory_functions">Functions</label>
 			<label index="tx_bzdstaffdirectory_functions.title">Function / Job Description</label>
@@ -109,6 +112,7 @@
 			<label index="tx_bzdstaffdirectory_persons.image">Bild</label>
 			<label index="tx_bzdstaffdirectory_persons.usergroups">Gruppenzugehörigkeit</label>
 			<label index="tx_bzdstaffdirectory_persons.function">Funktion</label>
+			<label index="tx_bzdstaffdirectory_persons.functions">Funktion(en)</label>
 			<label index="tx_bzdstaffdirectory_persons.gender">Geschlecht</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.notSet">bitte auswählen</label>
 			<label index="tx_bzdstaffdirectory_persons.gender.male">männlich</label>
@@ -140,7 +144,12 @@
 			<label index="tx_bzdstaffdirectory_locations">Ort</label>
 			<label index="tx_bzdstaffdirectory_locations.title">Titel</label>
 			<label index="tx_bzdstaffdirectory_locations.address">Adresse</label>
+			<label index="tx_bzdstaffdirectory_locations.zip">Postleitzahl</label>
+			<label index="tx_bzdstaffdirectory_locations.city">Stadt</label>
+			<label index="tx_bzdstaffdirectory_locations.country">Land</label>
 			<label index="tx_bzdstaffdirectory_locations.infopage">Seite mit Informationen über diesen Ort</label>
+			<label index="tx_bzdstaffdirectory_functions">Funktionen</label>
+			<label index="tx_bzdstaffdirectory_functions.title">Funktion / Job-Beschreibung</label>
 			<label index="tt_content.list_type_pi1">BZD Mitarbeiterverzeichnis</label>
 			<label index="tt_content.pi_flexform.teamlist">Team Liste</label>
 			<label index="tt_content.pi_flexform.contactbox">Kontaktperson (BOX)</label>
@@ -365,6 +374,12 @@
 			<label index="tx_bzdstaffdirectory_locations.title" type="integer">192455458</label>
 			<label index="tx_bzdstaffdirectory_locations.address" type="integer">232242979</label>
 			<label index="tx_bzdstaffdirectory_locations.infopage" type="integer">5729429</label>
+			<label index="tx_bzdstaffdirectory_persons.functions" type="integer">57162423</label>
+			<label index="tx_bzdstaffdirectory_locations.zip" type="integer">70553491</label>
+			<label index="tx_bzdstaffdirectory_locations.city" type="integer">92079470</label>
+			<label index="tx_bzdstaffdirectory_functions" type="integer">244559025</label>
+			<label index="tx_bzdstaffdirectory_functions.title" type="integer">258893619</label>
+			<label index="tx_bzdstaffdirectory_locations.country" type="integer">93787849</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons" type="integer">213615287</label>
@@ -540,6 +555,12 @@
 			<label index="tx_bzdstaffdirectory_locations.title">Title</label>
 			<label index="tx_bzdstaffdirectory_locations.address">Address</label>
 			<label index="tx_bzdstaffdirectory_locations.infopage">Page with information about this location</label>
+			<label index="tx_bzdstaffdirectory_persons.functions">Function(s)</label>
+			<label index="tx_bzdstaffdirectory_locations.zip">ZIP</label>
+			<label index="tx_bzdstaffdirectory_locations.city">City</label>
+			<label index="tx_bzdstaffdirectory_functions">Functions</label>
+			<label index="tx_bzdstaffdirectory_functions.title">Function / Job Description</label>
+			<label index="tx_bzdstaffdirectory_locations.country">Country</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="tx_bzdstaffdirectory_persons">Persons</label>

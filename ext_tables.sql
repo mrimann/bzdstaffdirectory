@@ -169,6 +169,9 @@ CREATE TABLE tx_bzdstaffdirectory_locations (
 	l18n_diffsource mediumblob NOT NULL,
 	title tinytext NOT NULL,
 	address text NOT NULL,
+	zip tinytext NOT NULL,
+	city tinytext NOT NULL,
+	country tinytext NOT NULL,
 	infopage int(11) DEFAULT '0' NOT NULL,
 
 	PRIMARY KEY (uid),

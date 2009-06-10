@@ -69,7 +69,10 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 		$this->createLocationAndAssignPerson(
 			$this->personUid,
 			'Dummy Location',
-			'Dummy Address' . chr(13) . 'Street 42' . chr(13) . '8000 ZŸrich'
+			'Street 42',
+			'8000',
+			'ZŸrich',
+			'Schweiz'
 		);
 
 		// Generates the fixture in $this->fixture.
@@ -114,12 +117,15 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 	 *
 	 * @return integer the new location record's UID
 	 */
-	private function createLocationAndAssignPerson($personUid, $locationTitle = 'Dummy Location', $address = '') {
+	private function createLocationAndAssignPerson($personUid, $locationTitle = 'Dummy Location', $address = '', $zip = '', $city = '', $country = '') {
 		$locationUid = $this->testingFramework->createRecord(
 			'tx_bzdstaffdirectory_locations',
 			array(
 				'title' => $locationTitle,
-				'address' => $address
+				'address' => $address,
+				'zip' => $zip,
+				'city' => $city,
+				'country' => $country
 			)
 		);
 
@@ -200,12 +206,7 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 
 	public function testRenderContainsLocationAddress() {
 		$this->assertContains(
-			'ADR;TYPE=WORK:;;Dummy Address;Street 42;8000 ZŸrich',
-			$this->fixture->render()
-		);
-
-		$this->assertContains(
-			'LABEL;TYPE=WORK:Dummy Address\nStreet 42\n8000 ZŸrich',
+			'ADR;TYPE=WORK:;;Street 42;ZŸrich;;8000;Schweiz',
 			$this->fixture->render()
 		);
 	}

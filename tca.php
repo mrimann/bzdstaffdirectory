@@ -607,6 +607,33 @@ $TCA['tx_bzdstaffdirectory_locations'] = array(
 				'rows' => '5'
 			)
 		),
+		'zip' => array(
+			'l10n_mode' => $l10n_mode,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_locations.zip',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30',
+			)
+		),
+		'city' => array(
+			'l10n_mode' => $l10n_mode,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_locations.city',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30',
+			)
+		),
+		'country' => array(
+			'l10n_mode' => $l10n_mode,
+			'exclude' => 1,
+			'label' => 'LLL:EXT:bzdstaffdirectory/locallang_db.php:tx_bzdstaffdirectory_locations.country',
+			'config' => array(
+				'type' => 'input',
+				'size' => '30',
+			)
+		),
 		'infopage' => array(
 			'l10n_mode' => 'exclude',
 			'exclude' => 1,
@@ -656,7 +683,7 @@ $TCA['tx_bzdstaffdirectory_locations'] = array(
 		)
 	),
 	'types' => array(
-		'0' => array('showitem' => 'hidden;;1;;1-1-1, title, address, infopage')
+		'0' => array('showitem' => 'hidden;;1;;1-1-1, title, address, zip, city, country, infopage')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
