@@ -31,6 +31,10 @@
 	text-decoration: none;
 }
 
+.tx-bzdstaffdirectory-pi1 a img{
+	border: none;
+}
+
 .tx-bzdstaffdirectory-pi1 table {
 	border-spacing: 0px;
 }
