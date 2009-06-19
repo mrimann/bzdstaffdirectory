@@ -543,6 +543,8 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			'foo bar',
 			'address'
 		);
+		$this->createFunctionAndAssignToPerson($personUid);
+
 		$this->getNewFixture($personUid);
 		$this->fixture->setConfigurationValue('vcfIcon', 'typo3conf/ext/bzdstaffdirectory/media/icon_vcf.gif');
 
@@ -565,6 +567,8 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 			'foo bar',
 			'address'
 		);
+		$this->createFunctionAndAssignToPerson($personUid);
+
 		$this->getNewFixture($personUid);
 		$this->fixture->setConfigurationValue('vcfIcon', 'typo3conf/ext/bzdstaffdirectory/media/icon_vcf.gif');
 

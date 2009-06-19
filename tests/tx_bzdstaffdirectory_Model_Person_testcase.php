@@ -756,6 +756,8 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			'Dummy Address'
 		);
 
+		$this->createFunctionAndAssignToPerson($this->fixture->getUid());
+
 		$this->assertTrue(
 			$this->fixture->hasVcfData()
 		);
@@ -778,6 +780,18 @@ class tx_bzdstaffdirectory_Model_Person_testcase extends tx_phpunit_testcase {
 			$this->uid,
 			'test location',
 			''
+		);
+
+		$this->assertFalse(
+			$this->fixture->hasVcfData()
+		);
+	}
+
+	public function testHasVcfDataReturnsFalseIfNoFunctionAssigned() {
+		$this->createLocationAndAssignPerson(
+			$this->fixture->getUid(),
+			'Dummy Location',
+			'Dummy Address'
 		);
 
 		$this->assertFalse(

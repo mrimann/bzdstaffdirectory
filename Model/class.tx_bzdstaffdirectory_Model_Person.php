@@ -506,6 +506,9 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 			return false;
 		}
 
+		if (!$this->hasFunction()) {
+			return false;
+		}
 
 		if (!$this->hasPhone()) {
 			return false;
