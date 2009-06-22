@@ -13,7 +13,7 @@
 			<label index="label_phone">Phone:</label>
 			<label index="label_mobile_phone">Mobile Phone:</label>
 			<label index="label_xing">XING:</label>
-			<label index="label_vcf">Get vCard</label>
+			<label index="label_vcf">Get vCard:</label>
 			<label index="label_room">Room:</label>
 			<label index="label_function">Function:</label>
 			<label index="label_nickname">Nickname:</label>
@@ -52,6 +52,7 @@
 			<label index="label_phone">Telefon:</label>
 			<label index="label_mobile_phone">Mobiltelefon:</label>
 			<label index="label_xing">XING:</label>
+			<label index="label_vcf">Visitenkarte:</label>
 			<label index="label_room">Raum:</label>
 			<label index="label_function">Funktion:</label>
 			<label index="label_nickname">Spitzname:</label>
@@ -64,7 +65,8 @@
 			<label index="label_location_singular">Standort:</label>
 			<label index="label_location_plural">Standorte:</label>
 			<label index="label_tasks">Aufgaben:</label>
-			<label index="label_files">Dateien:</label>
+			<label index="label_files_singular">Datei:</label>
+			<label index="label_files_plural">Dateien:</label>
 			<label index="label_groups_singular">Team:</label>
 			<label index="label_groups_plural">Teams:</label>
 			<label index="label_opinion">Meinung:</label>
@@ -83,6 +85,7 @@
 			<label index="error_noGroupUID">Es ist keine Gruppe ausgewählt. Es muss mindestens eine Gruppe in den Einstellungen des Plugins ausgewählt werden.</label>
 			<label index="error_noDetailPage">Es ist keine Detailseite definiert. Bitte eine existierende Seite im Flexform oder im TS Setup definieren.</label>
 			<label index="error_recordNotTranslated">Dieser Datensatz ist noch nicht übersetzt und kann nicht angezeigt werden.</label>
+			<label index="label_files">Dateien:</label>
 			<label index="label_location">Standort:</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
@@ -160,6 +163,9 @@
 			<label index="label_mobile_phone" type="integer">254374111</label>
 			<label index="label_xing" type="integer">37974788</label>
 			<label index="label_nickname" type="integer">213574789</label>
+			<label index="label_vcf" type="integer">154823659</label>
+			<label index="label_files_singular" type="integer">182590850</label>
+			<label index="label_files_plural" type="integer">147226768</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email" type="integer">233919839</label>
@@ -236,6 +242,9 @@
 			<label index="label_mobile_phone">Mobile Phone:</label>
 			<label index="label_xing">XING:</label>
 			<label index="label_nickname">Nickname:</label>
+			<label index="label_vcf">Get vCard:</label>
+			<label index="label_files_singular">File:</label>
+			<label index="label_files_plural">Files:</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email">E-mail:</label>
