@@ -1,4 +1,4 @@
-version 0.8.2 - currently working on
+version 0.8.2 - released 2009-06-22
 - [#3023] Fix: Detail view shows dummy image even for person with image
 - [#3033] Fix: team leaders get invalid CSS classes
 
