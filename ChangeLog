@@ -1,4 +1,5 @@
 version 0.9.0 - currently working on
+- [#3038] Fix: doNotLinkNamesToDetailView is ignored in list view
 - [#3037] Fix: doNotLinkToDetailPage caused wrong output in list view
 - [#3376] Change: If email addresses are JS encrypted, just a label is shown instead of the plain text address. (Thanks Rik for the patch!)
 - [#3024] Change: Now allowing bigger portrait images and file attachments
