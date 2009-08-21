@@ -10,6 +10,7 @@
 	<data type="array">
 		<languageKey index="default" type="array">
 			<label index="label_email">E-mail:</label>
+			<label index="label_send_email">Send E-Mail</label>
 			<label index="label_phone">Phone:</label>
 			<label index="label_mobile_phone">Mobile Phone:</label>
 			<label index="label_xing">XING:</label>
@@ -49,6 +50,7 @@
 		</languageKey>
 		<languageKey index="de" type="array">
 			<label index="label_email">E-Mail:</label>
+			<label index="label_send_email">E-Mail senden</label>
 			<label index="label_phone">Telefon:</label>
 			<label index="label_mobile_phone">Mobiltelefon:</label>
 			<label index="label_xing">XING:</label>
@@ -166,6 +168,7 @@
 			<label index="label_vcf" type="integer">154823659</label>
 			<label index="label_files_singular" type="integer">182590850</label>
 			<label index="label_files_plural" type="integer">147226768</label>
+			<label index="label_send_email" type="integer">86372820</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email" type="integer">233919839</label>
@@ -245,6 +248,7 @@
 			<label index="label_vcf">Get vCard:</label>
 			<label index="label_files_singular">File:</label>
 			<label index="label_files_plural">Files:</label>
+			<label index="label_send_email">Send E-Mail</label>
 		</languageKey>
 		<languageKey index="fr" type="array">
 			<label index="label_email">E-mail:</label>

@@ -573,7 +573,7 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 
 		$mailto = $this->cObj->getMailTo($email,$email);
 		$result = array();
-		$result['display'] = $mailto[1];
+		$result['display'] = $this->translate('label_send_email');
 		$result['begin'] = '<a href="'.$mailto[0].'">';
 		$result['end'] = '</a>';
 
