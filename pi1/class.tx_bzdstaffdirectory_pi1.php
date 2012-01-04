@@ -95,9 +95,7 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 			$this->conf['DETAIL.']['backPid'] = intval($this->piVars['backPid']);
 		}
 
-		$detailViewClassName = t3lib_div::makeInstanceClassName(
-				'tx_bzdstaffdirectory_pi1_frontEndDetailView'
-		);
+		$detailViewClassName = 'tx_bzdstaffdirectory_pi1_frontEndDetailView';
 		$detailView = new $detailViewClassName(
 			intval($this->piVars['showUid']),
 			$this->conf,

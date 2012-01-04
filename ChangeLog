@@ -1,3 +1,6 @@
+version 0.8.3 - currently working on
+- [#4303] Fix: Call to undefined method t3lib_div::makeInstanceClassName in detail view
+
 version 0.8.2 - released 2009-06-22
 - [#3023] Fix: Detail view shows dummy image even for person with image
 - [#3033] Fix: team leaders get invalid CSS classes
