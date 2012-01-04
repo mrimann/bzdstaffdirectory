@@ -96,13 +96,9 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 		}
 
 		if (isset($this->piVars['vcf'])) {
-			$detailViewClassName = t3lib_div::makeInstanceClassName(
-				'tx_bzdstaffdirectory_pi1_frontEndVcfView'
-			);
+			$detailViewClassName = 'tx_bzdstaffdirectory_pi1_frontEndVcfView';
 		} else {
-			$detailViewClassName = t3lib_div::makeInstanceClassName(
-					'tx_bzdstaffdirectory_pi1_frontEndDetailView'
-			);
+			$detailViewClassName = 'tx_bzdstaffdirectory_pi1_frontEndDetailView';
 		}
 
 		$detailView = new $detailViewClassName(
