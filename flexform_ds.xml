@@ -37,7 +37,7 @@
 				</el>
 			</ROOT>
 		</s_welcome>
-		<s_template>
+		<s_template_special>
 			<ROOT>
 				<TCEforms>
 					<sheetTitle>LLL:EXT:bzdstaffdirectory/locallang_db.php:tt_content.pi_flexform.template</sheetTitle>
@@ -76,7 +76,7 @@
 					</cssFile>
 				</el>
 			</ROOT>
-		</s_template>
+		</s_template_special>
 		<s_teamlist>
 			<ROOT>
 				<TCEforms>
