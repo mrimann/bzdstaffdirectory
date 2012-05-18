@@ -1,4 +1,5 @@
 version 0.9.0 - currently working on
+- [#3040] Fix: Date in Company and Birthdate now shown localized in the detail view
 - [#4099] Fix: Using the template from Flexform now works
 - [#4303] Fix: Call to undefined method t3lib_div::makeInstanceClassName in detail view
 - [#3038] Fix: doNotLinkNamesToDetailView is ignored in list view

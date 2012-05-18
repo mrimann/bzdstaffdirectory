@@ -157,8 +157,8 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		if ($this->person->hasBirthDate()) {
 			if (!$this->getConfValueBoolean('showAgeInsteadOfBirthdate', 's_detailview')) {
 				$format = $this->getConfValueString('dateFormatBirthday');
-				$format = (!empty($format)) ? $format : 'F Y';
-				$this->setMarker('date_birthdate', $this->person->getBirthDate()->format($format));
+				$format = (!empty($format)) ? $format : '%B %Y';
+				$this->setMarker('date_birthdate', strftime($format, $this->person->getBirthDate()->format('U')));
 			} else {
 				$this->setMarker('date_birthdate', $this->person->getAge());
 				$this->setMarker('label_date_birthdate', $this->translate('label_date_age'));
@@ -170,8 +170,8 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		// Shows the date since when this person is in the company.
 		if ($this->person->hasDateInCompany()) {
 			$format = $this->getConfValueString('dateFormatInCompany');
-			$format = (!empty($format)) ? $format : 'F Y';
-			$this->setMarker('date_incompany', $this->person->getDateInCompany()->format($format));
+			$format = (!empty($format)) ? $format : '%B %Y';
+			$this->setMarker('date_incompany', strftime($format, $this->person->getDateInCompany()->format('U')));
 		} else {
 			$this->hideSubparts('date_incompany', 'field_wrapper');
 		}
