@@ -1,4 +1,5 @@
 version 0.9.0 - currently working on
+- [#3760] Documentation: Fixed the realURL example
 - [#3269] Fix: Restored the back link in the detail view
 - [#3040] Fix: Date in Company and Birthdate now shown localized in the detail view
 - [#4099] Fix: Using the template from Flexform now works
