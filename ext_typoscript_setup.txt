@@ -86,12 +86,12 @@ plugin.tx_bzdstaffdirectory_pi1 {
 
 	# comma separated list of file extensions that should be opened in a new window.
 	fileExtensionsToOpenInNewWindow = pdf
-	
+
 	# path to the VCF icon
 	vcfIcon = typo3conf/ext/bzdstaffdirectory/media/icon_vcf.gif
-	
+
 	# company name to show in the vCard download
-	companyNameToShowInVCard = 
+	companyNameToShowInVCard =
 
 	# Overwrites the locallang labels for certains labels. This is used for the universal fields,
 	# that can be used for different values.
