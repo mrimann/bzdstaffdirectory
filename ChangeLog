@@ -1,4 +1,4 @@
-version 0.8.3 - currently working on
+version 0.8.3 - released 2012-05-21
 - [#4303] Fix: Call to undefined method t3lib_div::makeInstanceClassName in detail view
 
 version 0.8.2 - released 2009-06-22
