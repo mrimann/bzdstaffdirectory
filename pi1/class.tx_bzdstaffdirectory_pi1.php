@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2005-2009 Mario Rimann (mario@screenteam.com)
+*  (c) 2005-2012 Mario Rimann (typo3-coding@rimann.org)
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -27,7 +27,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
 /**
  * Plugin 'BZD Staff Directory' for the 'bzdstaffdirectory' extension.
  *
- * @author	Mario Rimann <mario@screenteam.com>
+ * @author	Mario Rimann <typo3-coding@rimann.org>
  */
 class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 	var $prefixId = 'tx_bzdstaffdirectory_pi1';		// Same as class name
