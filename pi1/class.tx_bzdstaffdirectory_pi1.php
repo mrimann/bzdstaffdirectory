@@ -1338,6 +1338,13 @@ class tx_bzdstaffdirectory_pi1 extends tx_oelib_templatehelper {
 				$this->hideSubparts('email', 'listitem_wrapper');
 			}
 
+			// Shows the location of the person if one is assigned.
+			if ($this->hasValue('location', $person)) {
+				$this->setMarker('location', $this->getLocationList($uid));
+			} else {
+				$this->hideSubparts('location', 'listitem_wrapper');
+			}
+
 			if ($this->getMemberOfGroups($uid)) {
 				$this->setMarker('groups', $this->getGroups($uid));
 			} else {
