@@ -44,7 +44,7 @@ class tx_bzdstaffdirectory_Model_Location_testcase extends tx_phpunit_testcase {
 				'title' => 'Dummy Location',
 				'address' => 'Address Dummy',
 				'zip' => '8000',
-				'city' => 'ZŸrich',
+				'city' => 'Luzern',
 				'country' => 'Schweiz'
 			)
 		);
@@ -155,7 +155,7 @@ class tx_bzdstaffdirectory_Model_Location_testcase extends tx_phpunit_testcase {
 
 	public function testGetCityReturnsCityName() {
 		$this->assertEquals(
-			'ZŸrich',
+			'Luzern',
 			$this->fixture->getCity()
 		);
 	}
