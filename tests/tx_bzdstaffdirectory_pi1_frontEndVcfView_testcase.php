@@ -71,7 +71,7 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 			'Dummy Location',
 			'Street 42',
 			'8000',
-			'Z�rich',
+			'Luzern',
 			'Schweiz'
 		);
 
@@ -183,14 +183,14 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 
 	public function testRenderContainsFirstAndLastName() {
 		$this->assertContains(
-			'N:Doe;John',
+			'N;CHARSET=utf-8:Doe;John',
 			$this->fixture->render()
 		);
 	}
 
 	public function testRenderContainsFullName() {
 		$this->assertContains(
-			'FN:John Doe',
+			'FN;CHARSET=utf-8:John Doe',
 			$this->fixture->render()
 		);
 	}
@@ -199,14 +199,14 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 		$this->fixture->setConfigurationValue('companyNameToShowInVCard', 'Dummy Company');
 
 		$this->assertContains(
-			'ORG:Dummy Company',
+			'ORG;CHARSET=utf-8:Dummy Company',
 			$this->fixture->render()
 		);
 	}
 
 	public function testRenderContainsLocationAddress() {
 		$this->assertContains(
-			'ADR;TYPE=WORK:;;Street 42;Z�rich;;8000;Schweiz',
+			'ADR;CHARSET=utf-8;TYPE=WORK:;;Street 42;Luzern;;8000;Schweiz',
 			$this->fixture->render()
 		);
 	}
@@ -227,7 +227,7 @@ class tx_bzdstaffdirectory_frontEndVcfView_testcase extends tx_phpunit_testcase 
 
 	public function testRenderContainsFunction() {
 		$this->assertContains(
-			'TITLE:Bla bla specialist',
+			'TITLE;CHARSET=utf-8:Bla bla specialist',
 			$this->fixture->render()
 		);
 	}

@@ -445,10 +445,10 @@ class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testca
 	}
 
 	public function testRenderTakesFormatForBirthDateIntoAccount() {
-		$this->fixture->setConfigurationValue('dateFormatBirthday', 'j. F Y');
+		$this->fixture->setConfigurationValue('dateFormatBirthday', '%B %Y');
 
 		$this->assertContains(
-			date('j. F Y', strtotime("-10 years")),
+			strftime('%B %Y', strtotime("-10 years")),
 			$this->fixture->render()
 		);
 	}
