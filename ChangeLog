@@ -1,4 +1,5 @@
 version 0.10.0 - currently working on
+- [BUGFIX] CE Wizard not compatible with 6.0+
 - [!!!][TASK] Raise minimum TYPO3 (6.0+) and PHP-Version (5.3+)
 - [BUGFIX] Fixed charset issue in unit tests
 - [TASK] Adapting copyright lines to current reality

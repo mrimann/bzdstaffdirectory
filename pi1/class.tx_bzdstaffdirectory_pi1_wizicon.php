@@ -49,9 +49,10 @@ class tx_bzdstaffdirectory_pi1_wizicon {
      * @return    array        The LOCAL_LANG array
      */
     function includeLocalLang()    {
-        $llFile = t3lib_extMgm::extPath('bzdstaffdirectory').'locallang.xml';
-        $LOCAL_LANG = t3lib_div::readLLXMLfile($llFile, $GLOBALS['LANG']->lang);
-        return $LOCAL_LANG;
+		$llFile = t3lib_extMgm::extPath('bzdstaffdirectory').'locallang.xml';
+		$llXmlParser = new \TYPO3\CMS\Core\Localization\Parser\LocallangXmlParser();
+		$LOCAL_LANG = $llXmlParser->getParsedData($llFile, $GLOBALS['LANG']->lang);
+		return $LOCAL_LANG;
     }
 
 }
