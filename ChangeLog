@@ -1,4 +1,5 @@
 version 0.10.0 - currently working on
+- [!!!][TASK] Raise minimum TYPO3 (6.0+) and PHP-Version (5.3+)
 - [BUGFIX] Fixed charset issue in unit tests
 - [TASK] Adapting copyright lines to current reality
 - [BUGFIX] Location not shown in list view (Thanks Thomas Gemperle)
