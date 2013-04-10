@@ -34,7 +34,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  *
  * @author Mario Rimann <typo3-coding@rimann.org>
  */
-class tx_bzdstaffdirectory_Model_Function extends tx_oelib_Model {
+class tx_bzdstaffdirectory_Model_Function extends tx_bzdstaffdirectory_Model_Generic {
 	/**
 	 * Returns the title of this location
 	 *

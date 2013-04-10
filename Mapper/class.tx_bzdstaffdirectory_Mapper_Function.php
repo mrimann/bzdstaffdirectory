@@ -34,7 +34,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  *
  * @author Mario Rimann <typo3-coding@rimann.org>
  */
-class tx_bzdstaffdirectory_Mapper_Function extends tx_oelib_DataMapper {
+class tx_bzdstaffdirectory_Mapper_Function extends tx_bzdstaffdirectory_Mapper_Generic {
 	/**
 	 * @var string the name of the database table for this mapper
 	 */
@@ -45,6 +45,14 @@ class tx_bzdstaffdirectory_Mapper_Function extends tx_oelib_DataMapper {
 	 */
 	protected $modelClassName = 'tx_bzdstaffdirectory_Model_Function';
 
+	/**
+	 * The fields to overlay when localizing this kind of objects
+	 *
+	 * @var array
+	 */
+	protected $fieldsToOverlay = array(
+		'title',
+	);
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Mapper/class.tx_bzdstaffdirectory_Mapper_Function.php']) {
