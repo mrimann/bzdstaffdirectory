@@ -132,8 +132,13 @@ class tx_bzdstaffdirectory_Model_Person extends tx_bzdstaffdirectory_Model_Gener
 
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($dbResult) > 0)	{
 			$relation = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult);
-			$function = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Function')
-					->find($relation['uid_foreign']);
+			$functionMapper = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Function');
+			$function = $functionMapper->find($relation['uid_foreign']);
+
+			// try to localize if we're not in the default language
+			if ($GLOBALS['TSFE']->sys_language_uid > 0) {
+				$function = $functionMapper->overlayRecord($function, $GLOBALS['TSFE']->sys_language_uid);
+			}
 		}
 
 		return $function;
