@@ -354,8 +354,14 @@ class tx_bzdstaffdirectory_Model_Person extends tx_bzdstaffdirectory_Model_Gener
 
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($dbResult) > 0)	{
 			while($member = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($dbResult))	{
-				$currentTeam = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Team')
-					->find($member['uid_foreign']);
+				$teamMapper = tx_oelib_MapperRegistry::get('tx_bzdstaffdirectory_Mapper_Team');
+				$currentTeam = $teamMapper->find($member['uid_foreign']);
+
+				// try to localize if we're not in the default language
+				if ($GLOBALS['TSFE']->sys_language_uid > 0) {
+					$currentTeam = $teamMapper->overlayRecord($currentTeam, $GLOBALS['TSFE']->sys_language_uid);
+				}
+
 				$teams->add($currentTeam);
 			}
 		}

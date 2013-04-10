@@ -34,7 +34,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  *
  * @author Mario Rimann <typo3-coding@rimann.org>
  */
-class tx_bzdstaffdirectory_Mapper_Team extends tx_oelib_DataMapper {
+class tx_bzdstaffdirectory_Mapper_Team extends tx_bzdstaffdirectory_Mapper_Generic {
 	/**
 	 * @var string the name of the database table for this mapper
 	 */
@@ -44,6 +44,15 @@ class tx_bzdstaffdirectory_Mapper_Team extends tx_oelib_DataMapper {
 	 * @var string the model class name for this mapper, must not be empty
 	 */
 	protected $modelClassName = 'tx_bzdstaffdirectory_Model_Team';
+
+	/**
+	 * The fields to overlay when localizing this type of objects
+	 *
+	 * @var array
+	 */
+	protected $fieldsToOverlay = array(
+		'group_name',
+	);
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Mapper/class.tx_bzdstaffdirectory_Mapper_Team.php']) {
