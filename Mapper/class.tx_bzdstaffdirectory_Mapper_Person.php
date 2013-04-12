@@ -65,6 +65,54 @@ class tx_bzdstaffdirectory_Mapper_Person extends tx_oelib_DataMapper {
 
 		return $model;
 	}
+
+	/**
+	 * Takes a person in the default language and tries to overlay it's values
+	 * with localized values.
+	 *
+	 * @param tx_bzdstaffdirectory_Model_Person the person object to overlay
+	 * @param integer the language UID
+	 */
+	public function overlayRecord(tx_bzdstaffdirectory_Model_Person $person, $sysLanguageUid) {
+		try {
+			$overlayRecord = tx_oelib_db::selectSingle(
+				'*',
+				'tx_bzdstaffdirectory_persons',
+				'sys_language_uid = ' . $sysLanguageUid . ' AND l18n_parent=' . $person->getUid() . ' AND deleted=0 AND hidden=0'
+			);
+		} catch (Exception $e) {
+			// whoopsie, looks like there's no translation for this person
+			// return the original person object instead
+			return $person;
+		}
+
+		// loop over a list of simple (text) fields and replace their values
+		// in the person object
+		$fieldsToOverlay = array(
+			'first_name',
+			'last_name',
+			'title',
+			'email',
+			'phone',
+			'mobile_phone',
+			'function',
+			'nickname',
+			'gender',
+			'date_birthdate',
+			'date_incompany',
+			'room',
+			'officehours',
+			'xing_profile_url',
+			'tasks',
+			'opinion',
+			'files',
+		);
+		foreach($fieldsToOverlay as $key) {
+			$person->setValue($key, $overlayRecord[$key]);
+		}
+
+		return $person;
+	}
 }
 
 if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/bzdstaffdirectory/Mapper/class.tx_bzdstaffdirectory_Mapper_Person.php']) {

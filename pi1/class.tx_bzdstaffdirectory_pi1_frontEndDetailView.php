@@ -106,6 +106,11 @@ class tx_bzdstaffdirectory_pi1_frontEndDetailView extends tx_bzdstaffdirectory_p
 		} catch (tx_oelib_Exception_NotFound $exception) {
 			$this->person = null;
 		}
+
+		// Try to localize the record if we're not in default language
+		if ($GLOBALS['TSFE']->sys_language_uid > 0) {
+			$this->person = $mapper->overlayRecord($this->person, $GLOBALS['TSFE']->sys_language_uid);
+		}
 	}
 
 	/**

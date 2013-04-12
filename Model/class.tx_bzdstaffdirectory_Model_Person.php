@@ -68,6 +68,17 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 	}
 
 	/**
+	 * Sets a value within this object. Basically needed to make the protected
+	 * function of tx_oelib_Model accessible from the outside.
+	 *
+	 * @param the key (e.g. database field name)
+	 * @param the value to be stored
+	 */
+	public function setValue($key, $value) {
+		$this->set($key, $value);
+	}
+
+	/**
 	 * Returns the first name of the person.
 	 *
 	 * @return string the first name of the person, plain text
