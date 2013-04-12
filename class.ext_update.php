@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-* (c) 2009 Mario Rimann (mario@screenteam.com)
+* (c) 2009-2012 Mario Rimann (typo3-coding@rimann.org)
 * All rights reserved
 *
 * This script is part of the TYPO3 project. The TYPO3 project is
@@ -28,7 +28,7 @@
  * @package TYPO3
  * @subpackage tx_bzdstaffdirectory
  *
- * @author Mario Rimann <mario@screenteam.com>
+ * @author Mario Rimann <typo3-coding@rimann.org>
  */
 class ext_update {
 

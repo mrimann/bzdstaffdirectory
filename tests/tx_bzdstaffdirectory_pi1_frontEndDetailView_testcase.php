@@ -2,7 +2,7 @@
 /***************************************************************
 * Copyright notice
 *
-* (c) 2008-2009 Mario Rimann (mario@screenteam.com)
+* (c) 2008-2012 Mario Rimann (typo3-coding@rimann.org)
 * All rights reserved
 *
 * This script is part of the TYPO3 project. The TYPO3 project is
@@ -33,7 +33,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Niels Pardon <mail@niels-pardon.de>
- * @author Mario Rimann <mario@screenteam.com>
+ * @author Mario Rimann <typo3-coding@rimann.org>
  */
 class tx_bzdstaffdirectory_frontEndDetailView_testcase extends tx_phpunit_testcase {
 	/**

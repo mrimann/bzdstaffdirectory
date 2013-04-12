@@ -34,7 +34,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  * @subpackage tx_bzdstaffdirectory
  *
  * @author Oliver Klee <typo3-coding@oliverklee.de>
- * @author Mario Rimann <mario@screenteam.com>
+ * @author Mario Rimann <typo3-coding@rimann.org>
  */
 class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 
