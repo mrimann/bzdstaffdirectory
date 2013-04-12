@@ -36,7 +36,7 @@ require_once(t3lib_extMgm::extPath('oelib') . 'class.tx_oelib_Autoloader.php');
  * @author Oliver Klee <typo3-coding@oliverklee.de>
  * @author Mario Rimann <typo3-coding@rimann.org>
  */
-class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
+class tx_bzdstaffdirectory_Model_Person extends tx_bzdstaffdirectory_Model_Generic {
 
 	/**
 	 * The list of allowed standard fields.
@@ -65,17 +65,6 @@ class tx_bzdstaffdirectory_Model_Person extends tx_oelib_Model {
 			'universal_field_4',
 			'universal_field_5',
 		);
-	}
-
-	/**
-	 * Sets a value within this object. Basically needed to make the protected
-	 * function of tx_oelib_Model accessible from the outside.
-	 *
-	 * @param the key (e.g. database field name)
-	 * @param the value to be stored
-	 */
-	public function setValue($key, $value) {
-		$this->set($key, $value);
 	}
 
 	/**
