@@ -1,4 +1,4 @@
-version 0.9.1 - currently working on
+version 0.9.1 - released 2013-04-14
 - [BUGFIX] Detailview shows non-localized data
 - [TASK] Adapting copyright lines to current reality
 - [BUGFIX] Location not shown in list view (Thanks Thomas Gemperle)
